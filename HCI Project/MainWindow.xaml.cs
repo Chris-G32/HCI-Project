@@ -22,10 +22,5 @@ namespace HCI_Project
         {
            
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
