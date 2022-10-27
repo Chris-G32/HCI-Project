@@ -12,6 +12,7 @@ using System.IO.Compression;
 using HCI_Project.Utilities;
 using HCI_Project.MVVM.Model;
 using System.Windows.Controls;
+using System.IO;
 
 namespace HCI_Project.MVVM.ViewModel
 {
@@ -19,9 +20,10 @@ namespace HCI_Project.MVVM.ViewModel
     {
         public RelayCommand GetGames { get; set; }
         public SteamHandler steamHandler=new SteamHandler();
-
-        private String _gamesList="";
-        public String GamesList { get { return _gamesList; } set { _gamesList = value;OnPropertyChanged(); } }
+        public ObservableCollection<string> Games { get; set; } = new ObservableCollection<string>();
+        
+        private string _gamesList="";
+        public string GamesList { get { return _gamesList; } set { _gamesList = value;OnPropertyChanged(); } }
 
         private static object _currentView;
 
@@ -60,9 +62,12 @@ namespace HCI_Project.MVVM.ViewModel
             
             var userGamesCompressed=await client.GetByteArrayAsync(link);
             //"steam://rungameid/1714040"
-            WebBrowser a = new WebBrowser();
-            a.Navigate("steam://rungameid/111");
-            a.Dispose();
+            //WebBrowser a = new WebBrowser();
+
+            //Works
+            //a.Navigate("com.epicgames.launcher://apps/d16f231f238646e881bb0cd83e1d30c8%3A11b5d7e72d614d928fd2cd3ba656a816%3Adaac7fe46e3647cb80530411d7ec1dc5?action=launch&silent=true");
+            //a.Dispose();
+            
             client.Dispose();
             var gamesAsBytes = GZipCompressor.Decompress(userGamesCompressed);
             //GamesList = Encoding.UTF8.GetString(gamesAsBytes);
@@ -71,7 +76,7 @@ namespace HCI_Project.MVVM.ViewModel
             var len = allGameData.GetArrayLength();
             for (int i=0;i<len;i++)
             {
-                GamesList+=allGameData[i].GetProperty("name")+": "+ allGameData[i].GetProperty("appid")+"\n";
+                Games.Add(allGameData[i].GetProperty("name") + ": " + allGameData[i].GetProperty("appid"));
             }
             
             Debug.WriteLine("");

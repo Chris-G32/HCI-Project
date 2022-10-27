@@ -14,6 +14,20 @@
             <mainViewModel:MainViewModel/>
         </Grid.DataContext>
         <Button Content="Push To Access List Of Steam Games" Command="{Binding GetGames,Mode=OneWay}" Width="200" Height="70" Margin="300,38,300,342"></Button>
-        <TextBlock Text="{Binding GamesList,Mode=OneWay}" HorizontalAlignment="Center" Width="300" Height="300" Margin="0,140,0,10" TextWrapping="Wrap"></TextBlock>
+        <!--<TextBlock Text="{Binding GamesList,Mode=OneWay}" HorizontalAlignment="Center" Width="300" Height="300" Margin="0,140,0,10" TextWrapping="Wrap"></TextBlock>-->
+        <ItemsControl ItemsSource="{Binding Games}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="100" Height="100"  Background="CornflowerBlue">
+                        <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>
