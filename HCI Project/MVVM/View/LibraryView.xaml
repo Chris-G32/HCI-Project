@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="370" d:DesignWidth="240">
+    <!--stack panel of length = visible games-->
+    <StackPanel Orientation="Vertical" Background="#3a333b">
+        <!--Can be a stack of dynamic objects, sorted alphabetically-->
+        
+
+    </StackPanel>
 </UserControl>
