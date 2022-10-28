@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace HCI_Project.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for GameView.xaml
+    /// Interaction logic for LibraryView.xaml
     /// </summary>
-    public partial class GameView : UserControl
+    public partial class LibraryView : UserControl
     {
-        public GameView()
+        public LibraryView()
         {
             InitializeComponent();
         }
