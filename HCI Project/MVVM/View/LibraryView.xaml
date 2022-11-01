@@ -7,9 +7,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="370" d:DesignWidth="240">
     <!--stack panel of length = visible games-->
-    <StackPanel Orientation="Vertical" Background="#3a333b">
+    <StackPanel Orientation="Vertical" Background="{DynamicResource lnchDarkMedGray}">
         <!--Can be a stack of dynamic objects, sorted alphabetically-->
-        
+        <WrapPanel x:Name="Default" PreviewMouseDown="Default_PreviewMouseDown">
+            <!--Background depends on if selected-->
+            <!--GAME ICON-->
+            <!--needs data bind per entry-->
+            <Image Height="25" Width="25"
+                   Source="https://raw.githubusercontent.com/Chris-G32/HCI-Project/443b97abe49b76100f57fb30f85fc1bf7946a391/HCI%20Project/icons/defualt_game_icon.svg?token=AF5UW2XAL6RZDO6RJ44BY2LDMB3X4"
+                   Margin="2">
+            </Image>
+            <!--GAME TITLE-->
+            <!--needs data bind per entry-->
+            <TextBlock 
+                Text ="Game Title" 
+                Foreground="{DynamicResource lnchLightLightGray}" 
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                FontSize="10"
+                Margin="5, 0, 0, 0"
+                TextWrapping="NoWrap" FontFamily="Gill Sans MT"/>
+            <!--INSTALL STATUS-->
+            <!--needs data bind per entry-->
+            <TextBlock 
+                Text = "installed"
+                Foreground="{DynamicResource lnchLightLightGray}" 
+                HorizontalAlignment="Left" VerticalAlignment="Center"
+                Margin="9,10,9,9"
+                FontSize="7.5" 
+                TextWrapping="NoWrap" FontStyle="Italic" FontFamily="Gill Sans MT"/>
+        </WrapPanel>
 
     </StackPanel>
 </UserControl>

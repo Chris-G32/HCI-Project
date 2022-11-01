@@ -22,5 +22,11 @@ namespace HCI_Project.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void Default_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Default.Background = Brushes.Gray;
+            //Takes user to game page
+        }
     }
 }
