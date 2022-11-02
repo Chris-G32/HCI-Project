@@ -20,7 +20,7 @@ namespace HCI_Project
     {
         public MainWindow()
         {
-           
+            InitializeComponent();
         }
     }
 }
