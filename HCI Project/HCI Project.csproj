@@ -13,37 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MVVM\View\GameView\GameView_GallTabView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\GameView\GameView_InfoTabView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\GameView\GameView_CommTabView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\GameView\GameView_PlayTabView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="MVVM\View\GameView\GameView_GallTabView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\GameView\GameView_InfoTabView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\GameView\GameView_CommTabView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\GameView\GameView_PlayTabView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
+    <Folder Include="MVVM\View\GameView\" />
   </ItemGroup>
 
 </Project>
