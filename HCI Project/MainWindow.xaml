@@ -24,7 +24,7 @@
             <RowDefinition Height="75"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-            <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />
+            <!--<ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />-->
         
         </Grid>
     </Viewbox>
