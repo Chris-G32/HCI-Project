@@ -10,5 +10,20 @@
              x:Name="GameViews"
              Width="600" Height="370">
     <Grid Background= "{DynamicResource lnchDarkGray}">
+            <TextBlock></TextBlock>
+        <TabControl>
+            <TabItem Header="Play" Background="{DynamicResource lnchMedGray}">
+                <!--tab is linked here-->
+            </TabItem>
+            <TabItem Header="Community" Background="{DynamicResource lnchMedGray}">
+                <!--tab is linked here-->
+            </TabItem>
+            <TabItem Header="Info" Background="{DynamicResource lnchMedGray}">
+                <!--tab is linked here-->
+            </TabItem>
+            <TabItem Header="Gallery" Background="{DynamicResource lnchMedGray}">
+                <!--tab is linked here-->
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

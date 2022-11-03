@@ -14,18 +14,16 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    <Viewbox>
     <Grid Width="800" Height="450">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-            <!--<ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />-->
-        
-        </Grid>
-    </Viewbox>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />
+
+    </Grid>
 </Window>

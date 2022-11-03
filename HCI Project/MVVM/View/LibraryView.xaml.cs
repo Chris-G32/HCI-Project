@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +26,7 @@ namespace HCI_Project.MVVM.View
 
         private void Default_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Default.Background = Brushes.Gray;
-            //Takes user to game page
+            //hover over recolor (with defined brush)
         }
     }
 }
