@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="240">
+             d:DesignHeight="370" d:DesignWidth="200">
     <!--stack panel of length = visible games-->
     <StackPanel Orientation="Vertical" Background="{DynamicResource lnchDarkMedGray}">
         <!--Can be a stack of dynamic objects, sorted alphabetically-->
-        <WrapPanel x:Name="Default" PreviewMouseDown="Default_PreviewMouseDown">
+        <WrapPanel Margin="2" x:Name="Default" PreviewMouseDown="Default_PreviewMouseDown">
             <!--Background depends on if selected-->
             <!--GAME ICON-->
             <!--needs data bind per entry-->
@@ -20,12 +20,10 @@
             <!--GAME TITLE-->
             <!--needs data bind per entry-->
             <TextBlock 
-                Text ="Game Title" 
-                Foreground="{DynamicResource lnchLightLightGray}" 
+                Text="Game Title"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                FontSize="10"
                 Margin="5, 0, 0, 0"
-                TextWrapping="NoWrap" FontFamily="Gill Sans MT"/>
+                TextWrapping="NoWrap"/>
             <!--INSTALL STATUS-->
             <!--needs data bind per entry-->
             <TextBlock 
@@ -34,7 +32,7 @@
                 HorizontalAlignment="Left" VerticalAlignment="Center"
                 Margin="9,10,9,9"
                 FontSize="7.5" 
-                TextWrapping="NoWrap" FontStyle="Italic" FontFamily="Gill Sans MT"/>
+                TextWrapping="NoWrap" FontStyle="Italic"/>
         </WrapPanel>
 
     </StackPanel>

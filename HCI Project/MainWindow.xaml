@@ -7,11 +7,14 @@
       xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
       
       mc:Ignorable="d"
-      Title="MainView" WindowStyle="SingleBorderWindow" Background="White">
+      Title="MainView" WindowStyle="SingleBorderWindow" 
+      MinWidth="400" MinHeight="225"
+      Background="{DynamicResource lnchBlack}">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
+    <Viewbox>
     <Grid Width="800" Height="450">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -21,6 +24,8 @@
             <RowDefinition Height="75"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" Margin="10" />
-    </Grid>
+            <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />
+        
+        </Grid>
+    </Viewbox>
 </Window>
