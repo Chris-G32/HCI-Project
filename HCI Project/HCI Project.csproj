@@ -9,11 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <Compile Remove="MVVM\View\GameView\**" />
+    <EmbeddedResource Remove="MVVM\View\GameView\**" />
+    <None Remove="MVVM\View\GameView\**" />
+    <Page Remove="MVVM\View\GameView\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MVVM\View\GameView\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
