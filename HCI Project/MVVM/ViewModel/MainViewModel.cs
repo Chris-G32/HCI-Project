@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using HCI_Project.Utilities;
-using HCI_Project.MVVM.Model;
+using HCI_Project.MVVM.ViewModel;
 using System.Windows.Controls;
 using System.IO;
 
@@ -20,10 +20,9 @@ namespace HCI_Project.MVVM.ViewModel
     {
         //public static SomeSortOfHandler(s)
         public RelayCommand SetGameView { get; set; }
-        public RelayCommand TaskViewCmd { get; set; }
         public GameViewModel GameVM { get; set; }
-
-        private object _currentView;
+        public LibraryViewModel LibraryVM { get; set; }
+        private static object _currentView;
 
         public object CurrentView
         {
@@ -40,9 +39,13 @@ namespace HCI_Project.MVVM.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            //Instantiate each ViewModel
             GameVM = new GameViewModel();
-           
+
+            //Set Default View
             CurrentView = GameVM;
+
+            //Set Bound Commands
             SetGameView = new RelayCommand(o =>
             {
                 CurrentView = GameVM;
