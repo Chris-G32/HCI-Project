@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;//Debugging Only atm
 using System.Text;
 
 namespace HCI_Project.MVVM.ViewModel
@@ -10,7 +11,13 @@ namespace HCI_Project.MVVM.ViewModel
     /// </summary>
     public class GameViewModel:ObservableObject
     {
-        public RelayCommand ChangePlayTab { get; set; }
+        //Current Game Selected
+        public object Game { get; private set; }
+
+        /// <summary>
+        /// Runs the current game being displayed
+        /// </summary>
+        public RelayCommand Play { get; set; }
 
         private object _currentTab;
 
@@ -24,9 +31,23 @@ namespace HCI_Project.MVVM.ViewModel
         /// <summary>
         /// Instantiates the GameView and its associated data
         /// </summary>
+        /// Also where all relay commands are constructed
         public GameViewModel()
         {
-          
+            Play = new RelayCommand(o =>
+            {
+                //Some Logic TO Run the Game
+                //SomeInterface.Run(Game)
+                Debug.WriteLine("Running Game (Not Actually)");
+            });
+        }
+        /// <summary>
+        /// Instantiates the GameView and its associated data
+        /// </summary>
+        public GameViewModel(object game): this()
+        {
+            Game = game;
+
         }
     }
 }
