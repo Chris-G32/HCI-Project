@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project"
-      xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
-      mc:Ignorable="d"
+      xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel" xmlns:view="clr-namespace:HCI_Project.MVVM.View"
+        mc:Ignorable="d"
       Title="MainView" WindowStyle="SingleBorderWindow" 
-      MinWidth="400" MinHeight="225"
+      MinWidth="800" MinHeight="450"
       d:DesignHeight="900" d:DesignWidth="1600"
       Background="{DynamicResource lnchBlack}">
 
@@ -20,10 +20,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="125"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />
-
+            <view:LibraryView  Grid.Row="1" Grid.Column="0"/>
     </Grid>
 </Window>
