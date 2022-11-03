@@ -11,7 +11,7 @@ namespace HCI_Project.MVVM.ViewModel
     /// </summary>
     public class GameViewModel:ObservableObject
     {
-        //Current Game Selected
+        //Current Game Selected Needs Actual Struct
         public object Game { get; private set; }
 
         /// <summary>
