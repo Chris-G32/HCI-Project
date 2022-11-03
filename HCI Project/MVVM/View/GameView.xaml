@@ -10,9 +10,12 @@
              x:Name="GameViews"
              Width="600" Height="370">
     <Grid Background= "{DynamicResource lnchDarkGray}">
-            <TextBlock></TextBlock>
+        <Grid.DataContext>
+            <viewModel:GameViewModel/>
+        </Grid.DataContext>
         <TabControl>
-            <TabItem Header="Play" Background="{DynamicResource lnchMedGray}">
+            
+            <TabItem Header="Play" Background="{DynamicResource lnchMedGray}" >
                 <!--tab is linked here-->
             </TabItem>
             <TabItem Header="Community" Background="{DynamicResource lnchMedGray}">
@@ -25,5 +28,6 @@
                 <!--tab is linked here-->
             </TabItem>
         </TabControl>
+        <Button Content="Play" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Height="50" Command="{Binding Play}"></Button>
     </Grid>
 </UserControl>
