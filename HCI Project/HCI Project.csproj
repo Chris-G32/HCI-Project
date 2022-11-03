@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="MVVM\View\GameView\**" />
-    <EmbeddedResource Remove="MVVM\View\GameView\**" />
-    <None Remove="MVVM\View\GameView\**" />
-    <Page Remove="MVVM\View\GameView\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
