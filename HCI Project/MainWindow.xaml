@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project"
       xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
-      
       mc:Ignorable="d"
       Title="MainView" WindowStyle="SingleBorderWindow" 
       MinWidth="400" MinHeight="225"
+      d:DesignHeight="900" d:DesignWidth="1600"
       Background="{DynamicResource lnchBlack}">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    <Grid Width="800" Height="450">
+    <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
