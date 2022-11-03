@@ -10,6 +10,5 @@
              x:Name="GameViews"
              Width="600" Height="370">
     <Grid Background= "{DynamicResource lnchDarkGray}">
-        <TextBlock></TextBlock>
     </Grid>
 </UserControl>
