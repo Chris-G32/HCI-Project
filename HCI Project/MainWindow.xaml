@@ -24,6 +24,6 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />
-            <view:LibraryView  Grid.Row="1" Grid.Column="0"/>
+            <view:LibraryView  Grid.Row="1" Grid.Column="0" ListSource="{Binding OwnedGames}"/>
     </Grid>
 </Window>
