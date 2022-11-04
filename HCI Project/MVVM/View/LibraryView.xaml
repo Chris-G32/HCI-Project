@@ -8,35 +8,37 @@
              d:DesignHeight="370" d:DesignWidth="200"
              x:Name="Library"
              >
-    
     <!--stack panel of length = visible games-->
-    <ItemsControl Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
+    <ItemsControl MinWidth="100"  Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <WrapPanel Margin="2" x:Name="Default" PreviewMouseDown="Default_PreviewMouseDown">
+                <WrapPanel PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal">
                     <!--Background depends on if selected-->
                     <!--GAME ICON-->
                     <!--needs data bind per entry-->
-                    <Image Height="25" Width="25"
-                   Source="https://raw.githubusercontent.com/Chris-G32/HCI-Project/443b97abe49b76100f57fb30f85fc1bf7946a391/HCI%20Project/icons/defualt_game_icon.svg?token=AF5UW2XAL6RZDO6RJ44BY2LDMB3X4"
-                   Margin="2">
-                    </Image>
+                    <Image Height="35" Width="35"
+                    Source="..\..\Icons\default_game_icon.png"
+                    />
+                    
                     <!--GAME TITLE-->
                     <!--needs data bind per entry-->
                     <TextBlock 
-                Text="{Binding}"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                Margin="5, 0, 0, 0"
-                TextWrapping="NoWrap"/>
+                        FontSize="18"
+                        Text="{Binding}"
+                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                        TextWrapping="NoWrap"
+                    />
+                    
                     <!--INSTALL STATUS-->
                     <!--needs data bind per entry-->
+                    <!-- Consider Using an icon or just greying it out instead of displaying text-->
                     <TextBlock 
-                Text = "installed"
-                Foreground="{DynamicResource lnchLightLightGray}" 
-                HorizontalAlignment="Left" VerticalAlignment="Center"
-                Margin="9,10,9,9"
-                FontSize="7.5" 
-                TextWrapping="NoWrap" FontStyle="Italic"/>
+                        Text = "Installed"
+                        Foreground="{DynamicResource lnchLightLightGray}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center"
+                        FontSize="7.5" 
+                        TextWrapping="NoWrap" FontStyle="Italic"
+                    />
                 </WrapPanel>
             </DataTemplate>
         </ItemsControl.ItemTemplate>

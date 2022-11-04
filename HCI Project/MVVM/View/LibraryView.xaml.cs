@@ -31,15 +31,15 @@ namespace HCI_Project.MVVM.View
         }
 
         //tmp type of int
-        public ObservableCollection<int> ListSource
+        public ObservableCollection<string> ListSource
         {
-            get { return (ObservableCollection<int>)GetValue(ListSourceProperty); }
+            get { return (ObservableCollection<string>)GetValue(ListSourceProperty); }
             set { SetValue(ListSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ListSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ListSourceProperty =
-            DependencyProperty.Register("ListSource", typeof(ObservableCollection<int>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<int>()));
+            DependencyProperty.Register("ListSource", typeof(ObservableCollection<string>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<string>()));
 
 
     }
