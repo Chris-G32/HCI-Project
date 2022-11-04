@@ -33,7 +33,7 @@ namespace HCI_Project.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        public static ObservableCollection<int> OwnedGames { get; set; } = new ObservableCollection<int>() { 1, 1, 1, 1, 1, 1, 2 };
         /// <summary>
         /// Constructor which creates ViewModel that contains MainWindows bindings
         /// </summary>
