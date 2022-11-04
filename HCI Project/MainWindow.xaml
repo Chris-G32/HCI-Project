@@ -15,15 +15,19 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="1*" MinWidth="150" />
+                <ColumnDefinition Width="7*" MinWidth="500"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="125"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ContentControl Content="{Binding CurrentView}" Grid.Row="1" Grid.Column="1" />
-            <view:LibraryView  Grid.Row="1" Grid.Column="0" ListSource="{Binding OwnedGames}"/>
+            <ContentControl Content="{Binding CurrentView}" Grid.Column="1" />
+            <view:LibraryView Grid.Column="0" ListSource="{Binding OwnedGames}"/>
+            <GridSplitter  Grid.Column="0" Width="5" Grid.RowSpan="2"/>
+        </Grid>
+       
     </Grid>
 </Window>
