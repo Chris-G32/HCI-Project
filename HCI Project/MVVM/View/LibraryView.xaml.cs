@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Dynamic;
 using System.Text;
 using System.Windows;
@@ -28,5 +29,18 @@ namespace HCI_Project.MVVM.View
         {
             //hover over recolor (with defined brush)
         }
+
+        //tmp type of int
+        public ObservableCollection<int> ListSource
+        {
+            get { return (ObservableCollection<int>)GetValue(ListSourceProperty); }
+            set { SetValue(ListSourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ListSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ListSourceProperty =
+            DependencyProperty.Register("ListSource", typeof(ObservableCollection<int>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<int>()));
+
+
     }
 }
