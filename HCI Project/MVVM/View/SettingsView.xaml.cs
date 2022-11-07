@@ -20,6 +20,7 @@ namespace HCI_Project.MVVM.View
     {
         public SettingsView()
         {
+            
             InitializeComponent();
         }
     }

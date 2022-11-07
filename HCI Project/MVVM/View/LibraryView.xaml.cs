@@ -30,7 +30,7 @@ namespace HCI_Project.MVVM.View
             //hover over recolor (with defined brush)
         }
 
-        //tmp type of int
+        //Used to Bind Library to a list of Games Ideally
         public ObservableCollection<string> ListSource
         {
             get { return (ObservableCollection<string>)GetValue(ListSourceProperty); }
