@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TestingApp
 {
@@ -15,7 +16,7 @@ namespace TestingApp
         public abstract LauncherID ID { get; }
 
         public abstract bool LaunchGame(Game game);
-        public abstract Game[] FindGames();
+        public abstract Task<Game[]> FindGames();
         /// <summary>
         /// Populates an instance of Game from the Database or the API
         /// </summary>

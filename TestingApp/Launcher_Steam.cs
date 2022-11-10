@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace TestingApp
 {
     public class Launcher_Steam : Launcher
     {
+        private HttpClient client;
         public Launcher_Steam()
         {
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Add("blah","blah");
             _key = GetKey();
         }
 
@@ -44,8 +49,10 @@ namespace TestingApp
             return true;
         }
 
-        public override Game[] FindGames()
+        public async override Task<Game[]> FindGames()
         {
+            var resp=  await client.GetStringAsync("https://httpbin.org/get");
+            Console.Write(resp);
             Debug.WriteLine("Finding all games from Steam...");
             return null;
         }
