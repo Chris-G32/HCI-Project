@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:HCI_Project"
              xmlns:view="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
+             xmlns:libraryViewModels="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -12,6 +13,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
                 <view:SettingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type libraryViewModels:LibraryViewModel}">
+                <view:LibraryView/>
             </DataTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/Brushes.xaml"/>
