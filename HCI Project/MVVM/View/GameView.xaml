@@ -49,7 +49,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <StackPanel>
-                            <Image x:Name="button_play_image" Source="pack://application:,,,/Icons/button_play@2x.png"/>
+                            <Image x:Name="button_play_image" Source="../../Icons/button_play@2x.png"/>
                         </StackPanel>
                     </DataTemplate>
                 </Setter.Value>
@@ -72,9 +72,7 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
-                    <!--change to button_play_launching w/ stop button when launch is successful-->
-                    <Button x:Name="MainPlayButton" Style="{StaticResource PlayButton}" Click="Button_Play_Click"/>
-                    
+                    <!--change to button_play_launching w/ stop button when launch is successful-->                    
                 </Grid>
             </TabItem>
             <TabItem Background="{DynamicResource lnchMedGray}">
@@ -108,5 +106,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="MainPlayButton" Style="{StaticResource PlayButton}" Click="Button_Play_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding PlayGame}"/>
     </Grid>
 </UserControl>
