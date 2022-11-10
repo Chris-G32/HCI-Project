@@ -12,10 +12,18 @@ namespace HCI_Project.MVVM.Model
     public abstract class Launcher
     {
         public abstract string Name { get; }
-        public abstract LauncherID id { get; }
+        public abstract LauncherID ID { get; }
 
-        public abstract bool LaunchGame();
+        public abstract bool LaunchGame(Game game);
         public abstract Game[] FindGames();
-        public abstract void GetGameInfo(Game game);
+        /// <summary>
+        /// Populates an instance of Game from the Database or the API
+        /// </summary>
+        /// <param name="game">The Game which will be populated with data</param>
+        public abstract void GetGameInfo(ref Game game);
+        // The URL of the API
+        protected String _url;
+        // The API key
+        protected String _key;
     }
 }
