@@ -36,19 +36,18 @@ namespace HCI_Project.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        public static ObservableCollection<string> OwnedGames { get; set; }
         /// <summary>
         /// Constructor which creates ViewModel that contains MainWindows bindings
         /// </summary>
         public MainViewModel()
         {
-            OwnedGames = new ObservableCollection<string>() {"Shrt","Medium Len Title","A longer title of a game test", "A particularly very long title of a game that is still going on"};
             //Instantiate each ViewModel
             GameVM = new GameViewModel();
             SettingsVM = new SettingsViewModel();
+            LibraryVM = new LibraryViewModel();
 
             //Set Default View
-            CurrentView = GameVM;
+            CurrentView = LibraryVM;
             //Set Bound Commands
             SetGameView = new RelayCommand(o =>
             {
