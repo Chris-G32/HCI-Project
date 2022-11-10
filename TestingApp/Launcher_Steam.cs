@@ -14,7 +14,8 @@ namespace TestingApp
         public Launcher_Steam()
         {
             client = new HttpClient();
-            client.DefaultRequestHeaders.Add("blah","blah");
+            //This accepts a json file by default
+            client.DefaultRequestHeaders.Add("accept", "text/json; charset=utf-8");
             _key = GetKey();
         }
 
