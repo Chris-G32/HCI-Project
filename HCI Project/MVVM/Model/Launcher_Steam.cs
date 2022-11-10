@@ -30,7 +30,6 @@ namespace HCI_Project.MVVM.Model
 
         public override bool LaunchGame(Game game)
         {
-            Debug.WriteLine("Launching " + game.Name + "...");
             return true;
         }
 

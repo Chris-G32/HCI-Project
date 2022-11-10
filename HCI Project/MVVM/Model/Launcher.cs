@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -23,5 +24,6 @@ namespace HCI_Project.MVVM.Model
         public abstract void GetGameInfo(ref Game game);
         // The API key
         protected String _key;
+        protected WebBrowser browser;
     }
 }
