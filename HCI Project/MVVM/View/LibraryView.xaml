@@ -18,22 +18,23 @@
             <ColumnDefinition Width="1*" MinWidth="150" />
             <ColumnDefinition Width="7*" MinWidth="500"/>
         </Grid.ColumnDefinitions>
-        <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
+        <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <WrapPanel x:Name="LibraryItem" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
+                <StackPanel x:Name="LibraryItem" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
                            MouseDown="LibraryItemSelect" Background="{DynamicResource lnchDarkMedGray}"
+                          
                            >
                     <!--Background depends on if selected-->
                     <!--GAME ICON-->
                     <Image Height="35" Width="35"
-                    Source="pack://application:,,,/Icons/default_game_icon@2x.png"
+                    Source="../../Icons/default_game_icon@2x.png"
                     />
                     
                     <!--GAME TITLE-->
                     <!--needs data bind per entry-->
                     <TextBlock Style="{DynamicResource LibraryTextStyle}"
-                        Text="{Binding}"
+                        Text="{Binding Name}"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
                         TextWrapping="NoWrap"
                     />
@@ -48,12 +49,11 @@
                         FontSize="7.5" 
                         TextWrapping="NoWrap" FontStyle="Italic"
                     />
-                </WrapPanel>
+                </StackPanel>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
-        <ContentControl Content="{Binding CurrentView}"></ContentControl>
+    <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
     <GridSplitter  Grid.Column="0" Width="5"/>
-    
     </Grid>
 </UserControl>
