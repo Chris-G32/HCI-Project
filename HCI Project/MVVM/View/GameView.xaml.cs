@@ -26,7 +26,7 @@ namespace HCI_Project.MVVM.View
         private void Button_Play_Click(object sender, RoutedEventArgs e)
         {
             //check if launch commences, then:
-            //button_play_image.Source = "pack://application:,,,/Icons/button_play_launching@2x.png";
+            //MainPlayButton.Style.Equals(new BitmapImage(new Uri("pack://application:,,,/Icons/button_play_launching@2x.png")));
             //probably add another event which adds the stop button
         }
     }

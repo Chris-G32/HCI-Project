@@ -27,7 +27,7 @@ namespace HCI_Project.MVVM.View
 
         private void Default_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            //hover over recolor (with defined brush)
+            //hover over recolor (might be wrong mouse event)
         }
 
         //tmp type of int
@@ -41,6 +41,10 @@ namespace HCI_Project.MVVM.View
         public static readonly DependencyProperty ListSourceProperty =
             DependencyProperty.Register("ListSource", typeof(ObservableCollection<string>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<string>()));
 
-
+        private void LibraryItemSelect(object sender, MouseButtonEventArgs e)
+        {
+            //open up corresponding gameView for selected game
+            //recolor selected entry, return previous selection back
+        }
     }
 }

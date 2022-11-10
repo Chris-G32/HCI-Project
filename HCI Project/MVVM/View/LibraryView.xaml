@@ -12,18 +12,18 @@
     <ItemsControl MinWidth="100"  Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <WrapPanel PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal">
+                <WrapPanel x:Name="LibraryItem" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
+                           MouseDown="LibraryItemSelect" Background="{DynamicResource lnchDarkMedGray}"
+                           >
                     <!--Background depends on if selected-->
                     <!--GAME ICON-->
-                    <!--needs data bind per entry-->
                     <Image Height="35" Width="35"
-                    Source="..\..\Icons\default_game_icon.png"
+                    Source="pack://application:,,,/Icons/default_game_icon@2x.png"
                     />
                     
                     <!--GAME TITLE-->
                     <!--needs data bind per entry-->
-                    <TextBlock 
-                        FontSize="18"
+                    <TextBlock Style="{DynamicResource LibraryTextStyle}"
                         Text="{Binding}"
                         HorizontalAlignment="Left" VerticalAlignment="Center"
                         TextWrapping="NoWrap"
