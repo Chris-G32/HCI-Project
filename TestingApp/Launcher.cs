@@ -16,7 +16,7 @@ namespace TestingApp
         public abstract LauncherID ID { get; }
 
         public abstract bool LaunchGame(Game game);
-        public abstract Task<Game[]> FindGames();
+        public abstract Task<List<Game>> FindGames();
         /// <summary>
         /// Populates an instance of Game from the Database or the API
         /// </summary>

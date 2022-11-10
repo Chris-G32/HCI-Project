@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace TestingApp
@@ -8,11 +9,13 @@ namespace TestingApp
         static async Task Main(string[] args)
         {
             Launcher_Steam steam = new Launcher_Steam();
-            Game test_game = new Game();
-            test_game.Game_ID = 1714040;
-            test_game.Name = "Super Auto Pets";
+            Game test_game = new Game(1714040, "Super Auto Pets");
             steam.LaunchGame(test_game);
-            await steam.FindGames();
+            List<Game> games = await steam.FindGames();
+            foreach(Game game in games)
+            {
+                Console.WriteLine(game.Name + ": " + game.Game_ID);
+            }
         }
     }
 }

@@ -10,10 +10,15 @@ namespace TestingApp
         INSTALLED,
         NOT_OWNED
     }
-    public struct Game
+    public class Game
     {
-        public int Game_ID { get; set; }
-        public string Name { get; set; }
+        public Game(int id, string name)
+        {
+            Game_ID = id;
+            Name = name;
+        }
+        public int Game_ID { get; }
+        public string Name { get; }
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
         public String[] Tags { get; set; }
