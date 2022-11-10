@@ -37,8 +37,10 @@ namespace TestingApp
                 return LauncherID.Steam;
             }
         }
-        
-        public override string GetKey()
+        /// <summary>
+        /// Reads from the "steam.secret" file in the same folder as this file and returns the Steam API key
+        /// </summary>
+        protected override string GetKey()
         {
             String res;
             using (FileStream fileStream = File.Open("../../.././steam.secret", FileMode.Open, FileAccess.Read))
@@ -55,24 +57,27 @@ namespace TestingApp
 
         public async override Task<List<Game>> FindGames()
         {
+            // If the user's SteamID has not been found yet, wait for it to be found first
             if(_steamid == "")
                 await PopulateSteamID();
 
+            // The final list of games to be returned
             List<Game> gameObjectsList = new List<Game>();
 
+            // Call the IPlayerService API to get the user's owned games' ids and names
             var resp = await client.GetStringAsync("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + _key + "&steamid=" + _steamid + "&include_appinfo=true");
+            // Converts the API response into usable data (see subclasses below)
             SteamGames games = JsonSerializer.Deserialize<SteamGames>(resp);
 
-
+            // Converts the deserialized data into Game objects (generic) with the proper Game_IDs, Names, and Launcher_IDs
             foreach(SteamGames.SteamGamesResponse.SteamGame game in games.response.games)
             {
                 //Console.WriteLine("Name: " + game.name + "   ID: " + game.appid);
-                Game tempGame = new Game(game.appid, game.name);
+                Game tempGame = new Game(game.appid, game.name, LauncherID.Steam);
+                //Adds each Game object to the list of Games to be returned
                 gameObjectsList.Add(tempGame);
             }
 
-
-            Debug.WriteLine("Finding all games from Steam...");
             return gameObjectsList;
         }
 
@@ -88,6 +93,9 @@ namespace TestingApp
             Debug.WriteLine("Getting info about " + game.Name);
         }
 
+        //////
+        // BEGIN SUBCLASSES FOR JSON SERIALIZATION
+        //////
 
         /// <summary>
         /// Response class for getting SteamID from Steam API. The subclass, SteamIDResponse, holds the necessary info
