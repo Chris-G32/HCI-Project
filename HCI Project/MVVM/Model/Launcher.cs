@@ -21,8 +21,6 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         /// <param name="game">The Game which will be populated with data</param>
         public abstract void GetGameInfo(ref Game game);
-        // The URL of the API
-        protected String _url;
         // The API key
         protected String _key;
     }

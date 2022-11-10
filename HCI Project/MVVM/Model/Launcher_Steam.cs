@@ -10,7 +10,6 @@ namespace HCI_Project.MVVM.Model
     {
         public Launcher_Steam()
         {
-            _url = "";
             _key = "";
         }
 
