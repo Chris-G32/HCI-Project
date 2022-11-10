@@ -10,7 +10,7 @@ namespace TestingApp
     {
         public Launcher_Steam()
         {
-            _key = "";
+            _key = GetKey();
         }
 
         public override string Name
@@ -36,11 +36,11 @@ namespace TestingApp
                 using (StreamReader streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 256))
                     res = streamReader.ReadLine();
             return res;
-
         }
 
         public override bool LaunchGame(Game game)
         {
+            Console.WriteLine("steam://rungameid/" + game.Game_ID);
             return true;
         }
 
