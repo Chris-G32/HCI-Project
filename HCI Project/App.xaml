@@ -12,7 +12,7 @@
             </DataTemplate>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source= "Theme/Brushes.xaml"/>
+                <ResourceDictionary Source="Theme/Brushes.xaml"/>
                 <ResourceDictionary Source="Theme/TextStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

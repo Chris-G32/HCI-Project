@@ -9,25 +9,92 @@
              d:DesignHeight="370" d:DesignWidth="560"
              x:Name="GameViews"
              >
+    <!--TAB STYLE-->
+    <UserControl.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border BorderThickness="1" BorderBrush="{DynamicResource lnchMedGray}">
+                            <Grid Name="TabPanel">
+                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabPanel" Property="Background" Value="{DynamicResource lnchMedGray}" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="TabPanel" Property="Background" Value="{DynamicResource lnchDarkMedGray}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background= "{DynamicResource lnchDarkGray}">
         <Grid.DataContext>
             <viewModel:GameViewModel/>
         </Grid.DataContext>
-        <TabControl>
+        
+        <!--TABS-->
+        <!--need to figure out how to change tab color when selected-->
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
             
-            <TabItem Header="Play" Background="{DynamicResource lnchMedGray}" >
+            <TabItem Background="{DynamicResource lnchMedGray}" >
+                <TabItem.Header> 
+                    <TextBlock Text="Play" Style="{DynamicResource TextHeaderStyle}"/>
+                </TabItem.Header>
                 <!--tab is linked here-->
+                <Grid Background="{DynamicResource lnchDarkGray}">
+                </Grid>
             </TabItem>
-            <TabItem Header="Community" Background="{DynamicResource lnchMedGray}">
+            <TabItem Background="{DynamicResource lnchMedGray}">
+                <TabItem.Header>
+                    <TextBlock Text="Community" Style="{DynamicResource TextHeaderStyle}"/>
+                </TabItem.Header>
                 <!--tab is linked here-->
+                <Grid Background="{DynamicResource lnchDarkGray}">
+
+                    
+                </Grid>
             </TabItem>
-            <TabItem Header="Info" Background="{DynamicResource lnchMedGray}">
+            <TabItem Background="{DynamicResource lnchMedGray}">
+                <TabItem.Header>
+                    <TextBlock Text="Info" Style="{DynamicResource TextHeaderStyle}"/>
+                </TabItem.Header>
                 <!--tab is linked here-->
+                <Grid Background="{DynamicResource lnchDarkGray}">
+
+
+                </Grid>
             </TabItem>
-            <TabItem Header="Gallery" Background="{DynamicResource lnchMedGray}">
+            <TabItem Background="{DynamicResource lnchMedGray}">
+                <TabItem.Header>
+                    <TextBlock Text="Gallery" Style="{DynamicResource TextHeaderStyle}"/>
+                </TabItem.Header>
                 <!--tab is linked here-->
+                <Grid Background="{DynamicResource lnchDarkGray}">
+
+
+                </Grid>
             </TabItem>
         </TabControl>
-        <Button Content="Play" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="120" Height="50" Command="{Binding Play}"></Button>
+        
+        <!--PLAY BUTTON-->
+        <!--change to button_play_launching w/ stop button when launch is successful-->
+        <Button x:Name="button_play" Click="Button_Play_Click" Command="{Binding Play}"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="125" Height="50" >
+            <StackPanel>
+                <Image x:Name="button_play_image" Source="pack://application:,,,/Icons/button_play@2x.png"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>
