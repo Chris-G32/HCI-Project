@@ -10,9 +10,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using HCI_Project.Utilities;
-using HCI_Project.MVVM.ViewModel;
 using System.Windows.Controls;
 using System.IO;
+using HCI_Project.MVVM.ViewModel.LibraryViewModels;
 
 namespace HCI_Project.MVVM.ViewModel
 {
