@@ -10,9 +10,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO.Compression;
 using HCI_Project.Utilities;
-using HCI_Project.MVVM.ViewModel;
 using System.Windows.Controls;
 using System.IO;
+using HCI_Project.MVVM.ViewModel.LibraryViewModels;
 
 namespace HCI_Project.MVVM.ViewModel
 {
@@ -20,10 +20,13 @@ namespace HCI_Project.MVVM.ViewModel
     {
         //public static SomeSortOfHandler(s)
         public RelayCommand SetGameView { get; set; }
+        public RelayCommand OpenSettings { get; set; }
         public GameViewModel GameVM { get; set; }
         public LibraryViewModel LibraryVM { get; set; }
+        public SettingsViewModel SettingsVM { get; set; }
+        private bool _settingsOpen = false;
         private static object _currentView;
-
+        
         public object CurrentView
         {
             get { return _currentView; }
@@ -42,17 +45,21 @@ namespace HCI_Project.MVVM.ViewModel
             OwnedGames = new ObservableCollection<string>() {"Shrt","Medium Len Title","A longer title of a game test", "A particularly very long title of a game that is still going on"};
             //Instantiate each ViewModel
             GameVM = new GameViewModel();
+            SettingsVM = new SettingsViewModel();
 
             //Set Default View
             CurrentView = GameVM;
-
             //Set Bound Commands
             SetGameView = new RelayCommand(o =>
             {
                 CurrentView = GameVM;
                 OnPropertyChanged();
             });
-            
+            OpenSettings = new RelayCommand(o =>
+            {
+               SettingsVM.SwapVisibility();
+               OnPropertyChanged();
+            });
         }
     }
 }

@@ -4,12 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
+             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="200"
+             d:DesignHeight="775" d:DesignWidth="1600"
              x:Name="Library"
              >
     <!--stack panel of length = visible games-->
-    <ItemsControl MinWidth="100"  Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
+    <Grid>
+        <Grid.DataContext>
+            <viewModel:LibraryViewModel/>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="150" />
+            <ColumnDefinition Width="7*" MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+        <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <WrapPanel x:Name="LibraryItem" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
@@ -43,4 +52,8 @@
             </DataTemplate>
         </ItemsControl.ItemTemplate>
     </ItemsControl>
+        <ContentControl Content="{Binding CurrentView}"></ContentControl>
+    <GridSplitter  Grid.Column="0" Width="5"/>
+    
+    </Grid>
 </UserControl>
