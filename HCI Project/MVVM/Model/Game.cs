@@ -10,7 +10,7 @@ namespace HCI_Project.MVVM.Model
         INSTALLED,
         NOT_OWNED
     }
-    public class Game
+    public struct Game
     {
         public int Game_ID { get; set; }
         public string Name { get; set; }
