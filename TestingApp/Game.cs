@@ -12,10 +12,11 @@ namespace TestingApp
     }
     public class Game
     {
-        public Game(int id, string name)
+        public Game(int id, string name, LauncherID launcher)
         {
             Game_ID = id;
             Name = name;
+            Launcher_ID = launcher;
         }
         public int Game_ID { get; }
         public string Name { get; }
