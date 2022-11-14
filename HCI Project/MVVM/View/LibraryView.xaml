@@ -9,7 +9,6 @@
              d:DesignHeight="775" d:DesignWidth="1600"
              x:Name="Library"
              >
-    <!--stack panel of length = visible games-->
     <Grid>
         <Grid.DataContext>
             <viewModel:LibraryViewModel/>
@@ -19,41 +18,33 @@
             <ColumnDefinition Width="7*" MinWidth="500"/>
         </Grid.ColumnDefinitions>
         <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <StackPanel x:Name="LibraryItem" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
-                           MouseDown="LibraryItemSelect" Background="{DynamicResource lnchDarkMedGray}"
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!--stack panel of length = visible games-->
+                    <StackPanel x:Name="LibraryItems" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
+                               MouseDown="LibraryItemSelect" Background="{DynamicResource lnchDarkMedGray}"
                           
-                           >
-                    <!--Background depends on if selected-->
-                    <!--GAME ICON-->
-                    <Image Height="35" Width="35"
-                    Source="../../Icons/default_game_icon@2x.png"
-                    />
-                    
-                    <!--GAME TITLE-->
-                    <!--needs data bind per entry-->
-                    <TextBlock Style="{DynamicResource LibraryTextStyle}"
-                        Text="{Binding Name}"
-                        HorizontalAlignment="Left" VerticalAlignment="Center"
-                        TextWrapping="NoWrap"
-                    />
-                    
-                    <!--INSTALL STATUS-->
-                    <!--needs data bind per entry-->
-                    <!-- Consider Using an icon or just greying it out instead of displaying text-->
-                    <TextBlock 
-                        Text = "Installed"
-                        Foreground="{DynamicResource lnchLightLightGray}" 
-                        HorizontalAlignment="Left" VerticalAlignment="Center"
-                        FontSize="7.5" 
-                        TextWrapping="NoWrap" FontStyle="Italic"
-                    />
-                </StackPanel>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
-    <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
-    <GridSplitter  Grid.Column="0" Width="5"/>
+                               >
+                        <!--Background depends on if selected-->
+                        <!--GAME ICON-->
+                        <Image x:Name="GameIcon" Height="35" Width="35"
+                        Source="../../Icons/default_game_icon@2x.png"
+                        Margin="2"
+                        />
+
+                        <!--GAME TITLE-->
+                        <!--needs data bind per entry-->
+                        <!--style changes when not installed-->
+                        <TextBlock x:Name="LibraryEntry" Style="{DynamicResource LibraryTextStyle}"
+                            Text="{Binding Name}"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                        />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
+        <GridSplitter  Grid.Column="0" Width="5"/>
     </Grid>
 </UserControl>

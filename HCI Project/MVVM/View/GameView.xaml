@@ -64,7 +64,6 @@
         </Grid.DataContext>
         
         <!--TABS-->
-        <!--need to figure out how to change tab color when selected-->
         <TabControl>
             <TabItem Background="{DynamicResource lnchMedGray}" >
                 <TabItem.Header>
