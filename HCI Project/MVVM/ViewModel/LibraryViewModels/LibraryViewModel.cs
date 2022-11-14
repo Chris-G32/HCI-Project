@@ -8,6 +8,9 @@ using System.Text;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
+    /// <summary>
+    /// Handles LibraryViews and its instantiated subviews
+    /// </summary>
     public class LibraryViewModel : ObservableObject
     {
         //May End Up Not Being Stored Here, may make a copy to order list how they please possibly
@@ -21,6 +24,10 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public ObservableCollection<Game> OwnedGames { get; set; }
         
         private static object _currentView;
+
+        /// <summary>
+        /// Currently displayed subview
+        /// </summary>
         public object CurrentView
         {
             get { return _currentView; }
@@ -31,6 +38,9 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             }
         }
 
+        /// <summary>
+        /// Instantiates the LibraryView. Handles switching between views seen next to library.
+        /// </summary>
         public LibraryViewModel()
         {
             //Initializing members
