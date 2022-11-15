@@ -7,6 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="800">
     <Grid Background="{DynamicResource lnchBrick}">
-        <Button Foreground="White" Content="Settings" Width="60" Margin="740,0,0,0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5">
+            <Image Source="/Icons/button_home@2x.png"/>
+        </Button>
+        <Button x:Name="SettingsButton" Grid.Column="2" Background="{DynamicResource lnchBrick}" Margin="14">
+            <Image Source="/Icons/button_settings@2x.png"/>
+        </Button>
     </Grid>
 </UserControl>
