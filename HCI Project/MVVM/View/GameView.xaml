@@ -105,6 +105,9 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="MainPlayButton" Style="{StaticResource PlayButton}" Click="Button_Play_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding PlayGame}"/>
+        <Button x:Name="MainPlayButton" Style="{StaticResource PlayButton}" 
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                Click="Button_Play_Click" Command="{Binding PlayGame}"
+                />
     </Grid>
 </UserControl>

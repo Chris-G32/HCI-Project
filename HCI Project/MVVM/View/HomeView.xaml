@@ -11,7 +11,20 @@
              >
     <!--Mini Play Button-->
     <UserControl.Resources>
-        
+        <Style x:Key="MiniPlayButton" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="Width" Value="27"/>
+            <Setter Property="Command" Value="{Binding Play}"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image x:Name="button_mini_play_image" Source="/Icons/button_play_small@2x.png"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
     </UserControl.Resources>
 
@@ -37,6 +50,11 @@
             <TextBlock Text="Game Title" Style="{DynamicResource TextBodyStyle}" TextWrapping="NoWrap" 
                        TextTrimming="CharacterEllipsis" Height="30" VerticalAlignment="Bottom" Margin="5,0,35,7"
                        />
+            <!--need to implement small play button in same way as main-->
+            <Button x:Name="MiniPlayButton" Style="{StaticResource MiniPlayButton}" 
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,7,7" 
+                Click="Button_Play_Click" Command="{Binding PlayGame}"
+                />
         </Grid>
     </Grid>
 </UserControl>

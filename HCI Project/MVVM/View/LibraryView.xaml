@@ -45,6 +45,6 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
-        <GridSplitter  Grid.Column="0" Width="5"/>
+        <GridSplitter Grid.Column="0" Width="5"/>
     </Grid>
 </UserControl>
