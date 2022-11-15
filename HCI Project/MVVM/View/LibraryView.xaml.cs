@@ -27,20 +27,24 @@ namespace HCI_Project.MVVM.View
 
         private void Default_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            //hover over recolor (with defined brush)
+            //hover over recolor (might be wrong mouse event)
         }
 
-        //tmp type of int
-        public ObservableCollection<string> ListSource
+        //Used to Bind Library to a list of Games Ideally
+        //public ObservableCollection<string> ListSource
+        //{
+        //    get { return (ObservableCollection<string>)GetValue(ListSourceProperty); }
+        //    set { SetValue(ListSourceProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for ListSource.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty ListSourceProperty =
+        //    DependencyProperty.Register("ListSource", typeof(ObservableCollection<string>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<string>()));
+
+        private void LibraryItemSelect(object sender, MouseButtonEventArgs e)
         {
-            get { return (ObservableCollection<string>)GetValue(ListSourceProperty); }
-            set { SetValue(ListSourceProperty, value); }
+            //open up corresponding gameView for selected game
+            //recolor selected entry, return previous selection back
         }
-
-        // Using a DependencyProperty as the backing store for ListSource.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ListSourceProperty =
-            DependencyProperty.Register("ListSource", typeof(ObservableCollection<string>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<string>()));
-
-
     }
 }

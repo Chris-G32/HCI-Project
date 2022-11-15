@@ -4,43 +4,47 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
+             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="200"
+             d:DesignHeight="775" d:DesignWidth="1600"
              x:Name="Library"
              >
-    <!--stack panel of length = visible games-->
-    <ItemsControl MinWidth="100"  Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding ListSource,ElementName=Library}">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <WrapPanel PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal">
-                    <!--Background depends on if selected-->
-                    <!--GAME ICON-->
-                    <!--needs data bind per entry-->
-                    <Image Height="35" Width="35"
-                    Source="..\..\Icons\default_game_icon.png"
-                    />
-                    
-                    <!--GAME TITLE-->
-                    <!--needs data bind per entry-->
-                    <TextBlock 
-                        FontSize="18"
-                        Text="{Binding}"
-                        HorizontalAlignment="Left" VerticalAlignment="Center"
-                        TextWrapping="NoWrap"
-                    />
-                    
-                    <!--INSTALL STATUS-->
-                    <!--needs data bind per entry-->
-                    <!-- Consider Using an icon or just greying it out instead of displaying text-->
-                    <TextBlock 
-                        Text = "Installed"
-                        Foreground="{DynamicResource lnchLightLightGray}" 
-                        HorizontalAlignment="Left" VerticalAlignment="Center"
-                        FontSize="7.5" 
-                        TextWrapping="NoWrap" FontStyle="Italic"
-                    />
-                </WrapPanel>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+    <Grid>
+        <Grid.DataContext>
+            <viewModel:LibraryViewModel/>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="150" />
+            <ColumnDefinition Width="7*" MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+        <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!--stack panel of length = visible games-->
+                    <StackPanel x:Name="LibraryItems" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
+                               MouseDown="LibraryItemSelect" Background="{DynamicResource lnchDarkMedGray}"
+                          
+                               >
+                        <!--Background depends on if selected-->
+                        <!--GAME ICON-->
+                        <Image x:Name="GameIcon" Height="35" Width="35"
+                        Source="../../Icons/default_game_icon@2x.png"
+                        Margin="2"
+                        />
+
+                        <!--GAME TITLE-->
+                        <!--needs data bind per entry-->
+                        <!--style changes when not installed-->
+                        <TextBlock x:Name="LibraryEntry" Style="{DynamicResource LibraryTextStyle}"
+                            Text="{Binding Name}"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                        />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
+        <GridSplitter  Grid.Column="0" Width="5"/>
+    </Grid>
 </UserControl>

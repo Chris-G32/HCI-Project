@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="800">
     <Grid Background="{DynamicResource lnchBrick}">
-            
+        <Button Foreground="White" Content="Settings" Width="60" Margin="740,0,0,0"/>
     </Grid>
 </UserControl>

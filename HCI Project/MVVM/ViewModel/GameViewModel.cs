@@ -17,7 +17,7 @@ namespace HCI_Project.MVVM.ViewModel
         /// <summary>
         /// Runs the current game being displayed
         /// </summary>
-        public RelayCommand Play { get; set; }
+        public RelayCommand PlayGame{ get; set; }
 
         private object _currentTab;
 
@@ -34,7 +34,7 @@ namespace HCI_Project.MVVM.ViewModel
         /// Also where all relay commands are constructed
         public GameViewModel()
         {
-            Play = new RelayCommand(o =>
+            PlayGame = new RelayCommand(o =>
             {
                 //Some Logic TO Run the Game
                 //SomeInterface.Run(Game)
