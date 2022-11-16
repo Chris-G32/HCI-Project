@@ -9,13 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\button_home%402x.png" />
     <None Remove="Icons\button_play%402x.png" />
+    <None Remove="Icons\button_settings%402x.png" />
     <None Remove="Icons\default_game_icon%402x.png" />
     <None Remove="Icons\default_game_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Icons\button_home@2x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\button_play@2x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\button_settings@2x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icons\default_game_icon@2x.png">

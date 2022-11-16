@@ -53,14 +53,17 @@ namespace HCI_Project.MVVM.ViewModel
                 if (SettingsVM.IsVisible)
                 {
                     CurrentView=SettingsVM.CameFromVM;
+                    
                 }
                 //Toggle on
                 else
                 {
                     SettingsVM.CameFromVM = CurrentView;
-                    CurrentView = SettingsVM;
+                    CurrentView = SettingsVM; 
+                   
                 }
                 SettingsVM.IsVisible = !SettingsVM.IsVisible;
+                OnPropertyChanged();
             });
         }
     }
