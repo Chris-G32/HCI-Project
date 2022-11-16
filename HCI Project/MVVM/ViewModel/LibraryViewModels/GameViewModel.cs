@@ -13,19 +13,18 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
     {
         //Current Game Selected Needs Actual Struct
         public object Game { get; private set; }
+        //Will need updated to first on game switch or instead just create whole new game vm, may be easier and more logical
+        private int _tabIndex;
 
+        public int TabIndex
+        {
+            get { return _tabIndex; }
+            set { _tabIndex = value;OnPropertyChanged(); }
+        }
         /// <summary>
         /// Runs the current game being displayed
         /// </summary>
         public RelayCommand PlayGame { get; set; }
-
-        private object _currentTab;
-
-        public object CurrentTab
-        {
-            get { return _currentTab; }
-            set { _currentTab = value; }
-        }
 
 
         /// <summary>

@@ -64,7 +64,7 @@
         </Grid.DataContext>
         
         <!--TABS-->
-        <TabControl>
+        <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}">
             <TabItem Background="{DynamicResource lnchMedGray}" >
                 <TabItem.Header>
                     <TextBlock Text="Play" Style="{DynamicResource TextHeaderStyle}"/>
