@@ -18,8 +18,9 @@
             <Image Source="../../Icons/button_home@2x.png"/>
         </Button>
         <!--SEARCH BAR-->
-        <ComboBox x:Name="SearchBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="35"/>
-                  <!--ItemsSource="{Binding }" SelectedItem="{Binding }" 
+        <!--<ComboBox x:Name="SearchBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="35" ItemsSource="{Binding ,Mode=OneWay}" IsEditable="True"/>-->
+        <ComboBox x:Name="SearchBox" Grid.Column="1" Style="{StaticResource SearchBox}" IsEditable="True" VerticalAlignment="Center" Width="500" Height="35"/>
+        <!--ItemsSource="{Binding }" SelectedItem="{Binding }" 
                   IsEditable="True" StaysOpenOnEdit="True" Text="{Binding , UpdateSourceTrigger=PropertyChanged}"-->
                   
         <!--SETTINGS BUTTON-->

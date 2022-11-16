@@ -24,6 +24,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/Brushes.xaml"/>
                 <ResourceDictionary Source="Theme/TextStyles.xaml"/>
+                <ResourceDictionary Source="Theme/ControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

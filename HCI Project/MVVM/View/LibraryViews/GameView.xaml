@@ -80,7 +80,9 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
+                    <WebBrowser Margin="50,50,50,50" Source="https://www.google.com">
 
+                    </WebBrowser>
 
                 </Grid>
             </TabItem>
@@ -109,5 +111,6 @@
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                 Click="Button_Play_Click" Command="{Binding PlayGame}"
                 />
+        
     </Grid>
 </UserControl>

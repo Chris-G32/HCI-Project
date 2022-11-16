@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Dynamic;
@@ -24,6 +25,7 @@ namespace HCI_Project.MVVM.View.LibraryViews
         {
             InitializeComponent();
         }
+
 
         private void Default_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {

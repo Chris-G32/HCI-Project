@@ -93,8 +93,14 @@ namespace HCI_Project.MVVM.Model
             _steamid = id.response.steamid;
         }
 
-        public override void GetGameInfo(ref Game game)
+        /// <summary>
+        /// Populates a game with a known game id with its information
+        /// </summary>
+        /// <param name="game">Game to store info to. Passed by reference.</param>
+        public override void GetGameInfo(ref Game game)//WIll have a check cache param
         {
+            //Check DB First
+            //If cache pull newest if not api request
             Debug.WriteLine("Getting info about " + game.Name);
         }
 

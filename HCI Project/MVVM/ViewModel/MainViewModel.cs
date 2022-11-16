@@ -13,6 +13,7 @@ using HCI_Project.Utilities;
 using System.Windows.Controls;
 using System.IO;
 using HCI_Project.MVVM.ViewModel.LibraryViewModels;
+using HCI_Project.MVVM.Model;
 
 namespace HCI_Project.MVVM.ViewModel
 {
@@ -45,6 +46,8 @@ namespace HCI_Project.MVVM.ViewModel
             SettingsVM = new SettingsViewModel();
             //Set Default View
             CurrentView = LibraryVM;
+
+            //var resp=database.getgames containing Mortal
 
             //Set Bound Commands
             ToggleSettings = new RelayCommand(o =>
