@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <!--HOME BUTTON-->
         <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5">
-            <Image Source="../../Icons/button_home@2x.png"/>
+            <Image Source="../View/ImageResources/ButtonElements/button_home@2x.png"/>
         </Button>
         <!--SEARCH BAR-->
         <!--<ComboBox x:Name="SearchBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="35" ItemsSource="{Binding ,Mode=OneWay}" IsEditable="True"/>-->
@@ -27,7 +27,7 @@
         <Button x:Name="SettingsButton" Grid.Column="2" Background="{DynamicResource lnchBrick}" Margin="14"
                 Command="{Binding ToggleSettingsCommand,ElementName=NavBar}"
                 Click="SettingsButton_Click">
-            <Image Source="../../Icons/button_settings@2x.png"/>
+            <Image Source="../View/ImageResources/ButtonElements/button_settings@2x.png"/>
         </Button>
     </Grid>
 </UserControl>

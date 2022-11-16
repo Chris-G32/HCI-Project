@@ -9,36 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icons\button_home%402x.png" />
-    <None Remove="Icons\button_play%402x.png" />
-    <None Remove="Icons\button_settings%402x.png" />
-    <None Remove="Icons\default_game_icon%402x.png" />
-    <None Remove="Icons\default_game_icon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Icons\button_home@2x.png">
+    <Content Include="MVVM\View\ImageResources\ButtonElements\button_home%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Icons\button_play@2x.png">
+    <Content Include="MVVM\View\ImageResources\ButtonElements\button_play%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Icons\button_settings@2x.png">
+    <Content Include="MVVM\View\ImageResources\ButtonElements\button_settings%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Icons\default_game_icon@2x.png">
+    <Content Include="MVVM\View\LibraryViews\ImageResources\DefaultImages\default_game_icon%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Icons\defualt_game_icon.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

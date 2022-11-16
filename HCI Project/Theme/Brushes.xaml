@@ -9,12 +9,12 @@
     <SolidColorBrush x:Key="lnchDarkMedGray">#3E363E</SolidColorBrush>
     <SolidColorBrush x:Key="lnchDarkGray">#2D2828</SolidColorBrush>
     <SolidColorBrush x:Key="lnchBlack">#211514</SolidColorBrush>
-    <SolidColorBrush x:Key="lnchLightTurq">#BCDBD9</SolidColorBrush>
-    <SolidColorBrush x:Key="lnchMedTurq">#58A69F</SolidColorBrush>
+    <SolidColorBrush x:Key="lnchLightTurq">#85B3B0</SolidColorBrush>
+    <SolidColorBrush x:Key="lnchMedTurq">#3D8C8D</SolidColorBrush>
     <SolidColorBrush x:Key="lnchDarkTurq">#2D4752</SolidColorBrush>
     <SolidColorBrush x:Key="lnchLightPeach">#F9D4C2</SolidColorBrush>
     <SolidColorBrush x:Key="lnchPeach">#F1A385</SolidColorBrush>
-    <SolidColorBrush x:Key="lnchBronze">#D26A66</SolidColorBrush>
-    <SolidColorBrush x:Key="lnchBrick">#AD3B50</SolidColorBrush>
+    <SolidColorBrush x:Key="lnchBronze">#D27746</SolidColorBrush>
+    <SolidColorBrush x:Key="lnchBrick">#AD4142</SolidColorBrush>
     <SolidColorBrush x:Key="lnchDarkBrick">#621324</SolidColorBrush>
 </ResourceDictionary>

@@ -21,6 +21,41 @@
         </Setter>
     </Style>-->
     <!--f-->
+    <Style TargetType="{x:Type Button}"
+           x:Key="ButtonLibraryEntry">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{DynamicResource lnchDarkMedGray}">
+                        <Image Source="../View/LibraryViews/ImageResources/DefaultImages/defualt_game)icon@2x.png"
+                               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2"
+                               />
+                        <TextBlock Style="{DynamicResource LibraryTextStyle}"
+                            Text="{Binding Name}"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            TextWrapping="Wrap"
+                            />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonLibraryEntryFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="2"
+                     StrokeThickness="1"
+                     Stroke="#60000000"
+                     StrokeDashArray="1 2" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type ComboBox}"
            x:Key="SearchBox">
         <Setter Property="Template">

@@ -16,7 +16,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="75"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}"/>

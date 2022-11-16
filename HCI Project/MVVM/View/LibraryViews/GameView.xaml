@@ -9,6 +9,7 @@
              d:DesignHeight="370" d:DesignWidth="560"
              x:Name="GameViews"
              >
+
     <UserControl.Resources>
         <!--TAB STYLE-->
         <Style TargetType="TabItem">
@@ -37,7 +38,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--PLAY BUTTON-->
+        <!--PLAY BUTTON (WILL CHANGE)-->
         <Style x:Key="PlayButton" TargetType="{x:Type Button}">
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="125"/>
@@ -62,7 +63,7 @@
         <Grid.DataContext>
             <viewModel:GameViewModel/>
         </Grid.DataContext>
-        
+
         <!--TABS-->
         <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}">
             <TabItem Background="{DynamicResource lnchMedGray}" >
