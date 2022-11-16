@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HCI_Project"
              xmlns:view="clr-namespace:HCI_Project.MVVM.View"
+             xmlns:libraryViews="clr-namespace:HCI_Project.MVVM.View.LibraryViews"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
              xmlns:libraryViewModels="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              StartupUri="MainWindow.xaml">
@@ -10,10 +11,10 @@
         <ResourceDictionary>
             <!--LibraryViewModels-->
             <DataTemplate DataType="{x:Type libraryViewModels:GameViewModel}">
-                <view:GameView/>
+                <libraryViews:GameView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type libraryViewModels:LibraryViewModel}">
-                <view:LibraryView/>
+                <libraryViews:LibraryView/>
             </DataTemplate>
             <!--MainViewModels-->
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">

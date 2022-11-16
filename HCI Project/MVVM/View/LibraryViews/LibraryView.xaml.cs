@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HCI_Project.MVVM.View
+namespace HCI_Project.MVVM.View.LibraryViews
 {
     /// <summary>
     /// Interaction logic for LibraryView.xaml
