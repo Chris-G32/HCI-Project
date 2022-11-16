@@ -20,11 +20,9 @@ namespace HCI_Project.MVVM.ViewModel
     {
         //public static SomeSortOfHandler(s)
         public RelayCommand SetGameView { get; set; }
-        public RelayCommand OpenSettings { get; set; }
-        public GameViewModel GameVM { get; set; }
+        public RelayCommand ToggleSettings { get; set; }
         public LibraryViewModel LibraryVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
-        private bool _settingsOpen = false;
         private static object _currentView;
         
         public object CurrentView
@@ -42,22 +40,25 @@ namespace HCI_Project.MVVM.ViewModel
         public MainViewModel()
         {
             //Instantiate each ViewModel
-            GameVM = new GameViewModel();
-            SettingsVM = new SettingsViewModel();
+            
             LibraryVM = new LibraryViewModel();
-
+            SettingsVM = new SettingsViewModel();
             //Set Default View
             CurrentView = LibraryVM;
+
             //Set Bound Commands
-            SetGameView = new RelayCommand(o =>
+            ToggleSettings = new RelayCommand(o =>
             {
-                CurrentView = GameVM;
-                OnPropertyChanged();
-            });
-            OpenSettings = new RelayCommand(o =>
-            {
-               SettingsVM.SwapVisibility();
-               OnPropertyChanged();
+                if (SettingsVM.IsVisible)
+                {
+                    SettingsVM.CameFromVM = CurrentView;
+                    CurrentView = SettingsVM;
+                }
+                else
+                {
+                    CurrentView=SettingsVM.CameFromVM;
+                }
+                SettingsVM.IsVisible = !SettingsVM.IsVisible;
             });
         }
     }

@@ -8,15 +8,18 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type viewModel:GameViewModel}">
+            <!--LibraryViewModels-->
+            <DataTemplate DataType="{x:Type libraryViewModels:GameViewModel}">
                 <view:GameView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-                <view:SettingsView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type libraryViewModels:LibraryViewModel}">
                 <view:LibraryView/>
             </DataTemplate>
+            <!--MainViewModels-->
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView/>
+            </DataTemplate>
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/Brushes.xaml"/>
                 <ResourceDictionary Source="Theme/TextStyles.xaml"/>

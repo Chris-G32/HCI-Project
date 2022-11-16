@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Diagnostics;//Debugging Only atm
 using System.Text;
 
-namespace HCI_Project.MVVM.ViewModel
+namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
     /// <summary>
     /// ViewModel associated with GameView
     /// </summary>
-    public class GameViewModel:ObservableObject
+    public class GameViewModel : ObservableObject
     {
         //Current Game Selected Needs Actual Struct
         public object Game { get; private set; }
@@ -17,7 +17,7 @@ namespace HCI_Project.MVVM.ViewModel
         /// <summary>
         /// Runs the current game being displayed
         /// </summary>
-        public RelayCommand PlayGame{ get; set; }
+        public RelayCommand PlayGame { get; set; }
 
         private object _currentTab;
 
@@ -44,7 +44,7 @@ namespace HCI_Project.MVVM.ViewModel
         /// <summary>
         /// Instantiates the GameView and its associated data
         /// </summary>
-        public GameViewModel(object game): this()
+        public GameViewModel(object game) : this()
         {
             Game = game;
 

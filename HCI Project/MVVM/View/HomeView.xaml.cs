@@ -22,5 +22,10 @@ namespace HCI_Project.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void MiniPlayButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
