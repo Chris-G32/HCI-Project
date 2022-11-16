@@ -49,7 +49,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <StackPanel>
-                            <Image x:Name="button_play_image" Source="../../Icons/button_play@2x.png"/>
+                            <Image x:Name="button_play_image" Source="../../../Icons/button_play@2x.png"/>
                         </StackPanel>
                     </DataTemplate>
                 </Setter.Value>
