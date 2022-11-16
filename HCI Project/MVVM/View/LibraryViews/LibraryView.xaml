@@ -28,7 +28,7 @@
                         <!--Background depends on if selected-->
                         <!--GAME ICON-->
                         <Image x:Name="GameIcon" Height="35" Width="35"
-                        Source="../../Icons/default_game_icon@2x.png"
+                        Source="../../../Icons/default_game_icon@2x.png"
                         Margin="2"
                         />
 
