@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Visibility="{Binding CanSee}">
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModel:SettingsViewModel/>
     </UserControl.DataContext>

@@ -43,7 +43,7 @@
             <Setter Property="Width" Value="125"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="Command" Value="{Binding Play}"/>
+            <Setter Property="Command" Value="{Binding PlayGame}"/>
             <Setter Property="FontSize" Value="14" />
             <Setter Property="ContentTemplate">
                 <Setter.Value>

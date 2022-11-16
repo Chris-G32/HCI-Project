@@ -8,7 +8,6 @@ namespace HCI_Project.MVVM.ViewModel
 {
     public class SettingsViewModel:ObservableObject
     {
-        public Visibility canSee { get; private set; } = Visibility.Hidden;
         /// <summary>
         /// The ViewModel to instantiate when exiting settings
         /// </summary>
@@ -20,29 +19,6 @@ namespace HCI_Project.MVVM.ViewModel
         /// </summary>
         public SettingsViewModel()
         {
-            
-        }
-
-        /// <summary>
-        /// Constructs the settings ViewModel
-        /// </summary>
-        /// <param name="PreviousVM"> The ViewModel to return to after settings is closed</param>
-        public SettingsViewModel(object PreviousVM)
-        {
-            CameFromVM = PreviousVM;
-        }
-
-        /// <summary>
-        /// Changes if the control is visible or not
-        /// </summary>
-        public void SwapVisibility()
-        {
-            if (canSee==Visibility.Hidden)
-            {
-                canSee = Visibility.Visible;
-            }
-            else
-                canSee = Visibility.Hidden;
             
         }
     }

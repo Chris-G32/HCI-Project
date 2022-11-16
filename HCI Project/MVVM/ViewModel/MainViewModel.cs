@@ -49,14 +49,16 @@ namespace HCI_Project.MVVM.ViewModel
             //Set Bound Commands
             ToggleSettings = new RelayCommand(o =>
             {
+                //Toggle off
                 if (SettingsVM.IsVisible)
+                {
+                    CurrentView=SettingsVM.CameFromVM;
+                }
+                //Toggle on
+                else
                 {
                     SettingsVM.CameFromVM = CurrentView;
                     CurrentView = SettingsVM;
-                }
-                else
-                {
-                    CurrentView=SettingsVM.CameFromVM;
                 }
                 SettingsVM.IsVisible = !SettingsVM.IsVisible;
             });
