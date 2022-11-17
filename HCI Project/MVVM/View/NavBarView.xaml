@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="800" x:Name="NavBar">
+             d:DesignHeight="75" d:DesignWidth="1600" x:Name="NavBar">
     <Grid Background="{DynamicResource lnchBrick}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
+             xmlns:customControls="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="560"
+             d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="Home"
              >
     <!--Mini Play Button-->
@@ -30,35 +31,70 @@
 
     <Grid Background="{DynamicResource lnchDarkGray}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <!--<ColumnDefinition Width="1*"/>
+            --><!--<ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Recently Played" FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}"
-        VerticalAlignment="Center" Margin="10"/>
+        VerticalAlignment="Top" Margin="10"/>
 
         <!--Example Entry-->
         <!--Entries need to be loaded according to recentcy-->
-        <Grid x:Name="ExampleEntry" Grid.Row="1" Grid.Column="0">
+        <!--<Grid x:Name="ExampleEntry" Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="46*"/>
                 <ColumnDefinition Width="47*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="../LibraryViews/ImageResources/DefaultImages/default_game_image@2x.png" Margin="0,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Image Source="ImageResources/DefaultImages/default_game_image@2x.png" Margin="0,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             <TextBlock Text="Game Title" Style="{DynamicResource TextBodyStyle}" TextWrapping="NoWrap" 
                        TextTrimming="CharacterEllipsis" Height="30" VerticalAlignment="Bottom" Margin="5,0,35,7" Grid.ColumnSpan="2"
                        />
-            <!--need to implement small play button in same way as main-->
+            --><!--need to implement small play button in same way as main--><!--
             <Button x:Name="MiniPlayButton" Style="{StaticResource MiniPlayButton}" 
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,7,7" 
                 Click="MiniPlayButton_Click" Command="{Binding PlayGame}" Grid.Column="1"
                 />
+        </Grid>-->
+        <Grid Grid.Row="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <customControls:GamePreview/>
+            <!--<UniformGrid.Resources>
+                <Style TargetType="">
+                    <Setter Property="Padding" Value="30"></Setter>
+                </Style>
+            </UniformGrid.Resources>-->
+            <!--<Grid Grid.Row="1">
+                
+            </Grid>
+            <Grid>
+                <Image Source="ImageResources/DefaultImages/default_game_image@2x.png" Width="500"/>
+            </Grid>
+            <Grid>
+                <Image Source="ImageResources/DefaultImages/default_game_image@2x.png" Width="500"/>
+            </Grid>
+            <Grid>
+                <Image Source="ImageResources/DefaultImages/default_game_image@2x.png" Width="500"/>
+            </Grid>
+            <Grid>
+                <Image Source="ImageResources/DefaultImages/default_game_image@2x.png" Width="500"/>
+            </Grid>
+            <Grid>
+                <Image Source="ImageResources/DefaultImages/default_game_image@2x.png" Width="500"/>
+            </Grid>-->
         </Grid>
     </Grid>
 </UserControl>

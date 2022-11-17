@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="370" d:DesignWidth="560"
+             d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="GameViews"
              >
 
