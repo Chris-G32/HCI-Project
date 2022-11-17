@@ -147,7 +147,7 @@ namespace HCI_Project.MVVM.Model
                 /// </summary>
                 public class SteamGame
                 {
-                    public int appid { get; set; }
+                    public string appid { get; set; }
                     public string name { get; set; }
                 }
             }
