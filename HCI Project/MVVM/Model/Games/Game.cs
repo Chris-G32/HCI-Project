@@ -12,7 +12,7 @@ namespace HCI_Project.MVVM.Model
     }
     public class Game
     {
-        public Game(int game_ID, string name, LauncherID launcher_ID, string[] tags, string[] images, string description, GameState state)
+        public Game(string game_ID, string name, LauncherID launcher_ID, string[] tags, string[] images, string description, GameState state)
         {
             Game_ID = game_ID;
             Name = name;
@@ -34,14 +34,14 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// For use in the FindGames function of each launcher to populate with minimum information
         /// </summary>
-        public Game(int id, string name, LauncherID launcher)
+        public Game(string id, string name, LauncherID launcher)
         {
             Game_ID = id;
             Name = name;
             Launcher_ID = launcher;
         }
 
-        public int Game_ID { get; }
+        public string Game_ID { get; }
         public string Name { get; }
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
