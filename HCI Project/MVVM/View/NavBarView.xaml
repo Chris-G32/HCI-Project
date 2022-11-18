@@ -7,27 +7,160 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="800" x:Name="NavBar">
+
+    <UserControl.Resources>
+        <!--HOME BUTTON STYLE-->
+        <Style x:Key="HomeButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Source="ImageResources/ButtonElements/button_home@2x.png"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--SETTINGS BUTTON STYLE-->
+        <Style x:Key="SettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Image Source="ImageResources/ButtonElements/button_settings@2x.png"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--SEARCH BOX STYLE-->
+        <Style x:Key="SearchBoxStyle" TargetType="{x:Type ComboBox}">
+            <!--ITEM TEMPLATE-->
+            <Setter Property="ComboBox.ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <!--<Border CornerRadius="18"
+                            Background="{DynamicResource lnchLightLightGray}"
+                            >
+                        </Border>-->
+                        <StackPanel Orientation="Horizontal">
+                            <Image 
+                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1"
+                                
+                                Source="{Binding }"
+                            
+                            />
+                            <!--need to get image for each game-->
+                            <TextBlock 
+                                Style="{DynamicResource SearchBarTextStyle}"
+                                Margin="1"
+                                Text="{Binding }"
+
+                            />
+                            <!--need to get title of each game-->
+
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--VISUAL TEMPLATE-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                Grid.Column="2" Focusable="false" ClickMode="Press"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
+                                RelativeSource={RelativeSource TemplatedParent}}"
+                                />
+                            <ContentPresenter x:Name="ContentSite"
+                                IsHitTestVisible="False"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                Margin="3,3,23,3" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                            </ContentPresenter>
+                            <TextBox x:Name="PART_EditableTextBox"
+                                Style="{x:Null}"
+                                HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="3,3,23,3"
+                                Focusable="True"
+                                Background="Transparent"
+                                Visibility="Hidden"
+                                IsReadOnly="{TemplateBinding IsReadOnly}" />
+                            <Popup x:Name="Popup"
+                                Placement="Bottom"
+                                IsOpen="{TemplateBinding IsDropDownOpen}"
+                                AllowsTransparency="True" 
+                                Focusable="False"
+                                PopupAnimation="Slide">
+                                <Grid x:Name="DropDown"
+                                    SnapsToDevicePixels="True"
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                                        BorderThickness="0">
+                                    </Border>
+                                        <ScrollViewer Margin="4,6,4,6"
+                                             SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True"
+                                            KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
+                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                                <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
     <Grid Background="{DynamicResource lnchBrick}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <!--HOME BUTTON-->
-        <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5">
-            <Image Source="../View/ImageResources/ButtonElements/button_home@2x.png"/>
-        </Button>
+        
         <!--SEARCH BAR-->
-        <!--<ComboBox x:Name="SearchBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="35" ItemsSource="{Binding ,Mode=OneWay}" IsEditable="True"/>-->
-        <ComboBox x:Name="SearchBox" Grid.Column="1" Style="{StaticResource SearchBox}" IsEditable="True" VerticalAlignment="Center" Width="500" Height="35"/>
-        <!--ItemsSource="{Binding }" SelectedItem="{Binding }" 
-                  IsEditable="True" StaysOpenOnEdit="True" Text="{Binding , UpdateSourceTrigger=PropertyChanged}"-->
-                  
+        <ComboBox x:Name="SearchBox" Grid.Column="1"
+                  VerticalAlignment="Center" Width="500" Height="35"
+                  IsEditable="True" StaysOpenOnEdit="True" 
+                  Text="temp"
+                  ItemsSource="{Binding }"
+                  SelectedItem="{Binding SelectedEntryCommand}"
+                  >
+                  <!--ItemsSource needs to be binded to list of games.
+                  -->
+        </ComboBox>
+
+
+        <!--HOME BUTTON-->
+        <Button x:Name="HomeButton" Style="{StaticResource HomeButtonStyle}" Grid.Column="0" 
+                Background="{DynamicResource lnchBrick}" Margin="8"
+                
+                Click="HomeButton_Click"
+                />
+        
         <!--SETTINGS BUTTON-->
-        <Button x:Name="SettingsButton" Grid.Column="2" Background="{DynamicResource lnchBrick}" Margin="14"
+        <Button x:Name="SettingsButton" Style="{StaticResource SettingsButtonStyle}" Grid.Column="2" 
+                Background="{DynamicResource lnchBrick}" Margin="14"
                 Command="{Binding ToggleSettingsCommand,ElementName=NavBar}"
-                Click="SettingsButton_Click">
-            <Image Source="../View/ImageResources/ButtonElements/button_settings@2x.png"/>
-        </Button>
+                Click="SettingsButton_Click"
+                />
     </Grid>
 </UserControl>

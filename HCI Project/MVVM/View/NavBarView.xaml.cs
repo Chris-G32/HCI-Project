@@ -14,7 +14,7 @@ using HCI_Project.Core;
 namespace HCI_Project.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for SearchBarView.xaml
+    /// Interaction logic for NavBarView.xaml
     /// </summary>
     public partial class NavBarView : UserControl
     {
@@ -24,6 +24,40 @@ namespace HCI_Project.MVVM.View
             InitializeComponent();
         }
 
+
+
+        //SEARCH BAR: Selected Entry (use command to display respective page, etc.)
+        public object SelectedEntryCommand 
+        {
+            get { return (object)GetValue(SelectedEntryCommandProperty); }
+            set { SetValue(SelectedEntryCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for .  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedEntryCommandProperty =
+            DependencyProperty.Register("SelectedEntry", typeof(object), typeof(NavBarView));
+
+
+
+
+
+        //HOME BUTTON FUNCTIONALITY
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            //home displays
+        }
+
+        public RelayCommand ToggleHomeCommand
+        {
+            get { return (RelayCommand)GetValue(ToggleHomeCommandProperty); }
+            set { SetValue(ToggleHomeCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ToggleHomeCommandProperty =
+            DependencyProperty.Register("ToggleHomeCommand", typeof(RelayCommand), typeof(NavBarView));
+
+
+        //SETTINGS BUTTON FUNCTIONALITY
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             if (_settingsShown == false)
@@ -38,7 +72,6 @@ namespace HCI_Project.MVVM.View
             }
             _settingsShown = !_settingsShown;
         }
-
 
         public RelayCommand ToggleSettingsCommand
         {
