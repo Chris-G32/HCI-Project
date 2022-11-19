@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
-             
+             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="1600" x:Name="NavBar">
     <Grid Background="{DynamicResource lnchBrick}">
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <!--HOME BUTTON-->
-        <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5">
+        <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5" Command="{Binding HomeButtonCommand,ElementName=NavBar}">
             <Image Source="../View/ImageResources/ButtonElements/button_home@2x.png"/>
         </Button>
         <!--SEARCH BAR-->

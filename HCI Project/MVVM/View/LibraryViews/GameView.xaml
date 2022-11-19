@@ -50,7 +50,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <StackPanel>
-                            <Image x:Name="button_play_image" Source="../../../Icons/button_play@2x.png"/>
+                            <Image x:Name="button_play_image" Source="..\ImageResources\ButtonElements\button_play@2x.png"/>
                         </StackPanel>
                     </DataTemplate>
                 </Setter.Value>
@@ -60,9 +60,9 @@
 
     
     <Grid Background= "{DynamicResource lnchDarkGray}">
-        <Grid.DataContext>
+        <d:Grid.DataContext>
             <viewModel:GameViewModel/>
-        </Grid.DataContext>
+        </d:Grid.DataContext>
 
         <!--TABS-->
         <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}">
@@ -72,6 +72,10 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="58*"/>
+                        <ColumnDefinition Width="639*"/>
+                    </Grid.ColumnDefinitions>
                     <!--change to button_play_launching w/ stop button when launch is successful-->                    
                 </Grid>
             </TabItem>

@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
              mc:Ignorable="d" 
-            d:DesignHeight="775" d:DesignWidth="1600">
-    <UserControl.DataContext>
+             d:DesignHeight="775" d:DesignWidth="1600">
+    <d:UserControl.DataContext>
         <viewModel:SettingsViewModel/>
-    </UserControl.DataContext>
+    </d:UserControl.DataContext>
     <Grid Background="{DynamicResource lnchDarkGray}">
         <StackPanel>
             <WrapPanel Margin="20,10,0,10">

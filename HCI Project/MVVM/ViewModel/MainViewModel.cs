@@ -22,7 +22,17 @@ namespace HCI_Project.MVVM.ViewModel
         //public static SomeSortOfHandler(s)
         public RelayCommand SetGameView { get; set; }
         public RelayCommand ToggleSettings { get; set; }
-        public LibraryViewModel LibraryVM { get; set; }
+        public RelayCommand Test { get; set; }
+        private static LibraryViewModel _libraryVM;
+        public LibraryViewModel LibraryVM {
+            get { return _libraryVM; }
+            set
+            {
+                _libraryVM = value;
+                OnPropertyChanged();
+            }
+        }
+
         public SettingsViewModel SettingsVM { get; set; }
         private static object _currentView;
         

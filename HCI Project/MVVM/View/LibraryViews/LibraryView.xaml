@@ -10,9 +10,9 @@
              x:Name="Library"
              >
     <Grid>
-        <Grid.DataContext>
+        <d:Grid.DataContext>
             <viewModel:LibraryViewModel/>
-        </Grid.DataContext>
+        </d:Grid.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" MinWidth="150" />
             <ColumnDefinition Width="7*" MinWidth="500"/>
@@ -44,7 +44,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
+        <ContentControl Content="{Binding CurrentView,NotifyOnSourceUpdated=True,Mode=OneWay}" Grid.Column="1"/>
         <GridSplitter Grid.Column="0" Width="5"/>
     </Grid>
 </UserControl>

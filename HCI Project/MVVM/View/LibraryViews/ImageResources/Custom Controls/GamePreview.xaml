@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="180" d:DesignWidth="300" x:Name="GamePreview">
+             d:DesignHeight="180" d:DesignWidth="300" x:Name="GamePrev">
     <Grid>
-        <Image Source="{Binding ,ElementName=GamePreview,TargetNullValue='../DefaultImages/default_game_image@2x.png'}" Width="500">
+        <Image Source="{Binding GameImageSrcProperty,ElementName=GamePrev,TargetNullValue=../DefaultImages/default_game_image@2x.png}" Width="200">
         </Image>
     </Grid>
 </UserControl>
