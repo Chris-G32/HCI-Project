@@ -9,6 +9,43 @@
              d:DesignHeight="775" d:DesignWidth="1600"
              x:Name="Library"
              >
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}"
+           x:Key="ButtonLibraryEntry">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" MinWidth="25"/>
+                                <ColumnDefinition Width="Auto" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="HoverRect" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent"
+                                   StrokeThickness="20" Fill="Transparent"
+                                   />
+                            <Rectangle x:Name="SelectRect" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent"
+                                   StrokeThickness="20" Fill="Transparent"
+                                   />
+                            <Image Grid.Column="0" Margin="2" MinWidth="25" MaxWidth="40"
+                               Source="ImageResources/DefaultImages/default_game_icon@2x.png"
+                               />
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Style="{DynamicResource LibraryTextStyle}" 
+                               Text="{Binding Name}"
+                               />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property ="Rectangle.Stroke" TargetName="HoverRect" Value="{DynamicResource lnchMedGray}"/>
+                                <Setter Property ="Rectangle.Fill" TargetName="HoverRect" Value="{DynamicResource lnchMedGray}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <d:Grid.DataContext>
             <viewModel:LibraryViewModel/>
@@ -21,25 +58,15 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <!--stack panel of length = visible games-->
-                    <StackPanel x:Name="LibraryItems" PreviewMouseDown="Default_PreviewMouseDown" Orientation="Horizontal" 
-                               MouseDown="LibraryItemSelect" Background="{DynamicResource lnchDarkMedGray}"
-                          
-                               >
-                        <!--Background depends on if selected-->
-                        <!--GAME ICON-->
-                        <Image x:Name="GameIcon" Height="35" Width="35"
-                        Source="../../../Icons/default_game_icon@2x.png"
-                        Margin="2"
-                        />
+                    <StackPanel x:Name="LibraryItems" Orientation="Horizontal"
+                               Margin="0,2.5,0,2.5" 
+                               PreviewMouseDown="Default_PreviewMouseDown">
+                        <!--change to radio buttons so the selection thing can happen-->
+                        <Button x:Name="LibraryEntry"
+                                Style="{StaticResource ButtonLibraryEntry}"
+                                Click="LibraryEntry_Click"
+                                />
 
-                        <!--GAME TITLE-->
-                        <!--needs data bind per entry-->
-                        <!--style changes when not installed-->
-                        <TextBlock x:Name="LibraryEntry" Style="{DynamicResource LibraryTextStyle}"
-                            Text="{Binding Name}"
-                            HorizontalAlignment="Left" VerticalAlignment="Center"
-                            TextWrapping="Wrap"
-                        />
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

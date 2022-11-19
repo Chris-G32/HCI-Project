@@ -32,6 +32,15 @@ namespace HCI_Project.MVVM.View.LibraryViews
             //hover over recolor (might be wrong mouse event)
         }
 
+        private void LibraryEntry_Click(object sender, RoutedEventArgs e)
+        {
+            //open up corresponding gameView for selected game
+            //recolor selected entry, return previous selection back
+            //if () {      
+            //}
+
+        }
+
         //Used to Bind Library to a list of Games Ideally
         //public ObservableCollection<string> ListSource
         //{
@@ -43,10 +52,5 @@ namespace HCI_Project.MVVM.View.LibraryViews
         //public static readonly DependencyProperty ListSourceProperty =
         //    DependencyProperty.Register("ListSource", typeof(ObservableCollection<string>), typeof(LibraryView), new PropertyMetadata(new ObservableCollection<string>()));
 
-        private void LibraryItemSelect(object sender, MouseButtonEventArgs e)
-        {
-            //open up corresponding gameView for selected game
-            //recolor selected entry, return previous selection back
-        }
     }
 }
