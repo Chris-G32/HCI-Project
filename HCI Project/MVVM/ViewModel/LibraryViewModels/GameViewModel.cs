@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;//Debugging Only atm
 using System.Text;
+using HCI_Project.MVVM.Model;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -12,7 +13,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
     public class GameViewModel : ObservableObject
     {
         //Current Game Selected Needs Actual Struct
-        public object Game { get; private set; }
+        public Game SelectedGame { get; private set; }
         //Will need updated to first on game switch or instead just create whole new game vm, may be easier and more logical
         private int _tabIndex;
 
@@ -43,10 +44,15 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         /// <summary>
         /// Instantiates the GameView and its associated data
         /// </summary>
-        public GameViewModel(object game) : this()
+        public GameViewModel(Game game) : this()
         {
-            Game = game;
-
+            SelectedGame = game;
+            PlayGame = new RelayCommand(o =>
+            {
+                //Some Logic TO Run the Game
+                //SomeInterface.Run(Game)
+                Debug.WriteLine("Running Game (Not Actually)");
+            });
         }
     }
 }
