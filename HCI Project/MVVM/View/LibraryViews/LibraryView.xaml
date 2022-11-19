@@ -44,7 +44,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <ContentControl Content="{Binding CurrentView,NotifyOnSourceUpdated=True,Mode=OneWay}" Grid.Column="1"/>
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
         <GridSplitter Grid.Column="0" Width="5"/>
     </Grid>
 </UserControl>
