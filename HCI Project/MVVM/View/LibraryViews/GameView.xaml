@@ -39,41 +39,8 @@
             </Setter>
         </Style>
         <!--GETS RID OF BORDERS-->
-        <Style  TargetType="{x:Type TabControl}">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabControl}">
-                        <Grid KeyboardNavigation.TabNavigation="Local">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TabPanel Name="HeaderPanel" Grid.Row="0" Panel.ZIndex="1"  Margin="0,0,0,-1" 
-                                      IsItemsHost="True" KeyboardNavigation.TabIndex="1" Background="{DynamicResource lnchDarkGray}"/>
-                            <Border Name="Border" Grid.Row="1" 
-                                    Background="{DynamicResource lnchLightLightGray}" BorderBrush="Transparent" BorderThickness="1"
-                                    CornerRadius="2" 
-                                    KeyboardNavigation.TabNavigation="Local"
-                                    KeyboardNavigation.DirectionalNavigation="Contained"
-                                    KeyboardNavigation.TabIndex="2" >
-                                <ContentPresenter Name="PART_SelectedContentHost"
-                                                  Margin="0" ContentSource="SelectedContent" />
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="Gray" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <!--PLAY BUTTON (WILL CHANGE)-->
-        <Style x:Key="PlayButton" TargetType="{x:Type Button}">
+        <!--<Style x:Key="PlayButton" TargetType="{x:Type Button}">
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="125"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -84,15 +51,15 @@
                 <Setter.Value>
                     <DataTemplate>
                         <StackPanel>
-                            <Image x:Name="button_play_image" Source="..\ImageResources\ButtonElements\button_play@2x.png"/>
+                            <Image x:Name="button_play_image" Source="..\ImageResources\ButtonElements\button_play@2x.png"/> 
                         </StackPanel>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </UserControl.Resources>
 
-    
+
     <Grid Background= "{DynamicResource lnchDarkGray}">
         <d:Grid.DataContext>
             <viewModel:GameViewModel/>
@@ -106,11 +73,12 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
-                    <Grid.ColumnDefinitions>
+                    <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="58*"/>
                         <ColumnDefinition Width="639*"/>
-                    </Grid.ColumnDefinitions>
-                    <!--change to button_play_launching w/ stop button when launch is successful-->                    
+                    </Grid.ColumnDefinitions>-->
+                    <!--change to button_play_launching w/ stop button when launch is successful-->
+                    <TextBlock Text="{Binding SelectedGame.Name}" FontSize="40" Foreground="White"></TextBlock>
                 </Grid>
             </TabItem>
             <TabItem Background="{DynamicResource lnchMedGray}">
@@ -146,10 +114,11 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="MainPlayButton" Style="{StaticResource PlayButton}" 
+        <Button x:Name="MainPlayButton" 
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                Click="Button_Play_Click" Command="{Binding PlayGame}"
+                Click="Button_Play_Click" Command="{Binding PlayGame}" Content="Play"
+                Width="200" Height="100"
                 />
-        
+
     </Grid>
 </UserControl>
