@@ -147,7 +147,7 @@
                   IsEditable="True" StaysOpenOnEdit="True" 
                   Text="temp"
                   ItemsSource="{Binding }"
-                  SelectedItem="{Binding SelectedEntryCommand}"
+                  SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar}"
                   >
                   <!--ItemsSource needs to be binded to list of games.
                   -->
