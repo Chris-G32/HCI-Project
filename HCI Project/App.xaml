@@ -13,9 +13,13 @@
             <DataTemplate DataType="{x:Type libraryViewModels:GameViewModel}">
                 <libraryViews:GameView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type libraryViewModels:HomeViewModel}">
+                <libraryViews:HomeView/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type libraryViewModels:LibraryViewModel}">
                 <libraryViews:LibraryView/>
             </DataTemplate>
+            
             <!--MainViewModels-->
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
                 <view:SettingsView/>

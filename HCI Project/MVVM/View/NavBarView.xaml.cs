@@ -84,5 +84,17 @@ namespace HCI_Project.MVVM.View
             DependencyProperty.Register("ToggleSettingsCommand", typeof(RelayCommand), typeof(NavBarView));
 
 
+
+        public RelayCommand HomeButtonCommand
+        {
+            get { return (RelayCommand)GetValue(HomeButtonCommandProperty); }
+            set { SetValue(HomeButtonCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HomeButtonCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HomeButtonCommandProperty =
+            DependencyProperty.Register("HomeButtonCommand", typeof(RelayCommand), typeof(NavBarView));
+
+
     }
 }

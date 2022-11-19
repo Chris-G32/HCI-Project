@@ -1,12 +1,12 @@
-﻿<UserControl x:Class="HCI_Project.MVVM.View.NavBarView"
+<UserControl x:Class="HCI_Project.MVVM.View.NavBarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
-             
+             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="800" x:Name="NavBar">
+             d:DesignHeight="75" d:DesignWidth="1600" x:Name="NavBar">
 
     <UserControl.Resources>
         <!--HOME BUTTON STYLE-->
@@ -136,6 +136,11 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         
+        <!--HOME BUTTON-->
+        <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5" Command="{Binding HomeButtonCommand,ElementName=NavBar}">
+            <Image Source="../View/ImageResources/ButtonElements/button_home@2x.png"/>
+        </Button>
+
         <!--SEARCH BAR-->
         <ComboBox x:Name="SearchBox" Grid.Column="1"
                   VerticalAlignment="Center" Width="500" Height="35"
@@ -149,12 +154,12 @@
         </ComboBox>
 
 
-        <!--HOME BUTTON-->
+        <!--HOME BUTTON
         <Button x:Name="HomeButton" Style="{StaticResource HomeButtonStyle}" Grid.Column="0" 
                 Background="{DynamicResource lnchBrick}" Margin="8"
                 
                 Click="HomeButton_Click"
-                />
+                />-->
         
         <!--SETTINGS BUTTON-->
         <Button x:Name="SettingsButton" Style="{StaticResource SettingsButtonStyle}" Grid.Column="2" 

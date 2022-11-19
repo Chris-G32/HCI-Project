@@ -8,6 +8,7 @@ using System.Text;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
+    public enum TestView { Game,Home}
     /// <summary>
     /// Handles LibraryViews and its instantiated subviews
     /// </summary>
@@ -17,13 +18,18 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         // public ObservableCollection<object> GamesList { get; private set; }
 
         //SubViews
+        //private GameViewModel _gameVM;
+        //public GameViewModel GameVM {get{ return _gameVM; } set { _gameVM = value; OnPropertyChanged(); } }
         public GameViewModel GameVM { get; set; }
-
+        //      private HomeViewModel _homeVM;
+        //public HomeViewModel HomeVM { get { return _homeVM; } set { _homeVM = value; OnPropertyChanged(); } }
+        public HomeViewModel HomeVM { get; set; }
         //Relay Commands
         public RelayCommand OpenGamePage { get; set; }
+        public RelayCommand SetHomeView { get; set; } 
         public ObservableCollection<Game> OwnedGames { get; set; }
         
-        private static object _currentView;
+        private object _currentView;
 
         /// <summary>
         /// Currently displayed subview
@@ -46,10 +52,10 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             //Initializing members
             OwnedGames = new ObservableCollection<Game>() { new Game("Shrt"), new Game("Medium Len Title"), new Game("A particularly very long title of a game that is still going on") };
             GameVM = new GameViewModel();
-
+            HomeVM = new HomeViewModel();
             //Set Default View
+
             CurrentView = GameVM;
-            
             //Set Relay Commands
             OpenGamePage = new RelayCommand(o =>
               {
@@ -57,8 +63,41 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                   GameVM = new GameViewModel((Game)o);
 
               });
-            
-        }
+            SetHomeView = new RelayCommand(o => { 
+                CurrentView = HomeVM;
+            }
+            );
 
+        }
+        public LibraryViewModel(TestView view = TestView.Game)
+        {
+            //Initializing members
+            OwnedGames = new ObservableCollection<Game>() { new Game("Shrt"), new Game("Medium Len Title"), new Game("A particularly very long title of a game that is still going on") };
+            GameVM = new GameViewModel();
+            HomeVM = new HomeViewModel();
+            //Set Default View
+            CurrentView = new HomeViewModel();
+            //Set Relay Commands
+            OpenGamePage = new RelayCommand(o =>
+            {
+                //Expecting to recieve a game object as parameter, also a int referring to its location in list should work
+                GameVM = new GameViewModel((Game)o);
+
+            });
+            SetHomeView = new RelayCommand(o => {
+                //CurrentView = HomeVM;
+                //OnPropertyChanged();
+                GameVM.TabIndex = 3;
+            }
+            );
+
+        }
+        public void Test()
+        {
+            OwnedGames.RemoveAt(0);
+            CurrentView = CurrentView;
+            OnPropertyChanged();
+            //CurrentView = HomeVM;
+        }
     }
 }

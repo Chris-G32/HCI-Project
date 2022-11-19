@@ -19,7 +19,10 @@
             <RowDefinition Height="75"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}"/>
+
+        <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}" HomeButtonCommand="{Binding LibraryVM.SetHomeView}"/>
+
+
         <!--<Button Grid.Row="0" Foreground="White" Content="Settings" HorizontalAlignment="Right" Width="125" Command="{Binding ToggleSettings}"/>-->
         <ContentControl Content="{Binding CurrentView}" Grid.Row="1"/>
             <!--<view:LibraryView Grid.Column="0" ListSource="{Binding OwnedGames}"/>-->

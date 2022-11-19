@@ -47,9 +47,9 @@
     </UserControl.Resources>
     
     <Grid>
-        <Grid.DataContext>
+        <d:Grid.DataContext>
             <viewModel:LibraryViewModel/>
-        </Grid.DataContext>
+        </d:Grid.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" MinWidth="150" />
             <ColumnDefinition Width="7*" MinWidth="500"/>
