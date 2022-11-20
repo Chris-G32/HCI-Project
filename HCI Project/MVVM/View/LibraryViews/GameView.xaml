@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
-             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
+             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels" xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="GameViews"
@@ -98,10 +98,13 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
-                    <WebBrowser Margin="50,50,50,50" Source="https://www.google.com">
-
-                    </WebBrowser>
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Wpf:WebView2 Margin="30" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    
+                
                 </Grid>
             </TabItem>
             <TabItem Background="{DynamicResource lnchMedGray}">
