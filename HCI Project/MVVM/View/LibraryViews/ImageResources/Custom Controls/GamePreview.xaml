@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="180" d:DesignWidth="300" x:Name="GamePrev">
+    <UserControl.Resources>
+        <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image@2x.png" />
+    </UserControl.Resources>
     <Grid>
-        <Image Source="{Binding GameImageSrcProperty,ElementName=GamePrev,TargetNullValue=../DefaultImages/default_game_image@2x.png}" Width="200">
+        <Image x:Name="GameImg" Source="{Binding GameImageSrcProperty,ElementName=GamePrev,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}">
         </Image>
     </Grid>
 </UserControl>

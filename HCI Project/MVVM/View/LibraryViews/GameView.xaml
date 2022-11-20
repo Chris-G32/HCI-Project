@@ -57,7 +57,8 @@
                 </Setter.Value>
             </Setter>
         </Style>-->
-    </UserControl.Resources>
+            <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
+        </UserControl.Resources>
 
 
     <Grid Background= "{DynamicResource lnchDarkGray}">
@@ -73,12 +74,22 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="58*"/>
                         <ColumnDefinition Width="639*"/>
                     </Grid.ColumnDefinitions>-->
                     <!--change to button_play_launching w/ stop button when launch is successful-->
-                    <TextBlock Text="{Binding SelectedGame.Name}" FontSize="40" Foreground="White"></TextBlock>
+
+                    <Image x:Name="BannerImage"  HorizontalAlignment="Center" Source="{Binding FallbackValue={StaticResource DefaultBannerImage}}" Grid.Row="0" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"/>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="{Binding SelectedGame.Name}" FontSize="40" Foreground="White" />
+                        <TextBlock Text="{Binding SelectedGame.Description}" FontSize="20" Foreground="White" Margin="0,30,0,0"/>
+                        <TextBlock Text="LastPlayed" FontSize="20" Foreground="white" Margin="0,40,0,0"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Background="{DynamicResource lnchMedGray}">
