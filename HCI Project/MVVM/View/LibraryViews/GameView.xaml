@@ -67,13 +67,15 @@
         </d:Grid.DataContext>
 
         <!--TABS-->
-        <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}">
-            <TabItem Background="{DynamicResource lnchMedGray}" >
+        <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}" Padding="0" BorderBrush="Transparent" Background="{DynamicResource lnchDarkGray}">
+            
+            
+            <TabItem Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Play" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
                 <!--tab is linked here-->
-                <Grid Background="{DynamicResource lnchDarkGray}">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="2*"/>
