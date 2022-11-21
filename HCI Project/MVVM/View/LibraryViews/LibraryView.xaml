@@ -64,7 +64,7 @@
                         <!--change to radio buttons so the selection thing can happen-->
                         <Button x:Name="LibraryEntry"
                                 Style="{StaticResource ButtonLibraryEntry}"
-                                Click="LibraryEntry_Click" Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
+                                Click="LibraryEntry_Click"  Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
                                 />
 
                     </StackPanel>
