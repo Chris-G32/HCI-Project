@@ -42,7 +42,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-
+        <Button Grid.Row="0" Content="ChangeImg" Command="{Binding GetImage}" Width="200" HorizontalAlignment="Right"/>
         <TextBlock Grid.Row="0" Text="Recently Played" FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}"
         VerticalAlignment="Top" Margin="10"/>
 
@@ -74,7 +74,9 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <customControls:GamePreview/>
+            
+            <customControls:GamePreview GameImageSrc="{Binding Imgtst}" Grid.Row="0"/>
+            <Image Source="{Binding TestUri}" Grid.Row="1"/>
             <!--<UniformGrid.Resources>
                 <Style TargetType="">
                     <Setter Property="Padding" Value="30"></Setter>

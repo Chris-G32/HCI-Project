@@ -26,9 +26,10 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// For testing Purposes
         /// </summary>
-        public Game(string name)
+        public Game(string name,string definition)
         {
             Name=name;
+            Description = definition;
         }
 
         /// <summary>
@@ -45,9 +46,9 @@ namespace HCI_Project.MVVM.Model
         public string Name { get; }
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
-        public String[] Tags { get; set; }
-        public String[] Images { get; set; }
-        public String Description { get; set; }
+        public string[] Tags { get; set; }
+        public string[] Images { get; set; }
+        public string Description { get; set; }
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
     }

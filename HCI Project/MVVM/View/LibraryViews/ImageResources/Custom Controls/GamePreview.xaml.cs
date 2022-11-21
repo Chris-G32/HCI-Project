@@ -26,15 +26,17 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         }
         
 
-        public ImageSource GameImageSrc
+        public Uri GameImageSrc
         {
-            get { return (ImageSource)GetValue(GameImageSrcProperty); }
+            get { return (Uri)GetValue(GameImageSrcProperty); }
             set { SetValue(GameImageSrcProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for GameImage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GameImageSrcProperty =
-            DependencyProperty.Register("GameImageSrc", typeof(ImageSource), typeof(GamePreview));
+            DependencyProperty.Register("GameImageSrc", typeof(Uri), typeof(GamePreview));
+
+
 
 
     }

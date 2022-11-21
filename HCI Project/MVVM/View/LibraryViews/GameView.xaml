@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
-             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
+             xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels" xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="GameViews"
@@ -83,7 +83,8 @@
                 </Setter.Value>
             </Setter>
         </Style>-->
-    </UserControl.Resources>
+            <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
+        </UserControl.Resources>
 
 
     <Grid Background= "{DynamicResource lnchDarkGray}">
@@ -92,19 +93,31 @@
         </d:Grid.DataContext>
 
         <!--TABS-->
-        <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}">
-            <TabItem Background="{DynamicResource lnchMedGray}" >
+        <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}" Padding="0" BorderBrush="Transparent" Background="{DynamicResource lnchDarkGray}">
+            
+            
+            <TabItem Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Play" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
                 <!--tab is linked here-->
-                <Grid Background="{DynamicResource lnchDarkGray}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="58*"/>
                         <ColumnDefinition Width="639*"/>
                     </Grid.ColumnDefinitions>-->
                     <!--change to button_play_launching w/ stop button when launch is successful-->
-                    <TextBlock Text="{Binding SelectedGame.Name}" FontSize="40" Foreground="White"></TextBlock>
+
+                    <Image x:Name="BannerImage"  HorizontalAlignment="Center" Source="{Binding FallbackValue={StaticResource DefaultBannerImage}}" Grid.Row="0" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"/>
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="{Binding SelectedGame.Name}" FontSize="40" Foreground="White" />
+                        <TextBlock Text="{Binding SelectedGame.Description}" FontSize="20" Foreground="White" Margin="0,30,0,0"/>
+                        <TextBlock Text="LastPlayed" FontSize="20" Foreground="white" Margin="0,40,0,0"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Background="{DynamicResource lnchMedGray}">
@@ -113,10 +126,13 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
-                    <WebBrowser Margin="50,50,50,50" Source="https://www.google.com">
-
-                    </WebBrowser>
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Wpf:WebView2 Margin="30" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    
+                
                 </Grid>
             </TabItem>
             <TabItem Background="{DynamicResource lnchMedGray}">
