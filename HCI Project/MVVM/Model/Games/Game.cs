@@ -42,6 +42,17 @@ namespace HCI_Project.MVVM.Model
             Launcher_ID = launcher;
         }
 
+        /// <summary>
+        /// Testing constructur for temporary use in the database
+        /// </summary>
+        public Game(string id, string name, LauncherID launcher, string desc)
+        {
+            Game_ID = id;
+            Name = name;
+            Launcher_ID = launcher;
+            Description = desc;
+        }
+
         public string Game_ID { get; }
         public string Name { get; }
         // Contains a value from the LauncherID enum from Launcher.cs

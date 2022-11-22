@@ -52,16 +52,39 @@ namespace HCI_Project.MVVM.Model.Database
 
             if(rdr.Read())
             {
-                string game_id = rdr.GetString(0);
-                string game_name = rdr.GetString(1);
-                int launcher_id = rdr.GetInt32(2);
+                string gameID = rdr.GetString(0);
+                string gameName = rdr.GetString(1);
+                int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
-                res = new Game(game_id, game_name, (LauncherID)launcher_id);
+                res = new Game(gameID, gameName, (LauncherID)launcherID);
                 res.Description = description;
             }
 
             return res;
 
+        }
+
+        /// <summary>
+        /// Reads all current games from the database and returns result
+        /// </summary>
+        /// <returns> A list of all currently existing game objects from the database </returns>
+        public List<Game> ReadAllGames()
+        {
+            List<Game> res = new List<Game>();
+
+            _cmd.CommandText = $"SELECT * FROM games";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                string gameID = rdr.GetString(0);
+                string gameName = rdr.GetString(1);
+                int launcherID = rdr.GetInt32(2);
+                string description = rdr.GetString(3);
+                res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
+            }
+
+            return res;
         }
 
     }
