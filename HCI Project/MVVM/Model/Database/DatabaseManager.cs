@@ -5,7 +5,7 @@ using System.Data.SQLite;
 
 namespace HCI_Project.MVVM.Model.Database
 {
-    public class Database_Manager
+    public class DatabaseManager
     {
 
         SQLiteConnection _con;
@@ -14,7 +14,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// <summary>
         /// Establishes connection to SQLite database file on object instantiation
         /// </summary>
-        public Database_Manager()
+        public DatabaseManager()
         {
             // Specifies file directory
             string cs = @"URI=file:../../../data.db";
@@ -29,7 +29,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// <summary>
         /// Inserts a Game object into the database, regardless of whether it was there before or not
         /// </summary>
-        public void Insert_Game(Game game)
+        public void InsertGame(Game game)
         {
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
@@ -43,7 +43,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// Looks for a game in the database with a given ID and returns the populated Game object
         /// </summary>
         /// <returns> The populated Game object corresponding to the id OR null if not found </returns>
-        public Game Read_Game(string id)
+        public Game ReadGame(string id)
         {
             _cmd.CommandText = $"SELECT * FROM games WHERE id='{id}'";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
@@ -52,16 +52,39 @@ namespace HCI_Project.MVVM.Model.Database
 
             if(rdr.Read())
             {
-                string game_id = rdr.GetString(0);
-                string game_name = rdr.GetString(1);
-                int launcher_id = rdr.GetInt32(2);
+                string gameID = rdr.GetString(0);
+                string gameName = rdr.GetString(1);
+                int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
-                res = new Game(game_id, game_name, (LauncherID)launcher_id);
+                res = new Game(gameID, gameName, (LauncherID)launcherID);
                 res.Description = description;
             }
 
             return res;
 
+        }
+
+        /// <summary>
+        /// Reads all current games from the database and returns result
+        /// </summary>
+        /// <returns> A list of all currently existing game objects from the database </returns>
+        public List<Game> ReadAllGames()
+        {
+            List<Game> res = new List<Game>();
+
+            _cmd.CommandText = $"SELECT * FROM games";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                string gameID = rdr.GetString(0);
+                string gameName = rdr.GetString(1);
+                int launcherID = rdr.GetInt32(2);
+                string description = rdr.GetString(3);
+                res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
+            }
+
+            return res;
         }
 
     }

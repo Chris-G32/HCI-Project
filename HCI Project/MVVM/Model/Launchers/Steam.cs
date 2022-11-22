@@ -7,16 +7,17 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using HCI_Project.MVVM.Model.Database;
 
 namespace HCI_Project.MVVM.Model
 {
-    public class Launcher_Steam:Launcher
+    public class Steam:Launcher
     {
         // Client used for API Requests
         private HttpClient client;
         private string _steamid = "";
         private string _steamname = "bay219";
-        public Launcher_Steam()
+        public Steam()
         {
             client = new HttpClient();
             // This accepts a json file by default
@@ -54,17 +55,19 @@ namespace HCI_Project.MVVM.Model
 
         public override bool LaunchGame(Game game)
         {
+            _browser.Navigate(new Uri("steam://rungameid/" + game.Game_ID));
+            game.State = GameState.INSTALLED;
             return true;
         }
 
-        public async override Task<List<Game>> FindGames()
+        /// <summary>
+        /// Updates all entries related to the Steam launcher in the database that is passed in to the function.
+        /// </summary>
+        public async override Task UpdateGames(DatabaseManager db)
         {
             // If the user's SteamID has not been found yet, wait for it to be found first
             if (_steamid == "")
                 await PopulateSteamID();
-
-            // The final list of games to be returned
-            List<Game> gameObjectsList = new List<Game>();
 
             // Call the IPlayerService API to get the user's owned games' ids and names
             var resp = await client.GetStringAsync("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + _key + "&steamid=" + _steamid + "&include_appinfo=true");
@@ -76,11 +79,10 @@ namespace HCI_Project.MVVM.Model
             {
                 //Console.WriteLine("Name: " + game.name + "   ID: " + game.appid);
                 Game tempGame = new Game(game.appid, game.name, LauncherID.Steam);
-                //Adds each Game object to the list of Games to be returned
-                gameObjectsList.Add(tempGame);
+                // Populates the Game object with more detailed data from the API
+                GetGameInfo(ref tempGame);
+                db.InsertGame(tempGame);
             }
-
-            return gameObjectsList;
         }
 
         /// <summary>
@@ -97,10 +99,10 @@ namespace HCI_Project.MVVM.Model
         /// Populates a game with a known game id with its information
         /// </summary>
         /// <param name="game">Game to store info to. Passed by reference.</param>
-        public override void GetGameInfo(ref Game game)//WIll have a check cache param
+        public override void GetGameInfo(ref Game game)
         {
-            //Check DB First
-            //If cache pull newest if not api request
+            // NOTE: no longer checks database for caching. That will
+            // be handled by the GameManager class.
             Debug.WriteLine("Getting info about " + game.Name);
         }
 

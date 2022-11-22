@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.MVVM.Model.Database;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,14 @@ namespace HCI_Project.MVVM.Model
         public abstract bool LaunchGame(Game game);
 
         /// <summary>
-        /// Find and return the List of Game objects which the user owns on this launcher
+        /// Finds all games owned by a user on the corresponding launcher, then updates all entries for those 
+        /// games in the database that is passed in to the function.
         /// </summary>
-        /// <returns>List of Games owned by user</returns>
-        public abstract Task<List<Game>> FindGames();
+        /// <param name="db"> The database to store the games in </param>
+        public abstract Task UpdateGames(DatabaseManager db);
 
         /// <summary>
-        /// Populates an instance of Game from the Database or the API
+        /// Populates an instance of Game from the the API
         /// </summary>
         /// <param name="game">The Game which will be populated with data</param>
         public abstract void GetGameInfo(ref Game game);
@@ -34,9 +36,9 @@ namespace HCI_Project.MVVM.Model
         /// Reads the key from the corresponding file and returns it
         /// </summary>
         /// <returns>The API Key for the launcher</returns>
-        protected abstract String GetKey();
+        protected abstract string GetKey();
         // The API key
-        protected String _key;
-        protected WebBrowser browser;
+        protected string _key;
+        protected WebBrowser _browser;
     }
 }
