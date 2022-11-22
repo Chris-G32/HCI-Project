@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.MVVM.Model.Database;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,13 +10,14 @@ namespace HCI_Project.MVVM.Model
 {
     public class GameManager
     {
-        public List<Game> games { get; set; }
-
         private Launcher_Steam _steamLauncher;
+
+        private Database_Manager _db;
 
         public GameManager()
         {
             _steamLauncher = new Launcher_Steam();
+            _db = new Database_Manager();
         }
 
         /// <summary>
@@ -31,15 +33,11 @@ namespace HCI_Project.MVVM.Model
         }
 
         /// <summary>
-        /// Finds games on all currently configured launchers
+        /// Updates games on all currently configured launchers in the database
         /// </summary>
-        public async Task FindAllGames()
+        public async Task UpdateAll()
         {
-            List<Game> steamGames = await _steamLauncher.FindGames();
-            foreach (Game game in steamGames)
-            {
-                games.Add(game);
-            }
+            await _steamLauncher.UpdateGames(_db);
         }
     }
 }
