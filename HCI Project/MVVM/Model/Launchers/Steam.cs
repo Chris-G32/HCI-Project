@@ -11,13 +11,13 @@ using HCI_Project.MVVM.Model.Database;
 
 namespace HCI_Project.MVVM.Model
 {
-    public class Launcher_Steam:Launcher
+    public class Steam:Launcher
     {
         // Client used for API Requests
         private HttpClient client;
         private string _steamid = "";
         private string _steamname = "bay219";
-        public Launcher_Steam()
+        public Steam()
         {
             client = new HttpClient();
             // This accepts a json file by default
@@ -63,7 +63,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Updates all entries related to the Steam launcher in the database that is passed in to the function.
         /// </summary>
-        public async override Task UpdateGames(Database_Manager db)
+        public async override Task UpdateGames(DatabaseManager db)
         {
             // If the user's SteamID has not been found yet, wait for it to be found first
             if (_steamid == "")
@@ -81,7 +81,7 @@ namespace HCI_Project.MVVM.Model
                 Game tempGame = new Game(game.appid, game.name, LauncherID.Steam);
                 // Populates the Game object with more detailed data from the API
                 GetGameInfo(ref tempGame);
-                db.Insert_Game(tempGame);
+                db.InsertGame(tempGame);
             }
         }
 

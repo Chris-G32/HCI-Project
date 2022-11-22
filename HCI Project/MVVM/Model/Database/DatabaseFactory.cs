@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace HCI_Project.MVVM.Model.Database
 {
-    public class Database_Factory
+    public class DatabaseFactory
     {
         /// <summary>
         /// This command builds a SQLite database in the file 'data.db' in the database directory of the model folder.

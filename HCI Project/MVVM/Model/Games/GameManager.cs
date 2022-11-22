@@ -10,14 +10,14 @@ namespace HCI_Project.MVVM.Model
 {
     public class GameManager
     {
-        private static Launcher_Steam _steamLauncher;
+        private static Steam _steamLauncher;
 
-        private static Database_Manager _db;
+        private static DatabaseManager _db;
 
         public GameManager()
         {
-            _steamLauncher = new Launcher_Steam();
-            _db = new Database_Manager();
+            _steamLauncher = new Steam();
+            _db = new DatabaseManager();
         }
 
         /// <summary>

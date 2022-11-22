@@ -24,7 +24,7 @@ namespace HCI_Project.MVVM.Model
         /// games in the database that is passed in to the function.
         /// </summary>
         /// <param name="db"> The database to store the games in </param>
-        public abstract Task UpdateGames(Database_Manager db);
+        public abstract Task UpdateGames(DatabaseManager db);
 
         /// <summary>
         /// Populates an instance of Game from the the API

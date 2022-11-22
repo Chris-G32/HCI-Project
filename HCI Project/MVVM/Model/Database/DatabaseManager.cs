@@ -5,7 +5,7 @@ using System.Data.SQLite;
 
 namespace HCI_Project.MVVM.Model.Database
 {
-    public class Database_Manager
+    public class DatabaseManager
     {
 
         SQLiteConnection _con;
@@ -14,7 +14,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// <summary>
         /// Establishes connection to SQLite database file on object instantiation
         /// </summary>
-        public Database_Manager()
+        public DatabaseManager()
         {
             // Specifies file directory
             string cs = @"URI=file:../../../data.db";
@@ -29,7 +29,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// <summary>
         /// Inserts a Game object into the database, regardless of whether it was there before or not
         /// </summary>
-        public void Insert_Game(Game game)
+        public void InsertGame(Game game)
         {
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
@@ -43,7 +43,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// Looks for a game in the database with a given ID and returns the populated Game object
         /// </summary>
         /// <returns> The populated Game object corresponding to the id OR null if not found </returns>
-        public Game Read_Game(string id)
+        public Game ReadGame(string id)
         {
             _cmd.CommandText = $"SELECT * FROM games WHERE id='{id}'";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
