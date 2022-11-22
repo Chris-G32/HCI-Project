@@ -97,10 +97,10 @@ namespace HCI_Project.MVVM.Model
         /// Populates a game with a known game id with its information
         /// </summary>
         /// <param name="game">Game to store info to. Passed by reference.</param>
-        public override void GetGameInfo(ref Game game)//WIll have a check cache param
+        public override void GetGameInfo(ref Game game)
         {
-            //Check DB First
-            //If cache pull newest if not api request
+            // NOTE: no longer checks database for caching. That will
+            // be handled by the GameManager class.
             Debug.WriteLine("Getting info about " + game.Name);
         }
 

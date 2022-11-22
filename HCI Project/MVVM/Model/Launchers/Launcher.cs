@@ -27,7 +27,7 @@ namespace HCI_Project.MVVM.Model
         public abstract Task UpdateGames(Database_Manager db);
 
         /// <summary>
-        /// Populates an instance of Game from the Database or the API
+        /// Populates an instance of Game from the the API
         /// </summary>
         /// <param name="game">The Game which will be populated with data</param>
         public abstract void GetGameInfo(ref Game game);
