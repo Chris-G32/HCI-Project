@@ -66,23 +66,6 @@
             </Setter>
         </Style>
         <!--PLAY BUTTON (WILL CHANGE)-->
-        <!--<Style x:Key="PlayButton" TargetType="{x:Type Button}">
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="125"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="Command" Value="{Binding PlayGame}"/>
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="ContentTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Image x:Name="button_play_image" Source="..\ImageResources\ButtonElements\button_play@2x.png"/> 
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>-->
             <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
         </UserControl.Resources>
 
@@ -114,7 +97,7 @@
 
                     <Image x:Name="BannerImage"  HorizontalAlignment="Center" Source="{Binding FallbackValue={StaticResource DefaultBannerImage}}" Grid.Row="0" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"/>
                     <StackPanel Grid.Row="1">
-                        <TextBlock Text="{Binding SelectedGame.Name}" FontSize="40" Foreground="White" />
+                        <TextBlock Text="{Binding SelectedGame.Name}" Style="{DynamicResource BigTextHeaderStyle}"/>
                         <TextBlock Text="{Binding SelectedGame.Description}" FontSize="20" Foreground="White" Margin="0,30,0,0"/>
                         <TextBlock Text="LastPlayed" FontSize="20" Foreground="white" Margin="0,40,0,0"/>
                     </StackPanel>
@@ -156,10 +139,9 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="MainPlayButton" 
+        <Button x:Name="MainPlayButton" Style="{DynamicResource PlayButton}"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                Click="Button_Play_Click" Command="{Binding PlayGame}" Content="Play"
-                Width="200" Height="100"
+                Click="Button_Play_Click" Command="{Binding PlayGame}"
                 />
 
     </Grid>
