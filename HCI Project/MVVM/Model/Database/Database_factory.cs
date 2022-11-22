@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace HCI_Project.MVVM.Model.Database
 {
@@ -22,14 +23,21 @@ namespace HCI_Project.MVVM.Model.Database
 
             using var cmd = new SQLiteCommand(con);
 
-            // Avoid errors by dropping the table if it already exists
+            // Avoid errors by dropping tables if they already exists
             cmd.CommandText = "DROP TABLE IF EXISTS games";
             cmd.ExecuteNonQuery();
+            cmd.CommandText = "DROP TABLE IF EXISTS settings";
+            cmd.ExecuteNonQuery();
 
+            // Creates table for storing game information
             cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, images_folder TEXT, last_played DATETIME DEFAULT CURRENT_TIMESTAMP)";
             cmd.ExecuteNonQuery();
 
-            Console.WriteLine("Table 'games' created");
+            // Creates table for storing user setting restore points
+            cmd.CommandText = @"CREATE TABLE settings(date_set DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY)";
+            cmd.ExecuteNonQuery();
+
+            Debug.WriteLine("Table 'games' and 'settings' created");
         }
     }
 }
