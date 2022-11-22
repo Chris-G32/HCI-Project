@@ -30,7 +30,7 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.ExecuteNonQuery();
 
             // Creates table for storing game information
-            cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, images_folder TEXT, last_played DATETIME DEFAULT CURRENT_TIMESTAMP)";
+            cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, images_folder TEXT)";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing user setting restore points

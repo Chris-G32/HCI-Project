@@ -7,6 +7,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using HCI_Project.MVVM.Model.Database;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -57,14 +58,14 @@ namespace HCI_Project.MVVM.Model
             return true;
         }
 
-        public async override Task<List<Game>> FindGames()
+        /// <summary>
+        /// Updates all entries related to the Steam launcher in the database that is passed in to the function.
+        /// </summary>
+        public async override Task UpdateGames(Database_Manager db)
         {
             // If the user's SteamID has not been found yet, wait for it to be found first
             if (_steamid == "")
                 await PopulateSteamID();
-
-            // The final list of games to be returned
-            List<Game> gameObjectsList = new List<Game>();
 
             // Call the IPlayerService API to get the user's owned games' ids and names
             var resp = await client.GetStringAsync("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + _key + "&steamid=" + _steamid + "&include_appinfo=true");
@@ -76,11 +77,10 @@ namespace HCI_Project.MVVM.Model
             {
                 //Console.WriteLine("Name: " + game.name + "   ID: " + game.appid);
                 Game tempGame = new Game(game.appid, game.name, LauncherID.Steam);
-                //Adds each Game object to the list of Games to be returned
-                gameObjectsList.Add(tempGame);
+                // Populates the Game object with more detailed data from the API
+                GetGameInfo(ref tempGame);
+                db.Insert_Game(tempGame);
             }
-
-            return gameObjectsList;
         }
 
         /// <summary>
