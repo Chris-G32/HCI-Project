@@ -39,6 +39,6 @@ namespace HCI_Project.MVVM.Model
         protected abstract string GetKey();
         // The API key
         protected string _key;
-        protected WebBrowser browser;
+        protected WebBrowser _browser;
     }
 }
