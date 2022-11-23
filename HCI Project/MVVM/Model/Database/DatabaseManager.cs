@@ -60,8 +60,21 @@ namespace HCI_Project.MVVM.Model.Database
                 res.Description = description;
             }
 
+            GetGameTags(res);
+
             return res;
 
+        }
+
+        public void GetGameTags(Game game)
+        {
+            _cmd.CommandText = $"SELECT tag FROM game_tags WHERE id='{game.Game_ID}'";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                game.Tags.Add(rdr.GetString(0));
+            }
         }
 
         /// <summary>
@@ -84,8 +97,15 @@ namespace HCI_Project.MVVM.Model.Database
                 res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
             }
 
+            foreach(Game game in res)
+            {
+                GetGameTags(game);
+            }
+
             return res;
         }
+
+        //public List<Game> SearchGames(string name = null, string)
 
     }
 }
