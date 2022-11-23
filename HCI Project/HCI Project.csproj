@@ -9,16 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play_rocket%402x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="MVVM\View\ImageResources\ButtonElements\button_home%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MVVM\View\ImageResources\ButtonElements\button_play%402x.png">
+    <Content Include="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MVVM\View\ImageResources\ButtonElements\button_settings%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MVVM\View\ImageResources\ButtonElements\button_stop@2x.png">
+    <Content Include="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play_rocket@2x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_stop%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MVVM\View\LibraryViews\ImageResources\DefaultImages\default_game_banner@2x.png">

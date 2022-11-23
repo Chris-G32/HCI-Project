@@ -10,6 +10,7 @@
              x:Name="Library"
              >
     <UserControl.Resources>
+        <BitmapImage x:Key="DefaultGameIcon" UriSource="ImageResources/DefaultImages/default_game_icon@2x.png"/>
         <Style TargetType="{x:Type Button}"
            x:Key="ButtonLibraryEntry">
             <Setter Property="Template">
@@ -27,7 +28,7 @@
                                    StrokeThickness="20" Fill="Transparent"
                                    />
                             <Image Grid.Column="0" Margin="2" MinWidth="25" MaxWidth="40"
-                               Source="ImageResources/DefaultImages/default_game_icon@2x.png"
+                               Source="{Binding FallbackValue={StaticResource DefaultGameIcon}}"
                                />
                             <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Style="{DynamicResource LibraryTextStyle}" 
@@ -44,6 +45,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </UserControl.Resources>
     
     <Grid>
