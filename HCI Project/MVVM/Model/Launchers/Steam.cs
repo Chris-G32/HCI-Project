@@ -16,7 +16,7 @@ namespace HCI_Project.MVVM.Model
         // Client used for API Requests
         private HttpClient client;
         private string _steamid = "";
-        private string _steamname = "bay219";
+        private string _steamname = "";
         public Steam()
         {
             client = new HttpClient();
