@@ -13,6 +13,7 @@
         <BitmapImage x:Key="DefaultGameIcon" UriSource="ImageResources/DefaultImages/default_game_icon@2x.png"/>
         <Style TargetType="{x:Type Button}"
            x:Key="ButtonLibraryEntry">
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -40,6 +41,10 @@
                                 <Setter Property ="Rectangle.Stroke" TargetName="HoverRect" Value="{DynamicResource lnchMedGray}"/>
                                 <Setter Property ="Rectangle.Fill" TargetName="HoverRect" Value="{DynamicResource lnchMedGray}"/>
                             </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property ="Rectangle.Stroke" TargetName="SelectRect" Value="{DynamicResource lnchMedGray}"/>
+                                <Setter Property ="Rectangle.Fill" TargetName="SelectRect" Value="{DynamicResource lnchMedGray}"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -61,12 +66,10 @@
                 <DataTemplate>
                     <!--stack panel of length = visible games-->
                     <StackPanel x:Name="LibraryItems" Orientation="Horizontal"
-                               Margin="0,2.5,0,2.5" 
-                               PreviewMouseDown="Default_PreviewMouseDown">
-                        <!--change to radio buttons so the selection thing can happen-->
+                               Margin="0,2.5,0,2.5" >
                         <Button x:Name="LibraryEntry"
                                 Style="{StaticResource ButtonLibraryEntry}"
-                                Click="LibraryEntry_Click"  Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
+                                Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
                                 />
 
                     </StackPanel>

@@ -21,26 +21,9 @@ namespace HCI_Project.MVVM.View.LibraryViews
     /// </summary>
     public partial class LibraryView : UserControl
     {
-        private bool _isClicked = false;
         public LibraryView()
         {
             InitializeComponent();
-        }
-
-
-        private void Default_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //hover over recolor (might be wrong mouse event)
-        }
-
-        private void LibraryEntry_Click(object sender, RoutedEventArgs e)
-        {
-            if (_isClicked == false)
-            {
-
-
-                _isClicked = true;
-            }
         }
 
         //Used to Bind Library to a list of Games Ideally

@@ -15,21 +15,39 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
+                            <Rectangle x:Name="SelectRect" Width="55" Height="5" Margin="0,56,0,0" 
+                                       Fill="Transparent"/>
                             <Image Source="ImageResources/ButtonElements/button_home@2x.png"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property ="Rectangle.Fill" TargetName="SelectRect" Value="{DynamicResource lnchLightGray}"/>
+                            </Trigger>
+                            <!--same thing for click-->
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         
         <!--SETTINGS BUTTON STYLE-->
-        <Style x:Key="SettingsButtonStyle" TargetType="{x:Type Button}">
+     <Style x:Key="SettingsButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
+                            <Rectangle x:Name="SelectRect" Width="40" Height="5" Margin="0,36,0,0" 
+                                       Fill="Transparent"/>
+                            <!--Can't figure out how to add visual response-->
                             <Image Source="ImageResources/ButtonElements/button_settings@2x.png"/>
+                            
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property ="Rectangle.Fill" TargetName="SelectRect" Value="{DynamicResource lnchLightGray}"/>
+                            </Trigger>
+                            <!--same thing for click-->
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -46,6 +64,7 @@
                             >
                         </Border>-->
                         <StackPanel Orientation="Horizontal">
+                            <!--Put mini play button here-->
                             <Image 
                                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1"
                                 
@@ -83,8 +102,7 @@
                                 Margin="3,3,23,3" VerticalAlignment="Stretch" HorizontalAlignment="Left">
                             </ContentPresenter>
                             <TextBox x:Name="PART_EditableTextBox"
-                                Style="{x:Null}"
-                                HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="3,3,23,3"
+                                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3,3,23,3"
                                 Focusable="True"
                                 Background="Transparent"
                                 Visibility="Hidden"
@@ -135,37 +153,31 @@
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <!--HOME BUTTON-->
-        <Button x:Name="HomeButton" Grid.Column="0" Background="{DynamicResource lnchBrick}" Margin="5" Command="{Binding HomeButtonCommand,ElementName=NavBar}">
-            <Image Source="../View/ImageResources/ButtonElements/button_home@2x.png"/>
+        <Button x:Name="HomeButton" Grid.Column="0" Style="{StaticResource HomeButtonStyle}"
+                Background="{DynamicResource lnchBrick}" Margin="5"
+                Command="{Binding HomeButtonCommand,ElementName=NavBar}">
         </Button>
 
         <!--SEARCH BAR-->
         <ComboBox x:Name="SearchBox" Grid.Column="1"
                   VerticalAlignment="Center" Width="500" Height="35"
-                  IsEditable="True" StaysOpenOnEdit="True" 
-                  Text="temp"
+                  IsEditable="True" StaysOpenOnEdit="True"
                   ItemsSource="{Binding }"
                   SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar}"
                   >
-                  <!--ItemsSource needs to be binded to list of games.
-                  -->
+            <!--ItemsSource needs to be binded to list of games.-->
         </ComboBox>
-
-
-        <!--HOME BUTTON
-        <Button x:Name="HomeButton" Style="{StaticResource HomeButtonStyle}" Grid.Column="0" 
-                Background="{DynamicResource lnchBrick}" Margin="8"
-                
-                Click="HomeButton_Click"
-                />-->
-        
         <!--SETTINGS BUTTON-->
         <Button x:Name="SettingsButton" Style="{StaticResource SettingsButtonStyle}" Grid.Column="2" 
                 Background="{DynamicResource lnchBrick}" Margin="14"
                 Command="{Binding ToggleSettingsCommand,ElementName=NavBar}"
                 Click="SettingsButton_Click"
                 />
+        <Grid Grid.ColumnSpan="3" Grid.Row="1" Background="{DynamicResource lnchBronze}"/>
     </Grid>
 </UserControl>

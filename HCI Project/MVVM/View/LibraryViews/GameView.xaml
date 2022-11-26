@@ -39,6 +39,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <!--GETS RID OF BORDERS-->
         <Style  TargetType="{x:Type TabControl}">
             <Setter Property="Template">
@@ -66,23 +67,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--PLAY BUTTON-->
-        <!--Animation paths for Play Button-->
-        <!--<PathGeometry x:Key="AnimationRocketPath1" PresentationOptions:Freeze="True">
-            <PathGeometry.Figures>
-                <PathFigure StartPoint="0,25">
-                    <LineSegment Point="5,25"/>
-                </PathFigure>
-            </PathGeometry.Figures>
-        </PathGeometry>
-        <PathGeometry x:Key="AnimationRocketPath2" PresentationOptions:Freeze="True">
-            <PathGeometry.Figures>
-                <PathFigure StartPoint="0,25">
-                    <LineSegment Point="100,25"/>
-                </PathFigure>
-            </PathGeometry.Figures>
-        </PathGeometry>-->
         
+        <!--PLAY BUTTON-->     
         <Style x:Key="PlayButton" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -91,27 +77,14 @@
                             <!--rocket-->
                             <Image x:Name="PlayButtonRocket" Width="50" Margin="4,4,0,4" HorizontalAlignment="Left"
                                    Source="ImageResources/ButtonElements/button_play_rocket@2x.png">
-                                <!--<Image.RenderTransform>
+                                <Image.RenderTransform>
                                     <TranslateTransform x:Name="AnimatedRocket"/>
                                 </Image.RenderTransform>
-                                <Image.Triggers>
-                                    <EventTrigger RoutedEvent="Button.Click">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimationUsingPath 
-                                                    Storyboard.TargetName="AnimatedRocket"
-                                                    Storyboard.TargetProperty="X"
-                                                    PathGeometry="{StaticResource AnimationRocketPath2}"
-                                                    Source="X" Duration="0:0:1.2"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </Image.Triggers>-->
                             </Image>
                             <!--PLAY text-->
                             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
                                        Style="{DynamicResource ButtonTextStyle}" FontSize="25"
-                                       Text="PLAY" Margin="47,0,0,0">
+                                       Text="PLAY" Margin="51,0,0,0">
                             </TextBlock>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -136,24 +109,22 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Style.Triggers>
-                <!--<EventTrigger RoutedEvent="Button.Click">
+                <EventTrigger RoutedEvent="Button.Click">
                     <EventTrigger.Actions>
                         <BeginStoryboard>
-                            <Storyboard/>
+                            <Storyboard>
+                                <!--<ThicknessAnimation From="17,0,0,0" To="100, 0, 0, 0" Duration="0:0:1" 
+                                                    Storyboard.TargetProperty="Margin"
+                                                    />-->
+                            </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
-                </EventTrigger>-->
+                </EventTrigger>
                 <!--<Trigger Property="IsRunning" Value="True">
-                    
+
                 </Trigger>-->
             </Style.Triggers>
         </Style>
-
-
-
-
-
-
 
         <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
     </UserControl.Resources>
@@ -186,19 +157,23 @@
                            Grid.Row="0" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"
                            Source="{Binding FallbackValue={StaticResource DefaultBannerImage}}">
                         <Image.OpacityMask>
-                            <LinearGradientBrush StartPoint="0,0.55" EndPoint="0,0.95">
+                            <LinearGradientBrush StartPoint="0,0.55" EndPoint="0,0.88">
                                 <GradientStop Offset="0" Color="#2D2828"/>
-                                <GradientStop Offset="0.75" Color="Transparent"/>
+                                <GradientStop Offset="0.62" Color="Transparent"/>
                             </LinearGradientBrush>
                         </Image.OpacityMask>
                     </Image>
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="1">
-                        <TextBlock Style="{DynamicResource BigTextHeaderStyle}" Margin="0,-30,0,0"
+                        <TextBlock Style="{DynamicResource BigTextHeaderStyle}" 
+                                   Margin="0,-45,0,0"
                                    Text="{Binding SelectedGame.Name}" 
                                    />
+
+                            <!--Launcher icon here-->
                         <TextBlock Style="{DynamicResource TextBodyStyle}"
                             Text="{Binding SelectedGame.Description}" Margin="0,10,0,0"/>
                         <TextBlock Style="{DynamicResource TextHeaderStyle}"
+                                   Background="{DynamicResource lnchDarkMedGray}"
                                    Margin="0,30,0,0">
                             <Run Text="LastPlayed:"/>
                             <Run Text="(replace with binding)"/>
