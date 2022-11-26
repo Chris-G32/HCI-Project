@@ -60,8 +60,24 @@ namespace HCI_Project.MVVM.Model.Database
                 res.Description = description;
             }
 
+            GetGameTags(res);
+
             return res;
 
+        }
+
+        /// <summary>
+        /// Populates a game object with the respective tags from the separate table
+        /// </summary>
+        public void GetGameTags(Game game)
+        {
+            _cmd.CommandText = $"SELECT tag FROM game_tags WHERE id='{game.Game_ID}'";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                game.Tags.Add(rdr.GetString(0));
+            }
         }
 
         /// <summary>
@@ -75,6 +91,7 @@ namespace HCI_Project.MVVM.Model.Database
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
 
+            // Creates a game object from each response from the database and stores to return later
             while (rdr.Read())
             {
                 string gameID = rdr.GetString(0);
@@ -84,8 +101,17 @@ namespace HCI_Project.MVVM.Model.Database
                 res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
             }
 
+            // Populates the tags for each game
+            foreach(Game game in res)
+            {
+                GetGameTags(game);
+            }
+
+            // Returns the list of games
             return res;
         }
+
+        //public List<Game> SearchGames(string name = null, string)
 
     }
 }

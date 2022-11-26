@@ -30,7 +30,7 @@ namespace HCI_Project.MVVM.Model
         /// Populates an instance of Game from the the API
         /// </summary>
         /// <param name="game">The Game which will be populated with data</param>
-        public abstract void GetGameInfo(ref Game game);
+        public abstract Task GetGameInfo(Game game);
 
         /// <summary>
         /// Reads the key from the corresponding file and returns it

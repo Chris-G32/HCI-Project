@@ -16,7 +16,7 @@ namespace HCI_Project.MVVM.Model
         // Client used for API Requests
         private HttpClient client;
         private string _steamid = "";
-        private string _steamname = "bay219";
+        private string _steamname = "";
         public Steam()
         {
             client = new HttpClient();
@@ -80,7 +80,7 @@ namespace HCI_Project.MVVM.Model
                 //Console.WriteLine("Name: " + game.name + "   ID: " + game.appid);
                 Game tempGame = new Game(game.appid, game.name, LauncherID.Steam);
                 // Populates the Game object with more detailed data from the API
-                GetGameInfo(ref tempGame);
+                await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
             }
         }
@@ -99,11 +99,13 @@ namespace HCI_Project.MVVM.Model
         /// Populates a game with a known game id with its information
         /// </summary>
         /// <param name="game">Game to store info to. Passed by reference.</param>
-        public override void GetGameInfo(ref Game game)
+        public override async Task GetGameInfo(Game game)
         {
             // NOTE: no longer checks database for caching. That will
             // be handled by the GameManager class.
-            Debug.WriteLine("Getting info about " + game.Name);
+            // API Link: https://store.steampowered.com/api/appdetails?appids=2195450
+            var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
+            // NOTE: the api link for getting game information returns an object titled by the ID of the game. This could be difficult for JSON deserialization. Look into JToken.
         }
 
         //////
@@ -153,6 +155,14 @@ namespace HCI_Project.MVVM.Model
                     public string name { get; set; }
                 }
             }
+        }
+
+        /// <summary>
+        /// A container class holding the information received from the GameInfo Steam API Call
+        /// </summary>
+        private class SteamGameInfo
+        {
+
         }
     }
 }

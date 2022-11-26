@@ -26,11 +26,17 @@ namespace HCI_Project.MVVM.Model.Database
             // Avoid errors by dropping tables if they already exists
             cmd.CommandText = "DROP TABLE IF EXISTS games";
             cmd.ExecuteNonQuery();
+            cmd.CommandText = "DROP TABLE IF EXISTS game_tags";
+            cmd.ExecuteNonQuery();
             cmd.CommandText = "DROP TABLE IF EXISTS settings";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing game information
-            cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, images_folder TEXT)";
+            cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, images_folder TEXT, screenshots_folder TEXT)";
+            cmd.ExecuteNonQuery();
+
+            // Creates table for storing game categories
+            cmd.CommandText = @"CREATE TABLE game_tags(id varchar(20), tag varchar(20), FOREIGN KEY (id) REFERENCES games(id))";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing user setting restore points

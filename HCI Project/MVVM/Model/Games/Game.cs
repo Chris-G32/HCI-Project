@@ -12,7 +12,7 @@ namespace HCI_Project.MVVM.Model
     }
     public class Game
     {
-        public Game(string game_ID, string name, LauncherID launcher_ID, string[] tags, string[] images, string description, GameState state)
+        public Game(string game_ID, string name, LauncherID launcher_ID, List<string> tags, string[] images, string description, GameState state)
         {
             Game_ID = game_ID;
             Name = name;
@@ -57,7 +57,7 @@ namespace HCI_Project.MVVM.Model
         public string Name { get; }
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
-        public string[] Tags { get; set; }
+        public List<string> Tags { get; set; }
         public string[] Images { get; set; }
         public string Description { get; set; }
         // Contains a value from the GameState Enum in this file
