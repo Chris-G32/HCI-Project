@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace HCI_Project.MVVM.Model
         INSTALLED,
         NOT_OWNED
     }
-    public class Game
+    public class Game:ObservableObject
     {
         public Game(string game_ID, string name, LauncherID launcher_ID, List<string> tags, string[] images, string description, GameState state)
         {
