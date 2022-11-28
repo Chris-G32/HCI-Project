@@ -20,7 +20,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}" HomeButtonCommand="{Binding LibraryVM.SetHomeView}"/>
+        <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}" 
+                         HomeButtonCommand="{Binding LibraryVM.SetHomeView}" 
+                         SearchQuery="{Binding SearchFor,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" 
+                         SearchResults="{Binding SearchList}"/>
 
 
         <!--<Button Grid.Row="0" Foreground="White" Content="Settings" HorizontalAlignment="Right" Width="125" Command="{Binding ToggleSettings}"/>-->

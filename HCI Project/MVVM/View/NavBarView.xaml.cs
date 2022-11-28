@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HCI_Project.Core;
+using HCI_Project.MVVM.Model;
+
 namespace HCI_Project.MVVM.View
 {
     /// <summary>
@@ -96,5 +99,34 @@ namespace HCI_Project.MVVM.View
             DependencyProperty.Register("HomeButtonCommand", typeof(RelayCommand), typeof(NavBarView));
 
 
+        /// <summary>
+        /// Results to display in dropdown box
+        /// </summary>
+        public ObservableCollection<Game> SearchResults
+        {
+            get { return (ObservableCollection<Game>)GetValue(SearchResultsProperty); }
+            set { SetValue(SearchResultsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SearchResultsProperty =
+            DependencyProperty.Register("SearchResults", typeof(ObservableCollection<Game>), typeof(NavBarView));
+
+        ///<summary>
+        ///
+        /// </summary>
+
+
+        public string SearchQuery
+        {
+            get { return (string)GetValue(SearchQueryProperty); }
+            set { SetValue(SearchQueryProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SearchQuery.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SearchQueryProperty =
+            DependencyProperty.Register("SearchQuery", typeof(string), typeof(NavBarView));
+
+        
     }
 }

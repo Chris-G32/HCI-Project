@@ -167,9 +167,15 @@
         <ComboBox x:Name="SearchBox" Grid.Column="1"
                   VerticalAlignment="Center" Width="500" Height="35"
                   IsEditable="True" StaysOpenOnEdit="True"
-                  ItemsSource="{Binding }"
+                  ItemsSource="{Binding SearchResults,ElementName=NavBar}"
                   SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar}"
+                  Text="{Binding SearchQuery,ElementName=NavBar}"
                   >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
             <!--ItemsSource needs to be binded to list of games.-->
         </ComboBox>
         <!--SETTINGS BUTTON-->

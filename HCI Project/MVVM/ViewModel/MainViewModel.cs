@@ -20,6 +20,33 @@ namespace HCI_Project.MVVM.ViewModel
     public class MainViewModel:ObservableObject
     {
         //public static SomeSortOfHandler(s)
+        //Search Bar Stuff
+        private ObservableCollection<Game> _searchList;
+        public ObservableCollection<Game> SearchList { get { return _searchList; } set {_searchList = value; OnPropertyChanged(); } }
+
+        private string _searchFor;
+        public string SearchFor { get { return _searchFor; } 
+            set { 
+                //Set Value
+                _searchFor = value;
+                //Clear Displayed Items
+                if (_searchFor == null || _searchFor== ""){
+                    SearchList=new ObservableCollection<Game>(LibraryVM.OwnedGames);
+                }
+                else {
+                    SearchList.Clear();
+                    //Query database for results
+                    foreach(var game in LibraryVM.OwnedGames)
+                    {
+                        if ((game.Name.ToLower()).Contains(_searchFor.ToLower()))
+                        {
+                           SearchList.Add(game);
+                        }
+                    } 
+                }
+                OnPropertyChanged();
+            } 
+        }
         public RelayCommand SetGameView { get; set; }
         public RelayCommand ToggleSettings { get; set; }
         public RelayCommand Test { get; set; }
@@ -56,7 +83,7 @@ namespace HCI_Project.MVVM.ViewModel
             SettingsVM = new SettingsViewModel();
             //Set Default View
             CurrentView = LibraryVM;
-
+            SearchList = new ObservableCollection<Game>();
             //var resp=database.getgames containing Mortal
 
             //Set Bound Commands
