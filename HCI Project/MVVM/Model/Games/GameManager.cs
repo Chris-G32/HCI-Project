@@ -14,6 +14,10 @@ namespace HCI_Project.MVVM.Model
 
         private static DatabaseManager _db;
 
+        private List<Game> _games;
+
+        public List<Game> Games { get { return _games; } }
+
         public GameManager()
         {
             _steamLauncher = new Steam();
@@ -38,6 +42,31 @@ namespace HCI_Project.MVVM.Model
         public async Task UpdateAll()
         {
             await _steamLauncher.UpdateGames(_db);
+        }
+
+        public void UpdateFromDB()
+        {
+            _games = _db.ReadAllGames();
+        }
+
+        /// <summary>
+        /// Search the list of all games to return any that match the given query in their name
+        /// </summary>
+        /// <param name="query"> The string to search for </param>
+        /// <returns> A list of games whose names contain the query </returns>
+        public List<Game> SearchByName(string query)
+        {
+            List<Game> res = new List<Game>();
+
+            foreach(var game in _games)
+            {
+                if ((game.Name.ToLower()).Contains(query.ToLower()))
+                {
+                    res.Add(game);
+                }
+            }
+
+            return res;
         }
     }
 }
