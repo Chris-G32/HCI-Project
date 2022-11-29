@@ -27,13 +27,16 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="Header" Height="1*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
 
             <!--Should recently played be a data template?-->
-            <!--Don't know how to spread entries across rows/columns-->
-            <ItemsControl ItemsSource="{Binding OwnedGames}" Grid.Row="1" Grid.Column="0">
+            <ItemsControl ItemsSource="{Binding OwnedGames}" Grid.Row="1"  Grid.ColumnSpan="3">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid>
