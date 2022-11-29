@@ -208,12 +208,17 @@
                         <ColumnDefinition Width="131*"/>
                         <ColumnDefinition Width="1267*"/>
                     </Grid.ColumnDefinitions>
+                    <TextBlock Text="Achievements" FontSize="20" Foreground="White" Grid.Column="1" Margin="913,32,222,633"/>
+                    <TextBlock Text="Stats" FontSize="20" Foreground="White" Grid.Column="1" Margin="521,32,614,633"/>
+                    <TextBlock Text="Description" FontSize="20" Foreground="White" Grid.Column="1" Margin="130,332,1005,374"/>
+                    <TextBlock Text="Additional info." FontSize="20" Foreground="White" Grid.Column="1" Margin="130,545,975,170"/>
+
                     <TextBlock Margin="130,373,130,217" Text="(Description of selected game)" Background="#44687c" Padding="5" Grid.Column="1"/>
                     <Image Grid.Column="1" Margin="129,32,925,422" Source="https://startanewgameplus.files.wordpress.com/2020/10/phasmophobia-cover.jpg"/>
                     <TextBlock Margin="130,577,416,71" Grid.Column="1" Background="#44687c" Text="Installed on: (date)"/>
-                    <TextBlock Margin="521,32,522,422" Background="#648656"  Text="Hours Played:"
-                               Grid.Column="1"/>
-                    <TextBlock Margin="913,32,130,422" Background="#648656" Text="Achievements:" Grid.Column="1"/>
+
+                    <TextBlock Margin="521,76,522,422" Background="#648656"  Text="Hours Played:" Grid.Column="1"/>
+                    <TextBlock Margin="913,76,130,422" Background="#648656" Text="Achievements:" Grid.Column="1"/>
 
 
                 </Grid>
@@ -233,9 +238,20 @@
                     <TextBlock Text="My Captures" Foreground="White" FontSize="30" Margin="85,61,1038,638" Grid.Column="1"/>
                     <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="88,458,1034,241" Grid.Column="1"/>
 
-                    <Image x:Name="image" HorizontalAlignment="Left" Height="292" Margin="36,109,0,0" VerticalAlignment="Top" Width="519" Grid.Column="1" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="292" Margin="85,114,0,0" VerticalAlignment="Top" Width="519" Grid.Column="1" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
 
-                    <ScrollBar  Margin="1118,-118,175,119" MaxHeight="200" Grid.Column="1" />
+                    <ScrollBar  Margin="1118,-115,175,116" MaxHeight="295" Grid.Column="1" />
+                    <ScrollViewer Grid.Column="1" Margin="744,114,197,341" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                       
+                    </ScrollViewer>
+                        
+
+                     
+
+
+
+
+
 
                 </Grid>
             </TabItem>
