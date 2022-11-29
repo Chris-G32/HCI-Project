@@ -15,7 +15,7 @@ namespace HCI_Project.MVVM.Model
 
         private static DatabaseManager _db;
 
-        private List<Game> _games;
+        private List<Game> _games = new List<Game>();
 
         public List<Game> Games { get { return _games; } }
 
@@ -23,6 +23,11 @@ namespace HCI_Project.MVVM.Model
         {
             _steamLauncher = new Steam();
             _db = new DatabaseManager();
+
+            _db.CheckDatabase();
+
+           
+            UpdateAll();
         }
 
         /// <summary>
@@ -40,10 +45,13 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Updates games on all currently configured launchers in the database
         /// </summary>
-        public async Task UpdateAll()
+        public async void UpdateAll()
         {
             await _steamLauncher.UpdateGames(_db);
+            UpdateFromDB();
+            return;
         }
+
 
         public void UpdateFromDB()
         {

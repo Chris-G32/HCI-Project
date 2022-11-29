@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace HCI_Project.MVVM.Model.Database
 {
@@ -30,7 +31,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// Checks if any tables exist in the database
         /// </summary>
         /// <returns> True if any tables exist, otherwise false </returns>
-        public bool CheckDatabase()
+        public void CheckDatabase()
         {
             try
             {
@@ -40,13 +41,18 @@ namespace HCI_Project.MVVM.Model.Database
                 if(rdr.Read())
                 {
                     if (rdr.GetInt32(0) > 0)
-                        return true;
+                    {
+                        rdr.Close();
+                        return;
+                    }
                 }
-                return false;
+                rdr.Close();
+                DatabaseFactory.BuildTables(_cmd);
             }
             catch
             {
-                return false;
+                DatabaseFactory.BuildTables(_cmd);
+                return;
             }
         }
 
@@ -55,11 +61,12 @@ namespace HCI_Project.MVVM.Model.Database
         /// </summary>
         public void InsertGame(Game game)
         {
+            Debug.WriteLine("Deleting: " + game.Name);
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
-
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description}')";
+            Debug.WriteLine("Inserting: " + game.Name);
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}')";
             _cmd.ExecuteNonQuery();
         }
 
@@ -83,6 +90,7 @@ namespace HCI_Project.MVVM.Model.Database
                 res = new Game(gameID, gameName, (LauncherID)launcherID);
                 res.Description = description;
             }
+            rdr.Close();
 
             GetGameTags(res);
 
@@ -102,6 +110,7 @@ namespace HCI_Project.MVVM.Model.Database
             {
                 game.Tags.Add(rdr.GetString(0));
             }
+            rdr.Close();
         }
 
         /// <summary>
@@ -124,9 +133,10 @@ namespace HCI_Project.MVVM.Model.Database
                 string description = rdr.GetString(3);
                 res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
             }
+            rdr.Close();
 
             // Populates the tags for each game
-            foreach(Game game in res)
+            foreach (Game game in res)
             {
                 GetGameTags(game);
             }
