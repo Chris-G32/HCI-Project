@@ -16,8 +16,8 @@ namespace HCI_Project.MVVM.Model
     {
         // Client used for API Requests
         private HttpClient client;
-        private string _steamid = "";
-        private string _steamname = "76561198863942684";
+        private string _steamid = "76561198863942684";
+        private string _steamname = "";
         public Steam()
         {
             client = new HttpClient();
@@ -78,10 +78,15 @@ namespace HCI_Project.MVVM.Model
             // Converts the deserialized data into Game objects (generic) with the proper Game_IDs, Names, and Launcher_IDs
             foreach (SteamGames.SteamGamesResponse.SteamGame game in games.response.games)
             {
-                //Console.WriteLine("Name: " + game.name + "   ID: " + game.appid);
-                Game tempGame = new Game(game.appid, game.name, LauncherID.Steam);
+                // Removes all apostrophes from a games title due to issues with database
+                while(game.name.Contains("'"))
+                {
+                    int index = game.name.IndexOf("'");
+                    game.name = game.name.Remove(index, 1);
+                }
+                Game tempGame = new Game(game.appid.ToString(), game.name, LauncherID.Steam);
                 // Populates the Game object with more detailed data from the API
-                await GetGameInfo(tempGame);
+                //await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
             }
         }
@@ -155,7 +160,7 @@ namespace HCI_Project.MVVM.Model
                 /// </summary>
                 public class SteamGame
                 {
-                    public string appid { get; set; }
+                    public long appid { get; set; }
                     public string name { get; set; }
                 }
             }

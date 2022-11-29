@@ -14,6 +14,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// </summary>
         public static void BuildTables(SQLiteCommand cmd)
         {
+            Debug.WriteLine("Rebuilding Database");
             // Avoid errors by dropping tables if they already exists
             cmd.CommandText = "DROP TABLE IF EXISTS games";
             cmd.ExecuteNonQuery();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace HCI_Project.MVVM.Model.Database
 {
@@ -60,11 +61,12 @@ namespace HCI_Project.MVVM.Model.Database
         /// </summary>
         public void InsertGame(Game game)
         {
+            Debug.WriteLine("Deleting: " + game.Name);
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
-
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description}')";
+            Debug.WriteLine("Inserting: " + game.Name);
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}')";
             _cmd.ExecuteNonQuery();
         }
 

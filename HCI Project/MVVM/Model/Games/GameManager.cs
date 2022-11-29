@@ -44,10 +44,11 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Updates games on all currently configured launchers in the database
         /// </summary>
-        public async Task UpdateAll()
+        public async void UpdateAll()
         {
             await _steamLauncher.UpdateGames(_db);
             UpdateFromDB();
+            return;
         }
 
         public void UpdateFromDB()
