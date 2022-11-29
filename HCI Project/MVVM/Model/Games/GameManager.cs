@@ -26,6 +26,7 @@ namespace HCI_Project.MVVM.Model
 
             _db.CheckDatabase();
 
+           
             UpdateAll();
         }
 
@@ -50,6 +51,7 @@ namespace HCI_Project.MVVM.Model
             UpdateFromDB();
             return;
         }
+
 
         public void UpdateFromDB()
         {
