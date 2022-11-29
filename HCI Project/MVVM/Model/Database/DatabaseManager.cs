@@ -27,6 +27,30 @@ namespace HCI_Project.MVVM.Model.Database
         }
 
         /// <summary>
+        /// Checks if any tables exist in the database
+        /// </summary>
+        /// <returns> True if any tables exist, otherwise false </returns>
+        public bool CheckDatabase()
+        {
+            try
+            {
+                _cmd.CommandText = $"SELECT count(*) FROM sqlite_master WHERE type='table'";
+                SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+                if(rdr.Read())
+                {
+                    if (rdr.GetInt32(0) > 0)
+                        return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Inserts a Game object into the database, regardless of whether it was there before or not
         /// </summary>
         public void InsertGame(Game game)

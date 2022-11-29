@@ -1,6 +1,7 @@
 ﻿using HCI_Project.MVVM.Model.Database;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace HCI_Project.MVVM.Model
         private static Steam _steamLauncher;
 
         private static DatabaseManager _db;
+
+        private List<Game> _games;
+
+        public List<Game> Games { get { return _games; } }
 
         public GameManager()
         {
@@ -38,6 +43,33 @@ namespace HCI_Project.MVVM.Model
         public async Task UpdateAll()
         {
             await _steamLauncher.UpdateGames(_db);
+        }
+
+        public void UpdateFromDB()
+        {
+            _games = _db.ReadAllGames();
+        }
+
+        /// <summary>
+        /// Search the list of all games to return any that match the given query in their name
+        /// </summary>
+        /// <param name="query"> The string to search for </param>
+        /// <returns> A list of games whose names contain the query </returns>
+        public ObservableCollection<Game> SearchByName(string query)
+        {
+            ObservableCollection<Game> res = new ObservableCollection<Game>();
+
+            query = (query == null) ? "" : query;
+
+            foreach(var game in _games)
+            {
+                if ((game.Name.ToLower()).Contains(query.ToLower()))
+                {
+                    res.Add(game);
+                }
+            }
+
+            return res;
         }
     }
 }
