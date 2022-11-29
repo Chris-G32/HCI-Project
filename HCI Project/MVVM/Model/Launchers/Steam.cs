@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using HCI_Project.MVVM.Model.Database;
+using Newtonsoft.Json.Linq;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -104,8 +105,11 @@ namespace HCI_Project.MVVM.Model
             // NOTE: no longer checks database for caching. That will
             // be handled by the GameManager class.
             // API Link: https://store.steampowered.com/api/appdetails?appids=2195450
-            var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
             // NOTE: the api link for getting game information returns an object titled by the ID of the game. This could be difficult for JSON deserialization. Look into JToken.
+
+            var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
+            JToken outer = JToken.Parse(resp);
+
         }
 
         //////
@@ -155,14 +159,6 @@ namespace HCI_Project.MVVM.Model
                     public string name { get; set; }
                 }
             }
-        }
-
-        /// <summary>
-        /// A container class holding the information received from the GameInfo Steam API Call
-        /// </summary>
-        private class SteamGameInfo
-        {
-
         }
     }
 }
