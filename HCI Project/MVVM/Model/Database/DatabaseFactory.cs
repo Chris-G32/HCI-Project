@@ -12,17 +12,8 @@ namespace HCI_Project.MVVM.Model.Database
         /// This command builds a SQLite database in the file 'data.db' in the database directory of the model folder.
         /// It should only be run on the first time startup of the app. If run again, it will clear the database and start fresh.
         /// </summary>
-        public static void BuildTables()
+        public static void BuildTables(SQLiteCommand cmd)
         {
-            // Specifies file directory
-            string cs = @"URI=file:../../../data.db";
-
-            // connect to database
-            using var con = new SQLiteConnection(cs);
-            con.Open();
-
-            using var cmd = new SQLiteCommand(con);
-
             // Avoid errors by dropping tables if they already exists
             cmd.CommandText = "DROP TABLE IF EXISTS games";
             cmd.ExecuteNonQuery();
