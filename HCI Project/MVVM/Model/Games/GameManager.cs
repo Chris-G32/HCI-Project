@@ -26,6 +26,7 @@ namespace HCI_Project.MVVM.Model
 
             _db.CheckDatabase();
 
+           
             UpdateAll();
         }
 
@@ -49,6 +50,7 @@ namespace HCI_Project.MVVM.Model
             await _steamLauncher.UpdateGames(_db);
             UpdateFromDB();
         }
+
 
         public void UpdateFromDB()
         {

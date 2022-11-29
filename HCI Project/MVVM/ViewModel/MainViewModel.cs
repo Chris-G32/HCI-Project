@@ -24,7 +24,7 @@ namespace HCI_Project.MVVM.ViewModel
         private ObservableCollection<Game> _searchList;
         public ObservableCollection<Game> SearchList { get { return _searchList; } set {_searchList = value; OnPropertyChanged(); } }
 
-        public static GameManager GameHandler=new GameManager();
+        public static GameManager GameHandler;
 
         private string _searchFor;
         public string SearchFor { get { return _searchFor; } 
@@ -80,8 +80,9 @@ namespace HCI_Project.MVVM.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            GameHandler = new GameManager();
+
             //Instantiate each ViewModel
-            
             LibraryVM = new LibraryViewModel();
             SettingsVM = new SettingsViewModel();
             //Set Default View
