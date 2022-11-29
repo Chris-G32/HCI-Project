@@ -31,21 +31,7 @@ namespace HCI_Project.MVVM.ViewModel
             set { 
                 //Set Value
                 _searchFor = value;
-                //Clear Displayed Items
-                //if (_searchFor == null || _searchFor== ""){
-                //    SearchList=new ObservableCollection<Game>(LibraryVM.OwnedGames);
-                //}
-                //else {
-                //    SearchList.Clear();
-                //    //Query database for results
-                //    foreach(var game in LibraryVM.OwnedGames)
-                //    {
-                //        if ((game.Name.ToLower()).Contains(_searchFor.ToLower()))
-                //        {
-                //           SearchList.Add(game);
-                //        }
-                //    } 
-                //}
+                //Returns all games meeting query
                 SearchList = GameHandler.SearchByName(_searchFor);
                 OnPropertyChanged();
             } 
