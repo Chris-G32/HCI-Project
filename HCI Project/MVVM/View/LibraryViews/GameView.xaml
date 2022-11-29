@@ -39,7 +39,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <!--GETS RID OF BORDERS-->
         <Style  TargetType="{x:Type TabControl}">
             <Setter Property="Template">
@@ -67,8 +67,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        <!--PLAY BUTTON-->     
+
+        <!--PLAY BUTTON-->
         <Style x:Key="PlayButton" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -169,7 +169,7 @@
                                    Text="{Binding SelectedGame.Name}" 
                                    />
 
-                            <!--Launcher icon here-->
+                        <!--Launcher icon here-->
                         <TextBlock Style="{DynamicResource TextBodyStyle}"
                             Text="{Binding SelectedGame.Description}" Margin="0,10,0,0"/>
                         <TextBlock Style="{DynamicResource TextHeaderStyle}"
@@ -204,6 +204,16 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="131*"/>
+                        <ColumnDefinition Width="1267*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="130,373,130,217" Text="(Description of selected game)" Background="#44687c" Padding="5" Grid.Column="1"/>
+                    <Image Grid.Column="1" Margin="129,32,925,422" Source="https://startanewgameplus.files.wordpress.com/2020/10/phasmophobia-cover.jpg"/>
+                    <TextBlock Margin="130,577,416,71" Grid.Column="1" Background="#44687c" Text="Installed on: (date)"/>
+                    <TextBlock Margin="521,32,522,422" Background="#648656"  Text="Hours Played:"
+                               Grid.Column="1"/>
+                    <TextBlock Margin="913,32,130,422" Background="#648656" Text="Achievements:" Grid.Column="1"/>
 
 
                 </Grid>
@@ -215,7 +225,17 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="44*"/>
+                        <ColumnDefinition Width="655*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <TextBlock Text="My Captures" Foreground="White" FontSize="30" Margin="85,61,1038,638" Grid.Column="1"/>
+                    <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="88,458,1034,241" Grid.Column="1"/>
+
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="292" Margin="36,109,0,0" VerticalAlignment="Top" Width="519" Grid.Column="1" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
+
+                    <ScrollBar  Margin="1118,-118,175,119" MaxHeight="200" Grid.Column="1" />
 
                 </Grid>
             </TabItem>
