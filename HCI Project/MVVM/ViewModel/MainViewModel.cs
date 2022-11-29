@@ -24,26 +24,29 @@ namespace HCI_Project.MVVM.ViewModel
         private ObservableCollection<Game> _searchList;
         public ObservableCollection<Game> SearchList { get { return _searchList; } set {_searchList = value; OnPropertyChanged(); } }
 
+        public static GameManager GameHandler=new GameManager();
+
         private string _searchFor;
         public string SearchFor { get { return _searchFor; } 
             set { 
                 //Set Value
                 _searchFor = value;
                 //Clear Displayed Items
-                if (_searchFor == null || _searchFor== ""){
-                    SearchList=new ObservableCollection<Game>(LibraryVM.OwnedGames);
-                }
-                else {
-                    SearchList.Clear();
-                    //Query database for results
-                    foreach(var game in LibraryVM.OwnedGames)
-                    {
-                        if ((game.Name.ToLower()).Contains(_searchFor.ToLower()))
-                        {
-                           SearchList.Add(game);
-                        }
-                    } 
-                }
+                //if (_searchFor == null || _searchFor== ""){
+                //    SearchList=new ObservableCollection<Game>(LibraryVM.OwnedGames);
+                //}
+                //else {
+                //    SearchList.Clear();
+                //    //Query database for results
+                //    foreach(var game in LibraryVM.OwnedGames)
+                //    {
+                //        if ((game.Name.ToLower()).Contains(_searchFor.ToLower()))
+                //        {
+                //           SearchList.Add(game);
+                //        }
+                //    } 
+                //}
+                SearchList = GameHandler.SearchByName(_searchFor);
                 OnPropertyChanged();
             } 
         }

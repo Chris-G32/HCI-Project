@@ -1,6 +1,7 @@
 ﻿using HCI_Project.MVVM.Model.Database;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -54,9 +55,11 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         /// <param name="query"> The string to search for </param>
         /// <returns> A list of games whose names contain the query </returns>
-        public List<Game> SearchByName(string query)
+        public ObservableCollection<Game> SearchByName(string query)
         {
-            List<Game> res = new List<Game>();
+            ObservableCollection<Game> res = new ObservableCollection<Game>();
+
+            query = (query == null) ? "" : query;
 
             foreach(var game in _games)
             {
