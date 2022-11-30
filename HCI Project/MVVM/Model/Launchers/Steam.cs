@@ -96,9 +96,40 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         public async Task PopulateSteamID()
         {
-            var idResp = await client.GetStringAsync("http://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=" + _key + "&vanityurl=" + _steamname);
-            SteamID id = JsonSerializer.Deserialize<SteamID>(idResp);
-            _steamid = id.response.steamid;
+            char[] id = new char[29];
+            int x;
+            int i = 0;
+            char ch;
+            //read in the file containing the users steam id
+            StreamReader reader;
+            reader = new StreamReader(@"C:\Program Files (x86)\Steam\config\loginusers.vdf");
+            while (i < 29)
+            {
+                //read in the file
+                ch = (char)reader.Read();
+                // converts each character into its int value
+                x = ch - '0';
+
+                // loop that goes through the first 29 spcaes in file and reads in only the steam id by making sure sure each character read in is a digit from 1-9
+                if (x <= 9 && x >= 0 && i < 29)
+                {
+                    // puts each digit of the ssteamid into the array
+                    id[i] = ch;
+
+                }
+                i++;
+            }
+
+            //converts the char array into string
+            string temp = new string(id);
+
+            // set the steam id to the strong read in from file
+            _steamid = temp;
+
+
+            //var idResp = await client.GetStringAsync("http://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=" + _key + "&vanityurl=" + _steamname);
+            //SteamID id = JsonSerializer.Deserialize<SteamID>(idResp);
+            //_steamid = id.response.steamid;
         }
 
         /// <summary>
