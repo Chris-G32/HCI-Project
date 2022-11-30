@@ -200,7 +200,9 @@
                     <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
                                Text="{Binding SelectedGame.Name}"
                                />
+                    <!--Embedded View-->
                     <Wpf:WebView2 Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    <!--Links-->
                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="15">
                         <TextBlock 
                                    Style="{DynamicResource TextHeaderStyle}" Text="Embedded Link:"/>
@@ -279,16 +281,6 @@
                             </TextBlock>
                         </ScrollViewer>
                     </StackPanel>
-                   
-                    
-
-                    <TextBlock Margin="130,373,130,217" Text="(Description of selected game)" Background="#44687c" Padding="5" Grid.Column="1"/>
-                    <TextBlock Margin="130,577,416,71" Grid.Column="1" Background="#44687c" Text="Installed on: (date)"/>
-
-                    <TextBlock Margin="521,76,522,422" Background="#648656"  Text="Hours Played:" Grid.Column="1"/>
-                    <TextBlock Margin="913,76,130,422" Background="#648656" Text="Achievements:" Grid.Column="1"/>
-
-
                 </Grid>
             </TabItem>
             <!--GALLERY TAB-->
