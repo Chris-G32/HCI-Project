@@ -10,10 +10,6 @@
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="Home"
              >
-    <!--Mini Play Button-->
-    <UserControl.Resources>
- 
-    </UserControl.Resources>
 
     <Grid Background="{DynamicResource lnchDarkGray}">
         <d:Grid.DataContext>
