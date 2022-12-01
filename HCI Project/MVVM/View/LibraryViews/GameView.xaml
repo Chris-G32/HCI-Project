@@ -39,7 +39,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <!--GETS RID OF BORDERS-->
         <Style  TargetType="{x:Type TabControl}">
             <Setter Property="Template">
@@ -67,8 +67,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        <!--PLAY BUTTON-->     
+
+        <!--PLAY BUTTON-->
         <Style x:Key="PlayButton" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -78,8 +78,20 @@
                             <Image x:Name="PlayButtonRocket" Width="50" Margin="4,4,0,4" HorizontalAlignment="Left"
                                    Source="ImageResources/ButtonElements/button_play_rocket@2x.png">
                                 <Image.RenderTransform>
-                                    <TranslateTransform x:Name="AnimatedRocket"/>
+                                    <TranslateTransform x:Name="AnimatedRocket" X="0"/>
                                 </Image.RenderTransform>
+                                <Image.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AnimatedRocket" 
+                                                   Storyboard.TargetProperty="X">
+                                                    <SplineDoubleKeyFrame KeyTime="0:0:1.25" Value="0" />
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Image.Triggers>
                             </Image>
                             <!--PLAY text-->
                             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -108,24 +120,13 @@
             <Setter Property="MaxWidth" Value="250"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="Button.Click">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <!--<ThicknessAnimation From="17,0,0,0" To="100, 0, 0, 0" Duration="0:0:1" 
-                                                    Storyboard.TargetProperty="Margin"
-                                                    />-->
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <!--<Trigger Property="IsRunning" Value="True">
-
-                </Trigger>-->
-            </Style.Triggers>
         </Style>
-
+        <Style x:Name="ScrollBarStyle" TargetType="ScrollBar">
+            <Setter Property="Background" Value="{DynamicResource lnchMedGray}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource lnchDarkMedGray}"/>
+        </Style>
+        
+        
         <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
     </UserControl.Resources>
 
@@ -165,17 +166,17 @@
                     </Image>
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="1">
                         <TextBlock Style="{DynamicResource BigTextHeaderStyle}" 
-                                   Margin="0,-45,0,0"
+                                   Margin="5,-45,5,0"
                                    Text="{Binding SelectedGame.Name}" 
                                    />
 
-                            <!--Launcher icon here-->
+                        <!--Launcher icon here: set based on which launncher a game uses-->
                         <TextBlock Style="{DynamicResource TextBodyStyle}"
-                            Text="{Binding SelectedGame.Description}" Margin="0,10,0,0"/>
+                            Text="{Binding SelectedGame.Description}" Margin="5,10,5,0"/>
                         <TextBlock Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}"
-                                   Margin="0,30,0,0">
-                            <Run Text="LastPlayed:"/>
+                                   Margin="5,30,5,0">
+                            LastPlayed:
                             <Run Text="(replace with binding)"/>
                         </TextBlock>
                     </StackPanel>
@@ -189,23 +190,97 @@
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Wpf:WebView2 Margin="30" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.08*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
+                               Text="{Binding SelectedGame.Name}"
+                               />
+                    <!--Embedded View-->
+                    <Wpf:WebView2 Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    <!--Links-->
+                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="15">
+                        <TextBlock 
+                                   Style="{DynamicResource TextHeaderStyle}" Text="Embedded Link:"/>
+                        <TextBox x:Name="EmbeddedLink" Margin="0,15,0,0" MinWidth="240" Height="Auto" Width="Auto"/>
+                        <TextBlock Margin="0,15,0,0" Style="{DynamicResource TextHeaderStyle}"
+                                   Text="Saved Links:"/>
+                                   <!--Add section for saved links here-->
+                    </StackPanel>
 
 
                 </Grid>
             </TabItem>
             <!--INFO TAB-->
-            <TabItem Background="{DynamicResource lnchMedGray}">
+            <TabItem Background="{DynamicResource lnchMedGray}" Height="27" VerticalAlignment="Top">
                 <TabItem.Header>
                     <TextBlock Text="Info" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
-
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1.2*"/>
+                    </Grid.RowDefinitions>
+                    <!--Game Title and Image-->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Style="{DynamicResource BigTextHeaderStyle}" Height="75" Margin="15,5,15,0"
+                                   Text="Temp Title Text That is Very Long And Keeps Going Until The Space Runs Out"/>
+                        <Image HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
+                               Source="https://cdn.akamai.steamstatic.com/steam/apps/850320/header.jpg?t=1667408253"/>
+                               <!--Image Source will be same as header or main picture-->
+                    </StackPanel>
+                    <!--Achievements-->
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
+                               Text="Achievements"/>
+                        <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}">
+                            
+                        </TextBlock>
+                    </StackPanel>
+                    <!--Stats-->
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
+                               Text="Stats"/>
+                        <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}"
+                                   Style="{DynamicResource TextBodyStyle}">
+                                Hours Played:
+                                <Run Text="(insert playtime)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
+                                Installed On:
+                                <Run Text="(insert date)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
+                        </TextBlock>
+                    </StackPanel>
+                    <!--Description-->
+                    <StackPanel Grid.ColumnSpan="3" Grid.Row="1" >
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
+                               Text="Description"/>
+                        <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
+                                      Height="130" >
+                            <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5"
+                                       Text="(insert description)"/>
+                        </ScrollViewer>
+                    </StackPanel>
+                    <!--Additional Info-->
+                    <StackPanel Grid.ColumnSpan="3" Grid.Row="2">
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
+                               Text="Additional Info"/>
+                        <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
+                                      Height="110">
+                            <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5">
+                                (insert additional info)
+                            </TextBlock>
+                        </ScrollViewer>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <!--GALLERY TAB-->
@@ -215,6 +290,27 @@
                 </TabItem.Header>
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="44*"/>
+                        <ColumnDefinition Width="655*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="My Captures" Foreground="White" FontSize="30" Margin="85,61,1038,638" Grid.Column="1"/>
+                    <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="88,458,1034,241" Grid.Column="1"/>
+
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="292" Margin="85,114,0,0" VerticalAlignment="Top" Width="519" Grid.Column="1" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
+
+                    <ScrollBar  Margin="1118,-115,175,116" MaxHeight="295" Grid.Column="1" />
+                    <ScrollViewer Grid.Column="1" Margin="744,114,197,341" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                       
+                    </ScrollViewer>
+                        
+
+                     
+
+
+
+
 
 
                 </Grid>
@@ -222,7 +318,7 @@
         </TabControl>
         <Button x:Name="MainPlayButton" Style="{DynamicResource PlayButton}"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                Click="Button_Play_Click" Command="{Binding PlayGame}"
+                Command="{Binding PlayGame}"
                 />
 
     </Grid>
