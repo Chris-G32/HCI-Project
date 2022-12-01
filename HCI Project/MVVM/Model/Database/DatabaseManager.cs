@@ -66,8 +66,24 @@ namespace HCI_Project.MVVM.Model.Database
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
+            // Deletes any tags associated with the game
+            _cmd.CommandText = $"DELETE FROM game_tags WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
+            // Deletes the discord link associated with the game
+            _cmd.CommandText = $"DELETE FROM discord WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
+            // Inserts the game itself
             _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}')";
+            _cmd.ExecuteNonQuery();
+            // Inserts all of the games tags
+            foreach(string tag in game.Tags)
+            {
+                _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
+                _cmd.ExecuteNonQuery();
+            }
+            // Inserts the discord link
+            _cmd.CommandText = $"INSERT INTO discord VALUES ('{game.Game_ID}', '{game.Discord.ToString()}')";
             _cmd.ExecuteNonQuery();
         }
 
@@ -94,9 +110,25 @@ namespace HCI_Project.MVVM.Model.Database
             rdr.Close();
 
             GetGameTags(res);
+            GetGameDiscord(res);
 
             return res;
 
+        }
+
+        public void GetGameDiscord(Game game)
+        {
+            _cmd.CommandText = $"SELECT link FROM discord WHERE id='{game.Game_ID}'";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                game.Discord = new Uri(rdr.GetString(0));
+            }else
+            {
+                game.Discord = null;
+            }
+            rdr.Close();
         }
 
         /// <summary>
@@ -140,6 +172,7 @@ namespace HCI_Project.MVVM.Model.Database
             foreach (Game game in res)
             {
                 GetGameTags(game);
+                GetGameDiscord(game);
             }
 
             // Returns the list of games

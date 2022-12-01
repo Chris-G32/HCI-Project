@@ -63,5 +63,7 @@ namespace HCI_Project.MVVM.Model
         public string Description { get; set; }
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
+        // Link to discord channel
+        public Uri Discord { get; set; }
     }
 }
