@@ -42,8 +42,6 @@ namespace HCI_Project.MVVM.View
 
 
 
-
-
         //HOME BUTTON FUNCTIONALITY
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -88,6 +86,7 @@ namespace HCI_Project.MVVM.View
 
 
 
+
         public RelayCommand HomeButtonCommand
         {
             get { return (RelayCommand)GetValue(HomeButtonCommandProperty); }
@@ -127,6 +126,23 @@ namespace HCI_Project.MVVM.View
         public static readonly DependencyProperty SearchQueryProperty =
             DependencyProperty.Register("SearchQuery", typeof(string), typeof(NavBarView));
 
-        
+        //Search Box Functionality styling
+        /// <summary>
+        /// Allows for combobox dropdown to be displayed on text edit
+        /// </summary>
+        private void SearchBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            combo.IsDropDownOpen = true;
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+
+            if (!combo.IsDropDownOpen){
+                combo.IsDropDownOpen = true;
+            }
+        }
     }
 }

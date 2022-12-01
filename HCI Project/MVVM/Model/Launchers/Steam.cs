@@ -16,10 +16,13 @@ namespace HCI_Project.MVVM.Model
     {
         // Client used for API Requests
         private HttpClient client;
+
+        //76561197960265728 +32bit steam id, found at C:\Program Files (x86)\Steam\userdata is the 64bit id
         private string _steamid = "76561198863942684";
         private string _steamname = "";
         public Steam()
         {
+            _browser=new System.Windows.Controls.WebBrowser();
             client = new HttpClient();
             // This accepts a json file by default
             client.DefaultRequestHeaders.Add("accept", "text/json; charset=utf-8");
