@@ -62,7 +62,7 @@
             <Button Grid.Row="0" Grid.Column="2"  Width="200"
                     Content="ChangeImg" Command="{Binding GetImage}"/>
             
-            <customControls:GamePreview GameImageSrc="{Binding Imgtst}" Grid.Row="1"/>
+            <customControls:GamePreview GameSrc="{Binding }"  Grid.Row="1"/>
             <Image Source="{Binding TestUri}" Grid.Row="1"/>
             <!--<UniformGrid.Resources>
                 <Style TargetType="">

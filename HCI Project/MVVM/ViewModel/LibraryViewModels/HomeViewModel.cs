@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using HCI_Project.Core;
+using HCI_Project.MVVM.Model;
 using System.Windows.Media;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -14,10 +15,10 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         private Uri _testUri=null;
         public Uri TestUri { get { return _testUri; } set { _testUri = value; OnPropertyChanged(); } }
        
-
+        
         //Temporary test command to update image of something
         public RelayCommand GetImage { get; set; }
-        public HomeViewModel()
+        public HomeViewModel(Game testgame=null)
         {
             GetImage = new RelayCommand(o => {
                 //Imgtst=new BitmapImage();
