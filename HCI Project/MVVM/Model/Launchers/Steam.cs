@@ -59,8 +59,9 @@ namespace HCI_Project.MVVM.Model
 
         public override bool LaunchGame(Game game)
         {
+            _browser = new System.Windows.Controls.WebBrowser();
             _browser.Navigate(new Uri("steam://rungameid/" + game.Game_ID));
-            _browser.Navigate(new Uri("about:blank"));
+            _browser.Dispose();
             game.State = GameState.INSTALLED;
             return true;
         }
