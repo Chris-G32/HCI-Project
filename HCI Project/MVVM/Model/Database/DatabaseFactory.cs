@@ -22,17 +22,23 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.ExecuteNonQuery();
             cmd.CommandText = "DROP TABLE IF EXISTS settings";
             cmd.ExecuteNonQuery();
+            cmd.CommandText = "DROP TABLE IF EXISTS discord";
+            cmd.ExecuteNonQuery();
 
             // Creates table for storing game information
             cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, images_folder TEXT, screenshots_folder TEXT, discord_link TEXT)";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing game categories
-            cmd.CommandText = @"CREATE TABLE game_tags(id varchar(20), tag varchar(20), FOREIGN KEY (id) REFERENCES games(id))";
+            cmd.CommandText = @"CREATE TABLE game_tags(id varchar(20), tag varchar(20))";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing user setting restore points
             cmd.CommandText = @"CREATE TABLE settings(date_set DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY)";
+            cmd.ExecuteNonQuery();
+
+            // Creates table for storing discord servers
+            cmd.CommandText = @"CREATE TABLE discord(id varchar(20), link TEXT)";
             cmd.ExecuteNonQuery();
 
             Debug.WriteLine("Table 'games' and 'settings' created");
