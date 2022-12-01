@@ -58,13 +58,13 @@ namespace HCI_Project.MVVM.Model
         public string Name { get; }
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; } = new List<string>();
         public string[] Images { get; set; }
         public string Description { get; set; }
         public Uri HeaderImage { get; set; }=new Uri("https://cdn.akamai.steamstatic.com/steam/apps/1276390/header_alt_assets_4.jpg?t=1669803774");
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
-        public Uri Discord { get; set; }
+        public Uri Discord { get; set; } = new Uri("about:blank");
     }
 }

@@ -15,11 +15,12 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         private Uri _testUri=null;
         public Uri TestUri { get { return _testUri; } set { _testUri = value; OnPropertyChanged(); } }
        
-        
+        public Game testbind { get; set; }
         //Temporary test command to update image of something
         public RelayCommand GetImage { get; set; }
         public HomeViewModel(Game testgame=null)
         {
+            testbind = testgame;
             GetImage = new RelayCommand(o => {
                 //Imgtst=new BitmapImage();
 
