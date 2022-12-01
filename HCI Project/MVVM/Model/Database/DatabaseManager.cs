@@ -74,7 +74,7 @@ namespace HCI_Project.MVVM.Model.Database
             _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}')";
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}')";
             _cmd.ExecuteNonQuery();
             // Inserts all of the games tags
             foreach(string tag in game.Tags)
@@ -104,8 +104,11 @@ namespace HCI_Project.MVVM.Model.Database
                 string gameName = rdr.GetString(1);
                 int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
+                string headerImage = rdr.GetString(5);
+                Uri headerImageLink = new Uri(headerImage);
                 res = new Game(gameID, gameName, (LauncherID)launcherID);
                 res.Description = description;
+                res.HeaderImage = headerImageLink;
             }
             rdr.Close();
 
@@ -116,6 +119,10 @@ namespace HCI_Project.MVVM.Model.Database
 
         }
 
+        /// <summary>
+        /// Reads a game's related discord server from the database and stores it in the game
+        /// </summary>
+        /// <param name="game"></param>
         public void GetGameDiscord(Game game)
         {
             _cmd.CommandText = $"SELECT link FROM discord WHERE id='{game.Game_ID}'";
@@ -164,7 +171,9 @@ namespace HCI_Project.MVVM.Model.Database
                 string gameName = rdr.GetString(1);
                 int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
-                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
+                string headerImage = rdr.GetString(4);
+                Uri headerImageLink = new Uri(headerImage);
+                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, headerImageLink));
             }
             rdr.Close();
 

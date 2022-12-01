@@ -46,7 +46,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null)
         {
             Game_ID = id;
             Name = name;
