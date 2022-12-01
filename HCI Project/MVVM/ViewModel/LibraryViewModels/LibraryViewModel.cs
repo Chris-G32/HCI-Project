@@ -1,5 +1,6 @@
 ﻿using HCI_Project.Core;
 using HCI_Project.MVVM.Model;
+using HCI_Project.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
+    
     public enum TestView { Game,Home}
     /// <summary>
     /// Handles LibraryViews and its instantiated subviews
@@ -26,8 +28,9 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public HomeViewModel HomeVM { get; set; }
         //Relay Commands
         public RelayCommand OpenGamePage { get; set; }
-        public RelayCommand SetHomeView { get; set; } 
-        public ObservableCollection<Game> OwnedGames { get; set; }
+        public RelayCommand SetHomeView { get; set; }
+
+        public ObservableCollection<Game> OwnedGames { get { return new ObservableCollection<Game>(MainViewModel.GameHandler.Games); } }
         
         private object _currentView;
 
@@ -50,7 +53,6 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public LibraryViewModel()
         {
             //Initializing members
-            OwnedGames = new ObservableCollection<Game>() { new Game("Shrt","SomeShortDescription"), new Game("Medium Len Title","A medium length description that is not oparticularly long \n line 2 and continuiong"), new Game("A particularly very long title of a game that is still going on","This one is really long and is a long description with multiple lines \n this is the seocnd lione and none of this is of any substance and is actually only temporary in the program code \n another line sfjksdjhbkfbjsdflsdfhjsdfjbdshfbjhsdbfsdhjfbsdjhfbvsdhjfbsdjhfbdsjhfbsdhjfbds") };
             GameVM = new GameViewModel();
             HomeVM = new HomeViewModel();
             //Set Default View

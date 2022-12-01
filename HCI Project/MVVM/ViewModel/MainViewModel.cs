@@ -95,6 +95,12 @@ namespace HCI_Project.MVVM.ViewModel
                 SettingsVM.IsVisible = !SettingsVM.IsVisible;
                 OnPropertyChanged();
             });
+            SetGameView = new RelayCommand(o =>
+            {
+                LibraryVM.GameVM = new GameViewModel(o as Game);
+                LibraryVM.CurrentView = LibraryVM.GameVM;
+                CurrentView = LibraryVM;
+            });
         }
     }
 }
