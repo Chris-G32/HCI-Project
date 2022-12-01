@@ -61,6 +61,7 @@ namespace HCI_Project.MVVM.Model
         public List<string> Tags { get; set; }
         public string[] Images { get; set; }
         public string Description { get; set; }
+        public Uri HeaderImage { get; set; }=new Uri("https://cdn.akamai.steamstatic.com/steam/apps/1276390/header_alt_assets_4.jpg?t=1669803774");
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
     }
