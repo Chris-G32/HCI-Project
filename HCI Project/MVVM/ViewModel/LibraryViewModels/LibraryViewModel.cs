@@ -55,7 +55,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         {
             //Initializing members
             GameVM = new GameViewModel();
-            HomeVM = new HomeViewModel(OwnedGames[0]);
+            HomeVM = new HomeViewModel();
             //Set Default View
 
             CurrentView = HomeVM;
