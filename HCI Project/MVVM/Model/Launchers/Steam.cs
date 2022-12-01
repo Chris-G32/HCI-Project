@@ -22,7 +22,7 @@ namespace HCI_Project.MVVM.Model
         private string _steamname = "";
         public Steam()
         {
-            _browser=new System.Windows.Controls.WebBrowser();
+            //_browser=new System.Windows.Controls.WebBrowser();
             client = new HttpClient();
             // This accepts a json file by default
             client.DefaultRequestHeaders.Add("accept", "text/json; charset=utf-8");
