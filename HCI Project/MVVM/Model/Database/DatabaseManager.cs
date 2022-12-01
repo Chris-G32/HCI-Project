@@ -118,9 +118,9 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads all current games from the database and returns result
         /// </summary>
         /// <returns> A list of all currently existing game objects from the database </returns>
-        public ObservableCollection<Game> ReadAllGames()
+        public void ReadAllGames(ObservableCollection<Game> games)
         {
-            ObservableCollection<Game> res = new ObservableCollection<Game>();
+            
 
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
@@ -132,18 +132,18 @@ namespace HCI_Project.MVVM.Model.Database
                 string gameName = rdr.GetString(1);
                 int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
-                res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
+                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
             }
             rdr.Close();
 
             // Populates the tags for each game
-            foreach (Game game in res)
+            foreach (Game game in games)
             {
                 GetGameTags(game);
             }
 
             // Returns the list of games
-            return res;
+           // return games;
         }
 
         //public List<Game> SearchGames(string name = null, string)
