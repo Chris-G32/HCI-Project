@@ -56,7 +56,7 @@ namespace HCI_Project.MVVM.Model
 
         public void UpdateFromDB()
         {
-            _games = _db.ReadAllGames();
+            _db.ReadAllGames(Games);
         }
 
         /// <summary>

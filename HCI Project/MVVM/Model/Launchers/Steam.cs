@@ -22,7 +22,7 @@ namespace HCI_Project.MVVM.Model
         private string _steamname = "";
         public Steam()
         {
-            _browser=new System.Windows.Controls.WebBrowser();
+            //_browser=new System.Windows.Controls.WebBrowser();
             client = new HttpClient();
             // This accepts a json file by default
             client.DefaultRequestHeaders.Add("accept", "text/json; charset=utf-8");
@@ -59,8 +59,9 @@ namespace HCI_Project.MVVM.Model
 
         public override bool LaunchGame(Game game)
         {
+            _browser = new System.Windows.Controls.WebBrowser();
             _browser.Navigate(new Uri("steam://rungameid/" + game.Game_ID));
-            _browser.Navigate(new Uri("about:blank"));
+            _browser.Dispose();
             game.State = GameState.INSTALLED;
             return true;
         }
