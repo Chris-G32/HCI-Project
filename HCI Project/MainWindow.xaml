@@ -9,7 +9,10 @@
       Title="MainView" WindowStyle="SingleBorderWindow" 
       MinWidth="800" MinHeight="450"
       d:DesignHeight="900" d:DesignWidth="1600"
-      Background="{DynamicResource lnchBlack}">
+      Background="{DynamicResource lnchBlack}"
+      Focusable="True"
+     
+      >
 
     <Window.DataContext>
         <viewModel:MainViewModel/>

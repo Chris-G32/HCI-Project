@@ -51,7 +51,8 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             {
                 //Some Logic TO Run the Game
                 //SomeInterface.Run(Game)
-                Debug.WriteLine("Running Game (Not Actually)");
+                MainViewModel.GameHandler.LaunchGame(game);
+                Debug.WriteLine("Running Game, Actually");
             });
         }
     }
