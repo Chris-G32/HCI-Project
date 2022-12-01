@@ -30,7 +30,8 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public RelayCommand OpenGamePage { get; set; }
         public RelayCommand SetHomeView { get; set; }
 
-        public ObservableCollection<Game> OwnedGames { get { return new ObservableCollection<Game>(MainViewModel.GameHandler.Games); } }
+        
+        public ObservableCollection<Game> OwnedGames { get { return MainViewModel.GameHandler.Games;} }
         
         private object _currentView;
 
