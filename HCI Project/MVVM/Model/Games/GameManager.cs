@@ -15,9 +15,9 @@ namespace HCI_Project.MVVM.Model
 
         private static DatabaseManager _db;
 
-        private List<Game> _games = new List<Game>();
+        private ObservableCollection<Game> _games = new ObservableCollection<Game>();
 
-        public List<Game> Games { get { return _games; } }
+        public ObservableCollection<Game> Games { get { return _games; } }
 
         public GameManager()
         {

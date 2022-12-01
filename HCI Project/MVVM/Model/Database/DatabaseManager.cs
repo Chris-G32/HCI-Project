@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace HCI_Project.MVVM.Model.Database
 {
@@ -117,9 +118,9 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads all current games from the database and returns result
         /// </summary>
         /// <returns> A list of all currently existing game objects from the database </returns>
-        public List<Game> ReadAllGames()
+        public ObservableCollection<Game> ReadAllGames()
         {
-            List<Game> res = new List<Game>();
+            ObservableCollection<Game> res = new ObservableCollection<Game>();
 
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
