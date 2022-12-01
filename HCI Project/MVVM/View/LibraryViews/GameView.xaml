@@ -126,8 +126,8 @@
             <Setter Property="Background" Value="{DynamicResource lnchMedGray}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource lnchDarkMedGray}"/>
         </Style>
-        
-        
+
+
         <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
     </UserControl.Resources>
 
@@ -210,7 +210,7 @@
                         <TextBox x:Name="EmbeddedLink" Margin="0,15,0,0" MinWidth="240" Height="Auto" Width="Auto"/>
                         <TextBlock Margin="0,15,0,0" Style="{DynamicResource TextHeaderStyle}"
                                    Text="Saved Links:"/>
-                                   <!--Add section for saved links here-->
+                        <!--Add section for saved links here-->
                     </StackPanel>
 
 
@@ -239,14 +239,14 @@
                                    Text="Temp Title Text That is Very Long And Keeps Going Until The Space Runs Out"/>
                         <Image HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
                                Source="https://cdn.akamai.steamstatic.com/steam/apps/850320/header.jpg?t=1667408253"/>
-                               <!--Image Source will be same as header or main picture-->
+                        <!--Image Source will be same as header or main picture-->
                     </StackPanel>
                     <!--Achievements-->
                     <StackPanel Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Achievements"/>
                         <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}">
-                            
+
                         </TextBlock>
                     </StackPanel>
                     <!--Stats-->
@@ -289,25 +289,36 @@
                 <TabItem.Header>
                     <TextBlock Text="Gallery" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
+
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="44*"/>
-                        <ColumnDefinition Width="655*"/>
+
+                        <ColumnDefinition Width="217*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="434"/>
+                        <RowDefinition Height="566"/>
 
-                    <TextBlock Text="My Captures" Foreground="White" FontSize="30" Margin="85,61,1038,638" Grid.Column="1"/>
-                    <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="88,458,1034,241" Grid.Column="1"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="My Captures" Foreground="White" FontSize="30" Margin="27,10,1159,325"/>
+                    <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="27,10,1228,469" Grid.Row="1"/>
 
-                    <Image x:Name="image" HorizontalAlignment="Left" Height="292" Margin="85,114,0,0" VerticalAlignment="Top" Width="519" Grid.Column="1" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="297" Margin="85,102,0,0" VerticalAlignment="Top" Width="536" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
 
-                    <ScrollBar  Margin="1118,-115,175,116" MaxHeight="295" Grid.Column="1" />
-                    <ScrollViewer Grid.Column="1" Margin="744,114,197,341" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                       
+                    <ScrollViewer Margin="810,71,169,0" Background="{DynamicResource lnchDarkMedGray}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                        Height="300">
+
+                        <Image Source="https://www.gamebyte.com/wp-content/uploads/2021/09/d3b813fe-phasmophobia.jpg" Height="177" Width="360"/>
+
                     </ScrollViewer>
-                        
 
-                     
+                    <Image Source="https://cdn.cloudflare.steamstatic.com/steam/apps/739630/header.jpg?t=1663254578" Margin="133,91,962,321" Grid.Row="1"/>
+                    <Image Source="https://www.gamespot.com/a/uploads/original/1595/15957481/3747340-phasmophobia-dying-ghost-1024x576.jpg" Margin="507,97,561,313" Grid.Row="1"/>
+                    <Image Source="https://cdn.akamai.steamstatic.com/steam/apps/739630/ss_9c7fe5b357b4e9fd07b07dfdc29f721876e41d2f.1920x1080.jpg?t=1667574170" Margin="896,97,172,313" Grid.Row="1"/>
+
+
+
 
 
 
