@@ -168,9 +168,18 @@
                   VerticalAlignment="Center" Width="500" Height="35"
                   IsEditable="True" StaysOpenOnEdit="True"
                   ItemsSource="{Binding SearchResults,ElementName=NavBar}"
-                  SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar}"
+                  SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar,Mode=TwoWay}"
                   Text="{Binding SearchQuery,ElementName=NavBar}"
                   >
+            <ComboBox.Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Style.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="IsDropDownOpen" Value="true" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>

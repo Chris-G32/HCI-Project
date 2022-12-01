@@ -30,15 +30,15 @@ namespace HCI_Project.MVVM.View
 
 
         //SEARCH BAR: Selected Entry (use command to display respective page, etc.)
-        public object SelectedEntryCommand 
+        public RelayCommand SelectedEntryCommand 
         {
-            get { return (object)GetValue(SelectedEntryCommandProperty); }
+            get { return (RelayCommand)GetValue(SelectedEntryCommandProperty); }
             set { SetValue(SelectedEntryCommandProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for .  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedEntryCommandProperty =
-            DependencyProperty.Register("SelectedEntry", typeof(object), typeof(NavBarView));
+            DependencyProperty.Register("SelectedEntryCommand", typeof(RelayCommand), typeof(NavBarView));
 
 
 
