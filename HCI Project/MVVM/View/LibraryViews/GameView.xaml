@@ -6,9 +6,10 @@
              xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels" xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-             mc:Ignorable="d PresentationOptions"
+             mc:Ignorable="d"
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="GameViews"
+             Focusable="True"
              >
 
     <UserControl.Resources>
@@ -201,7 +202,7 @@
                                Text="{Binding SelectedGame.Name}"
                                />
                     <!--Embedded View-->
-                    <Wpf:WebView2 Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
                     <!--Links-->
                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="15">
                         <TextBlock 

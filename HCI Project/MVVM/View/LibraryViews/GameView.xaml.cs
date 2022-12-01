@@ -22,5 +22,8 @@ namespace HCI_Project.MVVM.View.LibraryViews
         {
             InitializeComponent();
         }
+         ~GameView() {
+            WebWindow.Dispose();
+        }
     }
 }
