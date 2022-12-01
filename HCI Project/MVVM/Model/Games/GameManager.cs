@@ -26,7 +26,8 @@ namespace HCI_Project.MVVM.Model
 
             _db.CheckDatabase();
 
-           
+            //Added extra update so that games are populated from stored data
+            UpdateFromDB();
             UpdateAll();
         }
 
