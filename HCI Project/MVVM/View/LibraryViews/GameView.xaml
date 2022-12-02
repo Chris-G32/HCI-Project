@@ -143,7 +143,7 @@
                     </Grid.ColumnDefinitions>-->
                     <Image x:Name="BannerImage"  HorizontalAlignment="Center"
                            Grid.Row="0" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"
-                           Source="{Binding FallbackValue={StaticResource DefaultBannerImage}}">
+                           Source="{Binding SelectedGame.HeaderImage, FallbackValue={StaticResource DefaultBannerImage}}">
                         <Image.OpacityMask>
                             <LinearGradientBrush StartPoint="0,0.55" EndPoint="0,0.88">
                                 <GradientStop Offset="0" Color="#2D2828"/>
