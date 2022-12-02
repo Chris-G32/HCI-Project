@@ -61,21 +61,23 @@
             <ColumnDefinition Width="1*" MinWidth="150" />
             <ColumnDefinition Width="7*" MinWidth="500"/>
         </Grid.ColumnDefinitions>
-        <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!--stack panel of length = visible games-->
-                    <StackPanel x:Name="LibraryItems" Orientation="Horizontal"
-                               Margin="0,2.5,0,2.5" >
-                        <Button x:Name="LibraryEntry"
-                                Style="{StaticResource ButtonLibraryEntry}"
-                                Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
-                                />
+        <ScrollViewer>
+            <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--stack panel of length = visible games-->
+                        <StackPanel x:Name="LibraryItems" Orientation="Horizontal"
+                                   Margin="0,2.5,0,2.5" >
+                            <Button x:Name="LibraryEntry"
+                                    Style="{StaticResource ButtonLibraryEntry}"
+                                    Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
+                                    />
 
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
         <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
         <GridSplitter Grid.Column="0" Width="5"/>
     </Grid>

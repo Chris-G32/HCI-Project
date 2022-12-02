@@ -22,5 +22,10 @@ namespace HCI_Project.MVVM.View.LibraryViews
         {
             InitializeComponent();
         }
+
+        private void MainPlayButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
