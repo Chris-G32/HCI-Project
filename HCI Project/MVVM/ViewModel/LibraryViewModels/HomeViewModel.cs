@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Diagnostics;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -20,7 +21,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public ObservableCollection<Game> RecentlyPlayed { get; }
         public Game testbind { get; set; }
         //Temporary test command to update image of something
-        public RelayCommand GetImage { get; set; }
+        public RelayCommand PlayGame { get; set; }
         public HomeViewModel()
         {
             const int MAXRECENTLYPLAYED= 6;
@@ -33,13 +34,12 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 RecentlyPlayed.Add(game);
                 count++;
             }
-            
-            
-            GetImage = new RelayCommand(o => {
-                //Imgtst=new BitmapImage();
 
-                TestUri = new Uri("https://w7.pngwing.com/pngs/925/348/png-transparent-logo-online-and-offline-e-online-design-text-logo-online-and-offline.png");
+            PlayGame = new RelayCommand(o =>
+            {
+                MainViewModel.GameHandler.LaunchGame(o as Game);
             });
+
         }
     }
 }

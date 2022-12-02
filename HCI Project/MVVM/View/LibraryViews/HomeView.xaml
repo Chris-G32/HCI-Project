@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="Home"
+             
              >
 
     <Grid Background="{DynamicResource lnchDarkGray}">
@@ -17,15 +18,26 @@
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
-        <ItemsControl ItemsSource="{Binding RecentlyPlayed}" Grid.Row="1" HorizontalContentAlignment="Left">
+        <ItemsControl x:Name="RecentPlayedItemControl" ItemsSource="{Binding RecentlyPlayed}" Grid.Row="1" HorizontalContentAlignment="Left" Margin="15,0,0,25">
             <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <UniformGrid Rows="3" Columns="3" HorizontalAlignment="Left" />
-            </ItemsPanelTemplate>
+                    <UniformGrid x:Name="RecentlyPlayedGrid" Rows="{Binding RowCount, ElementName=Home,Mode=OneWay}" Columns="{Binding ColCount, ElementName=Home,Mode=OneWay}" HorizontalAlignment="Stretch" SizeChanged="RecentlyPlayedGrid_SizeChanged">
+                        <!--<UniformGrid.Triggers>
+                            <Trigger Property="RenderSize" Value="">
+                                
+                            </Trigger>
+                        </UniformGrid.Triggers>-->
+                        
+                    </UniformGrid>
+                </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <customControls:GamePreview GameSrc="{Binding}" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <customControls:GamePreview GameSrc="{Binding}" Padding="0,15,25,0" 
+                                                HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                                PlayCommand="{Binding ElementName=Home, Path=DataContext.PlayGame}"
+                                                SizeChanged="GamePreview_SizeChanged"
+                                                />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

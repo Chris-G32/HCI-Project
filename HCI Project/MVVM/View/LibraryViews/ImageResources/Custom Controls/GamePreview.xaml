@@ -10,20 +10,20 @@
         <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image@2x.png" />
     </UserControl.Resources>
     <Viewbox Stretch="Uniform" >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="230"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Image x:Name="GameImg" Grid.Row="0" Source="{Binding GameSrc.HeaderImage,ElementName=GamePrev,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"  VerticalAlignment="Bottom"  HorizontalAlignment="Center"/>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Name="Title"  Grid.Column="0" Text="{Binding GameSrc.Name,ElementName=GamePrev}"/>
-            <Button x:Name="PlayGame" Grid.Column="1" Content="Play" Command="{Binding PlayCommand,ElementName=GamePrev}" CommandParameter="{Binding GameSrc,ElementName=GamePrev}"/>
+        <Grid Background="{DynamicResource lnchDarkMedGray}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="GameImg" Grid.Row="0" Source="{Binding GameSrc.HeaderImage,ElementName=GamePrev,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"  VerticalAlignment="Bottom"  HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="Title"  Grid.Column="0" Style="{DynamicResource BigTextHeaderStyle}" Text="{Binding GameSrc.Name,ElementName=GamePrev}"/>
+                <Button x:Name="PlayGame" Grid.Column="1" Style="{DynamicResource MiniPlayButton}" Content="Play" Command="{Binding PlayCommand,ElementName=GamePrev}" CommandParameter="{Binding GameSrc,ElementName=GamePrev}"/>
+            </Grid>
         </Grid>
-    </Grid>
     </Viewbox>
 </UserControl>
