@@ -134,15 +134,16 @@
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="0.08*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
-                    <!--<Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="58*"/>
-                        <ColumnDefinition Width="639*"/>
-                    </Grid.ColumnDefinitions>-->
+                    <TextBlock x:Name="GameTitle" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
+                                   Text="{Binding SelectedGame.Name}"
+                                   />
+
                     <Image x:Name="BannerImage"  HorizontalAlignment="Center"
-                           Grid.Row="0" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"
+                           Grid.Row="1" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"
                            Source="{Binding SelectedGame.HeaderImage, FallbackValue={StaticResource DefaultBannerImage}}">
                         <Image.OpacityMask>
                             <LinearGradientBrush StartPoint="0,0.55" EndPoint="0,0.88">
@@ -151,12 +152,7 @@
                             </LinearGradientBrush>
                         </Image.OpacityMask>
                     </Image>
-                    <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="1">
-                        <TextBlock x:Name="GameTitle" Style="{DynamicResource BigTextHeaderStyle}" 
-                                   Margin="5,-45,5,0"
-                                   Text="{Binding SelectedGame.Name}" 
-                                   />
-
+                    <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
                         <!--Launcher icon here: set based on which launncher a game uses-->
                         <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
                             Text="{Binding SelectedGame.Description}" Margin="5,10,5,0"/>
@@ -241,31 +237,30 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2.2*"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <!--Game Title and Image-->
                     <StackPanel x:Name="GameThumbnail" Grid.Column="0">
                         <TextBlock x:Name="GameTitle2" Style="{DynamicResource BigTextHeaderStyle}" Height="75" Margin="15,5,15,0"
-                                   Text="Temp Title Text That is Very Long And Keeps Going Until The Space Runs Out"/>
+                                   Text="{Binding SelectedGame.Name}"/>
                         <Image x:Name="GameImage" HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
-                               Source="https://cdn.akamai.steamstatic.com/steam/apps/850320/header.jpg?t=1667408253"/>
+                               Source="{Binding }"/>
                         <!--Image Source will be same as header or main picture-->
                     </StackPanel>
                     <!--Achievements-->
                     <StackPanel x:Name="Achievements" Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Achievements"/>
-                        <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}">
+                        <ScrollViewer MaxHeight="315" Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}">
 
-                        </TextBlock>
+                        </ScrollViewer>
                     </StackPanel>
                     <!--Stats-->
-                    <StackPanel x:Name="Stats" Grid.Column="2">
+                    <StackPanel x:Name="Stats" Grid.Column="1" Grid.Row="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Stats"/>
-                        <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}"
+                        <TextBlock Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}"
                                    Style="{DynamicResource TextBodyStyle}">
                                 Hours Played:
                                 <Run Text="(insert playtime)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
@@ -274,24 +269,40 @@
                         </TextBlock>
                     </StackPanel>
                     <!--Description-->
-                    <StackPanel x:Name="LongDescription" Grid.ColumnSpan="3" Grid.Row="1" >
+                    <StackPanel x:Name="LongDescription" Grid.Row="1" >
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Description"/>
-                        <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
-                                      Height="130" >
+                        <ScrollViewer MaxHeight="315" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5">
                             <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5"
                                        Text="(insert long description)"/>
                         </ScrollViewer>
                     </StackPanel>
-                    <!--Additional Info-->
-                    <StackPanel x:Name="AdditionalInfo" Grid.ColumnSpan="3" Grid.Row="2">
+                    <!--News Feed-->
+                    <StackPanel x:Name="NewsFeed" Grid.Column="2" Grid.RowSpan="2">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
-                               Text="Additional Info"/>
-                        <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
-                                      Height="110">
-                            <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5">
-                                (insert additional info)
-                            </TextBlock>
+                               Text="News Feed"/>
+                        <ScrollViewer MaxHeight="660" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0">
+                            <StackPanel>
+                                <Grid Margin="0,5,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="4*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock x:Name="Date" Style="{DynamicResource TextBodyStyle}" Foreground="{DynamicResource lnchLightGray}" Margin="5,5,0,0"
+                                           Text="mm/dd/yyyy"/>
+                                    <Image x:Name="NewsImage" Grid.Column="0" Grid.RowSpan="2" Grid.Row="1" MaxHeight="75" Margin="4"
+                                           Source="ImageResources/DefaultImages/default_game_image@2x.png"/>
+                                    <TextBlock x:Name="NewsTitle" Grid.Column="1" Grid.Row="1" MaxHeight="40" Style="{DynamicResource TextBodyStyle}" Margin="5,0,5,5"
+                                               Text="(insert title)"/>
+                                    <TextBlock x:Name="NewsDescription" Grid.Column="1" Grid.Row="2" Style="{DynamicResource TextBodyStyle}" Margin="5,0,5,5"
+                                               Text="(insert description)"/>
+                                </Grid>
+                            </StackPanel>
                         </ScrollViewer>
                     </StackPanel>
                 </Grid>
