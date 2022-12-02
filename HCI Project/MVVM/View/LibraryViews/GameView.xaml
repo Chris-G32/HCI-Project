@@ -76,23 +76,8 @@
                     <ControlTemplate TargetType="Button">
                         <Grid Background="{DynamicResource lnchMedTurq}">
                             <!--rocket-->
-                            <Image x:Name="PlayButtonRocket" Width="50" Margin="4,4,0,4" HorizontalAlignment="Left"
+                            <Image x:Name="PlayButtonRocket" Width="50" Margin="-76,4,0,4"
                                    Source="ImageResources/ButtonElements/button_play_rocket@2x.png">
-                                <Image.RenderTransform>
-                                    <TranslateTransform x:Name="AnimatedRocket" X="0"/>
-                                </Image.RenderTransform>
-                                <Image.Triggers>
-                                    <EventTrigger RoutedEvent="Button.Click">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AnimatedRocket" 
-                                                   Storyboard.TargetProperty="X">
-                                                    <SplineDoubleKeyFrame KeyTime="0:0:1.25" Value="0" />
-                                                </DoubleAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </Image.Triggers>
                             </Image>
                             <!--PLAY text-->
                             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -129,6 +114,7 @@
 
 
         <BitmapImage x:Key="DefaultBannerImage" UriSource="ImageResources/DefaultImages/default_game_banner@2x.png" />
+        <Storyboard x:Key="RocketMove"/>
     </UserControl.Resources>
 
 
@@ -141,7 +127,7 @@
         <TabControl SelectedIndex="{Binding TabIndex,Mode=TwoWay}" Padding="0" BorderBrush="Transparent" Background="{DynamicResource lnchDarkGray}">
 
             <!--PLAY TAB-->
-            <TabItem Background="{DynamicResource lnchMedGray}">
+            <TabItem x:Name="Play" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Play" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
@@ -166,15 +152,15 @@
                         </Image.OpacityMask>
                     </Image>
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="1">
-                        <TextBlock Style="{DynamicResource BigTextHeaderStyle}" 
+                        <TextBlock x:Name="GameTitle" Style="{DynamicResource BigTextHeaderStyle}" 
                                    Margin="5,-45,5,0"
                                    Text="{Binding SelectedGame.Name}" 
                                    />
 
                         <!--Launcher icon here: set based on which launncher a game uses-->
-                        <TextBlock Style="{DynamicResource TextBodyStyle}"
+                        <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
                             Text="{Binding SelectedGame.Description}" Margin="5,10,5,0"/>
-                        <TextBlock Style="{DynamicResource TextHeaderStyle}"
+                        <TextBlock x:Name="LastPlayed" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}"
                                    Margin="5,30,5,0">
                             LastPlayed:
@@ -184,7 +170,7 @@
                 </Grid>
             </TabItem>
             <!--COMMUNITY TAB-->
-            <TabItem Background="{DynamicResource lnchMedGray}">
+            <TabItem x:Name="Community" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Community" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
@@ -198,15 +184,14 @@
                         <RowDefinition Height="0.08*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
+                    <TextBlock x:Name="GameTitle1" Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
                                Text="{Binding SelectedGame.Name}"
                                />
                     <!--Embedded View-->
                     <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
                     <!--Links-->
                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="15">
-                        <TextBlock 
-                                   Style="{DynamicResource TextHeaderStyle}" Text="Embedded Link:"/>
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}" Text="Embedded Link:"/>
                         <TextBox x:Name="EmbeddedLink" Margin="0,15,0,0" MinWidth="240" Height="Auto" Width="Auto"/>
                         <TextBlock Margin="0,15,0,0" Style="{DynamicResource TextHeaderStyle}"
                                    Text="Saved Links:"/>
@@ -217,7 +202,7 @@
                 </Grid>
             </TabItem>
             <!--INFO TAB-->
-            <TabItem Background="{DynamicResource lnchMedGray}" Height="27" VerticalAlignment="Top">
+            <TabItem x:Name="Info" Background="{DynamicResource lnchMedGray}" Height="27" VerticalAlignment="Top">
                 <TabItem.Header>
                     <TextBlock Text="Info" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
@@ -234,15 +219,15 @@
                         <RowDefinition Height="1.2*"/>
                     </Grid.RowDefinitions>
                     <!--Game Title and Image-->
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Style="{DynamicResource BigTextHeaderStyle}" Height="75" Margin="15,5,15,0"
+                    <StackPanel x:Name="GameThumbnail" Grid.Column="0">
+                        <TextBlock x:Name="GameTitle2" Style="{DynamicResource BigTextHeaderStyle}" Height="75" Margin="15,5,15,0"
                                    Text="Temp Title Text That is Very Long And Keeps Going Until The Space Runs Out"/>
-                        <Image HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
+                        <Image x:Name="GameImage" HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
                                Source="https://cdn.akamai.steamstatic.com/steam/apps/850320/header.jpg?t=1667408253"/>
                         <!--Image Source will be same as header or main picture-->
                     </StackPanel>
                     <!--Achievements-->
-                    <StackPanel Grid.Column="1">
+                    <StackPanel x:Name="Achievements" Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Achievements"/>
                         <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}">
@@ -250,7 +235,7 @@
                         </TextBlock>
                     </StackPanel>
                     <!--Stats-->
-                    <StackPanel Grid.Column="2">
+                    <StackPanel x:Name="Stats" Grid.Column="2">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Stats"/>
                         <TextBlock Height="Auto" Margin="15" Background="{DynamicResource lnchDarkMedGray}"
@@ -262,7 +247,7 @@
                         </TextBlock>
                     </StackPanel>
                     <!--Description-->
-                    <StackPanel Grid.ColumnSpan="3" Grid.Row="1" >
+                    <StackPanel x:Name="Description" Grid.ColumnSpan="3" Grid.Row="1" >
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Description"/>
                         <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
@@ -272,7 +257,7 @@
                         </ScrollViewer>
                     </StackPanel>
                     <!--Additional Info-->
-                    <StackPanel Grid.ColumnSpan="3" Grid.Row="2">
+                    <StackPanel x:Name="AdditionalInfo" Grid.ColumnSpan="3" Grid.Row="2">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Additional Info"/>
                         <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
@@ -285,7 +270,7 @@
                 </Grid>
             </TabItem>
             <!--GALLERY TAB-->
-            <TabItem Background="{DynamicResource lnchMedGray}">
+            <TabItem x:Name="Gallery" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Gallery" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
@@ -330,7 +315,7 @@
         </TabControl>
         <Button x:Name="MainPlayButton" Style="{DynamicResource PlayButton}"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                Command="{Binding PlayGame}"
+                Command="{Binding PlayGame}" Click="MainPlayButton_Click"
                 />
 
     </Grid>
