@@ -70,7 +70,7 @@ namespace HCI_Project.MVVM.Model.Database
             _cmd.CommandText = $"DELETE FROM game_tags WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
             // Deletes the discord link associated with the game
-            _cmd.CommandText = $"DELETE FROM discord WHERE id='{game.Game_ID}'";
+            _cmd.CommandText = $"DELETE FROM links WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
@@ -156,10 +156,8 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads all current games from the database and returns result
         /// </summary>
         /// <returns> A list of all currently existing game objects from the database </returns>
-        public void ReadAllGames(ObservableCollection<Game> games)
+        public void ReadAllGames(ObservableCollection<Game> games, bool hidden = false)
         {
-            
-
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
 

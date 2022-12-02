@@ -146,21 +146,45 @@ namespace HCI_Project.MVVM.Model
         public override async Task GetGameInfo(Game game)
         {
             // Gets game info from steam api
-            var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
-
-            // Parses the json response using JTokens due to complex response nature
-            JToken outer = JToken.Parse(resp);
-            JObject inner = outer[game.Game_ID].Value<JObject>();
-            JObject data = inner["data"].Value<JObject>();
-
-            // Sets game info from the parsed response
-            game.HeaderImage = new Uri(data["header_image"].Value<string>());
-            game.Short_Description = data["short_description"].Value<string>();
-
-            // Adds each genre of the game as a tag
-            foreach(var k in data["genres"])
+            try
             {
-                game.Tags.Add(k["description"].Value<string>());
+                var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
+
+                // Parses the json response using JTokens due to complex response nature
+                JToken outer = JToken.Parse(resp);
+                JObject inner = outer[game.Game_ID].Value<JObject>();
+                if (inner["success"].Value<bool>() == false)
+                {
+                    return;
+                }
+                JObject data = inner["data"].Value<JObject>();
+
+                // Sets game info from the parsed response
+                game.HeaderImage = new Uri(data["header_image"].Value<string>());
+                game.Short_Description = data["short_description"].Value<string>();
+
+                while (game.Short_Description.Contains("'"))
+                {
+                    int index = game.Short_Description.IndexOf("'");
+                    game.Short_Description = game.Short_Description.Remove(index, 1);
+                }
+
+                // Adds each genre of the game as a tag
+                try
+                {
+                    foreach (var k in data["genres"])
+                    {
+                        game.Tags.Add(k["description"].Value<string>());
+                    }
+                }
+                catch
+                {
+                    Debug.WriteLine("Error! No tags!");
+                }
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
             }
 
             //foreach(var k in data)
