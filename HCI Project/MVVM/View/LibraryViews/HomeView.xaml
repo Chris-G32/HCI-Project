@@ -36,7 +36,7 @@
                     <customControls:GamePreview GameSrc="{Binding}" Padding="0,15,25,0" 
                                                 HorizontalAlignment="Center" VerticalAlignment="Top" 
                                                 PlayCommand="{Binding ElementName=Home, Path=DataContext.PlayGame}"
-                                                SizeChanged="GamePreview_SizeChanged"
+                                                
                                                 />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

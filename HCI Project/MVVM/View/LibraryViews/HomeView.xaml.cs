@@ -49,9 +49,6 @@ namespace HCI_Project.MVVM.View.LibraryViews
 
         private void RecentlyPlayedGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //var uniformGrid = sender as UniformGrid;
-            Debug.WriteLine(e.NewSize.ToString());
-            //Console.WriteLine(PrevWidth);
             //Ratio is less than 6 width for 9 height
             if (e.NewSize.Width < (e.NewSize.Height * 2 / 3))
             {
@@ -73,9 +70,5 @@ namespace HCI_Project.MVVM.View.LibraryViews
 
         }
 
-        private void GamePreview_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Debug.WriteLine(e.NewSize.ToString());
-        }
     }
 }
