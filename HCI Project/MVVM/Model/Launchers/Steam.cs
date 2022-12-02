@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using HCI_Project.MVVM.Model.Database;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -92,7 +93,7 @@ namespace HCI_Project.MVVM.Model
                 Game tempGame = new Game(game.appid.ToString(), game.name, LauncherID.Steam);
                 tempGame.IconImage = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/" + game.appid.ToString() + "/" + game.img_icon_url + ".jpg");
                 // Populates the Game object with more detailed data from the API
-                //await GetGameInfo(tempGame);
+                await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
             }
         }
@@ -151,7 +152,16 @@ namespace HCI_Project.MVVM.Model
 
             var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
             JToken outer = JToken.Parse(resp);
+            JObject inner = outer[game.Game_ID].Value<JObject>();
+            JObject data = inner["data"].Value<JObject>();
 
+            game.HeaderImage = new Uri(data["header_image"].Value<string>());
+
+            //foreach(var k in data)
+            //{
+            //    Debug.WriteLine("**************************************************************************");
+            //    Debug.WriteLine(k);
+            //}
         }
 
         //////
