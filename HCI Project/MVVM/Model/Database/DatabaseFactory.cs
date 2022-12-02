@@ -38,7 +38,7 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.ExecuteNonQuery();
 
             // Creates table for storing discord servers
-            cmd.CommandText = @"CREATE TABLE discord(id varchar(20), link TEXT)";
+            cmd.CommandText = @"CREATE TABLE links(id varchar(20), link TEXT)";
             cmd.ExecuteNonQuery();
 
             Debug.WriteLine("Table 'games' and 'settings' created");

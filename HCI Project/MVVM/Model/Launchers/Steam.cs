@@ -157,6 +157,12 @@ namespace HCI_Project.MVVM.Model
             game.HeaderImage = new Uri(data["header_image"].Value<string>());
             game.Short_Description = data["short_description"].Value<string>();
 
+            // Adds each genre of the game as a tag
+            foreach(var k in data["genres"])
+            {
+                game.Tags.Add(k["description"].Value<string>());
+            }
+
             //foreach(var k in data)
             //{
             //    Debug.WriteLine("**************************************************************************");

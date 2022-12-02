@@ -70,6 +70,6 @@ namespace HCI_Project.MVVM.Model
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
-        public Uri Discord { get; set; } = new Uri("about:blank");
+        public List<Uri> SavedLinks { get; set; } = new List<Uri>();
     }
 }

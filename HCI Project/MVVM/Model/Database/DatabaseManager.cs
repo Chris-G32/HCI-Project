@@ -82,9 +82,12 @@ namespace HCI_Project.MVVM.Model.Database
                 _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
                 _cmd.ExecuteNonQuery();
             }
-            // Inserts the discord link
-            _cmd.CommandText = $"INSERT INTO discord VALUES ('{game.Game_ID}', '{game.Discord.ToString()}')";
-            _cmd.ExecuteNonQuery();
+            foreach(Uri link in game.SavedLinks)
+            {
+                // Inserts the discord link
+                _cmd.CommandText = $"INSERT INTO links VALUES ('{game.Game_ID}', '{link.ToString()}')";
+                _cmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
@@ -112,7 +115,7 @@ namespace HCI_Project.MVVM.Model.Database
             rdr.Close();
 
             GetGameTags(res);
-            GetGameDiscord(res);
+            GetGameLinks(res);
 
             return res;
 
@@ -122,17 +125,14 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads a game's related discord server from the database and stores it in the game
         /// </summary>
         /// <param name="game"></param>
-        public void GetGameDiscord(Game game)
+        public void GetGameLinks(Game game)
         {
-            _cmd.CommandText = $"SELECT link FROM discord WHERE id='{game.Game_ID}'";
+            _cmd.CommandText = $"SELECT link FROM links WHERE id='{game.Game_ID}'";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
 
-            if (rdr.Read())
+            while (rdr.Read())
             {
-                game.Discord = new Uri(rdr.GetString(0));
-            }else
-            {
-                game.Discord = null;
+                game.SavedLinks.Add(new Uri(rdr.GetString(0)));
             }
             rdr.Close();
         }
@@ -181,7 +181,7 @@ namespace HCI_Project.MVVM.Model.Database
             foreach (Game game in games)
             {
                 GetGameTags(game);
-                GetGameDiscord(game);
+                GetGameLinks(game);
             }
 
             // Returns the list of games
