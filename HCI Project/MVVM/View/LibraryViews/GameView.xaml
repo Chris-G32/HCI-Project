@@ -139,7 +139,7 @@
                         <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
-                                   Text="{Binding SelectedGame.Name}"
+                                   Text="{Binding SelectedGame.Name,Mode=OneWay}"
                                    />
 
                     <Image x:Name="BannerImage"  HorizontalAlignment="Center"
@@ -182,7 +182,7 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle1" Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
-                               Text="{Binding SelectedGame.Name}"
+                               Text="{Binding SelectedGame.Name,Mode=OneWay}"
                                />
                     <!--Embedded View-->
                     <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
@@ -208,7 +208,7 @@
 
                         <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" 
                                       x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,45">
-                            <ItemsControl ItemsSource="{Binding }">
+                            <ItemsControl ItemsSource="{Binding SelectedGame.SavedLinks}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel/>
@@ -216,7 +216,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding }"/>
+                                        <TextBlock Text="{Binding}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -248,9 +248,9 @@
                     <!--Game Title and Image-->
                     <StackPanel x:Name="GameThumbnail" Grid.Column="0">
                         <TextBlock x:Name="GameTitle2" Style="{DynamicResource BigTextHeaderStyle}" Height="75" Margin="15,5,15,0"
-                                   Text="{Binding SelectedGame.Name}"/>
+                                   Text="{Binding SelectedGame.Name,Mode=OneWay}"/>
                         <Image x:Name="GameImage" HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
-                               Source="{Binding }"/>
+                               Source="{Binding SelectedGame.HeaderImage,Mode=OneWay}"/>
                         <!--Image Source will be same as header or main picture-->
                     </StackPanel>
                     <!--Achievements-->
@@ -332,7 +332,7 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle3" Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5">
-                        <Run Text="{Binding Path=SelectedGame.Name}"/>
+                        <Run Text="{Binding SelectedGame.Name,Mode=OneWay}"/>
                         <Run Text="--- My Captures"/>
                     </TextBlock>
                     <Button x:Name="ArrowButtonLeft" Grid.Column="0" Grid.Row="2" Height="75" HorizontalAlignment="Right" Margin="20"
