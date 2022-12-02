@@ -209,9 +209,14 @@
                         <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" 
                                       x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,45">
                             <ItemsControl ItemsSource="{Binding }">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        
+                                        <TextBlock Text="{Binding }"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -317,30 +322,31 @@
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.ColumnDefinitions>
-
-                        <ColumnDefinition Width="217*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="434"/>
-                        <RowDefinition Height="566"/>
-
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="0.15*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="My Captures" Foreground="White" FontSize="30" Margin="27,10,1159,325"/>
-                    <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="27,10,1228,469" Grid.Row="1"/>
+                    <TextBlock x:Name="GameTitle3" Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5">
+                        <Run Text="{Binding Path=SelectedGame.Name}"/>
+                        <Run Text="--- My Captures"/>
+                    </TextBlock>
+                    <Button x:Name="ArrowButtonLeft" Grid.Column="0" Grid.Row="2" Height="75" HorizontalAlignment="Right" Margin="20"
+                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
+                    <Button x:Name="ArrowButtonRight" Grid.Column="2" Grid.Row="2" Height="75" HorizontalAlignment="Left" Margin="20"
+                            Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
 
-                    <Image x:Name="image" HorizontalAlignment="Left" Height="297" Margin="85,102,0,0" VerticalAlignment="Top" Width="536" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
-
-                    <ScrollViewer Margin="810,71,169,0" Background="{DynamicResource lnchDarkMedGray}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                        Height="300">
-
-                        <Image Source="https://www.gamebyte.com/wp-content/uploads/2021/09/d3b813fe-phasmophobia.jpg" Height="177" Width="360"/>
-
-                    </ScrollViewer>
-
-                    <Image Source="https://cdn.cloudflare.steamstatic.com/steam/apps/739630/header.jpg?t=1663254578" Margin="133,91,962,321" Grid.Row="1"/>
-                    <Image Source="https://www.gamespot.com/a/uploads/original/1595/15957481/3747340-phasmophobia-dying-ghost-1024x576.jpg" Margin="507,97,561,313" Grid.Row="1"/>
-                    <Image Source="https://cdn.akamai.steamstatic.com/steam/apps/739630/ss_9c7fe5b357b4e9fd07b07dfdc29f721876e41d2f.1920x1080.jpg?t=1667574170" Margin="896,97,172,313" Grid.Row="1"/>
-
+                    <Image x:Name="ImageWindow" Grid.Column="1" Grid.Row="2" Margin="15" Stretch="UniformToFill"
+                           Source="ImageResources/DefaultImages/default_game_image@2x.png"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Width="Auto" Margin="8">
+                        <Button x:Name="DirectoryButton" Width="90" Height="50"
+                                Click="DirectoryButton_Click"/>
+                        <RichTextBox x:Name="EnterImageDirectory" Margin="8,0,0,0"/>
+                    </StackPanel>
 
 
 
