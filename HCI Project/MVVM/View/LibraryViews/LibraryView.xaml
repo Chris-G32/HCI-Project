@@ -13,7 +13,7 @@
         <BitmapImage x:Key="DefaultGameIcon" UriSource="ImageResources/DefaultImages/default_game_icon@2x.png"/>
         <Style TargetType="{x:Type Button}"
            x:Key="ButtonLibraryEntry">
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -50,7 +50,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
     </UserControl.Resources>
     
     <Grid>
@@ -62,6 +61,11 @@
             <ColumnDefinition Width="7*" MinWidth="500"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer>
+            <ScrollViewer.Resources>
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Width" Value="15"/>
+                </Style>
+            </ScrollViewer.Resources>
             <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

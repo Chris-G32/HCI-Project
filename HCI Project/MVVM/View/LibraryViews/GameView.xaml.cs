@@ -25,5 +25,15 @@ namespace HCI_Project.MVVM.View.LibraryViews
          ~GameView() {
             WebWindow.Dispose();
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubtractButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
