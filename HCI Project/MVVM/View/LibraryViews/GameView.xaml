@@ -305,7 +305,8 @@
                     <TextBlock Text="Preview" Foreground="White" FontSize="30" Margin="27,10,1228,469" Grid.Row="1"/>
 
                     <Image x:Name="image" HorizontalAlignment="Left" Height="297" Margin="85,102,0,0" VerticalAlignment="Top" Width="536" Source="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YQG3HYZGS5FLBGVJKJEVI2EF24.jpg"/>
-
+                     
+                    <!--scroll viewer intended to hold multiple image thumbnails-->
                     <ScrollViewer Margin="810,71,169,0" Background="{DynamicResource lnchDarkMedGray}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
                         Height="300">
 
