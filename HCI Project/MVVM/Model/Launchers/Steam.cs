@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using HCI_Project.MVVM.Model.Database;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -92,7 +93,7 @@ namespace HCI_Project.MVVM.Model
                 Game tempGame = new Game(game.appid.ToString(), game.name, LauncherID.Steam);
                 tempGame.IconImage = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/" + game.appid.ToString() + "/" + game.img_icon_url + ".jpg");
                 // Populates the Game object with more detailed data from the API
-                //await GetGameInfo(tempGame);
+                await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
             }
         }
@@ -144,14 +145,53 @@ namespace HCI_Project.MVVM.Model
         /// <param name="game">Game to store info to. Passed by reference.</param>
         public override async Task GetGameInfo(Game game)
         {
-            // NOTE: no longer checks database for caching. That will
-            // be handled by the GameManager class.
-            // API Link: https://store.steampowered.com/api/appdetails?appids=2195450
-            // NOTE: the api link for getting game information returns an object titled by the ID of the game. This could be difficult for JSON deserialization. Look into JToken.
+            // Gets game info from steam api
+            try
+            {
+                var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
 
-            var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
-            JToken outer = JToken.Parse(resp);
+                // Parses the json response using JTokens due to complex response nature
+                JToken outer = JToken.Parse(resp);
+                JObject inner = outer[game.Game_ID].Value<JObject>();
+                if (inner["success"].Value<bool>() == false)
+                {
+                    return;
+                }
+                JObject data = inner["data"].Value<JObject>();
 
+                // Sets game info from the parsed response
+                game.HeaderImage = new Uri(data["header_image"].Value<string>());
+                game.Short_Description = data["short_description"].Value<string>();
+
+                while (game.Short_Description.Contains("'"))
+                {
+                    int index = game.Short_Description.IndexOf("'");
+                    game.Short_Description = game.Short_Description.Remove(index, 1);
+                }
+
+                // Adds each genre of the game as a tag
+                try
+                {
+                    foreach (var k in data["genres"])
+                    {
+                        game.Tags.Add(k["description"].Value<string>());
+                    }
+                }
+                catch
+                {
+                    Debug.WriteLine("Error! No tags!");
+                }
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+
+            //foreach(var k in data)
+            //{
+            //    Debug.WriteLine("**************************************************************************");
+            //    Debug.WriteLine(k);
+            //}
         }
 
         //////

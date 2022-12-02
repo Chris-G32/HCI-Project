@@ -26,8 +26,6 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
             
         }
 
-
-
         public Game GameSrc
         {
             get { return (Game)GetValue(GameSrcProperty); }
@@ -39,15 +37,15 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
             DependencyProperty.Register("GameSrc", typeof(Game), typeof(GamePreview));
 
 
-        public Uri GameImageSrc
-        {
-            get { return (Uri)GetValue(GameImageSrcProperty); }
-            set { SetValue(GameImageSrcProperty, value); }
-        }
+        //public Uri GameImageSrc
+        //{
+        //    get { return (Uri)GetValue(GameImageSrcProperty); }
+        //    set { SetValue(GameImageSrcProperty, value); }
+        //}
 
-        // Using a DependencyProperty as the backing store for GameImage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty GameImageSrcProperty =
-            DependencyProperty.Register("GameImageSrc", typeof(Uri), typeof(GamePreview));
+        //// Using a DependencyProperty as the backing store for GameImage.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty GameImageSrcProperty =
+        //    DependencyProperty.Register("GameImageSrc", typeof(Uri), typeof(GamePreview));
 
 
 

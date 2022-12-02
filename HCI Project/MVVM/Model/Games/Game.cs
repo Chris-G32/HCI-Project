@@ -46,7 +46,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage=null)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage=null, string shortDescription=null)
         {
             Game_ID = id;
             Name = name;
@@ -54,6 +54,7 @@ namespace HCI_Project.MVVM.Model
             Description = desc;
             HeaderImage = headerImage;
             IconImage = iconImage;
+            Short_Description = shortDescription;
         }
 
         public string Game_ID { get; }
@@ -63,11 +64,12 @@ namespace HCI_Project.MVVM.Model
         public List<string> Tags { get; set; } = new List<string>();
         public string[] Images { get; set; }
         public string Description { get; set; }
+        public string Short_Description { get; set; }
         public Uri HeaderImage { get; set; }=new Uri("https://cdn.akamai.steamstatic.com/steam/apps/1276390/header_alt_assets_4.jpg?t=1669803774");
         public Uri IconImage { get; set; } = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg");
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
-        public Uri Discord { get; set; } = new Uri("about:blank");
+        public List<Uri> SavedLinks { get; set; } = new List<Uri>();
     }
 }

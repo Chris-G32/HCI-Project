@@ -26,7 +26,7 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.ExecuteNonQuery();
 
             // Creates table for storing game information
-            cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, header_image_link TEXT, icon_image_link TEXT, screenshots_folder TEXT, discord_link TEXT)";
+            cmd.CommandText = @"CREATE TABLE games(id varchar(20) PRIMARY KEY, name varchar(50), launcher_id INTEGER, description TEXT, header_image_link TEXT, icon_image_link TEXT, screenshots_folder TEXT, short_desc TEXT)";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing game categories
@@ -38,7 +38,7 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.ExecuteNonQuery();
 
             // Creates table for storing discord servers
-            cmd.CommandText = @"CREATE TABLE discord(id varchar(20), link TEXT)";
+            cmd.CommandText = @"CREATE TABLE links(id varchar(20), link TEXT)";
             cmd.ExecuteNonQuery();
 
             Debug.WriteLine("Table 'games' and 'settings' created");
