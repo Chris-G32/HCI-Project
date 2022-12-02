@@ -6,6 +6,8 @@ using HCI_Project.MVVM.Model;
 using System.Windows.Media;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -15,12 +17,24 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         private Uri _testUri=null;
         public Uri TestUri { get { return _testUri; } set { _testUri = value; OnPropertyChanged(); } }
        
+        public ObservableCollection<Game> RecentlyPlayed { get; }
         public Game testbind { get; set; }
         //Temporary test command to update image of something
         public RelayCommand GetImage { get; set; }
-        public HomeViewModel(Game testgame=null)
+        public HomeViewModel()
         {
-            testbind = testgame;
+            const int MAXRECENTLYPLAYED= 6;
+            RecentlyPlayed = new ObservableCollection<Game>();
+            var count = 0;
+            foreach(var game in MainViewModel.GameHandler.Games)
+            {
+                if (count == MAXRECENTLYPLAYED)
+                    break;
+                RecentlyPlayed.Add(game);
+                count++;
+            }
+            
+            
             GetImage = new RelayCommand(o => {
                 //Imgtst=new BitmapImage();
 
