@@ -70,11 +70,11 @@ namespace HCI_Project.MVVM.Model.Database
             _cmd.CommandText = $"DELETE FROM game_tags WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
             // Deletes the discord link associated with the game
-            _cmd.CommandText = $"DELETE FROM discord WHERE id='{game.Game_ID}'";
+            _cmd.CommandText = $"DELETE FROM links WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}')";
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.Short_Description}')";
             _cmd.ExecuteNonQuery();
             // Inserts all of the games tags
             foreach(string tag in game.Tags)
@@ -82,9 +82,12 @@ namespace HCI_Project.MVVM.Model.Database
                 _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
                 _cmd.ExecuteNonQuery();
             }
-            // Inserts the discord link
-            _cmd.CommandText = $"INSERT INTO discord VALUES ('{game.Game_ID}', '{game.Discord.ToString()}')";
-            _cmd.ExecuteNonQuery();
+            foreach(Uri link in game.SavedLinks)
+            {
+                // Inserts the discord link
+                _cmd.CommandText = $"INSERT INTO links VALUES ('{game.Game_ID}', '{link.ToString()}')";
+                _cmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
@@ -106,17 +109,13 @@ namespace HCI_Project.MVVM.Model.Database
                 string description = rdr.GetString(3);
                 string headerImage = rdr.GetString(4);
                 string iconImage = rdr.GetString(5);
-                Uri headerImageLink = new Uri(headerImage);
-                Uri iconImageLink = new Uri(iconImage);
-                res = new Game(gameID, gameName, (LauncherID)launcherID);
-                res.Description = description;
-                res.HeaderImage = headerImageLink;
-                res.IconImage = iconImageLink;
+                string shortDescription = rdr.GetString(7);
+                res = new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription);
             }
             rdr.Close();
 
             GetGameTags(res);
-            GetGameDiscord(res);
+            GetGameLinks(res);
 
             return res;
 
@@ -126,17 +125,14 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads a game's related discord server from the database and stores it in the game
         /// </summary>
         /// <param name="game"></param>
-        public void GetGameDiscord(Game game)
+        public void GetGameLinks(Game game)
         {
-            _cmd.CommandText = $"SELECT link FROM discord WHERE id='{game.Game_ID}'";
+            _cmd.CommandText = $"SELECT link FROM links WHERE id='{game.Game_ID}'";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
 
-            if (rdr.Read())
+            while (rdr.Read())
             {
-                game.Discord = new Uri(rdr.GetString(0));
-            }else
-            {
-                game.Discord = null;
+                game.SavedLinks.Add(new Uri(rdr.GetString(0)));
             }
             rdr.Close();
         }
@@ -160,10 +156,8 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads all current games from the database and returns result
         /// </summary>
         /// <returns> A list of all currently existing game objects from the database </returns>
-        public void ReadAllGames(ObservableCollection<Game> games)
+        public void ReadAllGames(ObservableCollection<Game> games, bool hidden = false)
         {
-            
-
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
 
@@ -176,9 +170,8 @@ namespace HCI_Project.MVVM.Model.Database
                 string description = rdr.GetString(3);
                 string headerImage = rdr.GetString(4);
                 string iconImage = rdr.GetString(5);
-                Uri headerImageLink = new Uri(headerImage);
-                Uri iconImageLink = new Uri(iconImage);
-                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, headerImageLink, iconImageLink));
+                string shortDescription = rdr.GetString(7);
+                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription));
             }
             rdr.Close();
 
@@ -186,7 +179,7 @@ namespace HCI_Project.MVVM.Model.Database
             foreach (Game game in games)
             {
                 GetGameTags(game);
-                GetGameDiscord(game);
+                GetGameLinks(game);
             }
 
             // Returns the list of games

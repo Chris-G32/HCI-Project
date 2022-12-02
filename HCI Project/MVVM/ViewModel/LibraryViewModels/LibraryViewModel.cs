@@ -55,7 +55,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         {
             //Initializing members
             GameVM = new GameViewModel();
-            HomeVM = new HomeViewModel();
+            HomeVM = new HomeViewModel(this);
             //Set Default View
 
             CurrentView = HomeVM;
@@ -65,6 +65,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                   //Expecting to recieve a game object as parameter, also a int referring to its location in list should work
                   GameVM = new GameViewModel(o as Game);
                   CurrentView = GameVM;
+                  Debug.WriteLine(GameVM.SelectedGame.IconImage.ToString());    
 
               });
             SetHomeView = new RelayCommand(o => { 

@@ -9,14 +9,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="Home"
+             
              >
 
     <Grid Background="{DynamicResource lnchDarkGray}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl x:Name="RecentPlayedItemControl" ItemsSource="{Binding RecentlyPlayed}" Grid.Row="1" HorizontalContentAlignment="Left" Margin="15,0,0,25">
+            <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                    <UniformGrid x:Name="RecentlyPlayedGrid" Rows="{Binding RowCount, ElementName=Home,Mode=OneWay}" Columns="{Binding ColCount, ElementName=Home,Mode=OneWay}" HorizontalAlignment="Stretch" SizeChanged="RecentlyPlayedGrid_SizeChanged">
+                        <!--<UniformGrid.Triggers>
+                            <Trigger Property="RenderSize" Value="">
+                                
+                            </Trigger>
+                        </UniformGrid.Triggers>-->
+                        
+                    </UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <customControls:GamePreview GameSrc="{Binding}" Padding="0,15,25,0" 
+                                                HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                                PlayCommand="{Binding ElementName=Home, Path=DataContext.PlayGame}"
+                                                OpenGameCommand="{Binding ElementName=Home,Path=DataContext.Parent.OpenGamePage}"
+                                                />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <!--<d:Grid.DataContext>
             <viewModel:HomeViewModel/>
         </d:Grid.DataContext>-->
-        <Grid x:Name="RecentGamesLayout" Grid.Row="1">
-            <Grid.ColumnDefinitions>
+        <Grid x:Name="RecentGamesLayout" >
+            <!--<Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -25,7 +54,7 @@
                 <RowDefinition x:Name="Header" Height="2*"/>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="8*"/>
-            </Grid.RowDefinitions>
+            </Grid.RowDefinitions>-->
 
             <!--Should recently played be a data template?-->
             <!--<ItemsControl ItemsSource="{Binding OwnedGames}" Grid.Row="1"  Grid.ColumnSpan="3">
@@ -55,11 +84,11 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>-->
-
-            <TextBlock Grid.Row="0" FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}"
+            
+            <TextBlock  FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}"
                        VerticalAlignment="Top" Margin="10"
                        Text="Recently Played"/>
-            <customControls:GamePreview GameSrc="{Binding testbind}" Grid.Column="0" Grid.Row="1"/>
+            <!--<customControls:GamePreview GameSrc="{Binding testbind}" Grid.Column="0" Grid.Row="1"/>-->
 
         </Grid>
     </Grid>

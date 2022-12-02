@@ -13,7 +13,7 @@
         <BitmapImage x:Key="DefaultGameIcon" UriSource="ImageResources/DefaultImages/default_game_icon@2x.png"/>
         <Style TargetType="{x:Type Button}"
            x:Key="ButtonLibraryEntry">
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -29,7 +29,7 @@
                                    StrokeThickness="20" Fill="Transparent"
                                    />
                             <Image Grid.Column="0" Margin="2" MinWidth="25" MaxWidth="40"
-                               Source="{Binding FallbackValue={StaticResource DefaultGameIcon}}"
+                               Source="{Binding IconImage,TargetNullValue={StaticResource DefaultGameIcon}, FallbackValue={StaticResource DefaultGameIcon}}"
                                />
                             <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Style="{DynamicResource LibraryTextStyle}" 
@@ -50,7 +50,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
     </UserControl.Resources>
     
     <Grid>
@@ -61,22 +60,29 @@
             <ColumnDefinition Width="1*" MinWidth="150" />
             <ColumnDefinition Width="7*" MinWidth="500"/>
         </Grid.ColumnDefinitions>
-        <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!--stack panel of length = visible games-->
-                    <StackPanel x:Name="LibraryItems" Orientation="Horizontal"
-                               Margin="0,2.5,0,2.5" >
-                        <Button x:Name="LibraryEntry"
-                                Style="{StaticResource ButtonLibraryEntry}"
-                                Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
-                                />
+        <ScrollViewer>
+            <ScrollViewer.Resources>
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Width" Value="15"/>
+                </Style>
+            </ScrollViewer.Resources>
+            <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--stack panel of length = visible games-->
+                        <StackPanel x:Name="LibraryItems" Orientation="Horizontal"
+                                   Margin="0,2.5,0,2.5" >
+                            <Button x:Name="LibraryEntry"
+                                    Style="{StaticResource ButtonLibraryEntry}"
+                                    Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"
+                                    />
 
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1" MinWidth="500"/>
         <GridSplitter Grid.Column="0" Width="5"/>
     </Grid>
 </UserControl>

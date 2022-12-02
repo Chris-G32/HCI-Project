@@ -56,6 +56,7 @@ namespace HCI_Project.MVVM.Model
 
         public void UpdateFromDB()
         {
+            _games = new ObservableCollection<Game>();
             _db.ReadAllGames(Games);
         }
 
