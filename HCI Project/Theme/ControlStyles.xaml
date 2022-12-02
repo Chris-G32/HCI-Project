@@ -55,7 +55,7 @@
     </Style>
 
     <!--LEFT/RIGHT BUTTONS for Gallery Tab-->
-    <Style x:Key="ArrowButtonLeft">
+    <Style x:Key="ArrowButtonLeft" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
