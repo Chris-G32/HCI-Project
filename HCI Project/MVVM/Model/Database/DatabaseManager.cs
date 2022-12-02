@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace HCI_Project.MVVM.Model.Database
 {
@@ -65,8 +66,24 @@ namespace HCI_Project.MVVM.Model.Database
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
+            // Deletes any tags associated with the game
+            _cmd.CommandText = $"DELETE FROM game_tags WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
+            // Deletes the discord link associated with the game
+            _cmd.CommandText = $"DELETE FROM discord WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}')";
+            // Inserts the game itself
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}')";
+            _cmd.ExecuteNonQuery();
+            // Inserts all of the games tags
+            foreach(string tag in game.Tags)
+            {
+                _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
+                _cmd.ExecuteNonQuery();
+            }
+            // Inserts the discord link
+            _cmd.CommandText = $"INSERT INTO discord VALUES ('{game.Game_ID}', '{game.Discord.ToString()}')";
             _cmd.ExecuteNonQuery();
         }
 
@@ -87,15 +104,41 @@ namespace HCI_Project.MVVM.Model.Database
                 string gameName = rdr.GetString(1);
                 int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
+                string headerImage = rdr.GetString(4);
+                string iconImage = rdr.GetString(5);
+                Uri headerImageLink = new Uri(headerImage);
+                Uri iconImageLink = new Uri(iconImage);
                 res = new Game(gameID, gameName, (LauncherID)launcherID);
                 res.Description = description;
+                res.HeaderImage = headerImageLink;
+                res.IconImage = iconImageLink;
             }
             rdr.Close();
 
             GetGameTags(res);
+            GetGameDiscord(res);
 
             return res;
 
+        }
+
+        /// <summary>
+        /// Reads a game's related discord server from the database and stores it in the game
+        /// </summary>
+        /// <param name="game"></param>
+        public void GetGameDiscord(Game game)
+        {
+            _cmd.CommandText = $"SELECT link FROM discord WHERE id='{game.Game_ID}'";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                game.Discord = new Uri(rdr.GetString(0));
+            }else
+            {
+                game.Discord = null;
+            }
+            rdr.Close();
         }
 
         /// <summary>
@@ -117,9 +160,9 @@ namespace HCI_Project.MVVM.Model.Database
         /// Reads all current games from the database and returns result
         /// </summary>
         /// <returns> A list of all currently existing game objects from the database </returns>
-        public List<Game> ReadAllGames()
+        public void ReadAllGames(ObservableCollection<Game> games)
         {
-            List<Game> res = new List<Game>();
+            
 
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
@@ -131,18 +174,23 @@ namespace HCI_Project.MVVM.Model.Database
                 string gameName = rdr.GetString(1);
                 int launcherID = rdr.GetInt32(2);
                 string description = rdr.GetString(3);
-                res.Add(new Game(gameID, gameName, (LauncherID)launcherID, description));
+                string headerImage = rdr.GetString(4);
+                string iconImage = rdr.GetString(5);
+                Uri headerImageLink = new Uri(headerImage);
+                Uri iconImageLink = new Uri(iconImage);
+                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, headerImageLink, iconImageLink));
             }
             rdr.Close();
 
             // Populates the tags for each game
-            foreach (Game game in res)
+            foreach (Game game in games)
             {
                 GetGameTags(game);
+                GetGameDiscord(game);
             }
 
             // Returns the list of games
-            return res;
+           // return games;
         }
 
         //public List<Game> SearchGames(string name = null, string)

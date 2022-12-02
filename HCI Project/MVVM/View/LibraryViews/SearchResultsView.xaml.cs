@@ -14,16 +14,13 @@ using System.Windows.Shapes;
 namespace HCI_Project.MVVM.View.LibraryViews
 {
     /// <summary>
-    /// Interaction logic for GameView.xaml
+    /// Interaction logic for SearchResultsView.xaml
     /// </summary>
-    public partial class GameView : UserControl
+    public partial class SearchResultsView : UserControl
     {
-        public GameView()
+        public SearchResultsView()
         {
             InitializeComponent();
-        }
-         ~GameView() {
-            WebWindow.Dispose();
         }
     }
 }

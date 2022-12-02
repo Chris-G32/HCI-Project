@@ -30,17 +30,15 @@ namespace HCI_Project.MVVM.View
 
 
         //SEARCH BAR: Selected Entry (use command to display respective page, etc.)
-        public object SelectedEntryCommand 
+        public RelayCommand SelectedEntryCommand 
         {
-            get { return (object)GetValue(SelectedEntryCommandProperty); }
+            get { return (RelayCommand)GetValue(SelectedEntryCommandProperty); }
             set { SetValue(SelectedEntryCommandProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for .  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedEntryCommandProperty =
-            DependencyProperty.Register("SelectedEntry", typeof(object), typeof(NavBarView));
-
-
+            DependencyProperty.Register("SelectedEntryCommand", typeof(RelayCommand), typeof(NavBarView));
 
 
 
@@ -88,6 +86,7 @@ namespace HCI_Project.MVVM.View
 
 
 
+
         public RelayCommand HomeButtonCommand
         {
             get { return (RelayCommand)GetValue(HomeButtonCommandProperty); }
@@ -127,6 +126,23 @@ namespace HCI_Project.MVVM.View
         public static readonly DependencyProperty SearchQueryProperty =
             DependencyProperty.Register("SearchQuery", typeof(string), typeof(NavBarView));
 
-        
+        //Search Box Functionality styling
+        /// <summary>
+        /// Allows for combobox dropdown to be displayed on text edit
+        /// </summary>
+        private void SearchBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            combo.IsDropDownOpen = true;
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+
+            if (!combo.IsDropDownOpen){
+                combo.IsDropDownOpen = true;
+            }
+        }
     }
 }

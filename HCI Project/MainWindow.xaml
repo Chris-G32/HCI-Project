@@ -9,7 +9,10 @@
       Title="MainView" WindowStyle="SingleBorderWindow" 
       MinWidth="800" MinHeight="450"
       d:DesignHeight="900" d:DesignWidth="1600"
-      Background="{DynamicResource lnchBlack}">
+      Background="{DynamicResource lnchBlack}"
+      Focusable="True"
+     
+      >
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -23,7 +26,9 @@
         <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}" 
                          HomeButtonCommand="{Binding LibraryVM.SetHomeView}" 
                          SearchQuery="{Binding SearchFor,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" 
-                         SearchResults="{Binding SearchList}"/>
+                         SearchResults="{Binding SearchList}"
+                         SelectedEntryCommand="{Binding SetGameView}"
+                         />
 
 
         <!--<Button Grid.Row="0" Foreground="White" Content="Settings" HorizontalAlignment="Right" Width="125" Command="{Binding ToggleSettings}"/>-->

@@ -165,12 +165,24 @@
 
         <!--SEARCH BAR-->
         <ComboBox x:Name="SearchBox" Grid.Column="1"
+                  
                   VerticalAlignment="Center" Width="500" Height="35"
-                  IsEditable="True" StaysOpenOnEdit="True"
+                  IsEditable="True" StaysOpenOnEdit="False"
                   ItemsSource="{Binding SearchResults,ElementName=NavBar}"
-                  SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar}"
+                  SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar,Mode=TwoWay}"
                   Text="{Binding SearchQuery,ElementName=NavBar}"
+                  GotKeyboardFocus="SearchBox_GotKeyboardFocus"
+                  TextBoxBase.TextChanged="SearchBox_TextChanged"
                   >
+            <!--<ComboBox.Style>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Style.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="IsDropDownOpen" Value="true" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>-->
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>

@@ -10,7 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using HCI_Project.Core;
+using HCI_Project.MVVM.Model;
 namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
 {
     /// <summary>
@@ -24,7 +25,19 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
             InitializeComponent();
             
         }
-        
+
+
+
+        public Game GameSrc
+        {
+            get { return (Game)GetValue(GameSrcProperty); }
+            set { SetValue(GameSrcProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GameSrcProperty =
+            DependencyProperty.Register("GameSrc", typeof(Game), typeof(GamePreview));
+
 
         public Uri GameImageSrc
         {
@@ -35,6 +48,18 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         // Using a DependencyProperty as the backing store for GameImage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GameImageSrcProperty =
             DependencyProperty.Register("GameImageSrc", typeof(Uri), typeof(GamePreview));
+
+
+
+        public RelayCommand PlayCommand
+        {
+            get { return (RelayCommand)GetValue(PlayCommandProperty); }
+            set { SetValue(PlayCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlayCommandProperty =
+            DependencyProperty.Register("PlayCommand", typeof(RelayCommand), typeof(GamePreview));
 
 
 

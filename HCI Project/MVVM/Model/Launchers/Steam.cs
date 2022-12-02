@@ -16,10 +16,13 @@ namespace HCI_Project.MVVM.Model
     {
         // Client used for API Requests
         private HttpClient client;
+
+        //76561197960265728 +32bit steam id, found at C:\Program Files (x86)\Steam\userdata is the 64bit id
         private string _steamid = "76561198863942684";
         private string _steamname = "";
         public Steam()
         {
+            //_browser=new System.Windows.Controls.WebBrowser();
             client = new HttpClient();
             // This accepts a json file by default
             client.DefaultRequestHeaders.Add("accept", "text/json; charset=utf-8");
@@ -56,7 +59,9 @@ namespace HCI_Project.MVVM.Model
 
         public override bool LaunchGame(Game game)
         {
+            _browser = new System.Windows.Controls.WebBrowser();
             _browser.Navigate(new Uri("steam://rungameid/" + game.Game_ID));
+            _browser.Dispose();
             game.State = GameState.INSTALLED;
             return true;
         }
@@ -85,6 +90,7 @@ namespace HCI_Project.MVVM.Model
                     game.name = game.name.Remove(index, 1);
                 }
                 Game tempGame = new Game(game.appid.ToString(), game.name, LauncherID.Steam);
+                tempGame.IconImage = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/" + game.appid.ToString() + "/" + game.image_icon_url + ".jpg");
                 // Populates the Game object with more detailed data from the API
                 //await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
@@ -187,12 +193,13 @@ namespace HCI_Project.MVVM.Model
 
                 public SteamGame[] games { get; set; }
                 /// <summary>
-                /// Holds basic data for each game (id and name) to be processed and converted into Game objects.
+                /// Holds basic data for each game (id, name, image icon hash) to be processed and converted into Game objects.
                 /// </summary>
                 public class SteamGame
                 {
                     public long appid { get; set; }
                     public string name { get; set; }
+                    public string image_icon_url { get; set; }
                 }
             }
         }
