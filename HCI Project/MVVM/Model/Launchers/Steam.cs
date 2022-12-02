@@ -145,16 +145,15 @@ namespace HCI_Project.MVVM.Model
         /// <param name="game">Game to store info to. Passed by reference.</param>
         public override async Task GetGameInfo(Game game)
         {
-            // NOTE: no longer checks database for caching. That will
-            // be handled by the GameManager class.
-            // API Link: https://store.steampowered.com/api/appdetails?appids=2195450
-            // NOTE: the api link for getting game information returns an object titled by the ID of the game. This could be difficult for JSON deserialization. Look into JToken.
-
+            // Gets game info from steam api
             var resp = await client.GetStringAsync("https://store.steampowered.com/api/appdetails?appids=" + game.Game_ID);
+
+            // Parses the json response using JTokens due to complex response nature
             JToken outer = JToken.Parse(resp);
             JObject inner = outer[game.Game_ID].Value<JObject>();
             JObject data = inner["data"].Value<JObject>();
 
+            // Sets game info from the parsed response
             game.HeaderImage = new Uri(data["header_image"].Value<string>());
             game.Short_Description = data["short_description"].Value<string>();
 
