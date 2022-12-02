@@ -134,24 +134,27 @@
                 <!--tab is linked here-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.08*"/>
-                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="1*"/>
                         <RowDefinition Height="0.5*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
-                                   Text="{Binding SelectedGame.Name,Mode=OneWay}"
+                                   Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"
                                    />
-
-                    <Image x:Name="BannerImage"  HorizontalAlignment="Center"
-                           Grid.Row="1" VerticalAlignment="Center" Stretch="UniformToFill" StretchDirection="UpOnly"
+                    <Grid Grid.Row="1">
+                        <Grid.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0.55" EndPoint="0,0.88">
+                                    <GradientStop Offset="0" Color="#2D2828"/>
+                                    <GradientStop Offset="1.2" Color="Transparent"/>
+                                </LinearGradientBrush>
+                            </Grid.OpacityMask>
+                        <Image x:Name="BannerImage"  HorizontalAlignment="Center"
+                            VerticalAlignment="Top" Stretch="UniformToFill" StretchDirection="Both"
                            Source="{Binding SelectedGame.HeaderImage, FallbackValue={StaticResource DefaultBannerImage}}">
-                        <Image.OpacityMask>
-                            <LinearGradientBrush StartPoint="0,0.55" EndPoint="0,0.88">
-                                <GradientStop Offset="0" Color="#2D2828"/>
-                                <GradientStop Offset="0.62" Color="Transparent"/>
-                            </LinearGradientBrush>
-                        </Image.OpacityMask>
-                    </Image>
+                            
+                        </Image>
+                    </Grid>
+                    
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
                         <!--Launcher icon here: set based on which launncher a game uses-->
                         <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
@@ -178,11 +181,11 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.08*"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle1" Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
-                               Text="{Binding SelectedGame.Name,Mode=OneWay}"
+                               Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"
                                />
                     <!--Embedded View-->
                     <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
@@ -191,7 +194,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="11*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <!--<ColumnDefinition Width="1*"/>-->
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
@@ -201,13 +204,13 @@
                         <TextBlock Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource TextHeaderStyle}"
                                    Text="Saved Links:"/>
                         <Button x:Name="AddButton" Grid.Column="1" Grid.Row="1" Style="{DynamicResource AddButton}" Width="27" Height="27" 
-                                    Click="AddButton_Click"/>
-                            <Button x:Name="SubtractButton" Grid.Column="2" Grid.Row="1" Style="{DynamicResource SubtractButton}" Width="27" Height="27"
-                                    Click="SubtractButton_Click"/>
-                        <RichTextBox x:Name="EnterLink" Grid.Column="0" Grid.Row="1"/>
+                                    Click="AddButton_Click" Command="{Binding AddLink}" CommandParameter="{Binding ElementName=EnterLink,Path=Text }"/>
+                            <!--<Button x:Name="SubtractButton" Grid.Column="2" Grid.Row="1" Style="{DynamicResource SubtractButton}" Width="27" Height="27"
+                                    Click="SubtractButton_Click"/>-->
+                        <TextBox x:Name="EnterLink" Grid.Column="0" Grid.Row="1" />
 
                         <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" 
-                                      x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,45">
+                                      x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,45" VerticalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding SelectedGame.SavedLinks}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -216,7 +219,13 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding}"/>
+                                        <Grid>
+                                            
+                                            <TextBlock Text="{Binding}" HorizontalAlignment="Left" Padding="10,0,0,0" Grid.ColumnSpan="1" Grid.Column="0" />
+                                            <Button x:Name="SubtractButton" Grid.Column="2" Style="{DynamicResource SubtractButton}" Width="27" Height="27"
+                                                Click="SubtractButton_Click" Command="{Binding ElementName=GameViews,Path=DataContext.RemoveLink}" CommandParameter="{Binding}"/>
+                                        </Grid>
+                                        
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -248,7 +257,7 @@
                     <!--Game Title and Image-->
                     <StackPanel x:Name="GameThumbnail" Grid.Column="0">
                         <TextBlock x:Name="GameTitle2" Style="{DynamicResource BigTextHeaderStyle}" Height="75" Margin="15,5,15,0"
-                                   Text="{Binding SelectedGame.Name,Mode=OneWay}"/>
+                                   Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"/>
                         <Image x:Name="GameImage" HorizontalAlignment="Center" MaxHeight="300" Margin="15,5,15,0" 
                                Source="{Binding SelectedGame.HeaderImage,Mode=OneWay}"/>
                         <!--Image Source will be same as header or main picture-->
@@ -327,13 +336,13 @@
                         <ColumnDefinition Width="0.3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="0.15*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle3" Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5">
-                        <Run Text="{Binding SelectedGame.Name,Mode=OneWay}"/>
-                        <Run Text="--- My Captures"/>
+                        <Run Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"/>
+                        <!--<Run Text="   :My Captures"/>-->
                     </TextBlock>
                     <Button x:Name="ArrowButtonLeft" Grid.Column="0" Grid.Row="2" Height="75" HorizontalAlignment="Right" Margin="20"
                             Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
