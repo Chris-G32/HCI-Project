@@ -49,6 +49,18 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
 
 
 
+
+        public RelayCommand OpenGameCommand
+        {
+            get { return (RelayCommand)GetValue(OpenGameCommandProperty); }
+            set { SetValue(OpenGameCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OpenGameCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OpenGameCommandProperty =
+            DependencyProperty.Register("OpenGameCommand", typeof(RelayCommand), typeof(GamePreview) );
+
+
         public RelayCommand PlayCommand
         {
             get { return (RelayCommand)GetValue(PlayCommandProperty); }

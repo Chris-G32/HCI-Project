@@ -16,7 +16,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public Game SelectedGame { get; private set; }
         //Will need updated to first on game switch or instead just create whole new game vm, may be easier and more logical
         private int _tabIndex;
-
+        
         public int TabIndex
         {
             get { return _tabIndex; }
@@ -54,6 +54,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 MainViewModel.GameHandler.LaunchGame(game);
                 Debug.WriteLine("Running Game, Actually");
             });
+            
         }
     }
 }
