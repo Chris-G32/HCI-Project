@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--Mini Play Button-->
+    <!--MINI PLAY BUTTON for HomeView, SearchBar, and SearchView-->
     <Style x:Key="MiniPlayButton" TargetType="{x:Type Button}">
         <Setter Property="MinHeight" Value="27"/>
         <Setter Property="MinWidth" Value="27"/>
@@ -28,7 +28,49 @@
         </Setter>
     </Style>
     
-    <!-- ComboBox style -->
+    <!--ADD/SUBTRACT BUTTONS for Community Tab-->
+    <Style x:Key="AddButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                       Style="{DynamicResource TextHeaderStyle}" Text="+"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SubtractButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                       Style="{DynamicResource TextHeaderStyle}" Text="-"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--LEFT/RIGHT BUTTONS for Gallery Tab-->
+    <Style x:Key="ArrowButtonLeft">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Image Source="ImageResources/ButtonElements/"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ArrowButtonRight">
+
+    </Style>
+
+
+    <!--COMBOBOX STYLE -->
     <Style x:Key="TESTCOMB" TargetType="{x:Type ComboBox}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>

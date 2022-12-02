@@ -42,7 +42,7 @@
         </Style>
 
         <!--GETS RID OF BORDERS-->
-        <Style  TargetType="{x:Type TabControl}">
+        <Style TargetType="{x:Type TabControl}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabControl}">
@@ -169,6 +169,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
+            
             <!--COMMUNITY TAB-->
             <TabItem x:Name="Community" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
@@ -190,17 +191,40 @@
                     <!--Embedded View-->
                     <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15" Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
                     <!--Links-->
-                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="15">
-                        <TextBlock Style="{DynamicResource TextHeaderStyle}" Text="Embedded Link:"/>
-                        <TextBox x:Name="EmbeddedLink" Margin="0,15,0,0" MinWidth="240" Height="Auto" Width="Auto"/>
-                        <TextBlock Margin="0,15,0,0" Style="{DynamicResource TextHeaderStyle}"
+                    <Grid Grid.Column="1" Grid.Row="1" Margin="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="11*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="15*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource TextHeaderStyle}"
                                    Text="Saved Links:"/>
+                        <Button x:Name="AddButton" Grid.Column="0" Grid.Row="1" Style="{StaticResource AddButton}" Width="27" Height="27" 
+                                    Click="AddButton_Click"/>
+                            <Button x:Name="SubtractButton" Grid.Column="1" Grid.Row="1" Style="{StaticResource SubtractButton}" Width="27" Height="27"
+                                    Click="SubtractButton_Click"/>
+                        <TextBox x:Name="EnterLink" Grid.Column="2" Grid.Row="1"/>
+                        <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,0">
+                            <ItemsControl ItemsSource="{Binding }">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
                         <!--Add section for saved links here-->
-                    </StackPanel>
+                    </Grid>
 
 
                 </Grid>
             </TabItem>
+            
             <!--INFO TAB-->
             <TabItem x:Name="Info" Background="{DynamicResource lnchMedGray}" Height="27" VerticalAlignment="Top">
                 <TabItem.Header>
@@ -247,13 +271,13 @@
                         </TextBlock>
                     </StackPanel>
                     <!--Description-->
-                    <StackPanel x:Name="Description" Grid.ColumnSpan="3" Grid.Row="1" >
+                    <StackPanel x:Name="LongDescription" Grid.ColumnSpan="3" Grid.Row="1" >
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Description"/>
                         <ScrollViewer Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0"
                                       Height="130" >
                             <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5"
-                                       Text="(insert description)"/>
+                                       Text="(insert long description)"/>
                         </ScrollViewer>
                     </StackPanel>
                     <!--Additional Info-->
@@ -269,6 +293,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
+            
             <!--GALLERY TAB-->
             <TabItem x:Name="Gallery" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
@@ -315,7 +340,7 @@
         </TabControl>
         <Button x:Name="MainPlayButton" Style="{DynamicResource PlayButton}"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-                Command="{Binding PlayGame}" Click="MainPlayButton_Click"
+                Command="{Binding PlayGame}"
                 />
 
     </Grid>
