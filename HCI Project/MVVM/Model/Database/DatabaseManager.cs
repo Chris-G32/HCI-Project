@@ -74,7 +74,7 @@ namespace HCI_Project.MVVM.Model.Database
             _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}')";
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.Short_Description}')";
             _cmd.ExecuteNonQuery();
             // Inserts all of the games tags
             foreach(string tag in game.Tags)
@@ -106,12 +106,8 @@ namespace HCI_Project.MVVM.Model.Database
                 string description = rdr.GetString(3);
                 string headerImage = rdr.GetString(4);
                 string iconImage = rdr.GetString(5);
-                Uri headerImageLink = new Uri(headerImage);
-                Uri iconImageLink = new Uri(iconImage);
-                res = new Game(gameID, gameName, (LauncherID)launcherID);
-                res.Description = description;
-                res.HeaderImage = headerImageLink;
-                res.IconImage = iconImageLink;
+                string shortDescription = rdr.GetString(7);
+                res = new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription);
             }
             rdr.Close();
 
@@ -176,9 +172,8 @@ namespace HCI_Project.MVVM.Model.Database
                 string description = rdr.GetString(3);
                 string headerImage = rdr.GetString(4);
                 string iconImage = rdr.GetString(5);
-                Uri headerImageLink = new Uri(headerImage);
-                Uri iconImageLink = new Uri(iconImage);
-                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, headerImageLink, iconImageLink));
+                string shortDescription = rdr.GetString(7);
+                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription));
             }
             rdr.Close();
 

@@ -156,6 +156,7 @@ namespace HCI_Project.MVVM.Model
             JObject data = inner["data"].Value<JObject>();
 
             game.HeaderImage = new Uri(data["header_image"].Value<string>());
+            game.Short_Description = data["short_description"].Value<string>();
 
             //foreach(var k in data)
             //{
