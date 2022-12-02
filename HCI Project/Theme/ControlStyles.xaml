@@ -55,10 +55,21 @@
     </Style>
 
     <!--LEFT/RIGHT BUTTONS for Gallery Tab-->
-    
-    
-    
-    
+    <Style x:Key="ArrowButtonLeft">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Image Source="ImageResources/ButtonElements/"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ArrowButtonRight">
+
+    </Style>
+
+
     <!--COMBOBOX STYLE -->
     <Style x:Key="TESTCOMB" TargetType="{x:Type ComboBox}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
