@@ -29,7 +29,7 @@
                                    StrokeThickness="20" Fill="Transparent"
                                    />
                             <Image Grid.Column="0" Margin="2" MinWidth="25" MaxWidth="40"
-                               Source="{Binding FallbackValue={StaticResource DefaultGameIcon}}"
+                               Source="{Binding IconImage,TargetNullValue={StaticResource DefaultGameIcon}, FallbackValue={StaticResource DefaultGameIcon}}"
                                />
                             <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Style="{DynamicResource LibraryTextStyle}" 

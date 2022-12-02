@@ -26,6 +26,11 @@ namespace HCI_Project.MVVM.View.LibraryViews
             WebWindow.Dispose();
         }
 
+        private void MainPlayButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
