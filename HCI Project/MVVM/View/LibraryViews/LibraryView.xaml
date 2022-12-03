@@ -82,7 +82,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <ContentControl Content="{Binding CurrentView}" Grid.Column="1"/>
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1" MinWidth="500"/>
         <GridSplitter Grid.Column="0" Width="5"/>
     </Grid>
 </UserControl>

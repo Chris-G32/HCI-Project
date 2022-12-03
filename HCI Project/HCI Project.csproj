@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play_rocket%402x.png" />
+    <None Remove="steam.secret" />
     <None Remove="Theme\ImageResources\ButtonElements\button_big_arrow_left%402x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_loading_small%404x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_play_small%404x.png" />

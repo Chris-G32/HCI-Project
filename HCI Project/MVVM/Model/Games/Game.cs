@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace HCI_Project.MVVM.Model
@@ -70,6 +71,6 @@ namespace HCI_Project.MVVM.Model
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
-        public List<Uri> SavedLinks { get; set; } = new List<Uri>();
+        public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
     }
 }

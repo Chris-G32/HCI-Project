@@ -1,12 +1,34 @@
-﻿<UserControl x:Class="HCI_Project.MVVM.View.LibraryViews.SearchResultsView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews"
+             xmlns:View="clr-namespace:HCI_Project.MVVM.View" x:Class="HCI_Project.MVVM.View.LibraryViews.SearchResultsView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+
+    <Grid Background= "{DynamicResource lnchDarkGray}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="101"/>
+            <RowDefinition Height="167"/>
+            <RowDefinition Height="167"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">
+         
+                <Image Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"/>
+        </Button>
+        
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Results"
+                FontSize="30" Foreground="White"          
+         />
     </Grid>
 </UserControl>

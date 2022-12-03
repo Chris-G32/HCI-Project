@@ -16,11 +16,11 @@
                        FontSize="20" Margin="5,0,0,10" Text="Settings"/>
             <WrapPanel Margin="20,10,0,10">
                 <TextBlock Foreground="White"  Text="Install Directory"/>
-                <TextBox Margin="15,0,0,0" Width="300"/>
+                <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
             </WrapPanel>
             <WrapPanel Margin="20,0,0,10">
                 <TextBlock Foreground="White" Text="Another Setting"/>
-                <TextBox Margin="15,0,0,0" Width="300"/>
+                <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
             </WrapPanel>
         </StackPanel>
     </Grid>
