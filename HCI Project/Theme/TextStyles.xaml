@@ -58,4 +58,12 @@
         <Setter Property="Height" Value="32"/>
         <Setter Property="Margin" Value="1,0,0,0"/>
     </Style>
+    <Style x:Key="LinkTextBodyStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#85B3B0"/>
+        <Setter Property="FontSize" Value="14.5"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
 </ResourceDictionary>

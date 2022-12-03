@@ -87,6 +87,9 @@ namespace HCI_Project.MVVM.Model
                 // Removes all apostrophes from a games title due to issues with database
                 Game tempGame = new Game(game.appid.ToString(), RemoveApostrophe(game.name), LauncherID.Steam);
                 tempGame.IconImage = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/" + game.appid.ToString() + "/" + game.img_icon_url + ".jpg");
+                tempGame.PlaytimeHours = (int) game.playtime_forever / 60;
+                tempGame._lastplayed = (int)game.rtime_last_played;
+
                 // Populates the Game object with more detailed data from the API
                 await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
@@ -156,11 +159,11 @@ namespace HCI_Project.MVVM.Model
 
                 // Sets game info from the parsed response
                 game.HeaderImage = new Uri(data["header_image"].Value<string>());
-                game.Short_Description = data["short_description"].Value<string>();
+                game.ShortDescription = data["short_description"].Value<string>();
                 game.Description = data["detailed_description"].Value<string>();
 
                 // Sanitizing of strings
-                game.Short_Description = RemoveApostrophe(game.Short_Description);
+                game.ShortDescription = RemoveApostrophe(game.ShortDescription);
                 game.Description = RemoveApostrophe(game.Description);
 
                 game.Description = RemoveHTML(game.Description);
@@ -269,6 +272,8 @@ namespace HCI_Project.MVVM.Model
                     public long appid { get; set; }
                     public string name { get; set; }
                     public string img_icon_url { get; set; }
+                    public long playtime_forever { get; set; }
+                    public long rtime_last_played { get; set; }
                 }
             }
         }

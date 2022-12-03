@@ -14,8 +14,8 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Results" Padding="25,0,0,0"
-                FontSize="30" Foreground="White"          
-         />
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" FontWeight="Heavy" 
+                   Style="{DynamicResource TextHeaderStyle}"     
+          Text="Results" />
     </Grid>
 </UserControl>
