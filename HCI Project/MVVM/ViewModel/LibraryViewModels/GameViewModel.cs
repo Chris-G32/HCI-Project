@@ -6,6 +6,14 @@ using System.Text;
 using HCI_Project.MVVM.Model;
 using System.Windows.Controls.Primitives;
 using System.Windows;
+using Microsoft.Win32;
+using System.IO;
+using System.Windows.Controls;
+using System.Windows.Markup;
+using Winforms=System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using System.Windows.Media.TextFormatting;
+using System.Linq;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -14,6 +22,17 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
     /// </summary>
     public class GameViewModel : ObservableObject
     {
+        //List of image file suffixes
+        //List of gallery images
+        private Uri _galleryFolder;
+        public Uri GalleryFolder {
+            get { return _galleryFolder; }
+            set { _galleryFolder = value; OnPropertyChanged();}
+        }
+
+        
+
+
         //Current Game Selected Needs Actual Struct
         public Game SelectedGame { get; private set; }
         //Will need updated to first on game switch or instead just create whole new game vm, may be easier and more logical
@@ -31,6 +50,8 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 
         public RelayCommand AddLink { get; set; }
         public RelayCommand RemoveLink { get; set; } 
+        public RelayCommand UpdateGalleryDirectory { get; set; }
+
 
         /// <summary>
         /// Instantiates the GameView and its associated data
@@ -50,6 +71,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         /// </summary>
         public GameViewModel(Game game) : this()
         {
+            
             SelectedGame = game;
             PlayGame = new RelayCommand(o =>
             {
@@ -84,11 +106,23 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                     result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
                 }
+            });
+            UpdateGalleryDirectory = new RelayCommand(o =>
+            {
 
+                var tmp = new List<Uri>();
+                Winforms.FolderBrowserDialog folderBrowserDialog = new Winforms.FolderBrowserDialog();
+                folderBrowserDialog.ShowDialog();
+                if (folderBrowserDialog.SelectedPath != null) { 
+                    var files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
 
-
+                //Debug.WriteLine((tmp.ToArray()).ToString());
+                SelectedGame.GalleryFolder = new Uri(folderBrowserDialog.SelectedPath);
+                }
             });
         }
+        public Uri testURI { get; set; }    
+        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".JPE", ".BMP", ".GIF", ".PNG" };
     }
 }
 
