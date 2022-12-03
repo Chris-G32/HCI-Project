@@ -80,7 +80,7 @@ namespace HCI_Project.MVVM.Model
             }
         }
         public int PlaytimeHours { get; set; }
-        public Uri HeaderImage { get; set; }=new Uri("https://cdn.akamai.steamstatic.com/steam/apps/1276390/header_alt_assets_4.jpg?t=1669803774");
+        public Uri HeaderImage { get; set; }
         public Uri IconImage { get; set; } = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg");
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
