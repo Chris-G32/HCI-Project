@@ -77,12 +77,26 @@
                         <Grid Background="{DynamicResource lnchMedTurq}">
                             <!--rocket-->
                             <Image x:Name="PlayButtonRocket" Width="50" Margin="-76,4,0,4"
-                                   Source="ImageResources/ButtonElements/button_play_rocket@2x.png">
+                                   Source="ImageResources/ButtonElements/button_play_rocket@2x.png" RenderTransformOrigin="0.5,0.5">
+                                <!--<Image.RenderTransform>
+                                    <TranslateTransform x:Name="RocketTransform"/>
+                                </Image.RenderTransform>
+                                <Image.Triggers>
+                                    <EventTrigger RoutedEvent="Image.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="RocketTransform" Storyboard.TargetProperty="X" 
+                                                                 From="0" To="359" Duration="0:0:4" RepeatBehavior="Forever">
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Image.Triggers>-->
                             </Image>
                             <!--PLAY text-->
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center"
                                        Style="{DynamicResource ButtonTextStyle}" FontSize="25"
-                                       Text="PLAY" Margin="51,0,0,0">
+                                       Text="PLAY" Margin="0,0,8,0">
                             </TextBlock>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -126,7 +140,7 @@
                 <TabItem.Header>
                     <TextBlock Text="Play" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
-                <!--tab is linked here-->
+                <!--TAB CONTENT START-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
@@ -138,18 +152,18 @@
                                    />
                     <Grid Grid.Row="1">
                         <Grid.OpacityMask>
-                                <LinearGradientBrush StartPoint="0,0.86" EndPoint="0,0.96">
-                                    <GradientStop Offset="0" Color="#2D2828"/>
-                                    <GradientStop Offset="1.2" Color="Transparent"/>
-                                </LinearGradientBrush>
-                            </Grid.OpacityMask>
+                            <LinearGradientBrush StartPoint="0,0.86" EndPoint="0,0.96">
+                                <GradientStop Offset="0" Color="#2D2828"/>
+                                <GradientStop Offset="1.2" Color="Transparent"/>
+                            </LinearGradientBrush>
+                        </Grid.OpacityMask>
                         <Image x:Name="BannerImage"  HorizontalAlignment="Center"
                             VerticalAlignment="Top" Stretch="UniformToFill" StretchDirection="Both"
                            Source="{Binding SelectedGame.HeaderImage, FallbackValue={StaticResource DefaultBannerImage}}">
-                            
+
                         </Image>
                     </Grid>
-                    
+
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
                         <!--Launcher icon here: set based on which launncher a game uses-->
                         <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
@@ -158,17 +172,17 @@
                                    Background="{DynamicResource lnchDarkMedGray}"
                                    Margin="5,30,5,0">
                             LastPlayed:
-                            <Run Text="(replace with binding)" Foreground="{DynamicResource lnchPeach}"/>                        </TextBlock>
+                            <Run Text="(replace with binding)" Foreground="{DynamicResource lnchPeach}"/></TextBlock>
                     </StackPanel>
                 </Grid>
             </TabItem>
-            
+
             <!--COMMUNITY TAB-->
             <TabItem x:Name="Community" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Community" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
-                <!--tab is linked here-->
+                <!--TAB CONTENT START-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
@@ -184,7 +198,7 @@
                     <!--Embedded View-->
                     <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15"
                                   Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
-                                    <!--Change so source = selected link -->
+                    <!--Change so source = selected link -->
                     <!--Links-->
                     <Grid Grid.Column="1" Grid.Row="1" Margin="15">
                         <Grid.ColumnDefinitions>
@@ -228,17 +242,18 @@
                             </ItemsControl>
                         </ScrollViewer>
                         <Button x:Name="RemoveLinksButton" Grid.Row="3" HorizontalAlignment="Left" Width="Auto" Margin="0,5,0,0" Style="{DynamicResource RemoveLinksButton}"
-                                /> <!--Add command which removes all links-->
+                                />
+                        <!--Add command which removes all links-->
                     </Grid>
                 </Grid>
             </TabItem>
-            
+
             <!--INFO TAB-->
             <TabItem x:Name="Info" Background="{DynamicResource lnchMedGray}" Height="27" VerticalAlignment="Top">
                 <TabItem.Header>
                     <TextBlock Text="Info" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
-                <!--tab is linked here-->
+                <!--TAB CONTENT START-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -292,40 +307,36 @@
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="News Feed"/>
                         <ScrollViewer MaxHeight="660" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,0">
-                            <StackPanel>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="2.5*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="27"/>
-                                        <RowDefinition Height="0.5*" MinHeight="27"/>
-                                        <RowDefinition Height="4*" MinHeight="27"/>
-                                    </Grid.RowDefinitions>
-                                    <!--Need to convert to data template-->
-                                    <TextBlock x:Name="Date" Grid.ColumnSpan="2" Style="{DynamicResource TextBodyStyle}" Foreground="{DynamicResource lnchLightGray}" Margin="5,5,0,0"
-                                           Text="mm/dd/yyyy"/>
-                                    <Image x:Name="NewsImage" Grid.Column="0" Grid.RowSpan="2" Grid.Row="1" MinHeight="50" Margin="4"
-                                           Source="ImageResources/DefaultImages/default_game_image@2x.png"/>
-                                    <TextBlock x:Name="NewsTitle" Grid.Column="1" Grid.Row="1" MaxHeight="40" Style="{DynamicResource TextBodyStyle}" Margin="5,0,5,5"
-                                               Text="(insert title)"/>
-                                    <TextBlock x:Name="NewsDescription" Grid.Column="1" Grid.Row="2" Style="{DynamicResource TextBodyStyle}" Margin="5,0,5,5"
-                                               Text="(insert description)"/>
-                                </Grid>
-                            </StackPanel>
+                            <!--<ItemsControl ItemsSource="">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>-->
+                            <Grid Margin="0,0,0,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="27"/>
+                                    <RowDefinition Height="0.5*" MinHeight="27"/>
+                                    <RowDefinition Height="4*" MinHeight="27"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock x:Name="Date" Grid.ColumnSpan="2" Style="{DynamicResource TextBodyStyle}" Foreground="{DynamicResource lnchLightGray}" Margin="5,5,0,0"
+                                                           Text="(mm/dd/yyyy)"/>
+                                <TextBlock x:Name="NewsTitle" Grid.Row="1" MaxHeight="40" Style="{DynamicResource TextBodyStyle}" Margin="5,0,5,5"
+                                                           Text="(insert title)"/>
+                                <TextBlock x:Name="NewsDescription" Grid.Row="2" Style="{DynamicResource TextBodyStyle}" Margin="20,0,5,5"
+                                                           Text="(insert description)"/>
+                            </Grid>
+                            <!--</DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>-->
                         </ScrollViewer>
                     </StackPanel>
                 </Grid>
             </TabItem>
-            
+
             <!--GALLERY TAB-->
             <TabItem x:Name="Gallery" Background="{DynamicResource lnchMedGray}">
                 <TabItem.Header>
                     <TextBlock Text="Gallery" Style="{DynamicResource TextHeaderStyle}"/>
                 </TabItem.Header>
-
-                <!--tab is linked here-->
+                <!--TAB CONTENT START-->
                 <Grid Background="{DynamicResource lnchDarkGray}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"/>
@@ -336,23 +347,29 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="0.12*" MinHeight="27"/>
                         <RowDefinition Height="1*"/>
+                        <RowDefinition Height="0.12*"/>
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle3" Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5">
                         <Run Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"/>
                         <!--<Run Text="   :My Captures"/>-->
                     </TextBlock>
-                    <Button x:Name="ArrowButtonLeft" Grid.Column="0" Grid.Row="2" Height="75" HorizontalAlignment="Right" Margin="20"
-                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
-                    <Button x:Name="ArrowButtonRight" Grid.Column="2" Grid.Row="2" Height="75" HorizontalAlignment="Left" Margin="20"
-                            Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
-
-                    <Image x:Name="ImageWindow" Grid.Column="1" Grid.Row="2" Margin="15" Stretch="UniformToFill"
-                           Source="ImageResources/DefaultImages/default_game_image@2x.png"/>
+                    <!--Directory input-->
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Width="Auto" Margin="8">
                         <Button x:Name="DirectoryButton" Width="Auto" MinHeight="27" Style="{DynamicResource UpdateDirectoryButton}"
                                 Click="DirectoryButton_Click"/>
                         <TextBox x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Style="{DynamicResource TextBoxBaseStyle}"/>
                     </StackPanel>
+                    <!--Gallery selection-->
+                    <Button x:Name="ArrowButtonLeft" Grid.Column="0" Grid.Row="2" Height="75" HorizontalAlignment="Right" Margin="20"
+                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
+                    <Button x:Name="ArrowButtonRight" Grid.Column="2" Grid.Row="2" Height="75" HorizontalAlignment="Left" Margin="20"
+                            Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
+                    <Image x:Name="ImageWindow" Grid.Column="1" Grid.Row="2" Margin="15" Stretch="UniformToFill"
+                           Source="ImageResources/DefaultImages/default_game_image@2x.png"/>
+                    <!--Date captured per image-->
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource TextBodyStyle}"
+                               />
+                    <!--Add date here-->
                 </Grid>
             </TabItem>
         </TabControl>
