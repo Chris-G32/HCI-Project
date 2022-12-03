@@ -74,7 +74,7 @@ namespace HCI_Project.MVVM.Model.Database
             _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.Short_Description}', {game.Playtime_Hours})";
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours})";
             _cmd.ExecuteNonQuery();
             // Inserts all of the games tags
             foreach(string tag in game.Tags)
