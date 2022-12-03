@@ -85,12 +85,7 @@ namespace HCI_Project.MVVM.Model
             foreach (var game in games.response.games)
             {
                 // Removes all apostrophes from a games title due to issues with database
-                while(game.name.Contains("'"))
-                {
-                    int index = game.name.IndexOf("'");
-                    game.name = game.name.Remove(index, 1);
-                }
-                Game tempGame = new Game(game.appid.ToString(), game.name, LauncherID.Steam);
+                Game tempGame = new Game(game.appid.ToString(), RemoveApostrophe(game.name), LauncherID.Steam);
                 tempGame.IconImage = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/" + game.appid.ToString() + "/" + game.img_icon_url + ".jpg");
                 // Populates the Game object with more detailed data from the API
                 await GetGameInfo(tempGame);
@@ -162,12 +157,11 @@ namespace HCI_Project.MVVM.Model
                 // Sets game info from the parsed response
                 game.HeaderImage = new Uri(data["header_image"].Value<string>());
                 game.Short_Description = data["short_description"].Value<string>();
+                game.Description = data["detailed_description"].Value<string>();
 
-                while (game.Short_Description.Contains("'"))
-                {
-                    int index = game.Short_Description.IndexOf("'");
-                    game.Short_Description = game.Short_Description.Remove(index, 1);
-                }
+                // Sanitizing of strings
+                game.Short_Description = RemoveApostrophe(game.Short_Description);
+                game.Description = RemoveApostrophe(game.Description);
 
                 // Adds each genre of the game as a tag
                 try
@@ -192,6 +186,22 @@ namespace HCI_Project.MVVM.Model
             //    Debug.WriteLine("**************************************************************************");
             //    Debug.WriteLine(k);
             //}
+        }
+
+        /// <summary>
+        /// Removes apostrophes from the strings to fit better in the database
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private string RemoveApostrophe(string s)
+        {
+            string res = s;
+            while (res.Contains("'"))
+            {
+                int index = res.IndexOf("'");
+                res = res.Remove(index, 1);
+            }
+            return res;
         }
 
         //////
