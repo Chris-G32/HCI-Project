@@ -171,8 +171,8 @@
                         <TextBlock x:Name="LastPlayed" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}"
                                    Margin="5,30,5,0">
-                            LastPlayed:
-                            <Run Text="(replace with binding)" Foreground="{DynamicResource lnchPeach}"/></TextBlock>
+                            Last Played:
+                            <Run Text="{Binding SelectedGame.LastPlayed, Mode=OneWay}" Foreground="{DynamicResource lnchPeach}"/>                        </TextBlock>
                     </StackPanel>
                 </Grid>
             </TabItem>

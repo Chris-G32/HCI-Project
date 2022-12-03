@@ -27,7 +27,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             const int MAXRECENTLYPLAYED= 6;
             RecentlyPlayed = new ObservableCollection<Game>();
             var count = 0;
-            foreach(var game in MainViewModel.GameHandler.Games)
+            foreach(var game in MainViewModel.GameHandler.GetRecentlyPlayed())
             {
                 if (count == MAXRECENTLYPLAYED)
                     break;

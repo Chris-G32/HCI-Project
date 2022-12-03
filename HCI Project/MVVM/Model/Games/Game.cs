@@ -47,7 +47,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage=null, string shortDescription=null, int playtime=0)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0)
         {
             Game_ID = id;
             Name = name;
@@ -57,6 +57,7 @@ namespace HCI_Project.MVVM.Model
             IconImage = iconImage;
             ShortDescription = shortDescription;
             PlaytimeHours = playtime;
+            _lastplayed = lastplayed;
         }
 
         public string Game_ID { get; }
@@ -68,9 +69,18 @@ namespace HCI_Project.MVVM.Model
         public string Description { get; set; }
         public string ShortDescription { get; set; }
 
-        public DateTime LastPlayed { get; set; }
+        public int _lastplayed;
+        public DateTime LastPlayed { 
+            get
+            {
+                // Converts the Unix timestamp which steam uses into a DateTime object
+                DateTimeOffset dto = DateTimeOffset.FromUnixTimeSeconds(_lastplayed);
+                // Manual conversion from UTC -> EST
+                return dto.DateTime.AddHours(-5);
+            }
+        }
         public int PlaytimeHours { get; set; }
-        public Uri HeaderImage { get; set; }=new Uri("https://cdn.akamai.steamstatic.com/steam/apps/1276390/header_alt_assets_4.jpg?t=1669803774");
+        public Uri HeaderImage { get; set; }
         public Uri IconImage { get; set; } = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg");
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
