@@ -80,7 +80,7 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Background="{DynamicResource lnchLightMedGray}">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
-                                       Style="{DynamicResource TextBodyStyle}" Text="Remove All Links"/>
+                                       Style="{DynamicResource TextBodyStyleMedium}" Text="Remove All Links"/>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
@@ -98,13 +98,13 @@
     </Style>
     
     <!--UPDATE DIRECTORY BUTTON for Gallery Tab-->
-    <Style x:Key="UpdateDirectoryButton" TargetType="{x:Type Button}">
+    <Style x:Key="SelectDirectoryButton" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid Background="{DynamicResource lnchLightMedGray}">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
-                                       Style="{DynamicResource TextBodyStyle}" Text="Update Directory"/>
+                                       Style="{DynamicResource TextBodyStyleMedium}" Text="Select Directory"/>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
@@ -126,32 +126,51 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Source="ImageResources/ButtonElements/button_big_arrow_left@2x.png"/>
+                    <Grid Background="{DynamicResource lnchDarkGray}">
+                        <Image Source="ImageResources/ButtonElements/button_big_arrow_left@2x.png"/>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#665F67" Duration="0:0:0.10" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource lnchDarkMedGray}"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
     <Style x:Key="ArrowButtonRight" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Image Source="ImageResources/ButtonElements/button_big_arrow_left@2x.png"
+                    <Grid Background="{DynamicResource lnchDarkGray}">
+                        <Image Source="ImageResources/ButtonElements/button_big_arrow_left@2x.png"
                            RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <ScaleTransform ScaleX="-1"/>
-                        </Image.RenderTransform>
-                    </Image>
+                            <Image.RenderTransform>
+                                <ScaleTransform ScaleX="-1"/>
+                            </Image.RenderTransform>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#665F67" Duration="0:0:0.10" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Image>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource lnchDarkMedGray}"/>
+                <Setter Property="Background" Value="{DynamicResource lnchMedGray}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
