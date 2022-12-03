@@ -346,9 +346,9 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
-                        <RowDefinition Height="0.12*" MinHeight="27"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="0.12*"/>
+                        
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle3" Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5">
                         <Run Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"/>
@@ -361,8 +361,8 @@
                         <TextBlock x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Text="{Binding SelectedGame.GalleryFolder.OriginalString,Mode=OneWay,TargetNullValue='Select an image folder',FallbackValue='Select an image folder'}" Style="{DynamicResource TextBlockBaseStyle}"/>
                     </StackPanel>
                     
-                    <customControls:GalleryViewer Grid.ColumnSpan="3" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Stretch" ></customControls:GalleryViewer>
-                    <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding testURI}" Stretch="Fill"></Image>
+                    <customControls:GalleryViewer Grid.ColumnSpan="3" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Stretch" Padding="0,0,0,25"></customControls:GalleryViewer>
+                    
                 </Grid>
             </TabItem>
         </TabControl>

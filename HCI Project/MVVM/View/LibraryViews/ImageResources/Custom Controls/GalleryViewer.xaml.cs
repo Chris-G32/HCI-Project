@@ -28,13 +28,14 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        
         public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".JPE", ".BMP", ".GIF", ".PNG" };
         public ObservableCollection<Uri> ImageUris { get; set; } = new ObservableCollection<Uri>();
         private int _selectedImageIndex { get; set; }
         public int SelectedImageIndex { get { return _selectedImageIndex; }
             set { _selectedImageIndex = value;
                 try {
+                    
                     if (_selectedImageIndex >= ImageUris.Count())
                     {
                         _selectedImageIndex = 0;
@@ -59,6 +60,7 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
             }
 
         }
+        
         private Uri _currentImageSource;
         public Uri CurrentImageSource { get { return _currentImageSource; } set { _currentImageSource = value;RaisePropertyChanged(nameof(CurrentImageSource)); } }
         public GalleryViewer()
