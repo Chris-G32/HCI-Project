@@ -277,7 +277,8 @@
                         <TextBlock Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}"
                                    Style="{DynamicResource TextBodyStyle}">
                                 Hours Played:
-                                <Run Text="(insert playtime)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
+                                <!-- BINDING BY BAILEY -->
+                                <Run Text="{Binding SelectedGame.Playtime_Hours,Mode=OneWay}" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
                                 Installed On:
                                 <Run Text="(insert date)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/>
                         </TextBlock>
