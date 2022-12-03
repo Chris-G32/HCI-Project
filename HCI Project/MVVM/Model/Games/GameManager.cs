@@ -58,6 +58,7 @@ namespace HCI_Project.MVVM.Model
         {
             _games = new ObservableCollection<Game>();
             _db.ReadAllGames(Games);
+            SortGamesListByName();
         }
 
         /// <summary>
@@ -107,6 +108,27 @@ namespace HCI_Project.MVVM.Model
             }
 
             return recentGames;
+        }
+
+        /// <summary>
+        /// Sorts Games property by name
+        /// </summary>
+        public void SortGamesListByName()
+        {
+            for (int x = 0; x < _games.Count; x++)
+            {
+                int newestIndex = x;
+                for (int y = x; y < _games.Count; y++)
+                {
+                    if (_games[y].Name.CompareTo(_games[newestIndex].Name) < 0)
+                    {
+                        newestIndex = y;
+                    }
+                }
+                Game temp = _games[newestIndex];
+                _games[newestIndex] = _games[x];
+                _games[x] = temp;
+            }
         }
     }
 }
