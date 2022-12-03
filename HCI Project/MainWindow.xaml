@@ -11,7 +11,7 @@
       d:DesignHeight="900" d:DesignWidth="1600"
       Background="{DynamicResource lnchBlack}"
       Focusable="True"
-     
+      Width="1280" Height="720"
       >
 
     <Window.DataContext>

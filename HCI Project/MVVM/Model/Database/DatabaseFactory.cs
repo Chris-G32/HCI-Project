@@ -14,7 +14,7 @@ namespace HCI_Project.MVVM.Model.Database
         /// </summary>
         public static void BuildTables(SQLiteCommand cmd)
         {
-            Debug.WriteLine("Rebuilding Database");
+            Debug.WriteLine("Initializing SQLite Database...");
             // Avoid errors by dropping tables if they already exists
             cmd.CommandText = "DROP TABLE IF EXISTS games";
             cmd.ExecuteNonQuery();
@@ -23,6 +23,8 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.CommandText = "DROP TABLE IF EXISTS settings";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "DROP TABLE IF EXISTS discord";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "DROP TABLE IF EXISTS hidden";
             cmd.ExecuteNonQuery();
 
             // Creates table for storing game information
@@ -41,7 +43,11 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.CommandText = @"CREATE TABLE links(id varchar(20), link TEXT)";
             cmd.ExecuteNonQuery();
 
-            Debug.WriteLine("Table 'games' and 'settings' created");
+            // Creates a table to track hidden games
+            cmd.CommandText = @"CREATE TABLE hidden(id varchar(20))";
+            cmd.ExecuteNonQuery();
+
+            Debug.WriteLine("SQLite Database Initialized");
         }
     }
 }
