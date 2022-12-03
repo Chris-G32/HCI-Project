@@ -9,25 +9,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background= "{DynamicResource lnchDarkGray}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="101"/>
-            <RowDefinition Height="167"/>
-            <RowDefinition Height="167"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">
-         
-                <Image Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"/>
-        </Button>
-        
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Results"
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Results" Padding="25,0,0,0"
                 FontSize="30" Foreground="White"          
          />
     </Grid>
