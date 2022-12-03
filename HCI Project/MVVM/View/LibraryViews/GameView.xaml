@@ -78,20 +78,29 @@
                             <!--rocket-->
                             <Image x:Name="PlayButtonRocket" Width="50" Margin="-76,4,0,4"
                                    Source="ImageResources/ButtonElements/button_play_rocket@2x.png" RenderTransformOrigin="0.5,0.5">
-                                <!--<Image.RenderTransform>
+                                <Image.RenderTransform>
                                     <TranslateTransform x:Name="RocketTransform"/>
                                 </Image.RenderTransform>
                                 <Image.Triggers>
-                                    <EventTrigger RoutedEvent="Image.Loaded">
+                                    <EventTrigger RoutedEvent="Button.MouseEnter">
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="RocketTransform" Storyboard.TargetProperty="X" 
-                                                                 From="0" To="359" Duration="0:0:4" RepeatBehavior="Forever">
+                                                                 From="0" To="7" Duration="0:0:0.15">
                                                 </DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </EventTrigger>
-                                </Image.Triggers>-->
+                                    <EventTrigger RoutedEvent="Button.MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="RocketTransform" Storyboard.TargetProperty="X" 
+                                                                 From="7" To="0" Duration="0:0:0.15">
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Image.Triggers>
                             </Image>
                             <!--PLAY text-->
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center"
@@ -166,7 +175,7 @@
 
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
                         <!--Launcher icon here: set based on which launncher a game uses-->
-                        <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
+                        <TextBlock x:Name="GameDescription" MaxHeight="120" Style="{DynamicResource TextBodyStyle}"
                             Text="{Binding SelectedGame.ShortDescription}" Margin="5,10,5,0"/>
                         <TextBlock x:Name="LastPlayed" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}"
@@ -276,7 +285,7 @@
                     <StackPanel x:Name="Achievements" Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Achievements"/>
-                        <ScrollViewer MaxHeight="315" Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Height="315" Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}" VerticalScrollBarVisibility="Auto">
 
                         </ScrollViewer>
                     </StackPanel>
@@ -297,7 +306,7 @@
                     <StackPanel x:Name="LongDescription" Grid.Row="1" >
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Description"/>
-                        <ScrollViewer MaxHeight="315" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Height="315" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" VerticalScrollBarVisibility="Auto">
                             <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5"
                                        Text="{Binding SelectedGame.Description, Mode=OneWay}"/>
                         </ScrollViewer>
