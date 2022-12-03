@@ -163,6 +163,8 @@ namespace HCI_Project.MVVM.Model
                 game.Short_Description = RemoveApostrophe(game.Short_Description);
                 game.Description = RemoveApostrophe(game.Description);
 
+                game.Description = RemoveHTML(game.Description);
+
                 // Adds each genre of the game as a tag
                 try
                 {
@@ -201,6 +203,23 @@ namespace HCI_Project.MVVM.Model
                 int index = res.IndexOf("'");
                 res = res.Remove(index, 1);
             }
+            return res;
+        }
+
+        private string RemoveHTML(string s)
+        {
+            string res = s;
+
+            while(res.Contains("<"))
+            {
+                int leftIndex = res.IndexOf("<");
+                int rightIndex = res.IndexOf(">");
+                int length = (rightIndex - leftIndex) + 1;
+
+                res = res.Remove(leftIndex, length);
+                res.Insert(leftIndex, " ");
+            }
+
             return res;
         }
 
