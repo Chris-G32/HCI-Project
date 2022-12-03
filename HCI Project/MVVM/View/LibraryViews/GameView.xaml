@@ -157,7 +157,7 @@
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
                         <!--Launcher icon here: set based on which launncher a game uses-->
                         <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
-                            Text="{Binding SelectedGame.Description}" Margin="5,10,5,0"/>
+                            Text="{Binding SelectedGame.ShortDescription}" Margin="5,10,5,0"/>
                         <TextBlock x:Name="LastPlayed" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}"
                                    Margin="5,30,5,0">
@@ -278,7 +278,7 @@
                                    Style="{DynamicResource TextBodyStyle}">
                                 Hours Played:
                                 <!-- BINDING BY BAILEY -->
-                                <Run Text="{Binding SelectedGame.Playtime_Hours,Mode=OneWay}" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
+                                <Run Text="{Binding SelectedGame.PlaytimeHours,Mode=OneWay}" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
                                 Installed On:
                                 <Run Text="(insert date)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/>
                         </TextBlock>
