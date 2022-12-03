@@ -28,21 +28,6 @@ namespace HCI_Project.MVVM.View.LibraryViews
          ~GameView() {
             WebWindow.Dispose();
         }
-
-        private void MainPlayButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SubtractButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void ArrowButtonLeft_Click(object sender, RoutedEventArgs e)
         {
             _imageIndex--;
@@ -64,8 +49,13 @@ namespace HCI_Project.MVVM.View.LibraryViews
 
         private void DirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-
+            _imageIndex = 1;
            _numImage = 0;  //need a way to get number of files in directory
+
+        }
+
+        private void RemoveLinksButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
