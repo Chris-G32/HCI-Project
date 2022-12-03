@@ -288,7 +288,7 @@
                                Text="Description"/>
                         <ScrollViewer MaxHeight="315" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" VerticalScrollBarVisibility="Auto">
                             <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5"
-                                       Text="(insert long description)"/>
+                                       Text="{Binding SelectedGame.Description, Mode=OneWay}"/>
                         </ScrollViewer>
                     </StackPanel>
                     <!--News Feed-->
