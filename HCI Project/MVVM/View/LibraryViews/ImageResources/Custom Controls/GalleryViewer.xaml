@@ -7,17 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="Gallery"
+             KeyDown="Gallery_KeyDown"
              >
     <UserControl.Resources>
         <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image@2x.png"></BitmapImage>
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal">
+    <Grid HorizontalAlignment="Stretch" >
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="75"/>
+            
+        </Grid.RowDefinitions>
         
-        <Button x:Name="ArrowButtonLeft" Height="75" HorizontalAlignment="Left"
-                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
-        <Image x:Name="ImageWindow" Stretch="UniformToFill" HorizontalAlignment="Center"
+
+        <Viewbox Grid.Row="0" HorizontalAlignment="Stretch">
+            <Image x:Name="ImageWindow" Stretch="Uniform" HorizontalAlignment="Center" 
                            Source="{Binding CurrentImageSource,ElementName=Gallery,Mode=OneWay,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"/>
-        <Button x:Name="ArrowButtonRight" Height="75" HorizontalAlignment="Right" 
+        </Viewbox>        
+        <Button x:Name="ArrowButtonLeft" Height="65" HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,70,0"
+                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
+        <Button x:Name="ArrowButtonRight" Height="65" HorizontalAlignment="Center" Grid.Row="1" Margin="70,0,0,0"
                             Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
-    </StackPanel>
+    </Grid>
 </UserControl>

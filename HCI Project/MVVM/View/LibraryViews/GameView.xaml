@@ -361,7 +361,7 @@
                         <TextBlock x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Text="{Binding SelectedGame.GalleryFolder.OriginalString,Mode=OneWay,TargetNullValue='Select an image folder',FallbackValue='Select an image folder'}" Style="{DynamicResource TextBlockBaseStyle}"/>
                     </StackPanel>
                     
-                    <customControls:GalleryViewer Grid.Column="1" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Left"></customControls:GalleryViewer>
+                    <customControls:GalleryViewer Grid.ColumnSpan="3" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Stretch" ></customControls:GalleryViewer>
                     <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding testURI}" Stretch="Fill"></Image>
                 </Grid>
             </TabItem>

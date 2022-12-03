@@ -110,5 +110,18 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         {
             SelectedImageIndex -= 1;
         }
+
+        private void Gallery_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.Left:
+                    SelectedImageIndex -= 1;
+                    break;
+                case Key.Right:
+                    SelectedImageIndex += 1;
+                    break;
+            }
+        }
     }
 }
