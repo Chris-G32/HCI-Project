@@ -6,6 +6,7 @@
              xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
              xmlns:local="clr-namespace:HCI_Project.MVVM.View"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels" xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             xmlns:customControls="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
              mc:Ignorable="d"
              d:DesignHeight="775" d:DesignWidth="1400"
              x:Name="GameViews"
@@ -345,17 +346,12 @@
                         <Run Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"/>
                         <!--<Run Text="   :My Captures"/>-->
                     </TextBlock>
-                    <Button x:Name="ArrowButtonLeft" Grid.Column="0" Grid.Row="2" Height="75" HorizontalAlignment="Right" Margin="20"
-                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
-                    <Button x:Name="ArrowButtonRight" Grid.Column="2" Grid.Row="2" Height="75" HorizontalAlignment="Left" Margin="20"
-                            Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
-
-                    <Image x:Name="ImageWindow" Grid.Column="1" Grid.Row="2" Margin="15" Stretch="UniformToFill"
-                           Source="ImageResources/DefaultImages/default_game_image@2x.png"/>
+                    
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Width="Auto" Margin="8">
                         <Button x:Name="DirectoryButton" Width="Auto" MinHeight="27" Style="{DynamicResource UpdateDirectoryButton}"
-                                Click="DirectoryButton_Click"/>
-                        <TextBox x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Style="{DynamicResource TextBoxBaseStyle}"/>
+                                Click="DirectoryButton_Click" Command="{Binding UpdateGalleryDirectory}"/>
+                        <TextBlock x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Style="{DynamicResource TextBlockBaseStyle}"/>
+                        <customControls:GalleryViewer ImageFolder="{Binding SelectedGame.GalleryFolder}" Grid.Row="1"></customControls:GalleryViewer>
                     </StackPanel>
                 </Grid>
             </TabItem>

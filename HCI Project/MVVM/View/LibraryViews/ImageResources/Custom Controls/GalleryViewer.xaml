@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls.GalleryViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="Gallery"
+             >
+    <UserControl.Resources>
+        <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image@2x.png"></BitmapImage>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Button x:Name="ArrowButtonLeft" Height="75" HorizontalAlignment="Left" Margin="20"
+                            Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
+        <Image x:Name="ImageWindow" Margin="15" Stretch="UniformToFill" HorizontalAlignment="Center"
+                           Source="{Binding CurrentImageSource,ElementName=Gallery,FallbackValue={StaticResource DefaultImage}}" Width="500"/>
+        <Button x:Name="ArrowButtonRight" Height="75" HorizontalAlignment="Right" Margin="20"
+                            Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
+    </StackPanel>
+</UserControl>

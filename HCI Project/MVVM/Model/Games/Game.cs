@@ -72,5 +72,6 @@ namespace HCI_Project.MVVM.Model
         public GameState State { get; set; }
         // Link to discord channel
         public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
+        public Uri GalleryFolder { get; set; }
     }
 }
