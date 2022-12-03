@@ -10,7 +10,10 @@ using Microsoft.Win32;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using Gat.Controls.Model;
+using Winforms=System.Windows.Forms;
+using Newtonsoft.Json.Linq;
+using System.Windows.Media.TextFormatting;
+using System.Linq;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -20,7 +23,6 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
     public class GameViewModel : ObservableObject
     {
         //List of image file suffixes
-
         //List of gallery images
         private Uri _galleryFolder;
         public Uri GalleryFolder {
@@ -69,6 +71,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         /// </summary>
         public GameViewModel(Game game) : this()
         {
+            
             SelectedGame = game;
             PlayGame = new RelayCommand(o =>
             {
@@ -105,15 +108,18 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 }
             });
             UpdateGalleryDirectory = new RelayCommand(o => {
-                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+
+                var tmp =new List<Uri>();    
+                Winforms.FolderBrowserDialog folderBrowserDialog = new Winforms.FolderBrowserDialog();
+                folderBrowserDialog.ShowDialog();
+                var files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
                 
-                OpenFileDialog galleryDirSelector= new OpenFileDialog();
-                
-                galleryDirSelector.Filter = "Folders |*.";
-                galleryDirSelector.ShowDialog();
-                SelectedGame.GalleryFolder = new Uri(galleryDirSelector.FileName);
+                //Debug.WriteLine((tmp.ToArray()).ToString());
+                SelectedGame.GalleryFolder = new Uri(folderBrowserDialog.SelectedPath);
             });
         }
+        public Uri testURI { get; set; }    
+        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".JPE", ".BMP", ".GIF", ".PNG" };
     }
 }
 

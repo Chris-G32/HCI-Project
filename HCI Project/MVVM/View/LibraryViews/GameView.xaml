@@ -350,9 +350,11 @@
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Width="Auto" Margin="8">
                         <Button x:Name="DirectoryButton" Width="Auto" MinHeight="27" Style="{DynamicResource UpdateDirectoryButton}"
                                 Click="DirectoryButton_Click" Command="{Binding UpdateGalleryDirectory}"/>
-                        <TextBlock x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Style="{DynamicResource TextBlockBaseStyle}"/>
-                        <customControls:GalleryViewer ImageFolder="{Binding SelectedGame.GalleryFolder}" Grid.Row="1"></customControls:GalleryViewer>
+                        <TextBlock x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Text="{Binding SelectedGame.GalleryFolder.OriginalString,Mode=OneWay,TargetNullValue='Select an image folder',FallbackValue='Select an image folder'}" Style="{DynamicResource TextBlockBaseStyle}"/>
                     </StackPanel>
+                    
+                    <customControls:GalleryViewer Grid.Column="1" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Left"></customControls:GalleryViewer>
+                    <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding testURI}" Stretch="Fill"></Image>
                 </Grid>
             </TabItem>
         </TabControl>
