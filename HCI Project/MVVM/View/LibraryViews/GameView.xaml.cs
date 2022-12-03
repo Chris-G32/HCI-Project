@@ -53,10 +53,5 @@ namespace HCI_Project.MVVM.View.LibraryViews
            _numImage = 0;  //need a way to get number of files in directory
 
         }
-
-        private void RemoveLinksButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
