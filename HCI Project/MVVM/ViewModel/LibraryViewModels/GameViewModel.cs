@@ -66,7 +66,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 try
                 {
                     var uriStr = o as string;
-                    if (uriStr.Contains("https://") == false && uriStr.Contains("htts://")==false)
+                    if (uriStr.Contains("https://") == false && uriStr.Contains("http://")==false)
                     {
                         uriStr = "https://" + uriStr;
                     }
