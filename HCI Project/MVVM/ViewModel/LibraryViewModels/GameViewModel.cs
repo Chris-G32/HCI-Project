@@ -6,11 +6,11 @@ using System.Text;
 using HCI_Project.MVVM.Model;
 using System.Windows.Controls.Primitives;
 using System.Windows;
-using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using Gat.Controls.Model;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -105,7 +105,8 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 }
             });
             UpdateGalleryDirectory = new RelayCommand(o => {
-                FolderBrowserDialog fodlerbrows;
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                
                 OpenFileDialog galleryDirSelector= new OpenFileDialog();
                 
                 galleryDirSelector.Filter = "Folders |*.";
