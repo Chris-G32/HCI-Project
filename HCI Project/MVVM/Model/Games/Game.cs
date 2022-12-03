@@ -47,7 +47,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0, bool hidden=false)
         {
             Game_ID = id;
             Name = name;
@@ -58,6 +58,7 @@ namespace HCI_Project.MVVM.Model
             ShortDescription = shortDescription;
             PlaytimeHours = playtime;
             _lastplayed = lastplayed;
+            Hidden = hidden;
         }
 
         public string Game_ID { get; }
@@ -86,5 +87,7 @@ namespace HCI_Project.MVVM.Model
         public GameState State { get; set; }
         // Link to discord channel
         public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
+
+        public bool Hidden { get; set; }
     }
 }

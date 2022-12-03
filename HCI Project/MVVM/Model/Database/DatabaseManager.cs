@@ -72,6 +72,9 @@ namespace HCI_Project.MVVM.Model.Database
             // Deletes the discord link associated with the game
             _cmd.CommandText = $"DELETE FROM links WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
+            // Deletes the game from the hidden list to update it
+            _cmd.CommandText = $"DELETE FROM hidden WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
             _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed})";
@@ -86,6 +89,11 @@ namespace HCI_Project.MVVM.Model.Database
             {
                 // Inserts the discord link
                 _cmd.CommandText = $"INSERT INTO links VALUES ('{game.Game_ID}', '{link.ToString()}')";
+                _cmd.ExecuteNonQuery();
+            }
+            if(game.Hidden)
+            {
+                _cmd.CommandText = $"INSERT INTO hidden VALUES ('{game.Game_ID}')";
                 _cmd.ExecuteNonQuery();
             }
         }
@@ -155,13 +163,35 @@ namespace HCI_Project.MVVM.Model.Database
         }
 
         /// <summary>
+        /// Sets the state of a game's Hidden property from the database
+        /// </summary>
+        /// <param name="game"></param>
+        public void GetHidden(Game game)
+        {
+            _cmd.CommandText = $"SELECT * FROM hidden WHERE id='{game.Game_ID}'";
+            SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                game.Hidden = true;
+            }
+            else
+            {
+                game.Hidden = false;
+            }
+            rdr.Close();
+        }
+
+        /// <summary>
         /// Reads all current games from the database and returns result
         /// </summary>
         /// <returns> A list of all currently existing game objects from the database </returns>
-        public void ReadAllGames(ObservableCollection<Game> games, bool hidden = false)
+        public void ReadAllGames(ObservableCollection<Game> games, bool showHidden = false)
         {
             _cmd.CommandText = $"SELECT * FROM games";
             SQLiteDataReader rdr = _cmd.ExecuteReader();
+
+            ObservableCollection<Game> tempGames = new ObservableCollection<Game>();
 
             // Creates a game object from each response from the database and stores to return later
             while (rdr.Read())
@@ -175,22 +205,28 @@ namespace HCI_Project.MVVM.Model.Database
                 string shortDescription = rdr.GetString(7);
                 int playtime = rdr.GetInt32(8);
                 int lastPlayed = rdr.GetInt32(9);
-                games.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed));
+                tempGames.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed));
             }
             rdr.Close();
 
             // Populates the tags for each game
-            foreach (Game game in games)
+            foreach (Game game in tempGames)
             {
                 GetGameTags(game);
                 GetGameLinks(game);
             }
 
-            // Returns the list of games
-           // return games;
-        }
 
-        //public List<Game> SearchGames(string name = null, string)
+            // Removes hidden games from results if the hidden parameter is not passed, or set to false
+            foreach (Game game in tempGames)
+            {
+                if(showHidden || game.Hidden == false)
+                {
+                    games.Add(game);
+                    continue;
+                }
+            }
+        }
 
     }
 }
