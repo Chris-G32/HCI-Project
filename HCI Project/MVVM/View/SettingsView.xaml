@@ -23,5 +23,8 @@
                 <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
             </WrapPanel>
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button />
+        </StackPanel>
     </Grid>
 </UserControl>
