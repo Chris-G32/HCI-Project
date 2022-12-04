@@ -30,8 +30,7 @@ namespace HCI_Project.MVVM.View.LibraryViews
         {
             var butt = sender as Button;
             var link = butt.Content as Uri;
-            WebWindow.Source= link;
-            
+            WebWindow.Source = link;
         }
     }
 }

@@ -169,7 +169,8 @@
                   VerticalAlignment="Center" Width="500" Height="35"
                   IsEditable="True" StaysOpenOnEdit="False"
                   ItemsSource="{Binding SearchResults,ElementName=NavBar}"
-                  SelectedItem="{Binding SelectedEntryCommand,ElementName=NavBar,Mode=TwoWay}"
+                  
+                  SelectionChanged="SearchBox_SelectionChanged"
                   Text="{Binding SearchQuery,ElementName=NavBar}"
                   GotKeyboardFocus="SearchBox_GotKeyboardFocus"
                   TextBoxBase.TextChanged="SearchBox_TextChanged"
