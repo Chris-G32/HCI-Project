@@ -205,8 +205,8 @@
                                Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"
                                />
                     <!--Embedded View-->
-                    <Wpf:WebView2 x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15"
-                                  Source="https://discord.com/channels/1032653990858592267/1032653990858592270" />
+                    <Wpf:WebView2  x:Name="WebWindow" Grid.Column="0" Grid.Row="1" Margin="15"
+                                  Source="https://discord.com"/>
                     <!--Change so source = selected link -->
                     <!--Links-->
                     <Grid Grid.Column="1" Grid.Row="1" Margin="15">
@@ -250,8 +250,8 @@
                                                     <ColumnDefinition Width="1*"/>
                                                     <ColumnDefinition Width="27"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0"
-                                                       Text="{Binding}" Grid.Column="0"/>
+                                                <Button HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" Background="Transparent"
+                                                       Content="{Binding}" Grid.Column="0" CommandParameter="{Binding ElementName=WebWindow}" Click="ChangeWebsite_Click"/>
                                                 <Button x:Name="SubtractButton" Style="{DynamicResource SubtractButton}" HorizontalAlignment="Right" Width="27" Height="27" Grid.Column="1"
                                                 VerticalAlignment="Top" Command="{Binding ElementName=GameViews,Path=DataContext.RemoveLink}" CommandParameter="{Binding}"/>
                                             </Grid>

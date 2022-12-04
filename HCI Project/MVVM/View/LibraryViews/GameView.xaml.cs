@@ -26,6 +26,12 @@ namespace HCI_Project.MVVM.View.LibraryViews
             WebWindow.Dispose();
         }
 
-       
+        private void ChangeWebsite_Click(object sender, RoutedEventArgs e)
+        {
+            var butt = sender as Button;
+            var link = butt.Content as Uri;
+            WebWindow.Source= link;
+            
+        }
     }
 }
