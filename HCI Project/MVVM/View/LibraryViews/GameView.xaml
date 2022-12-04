@@ -172,17 +172,21 @@
                         </Image>
                     </Grid>
 
-                    <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
+                    <Grid Background="{DynamicResource lnchDarkGray}" Grid.Row="2" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
                         <!--Launcher icon here: set based on which launncher a game uses-->
-                        <TextBlock x:Name="GameDescription" MaxHeight="120" Style="{DynamicResource TextBodyStyleLight}"
-                            Text="{Binding SelectedGame.ShortDescription}" Margin="5,10,5,0"/>
+                        <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyleLight}"
+                            Text="{Binding SelectedGame.ShortDescription}" Grid.Row="0"/>
                         <TextBlock x:Name="LastPlayed" MinHeight="27" Style="{DynamicResource TextHeaderStyle}"
-                                   Background="{DynamicResource lnchDarkMedGray}"
-                                   Margin="5,30,5,0">
+                                   Background="{DynamicResource lnchDarkMedGray}" Grid.Row="1" HorizontalAlignment="Left"
+                                   Width="350">
                             Last Played:
                             <Run Text="{Binding SelectedGame.LastPlayed, Mode=OneWay}"/>
                         </TextBlock>
-                    </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
 
