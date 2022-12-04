@@ -97,12 +97,14 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             });
             RemoveLink = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Remove(o as Uri);
+                MainViewModel.GameHandler.SaveGame(SelectedGame);
             });
             ChangeWebsite = new RelayCommand(o => {
                 CurrentCommunityPageSite = o as Uri;
             });
             ClearLinks = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Clear();
+                MainViewModel.GameHandler.SaveGame(SelectedGame);
             });
             AddLink = new RelayCommand(o => {
                 Uri addMe;
@@ -127,6 +129,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                     result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
                 }
+                MainViewModel.GameHandler.SaveGame(SelectedGame);
             });
             UpdateGalleryDirectory = new RelayCommand(o =>
             {
@@ -139,6 +142,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 
                 //Debug.WriteLine((tmp.ToArray()).ToString());
                 SelectedGame.GalleryFolder = new Uri(folderBrowserDialog.SelectedPath);
+                MainViewModel.GameHandler.SaveGame(SelectedGame);
                 }
             });
             

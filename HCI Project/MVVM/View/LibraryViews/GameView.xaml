@@ -321,7 +321,8 @@
                     <StackPanel x:Name="LongDescription" Grid.Row="1" >
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Description"/>
-                        <ScrollViewer Height="240" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Height="240" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" 
+                                      VerticalScrollBarVisibility="Auto" Style="{DynamicResource ScrollViewStyle}">
                             <TextBlock Style="{DynamicResource TextBodyStyleLight}" Margin="5"
                                        Text="{Binding SelectedGame.Description, Mode=OneWay}"/>
                         </ScrollViewer>
