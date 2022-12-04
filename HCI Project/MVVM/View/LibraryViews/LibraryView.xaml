@@ -12,9 +12,7 @@
              >
     <UserControl.Resources>
         <BitmapImage x:Key="DefaultGameIcon" UriSource="ImageResources/DefaultImages/default_game_icon@2x.png"/>
-        <Style TargetType="{x:Type Button}"
-           x:Key="ButtonLibraryEntry">
-
+        <Style x:Key="ButtonLibraryEntry" TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -24,21 +22,16 @@
                                 <ColumnDefinition Width="Auto" MinWidth="100"/>
                             </Grid.ColumnDefinitions>
                             <Rectangle x:Name="HoverRect" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent"
-                                   StrokeThickness="20" Fill="Transparent"
-                                   />
+                                   StrokeThickness="20" Fill="Transparent"/>
                             <Rectangle x:Name="SelectRect" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent"
-                                   StrokeThickness="20" Fill="Transparent"
-                                   />
+                                   StrokeThickness="20" Fill="Transparent"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Image Grid.Column="0" Margin="2" MinWidth="25" MaxWidth="40"
-                               Source="{Binding IconImage,TargetNullValue={StaticResource DefaultGameIcon}, FallbackValue={StaticResource DefaultGameIcon}}"
-                               />
-                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
-                               Style="{DynamicResource LibraryTextStyle}" 
-                               Text="{Binding Name}"
-                               />
+                                       Source="{Binding IconImage,TargetNullValue={StaticResource DefaultGameIcon}, FallbackValue={StaticResource DefaultGameIcon}}"/>
+                                <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                           Style="{DynamicResource LibraryTextStyle}" 
+                                           Text="{Binding Name}"/>
                             </StackPanel>
-                            
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -68,17 +61,15 @@
             <ScrollViewer.Resources>
                 <Style TargetType="ScrollBar">
                     <Setter Property="Width" Value="15"/>
-                    
                 </Style>
             </ScrollViewer.Resources>
             <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button x:Name="LibraryEntry"
-                                    Style="{StaticResource ButtonLibraryEntry}"
-                                    Command="{Binding ElementName=Library,  Path=DataContext.OpenGamePage}" CommandParameter="{Binding}" 
-                                HorizontalAlignment="Stretch"
-                                    />
+                                Style="{StaticResource ButtonLibraryEntry}"
+                                Command="{Binding ElementName=Library, Path=DataContext.OpenGamePage}" CommandParameter="{Binding}" 
+                                HorizontalAlignment="Stretch"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
