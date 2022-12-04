@@ -15,6 +15,12 @@ namespace HCI_Project.MVVM.Model
     }
     public class Game:ObservableObject
     {
+        public Game(string id, string name)
+        {
+            Game_ID = id;
+            Name = name;
+        }
+
         /// <summary>
         /// For use in the FindGames function of each launcher to populate with minimum information
         /// </summary>
@@ -82,8 +88,8 @@ namespace HCI_Project.MVVM.Model
         public Uri BoxImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_600x900.jpg"); } }
         public Uri GalleryFolder { get { return _galleryFolder; }set { _galleryFolder = value;OnPropertyChanged(); } }
 
-        private GameNews[] _news;
-        public GameNews[] News
+        private ObservableCollection<GameNews> _news = new ObservableCollection<GameNews>();
+        public ObservableCollection<GameNews> News
         {
             get
             {

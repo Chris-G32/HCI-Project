@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using Gameloop.Vdf;
 using Gameloop.Vdf.Linq;
+using HCI_Project.MVVM.Model.Games;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -94,6 +95,7 @@ namespace HCI_Project.MVVM.Model
 
                 // Populates the Game object with more detailed data from the API
                 await GetGameInfo(tempGame);
+                await GetGameNews(tempGame);
                 db.InsertGame(tempGame);
             }
         }
@@ -197,6 +199,32 @@ namespace HCI_Project.MVVM.Model
             //}
         }
 
+        private async Task GetGameNews(Game game)
+        {
+            var resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid={game.Game_ID}&count=6");
+
+            // Parses the json response using JTokens due to complex response nature
+            JToken outer = JToken.Parse(resp);
+            JObject inner = outer["appnews"].Value<JObject>();
+            JArray news = inner["newsitems"].Value<JArray>();
+            foreach(var k in news)
+            {
+                GameNews newsObj = new GameNews();
+                newsObj.Title = RemoveApostrophe(k["title"].Value<string>());
+
+                // Converts the Unix timestamp which steam uses into a DateTime object
+                DateTimeOffset dto = DateTimeOffset.FromUnixTimeSeconds(k["date"].Value<int>());
+                // Manual conversion from UTC -> EST
+                newsObj.Date = dto.DateTime.AddHours(-5);
+
+                string content = RemoveHTML(k["contents"].Value<string>());
+                content = RemoveApostrophe(content);
+                newsObj.Contents = content;
+
+                game.News.Add(newsObj);
+            }
+        }
+
         private void GetGameInstallState(Game game)
         {
             //C:\Program Files (x86)\Steam\steamapps\libraryfolders.vdf
@@ -228,6 +256,11 @@ namespace HCI_Project.MVVM.Model
             return res;
         }
 
+        /// <summary>
+        /// Removes all html tags
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         private string RemoveHTML(string s)
         {
             string res = s;
