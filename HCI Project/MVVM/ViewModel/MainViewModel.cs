@@ -41,6 +41,8 @@ namespace HCI_Project.MVVM.ViewModel
                 OnPropertyChanged();
             } 
         }
+        
+        public RelayCommand SetSearchResultsView { get; set; }
         public RelayCommand SetGameView { get; set; }
         public RelayCommand ToggleSettings { get; set; }
         public RelayCommand Test { get; set; }
@@ -134,7 +136,13 @@ namespace HCI_Project.MVVM.ViewModel
                 CurrentView = LibraryVM;
                 
             });
-            
+            SetSearchResultsView = new RelayCommand(o =>
+            {
+                LibraryVM.CurrentView = new SearchResultsViewModel(_searchFor);
+                CurrentView = LibraryVM;
+
+            });
+
         }
     }
 }

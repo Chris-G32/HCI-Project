@@ -26,6 +26,11 @@ namespace HCI_Project.MVVM.View.LibraryViews
             InitializeComponent();
         }
 
+        private void Library_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Keyboard.ClearFocus();
+        }
+
         //Used to Bind Library to a list of Games Ideally
         //public ObservableCollection<string> ListSource
         //{

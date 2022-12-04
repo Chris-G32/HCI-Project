@@ -28,7 +28,7 @@ namespace HCI_Project.MVVM.View
             InitializeComponent();
         }
 
-        //SEARCH BAR: Selected Entry (use command to display respective page, etc.)
+        //SEARCH BAR: Selected Entry (use command Fto display respective page, etc.)
         public RelayCommand SelectedEntryCommand 
         {
             get { return (RelayCommand)GetValue(SelectedEntryCommandProperty); }
@@ -144,19 +144,47 @@ namespace HCI_Project.MVVM.View
             }
         }
         //Helper to stop it from executing again on index change back
-        private bool _firstExec=true;
-        private void SearchBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (_firstExec)
-            {   _firstExec = false;
-                SelectedEntryCommand?.Execute(SearchBox.SelectedValue as Game);
-                SearchBox.SelectedIndex = -1;
+        //private bool _firstExec=true;
+        //private void SearchBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (_firstExec)
+        //    {   _firstExec = false;
+        //        SelectedEntryCommand?.Execute(SearchBox.SelectedValue as Game);
+        //        SearchBox.SelectedIndex = -1;
                 
+        //    }
+        //    else { 
+        //        _firstExec = true; 
+        //    }
+        //    Keyboard.ClearFocus();
+        //}
+
+
+
+        public RelayCommand OpenSearchResults
+        {
+            get { return (RelayCommand)GetValue(OpenSearchResultsProperty); }
+            set { SetValue(OpenSearchResultsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OpenSearchResults.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OpenSearchResultsProperty =
+            DependencyProperty.Register("OpenSearchResults", typeof(RelayCommand), typeof(NavBarView));
+
+        private void NavBar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key==Key.Enter)
+            {
+                OpenSearchResults.Execute("FromNavBar");
             }
-            else { 
-                _firstExec = true; 
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!SearchBox.IsMouseDirectlyOver)
+            {
+                Keyboard.ClearFocus();
             }
-            Keyboard.ClearFocus();
         }
     }
 }
