@@ -99,13 +99,18 @@ namespace HCI_Project.MVVM.Model.Database
 
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
+            
+
             if (game.GalleryFolder != null)
             {
-                _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state, screenshots_folder) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State}, '{game.GalleryFolder.OriginalString}')";
+                Debug.WriteLine(game.GalleryFolder.OriginalString);
+                string gallery = game.GalleryFolder.OriginalString.Replace("'", "''");
+                _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state, screenshots_folder) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State}, '{gallery}')";
                 _cmd.ExecuteNonQuery();
             }
             else
             {
+                Debug.WriteLine($"No gallery folder for {game.Name}");
                 _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State})";
                 _cmd.ExecuteNonQuery();
             }
@@ -250,6 +255,7 @@ namespace HCI_Project.MVVM.Model.Database
                 try
                 {
                     galleryFolder = rdr.GetString(6);
+                    galleryFolder = galleryFolder.Replace("''", "'");
                 }
                 catch
                 {

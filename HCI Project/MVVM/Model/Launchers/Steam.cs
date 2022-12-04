@@ -13,6 +13,7 @@ using System.Linq;
 using Gameloop.Vdf;
 using Gameloop.Vdf.Linq;
 using HCI_Project.MVVM.Model.Games;
+using System.Collections.ObjectModel;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -199,7 +200,7 @@ namespace HCI_Project.MVVM.Model
             //}
         }
 
-        private async Task GetGameNews(Game game)
+        public async Task GetGameNews(Game game)
         {
             var resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid={game.Game_ID}&count=6");
 
@@ -207,6 +208,7 @@ namespace HCI_Project.MVVM.Model
             JToken outer = JToken.Parse(resp);
             JObject inner = outer["appnews"].Value<JObject>();
             JArray news = inner["newsitems"].Value<JArray>();
+            ObservableCollection<GameNews> newsList = new ObservableCollection<GameNews>();
             foreach(var k in news)
             {
                 GameNews newsObj = new GameNews();
@@ -221,8 +223,9 @@ namespace HCI_Project.MVVM.Model
                 content = RemoveApostrophe(content);
                 newsObj.Contents = content;
 
-                game.News.Add(newsObj);
+                newsList.Add(newsObj);
             }
+            game.News = newsList;
         }
 
         private void GetGameInstallState(Game game)

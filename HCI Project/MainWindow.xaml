@@ -12,6 +12,7 @@
       Background="{DynamicResource lnchBlack}"
       Focusable="True"
       Width="1280" Height="720"
+      Closing="Window_Closing"
       Closed="Window_Closed"
       >
 

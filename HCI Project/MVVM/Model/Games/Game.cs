@@ -15,12 +15,6 @@ namespace HCI_Project.MVVM.Model
     }
     public class Game:ObservableObject
     {
-        public Game(string id, string name)
-        {
-            Game_ID = id;
-            Name = name;
-        }
-
         /// <summary>
         /// For use in the FindGames function of each launcher to populate with minimum information
         /// </summary>
