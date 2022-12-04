@@ -107,15 +107,18 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 
                 }
             });
-            UpdateGalleryDirectory = new RelayCommand(o => {
+            UpdateGalleryDirectory = new RelayCommand(o =>
+            {
 
-                var tmp =new List<Uri>();    
+                var tmp = new List<Uri>();
                 Winforms.FolderBrowserDialog folderBrowserDialog = new Winforms.FolderBrowserDialog();
                 folderBrowserDialog.ShowDialog();
-                var files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
-                
+                if (folderBrowserDialog.SelectedPath != null) { 
+                    var files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
+
                 //Debug.WriteLine((tmp.ToArray()).ToString());
                 SelectedGame.GalleryFolder = new Uri(folderBrowserDialog.SelectedPath);
+                }
             });
         }
         public Uri testURI { get; set; }    
