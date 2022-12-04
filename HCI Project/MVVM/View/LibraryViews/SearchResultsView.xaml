@@ -13,7 +13,15 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding Results}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="2" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        </ScrollViewer>
         <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">
          
                 <Image Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"/>

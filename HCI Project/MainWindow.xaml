@@ -30,6 +30,7 @@
                          SearchQuery="{Binding SearchFor,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" 
                          SearchResults="{Binding SearchedForView}"
                          SelectedEntryCommand="{Binding SetGameView}"
+                         OpenSearchResults="{Binding SetSearchResultsView}"
                          />
 
 

@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls.SearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="75" d:DesignWidth="800"
+             x:Name="SearchCtrl"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="SearchBox" Style="{StaticResource TextBoxBaseStyle}" Background="{DynamicResource lnchDarkGray}" Height="50" Grid.Row="0" Text="{Binding SearchText,Mode=TwoWay,ElementName=SearchCtrl}"/>
+        <Popup  Name="Popup" Placement="Bottom" PlacementTarget="{Binding ElementName=SearchBox}"
+                        IsOpen="{Binding IsKeyboardFocused,ElementName=SearchBox,Mode=OneWay}"
+                        AllowsTransparency="False" Focusable="True"
+                        PopupAnimation="Slide" Width="{Binding ActualWidth,ElementName=SearchCtrl}"
+                        HorizontalAlignment="Center" Grid.Row="1">
+            <Grid 
+                          Name="DropDown"
+                          SnapsToDevicePixels="True"                
+                          MinWidth="100" Background="{DynamicResource lnchDarkGray}"
+                MaxHeight="550"
+                          >
+                <ScrollViewer HorizontalAlignment="Stretch"  Margin="4,6,4,6" SnapsToDevicePixels="True">
+                    <ItemsControl ItemsSource="{Binding SearchResults,ElementName=SearchCtrl}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="Button" x:Key="ImgTextBut">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <Grid Background="{DynamicResource lnchDarkGray}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="45"/>
+                                                                <ColumnDefinition Width="1*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Image Grid.Column="0" Source="{Binding IconImage}"></Image>
+                                                            <TextBlock Grid.Column="1"  Style="{StaticResource TextBlockBaseStyle}" Background="{DynamicResource lnchDarkGray}" Text="{Binding Name}"/>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Button Style="{StaticResource ImgTextBut}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Popup>
+    </Grid>
+</UserControl>

@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="775" d:DesignWidth="1600"
              x:Name="Library"
+             MouseDown="Library_MouseDown"
              >
     <UserControl.Resources>
         <BitmapImage x:Key="DefaultGameIcon" UriSource="ImageResources/DefaultImages/default_game_icon@2x.png"/>
