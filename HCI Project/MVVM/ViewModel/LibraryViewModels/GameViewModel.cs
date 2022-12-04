@@ -47,7 +47,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         /// Runs the current game being displayed
         /// </summary>
         public RelayCommand PlayGame { get; set; }
-
+        public RelayCommand ClearLinks { get; set; }
         public RelayCommand AddLink { get; set; }
         public RelayCommand RemoveLink { get; set; } 
         public RelayCommand UpdateGalleryDirectory { get; set; }
@@ -82,6 +82,9 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             });
             RemoveLink = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Remove(o as Uri);
+            });
+            ClearLinks = new RelayCommand(o => {
+                SelectedGame.SavedLinks.Clear();
             });
             AddLink = new RelayCommand(o => {
                 Uri addMe;
@@ -120,6 +123,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 SelectedGame.GalleryFolder = new Uri(folderBrowserDialog.SelectedPath);
                 }
             });
+            
         }
         public Uri testURI { get; set; }    
         public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPEG", ".JPE", ".BMP", ".GIF", ".PNG" };
