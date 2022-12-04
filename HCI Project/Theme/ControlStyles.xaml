@@ -216,15 +216,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Grid Background="Transparent">
-                        <Grid.RowDefinitions>
-                            <RowDefinition MaxHeight="1" />
-                            <RowDefinition Height="0.00001*" />
-                            <RowDefinition MaxHeight="1" />
-                        </Grid.RowDefinitions>
-                        <Border Grid.RowSpan="3" CornerRadius="2"
+                        <Border CornerRadius="2"
                                 Background="{DynamicResource lnchDarkMedGray}" />
-                        <Track x:Name="PART_Track" Grid.Row="1" 
-                               IsDirectionReversed="True">
+                        <Track x:Name="PART_Track" IsDirectionReversed="True">
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton Opacity="0"
                                               Command="ScrollBar.PageUpCommand" />
@@ -253,15 +247,10 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MaxWidth="1" />
-                                    <ColumnDefinition Width="0.00001*" />
-                                    <ColumnDefinition MaxWidth="1" />
-                                </Grid.ColumnDefinitions>
-                                <Border Grid.ColumnSpan="3" CornerRadius="2"
+                            <Grid Background="Transparent">
+                                <Border CornerRadius="2"
                                         Background="{DynamicResource lnchDarkMedGray}"/>
-                                <Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="True">
+                                <Track x:Name="PART_Track" IsDirectionReversed="True">
                                     <Track.DecreaseRepeatButton>
                                         <RepeatButton Opacity="0"
                                                       Command="ScrollBar.PageLeftCommand" />
@@ -329,7 +318,6 @@
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid Background="{DynamicResource lnchDarkMedGray}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="16"/>
                             <ColumnDefinition />
                             <ColumnDefinition Width="16"/>
                         </Grid.ColumnDefinitions>
@@ -337,12 +325,18 @@
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}"
-                                                ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" 
-                                                Margin="{TemplateBinding Padding}" Grid.Column="0" Grid.ColumnSpan="2" />
-                        <ScrollBar Grid.Column="2" Style="{DynamicResource ScrollBarStyle}"
-                                   ViewportSize="{TemplateBinding ViewportHeight}" Value="{TemplateBinding VerticalOffset}" 
-                                   Maximum="{TemplateBinding ScrollableHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        <Border Grid.Row="0" Grid.Column="0">
+                            <ScrollContentPresenter Content="{TemplateBinding ScrollViewer.Content}" />
+                        </Border>
+                        <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1" Style="{DynamicResource ScrollBarStyle}"
+                                   Value="{TemplateBinding VerticalOffset}"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        <ScrollBar x:Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0"
+                                   Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}"
+                                   ViewportSize="{TemplateBinding ViewportWidth}" 
+                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
