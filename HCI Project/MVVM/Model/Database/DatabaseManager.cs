@@ -66,7 +66,10 @@ namespace HCI_Project.MVVM.Model.Database
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
-            
+            // Deletes any tags associated with the game
+            _cmd.CommandText = $"DELETE FROM game_tags WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
+
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
             if(game.GalleryFolder!= null)
@@ -74,6 +77,34 @@ namespace HCI_Project.MVVM.Model.Database
                 _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state, screenshots_folder) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State}, '{game.GalleryFolder.OriginalString}')";
                 _cmd.ExecuteNonQuery();
             }else
+            {
+                _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State})";
+                _cmd.ExecuteNonQuery();
+            }
+
+            // Inserts all of the games tags
+            foreach (string tag in game.Tags)
+            {
+                _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
+                _cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateGame(Game game)
+        {
+            Debug.WriteLine("Deleting: " + game.Name);
+            // Deletes any existing object with the same id first to avoid conflicts
+            _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
+            _cmd.ExecuteNonQuery();
+
+            Debug.WriteLine("Inserting: " + game.Name);
+            // Inserts the game itself
+            if (game.GalleryFolder != null)
+            {
+                _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state, screenshots_folder) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State}, '{game.GalleryFolder.OriginalString}')";
+                _cmd.ExecuteNonQuery();
+            }
+            else
             {
                 _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State})";
                 _cmd.ExecuteNonQuery();
@@ -96,13 +127,13 @@ namespace HCI_Project.MVVM.Model.Database
                 _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
                 _cmd.ExecuteNonQuery();
             }
-            foreach(Uri link in game.SavedLinks)
+            foreach (Uri link in game.SavedLinks)
             {
                 // Inserts the discord link
                 _cmd.CommandText = $"INSERT INTO links VALUES ('{game.Game_ID}', '{link.ToString()}')";
                 _cmd.ExecuteNonQuery();
             }
-            if(game.Hidden)
+            if (game.Hidden)
             {
                 _cmd.CommandText = $"INSERT INTO hidden VALUES ('{game.Game_ID}')";
                 _cmd.ExecuteNonQuery();
