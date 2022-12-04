@@ -47,7 +47,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage=null, string shortDescription=null)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0, bool hidden=false)
         {
             Game_ID = id;
             Name = name;
@@ -55,7 +55,10 @@ namespace HCI_Project.MVVM.Model
             Description = desc;
             HeaderImage = headerImage;
             IconImage = iconImage;
-            Short_Description = shortDescription;
+            ShortDescription = shortDescription;
+            PlaytimeHours = playtime;
+            _lastplayed = lastplayed;
+            Hidden = hidden;
         }
 
         public string Game_ID { get; }
@@ -65,12 +68,27 @@ namespace HCI_Project.MVVM.Model
         public List<string> Tags { get; set; } = new List<string>();
         public string[] Images { get; set; }
         public string Description { get; set; }
-        public string Short_Description { get; set; }
-        public Uri HeaderImage { get; set; }=new Uri("https://cdn.akamai.steamstatic.com/steam/apps/1276390/header_alt_assets_4.jpg?t=1669803774");
+        public string ShortDescription { get; set; }
+
+        public int _lastplayed;
+        public DateTime LastPlayed { 
+            get
+            {
+                // Converts the Unix timestamp which steam uses into a DateTime object
+                DateTimeOffset dto = DateTimeOffset.FromUnixTimeSeconds(_lastplayed);
+                // Manual conversion from UTC -> EST
+                return dto.DateTime.AddHours(-5);
+            }
+        }
+        public int PlaytimeHours { get; set; }
+        public Uri HeaderImage { get; set; }
         public Uri IconImage { get; set; } = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg");
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
         public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
+        public bool Hidden { get; set; }
+        private Uri _galleryFolder;
+        public Uri GalleryFolder { get { return _galleryFolder; }set { _galleryFolder = value;OnPropertyChanged(); } }
     }
 }

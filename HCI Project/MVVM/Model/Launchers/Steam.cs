@@ -85,13 +85,11 @@ namespace HCI_Project.MVVM.Model
             foreach (var game in games.response.games)
             {
                 // Removes all apostrophes from a games title due to issues with database
-                while(game.name.Contains("'"))
-                {
-                    int index = game.name.IndexOf("'");
-                    game.name = game.name.Remove(index, 1);
-                }
-                Game tempGame = new Game(game.appid.ToString(), game.name, LauncherID.Steam);
+                Game tempGame = new Game(game.appid.ToString(), RemoveApostrophe(game.name), LauncherID.Steam);
                 tempGame.IconImage = new Uri("http://media.steampowered.com/steamcommunity/public/images/apps/" + game.appid.ToString() + "/" + game.img_icon_url + ".jpg");
+                tempGame.PlaytimeHours = (int) game.playtime_forever / 60;
+                tempGame._lastplayed = (int)game.rtime_last_played;
+
                 // Populates the Game object with more detailed data from the API
                 await GetGameInfo(tempGame);
                 db.InsertGame(tempGame);
@@ -161,13 +159,14 @@ namespace HCI_Project.MVVM.Model
 
                 // Sets game info from the parsed response
                 game.HeaderImage = new Uri(data["header_image"].Value<string>());
-                game.Short_Description = data["short_description"].Value<string>();
+                game.ShortDescription = data["short_description"].Value<string>();
+                game.Description = data["detailed_description"].Value<string>();
 
-                while (game.Short_Description.Contains("'"))
-                {
-                    int index = game.Short_Description.IndexOf("'");
-                    game.Short_Description = game.Short_Description.Remove(index, 1);
-                }
+                // Sanitizing of strings
+                game.ShortDescription = RemoveApostrophe(game.ShortDescription);
+                game.Description = RemoveApostrophe(game.Description);
+
+                game.Description = RemoveHTML(game.Description);
 
                 // Adds each genre of the game as a tag
                 try
@@ -192,6 +191,39 @@ namespace HCI_Project.MVVM.Model
             //    Debug.WriteLine("**************************************************************************");
             //    Debug.WriteLine(k);
             //}
+        }
+
+        /// <summary>
+        /// Removes apostrophes from the strings to fit better in the database
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private string RemoveApostrophe(string s)
+        {
+            string res = s;
+            while (res.Contains("'"))
+            {
+                int index = res.IndexOf("'");
+                res = res.Remove(index, 1);
+            }
+            return res;
+        }
+
+        private string RemoveHTML(string s)
+        {
+            string res = s;
+
+            while(res.Contains("<"))
+            {
+                int leftIndex = res.IndexOf("<");
+                int rightIndex = res.IndexOf(">");
+                int length = (rightIndex - leftIndex) + 1;
+
+                res = res.Remove(leftIndex, length);
+                res.Insert(leftIndex, " ");
+            }
+
+            return res;
         }
 
         //////
@@ -240,6 +272,8 @@ namespace HCI_Project.MVVM.Model
                     public long appid { get; set; }
                     public string name { get; set; }
                     public string img_icon_url { get; set; }
+                    public long playtime_forever { get; set; }
+                    public long rtime_last_played { get; set; }
                 }
             }
         }

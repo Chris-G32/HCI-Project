@@ -9,95 +9,18 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background= "{DynamicResource lnchDarkGray}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="101"/>
-            <RowDefinition Height="167"/>
-            <RowDefinition Height="167"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        
-        <Button x:Name="Home" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Background= "WhiteSmoke" Height="35" Width="35">
-            <Image  Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"  Stretch="UniformToFill"/>
-        </Button>
 
-        <Button x:Name="Settings" Grid.Row="0" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Right" Background="WhiteSmoke" Height="35" Width="35">
-            <Image Source ="https://cdn-icons-png.flaticon.com/512/126/126472.png"                          Stretch="UniformToFill" />
-        </Button>
-
-        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Results" 
-                 FontSize="30" Foreground="White" Height="36" Margin="15"           
-         />
-
+        <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">
          
-        <!--Search Results-->
-
-        <!--  Result 1-->
-        <Image x:Name="SearchImage1" Grid.Row="1" Grid.Column="0" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/egs-spider-man-miles-morales-carousel-thumb-1200x1600-b7c0fb2da84b.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 2-->
-        <Image x:Name="SearchImage2" Grid.Row="1" Grid.Column="1" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/egs-fall-guys-season-3-carousel-thumb-1200x1600-c8400239635d.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText2" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 3-->
-        <Image x:Name="SearchImage3" Grid.Row="1" Grid.Column="2" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/egs-callisto-protocol-carousel-thumb-1200x1600-a10ac9c52ec5.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText3" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 4-->
-        <Image x:Name="SearchImage4" Grid.Row="1" Grid.Column="3" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/egs-nfs-unbound-carousel-thumb-1200x1600-889fb42df7f5.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText4" Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 5-->
-        <Image x:Name="SearchImage5" Grid.Row="2" Grid.Column="0" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/egs-rubmleverse-trios-carousel-thumb-1200x1600-7f8e731a8e4c.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 6-->
-        <Image x:Name="SearchImage6" Grid.Row="2" Grid.Column="1" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/egs-midnight-suns-carousel-thumbnail-v2-1200x1600-f2ad382e29a2.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText6" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 7-->
-        <Image x:Name="SearchImage7" Grid.Row="2" Grid.Column="2" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn2.unrealengine.com/atla-productart-1200x1600-1200x1600-59caced19b71.jpg"/>
-        <Button Margin="0,0,46,21" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText7" Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
-
-        <!--  Result 8-->
-        <Image x:Name="SearchImage8" Grid.Row="2" Grid.Column="3" Margin="46,5,46,21" 
-               Stretch="UniformToFill" Source="https://cdn1.epicgames.com/b4565296c22549e4830c13bc7506642d/offer/TETRA_PREORDER_STANDARD%20EDITION_EPIC_Store_Portrait_1200x1600-1200x1600-ca8b802ff13813c37a44ebf68d0946a2.png"/>
-        <Button Margin="0,0,46,21" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="18" Width="25" 
-                Background="Green" BorderBrush="Black" Foreground="White" Content="Play" FontSize="10" />
-        <TextBlock x:Name="SearchText8" Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5" Foreground="White" Text="(Game Title)"/>
+                <Image Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"/>
+        </Button>
         
-
-
-
-
-
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Results"
+                FontSize="30" Foreground="White"          
+         />
     </Grid>
 </UserControl>

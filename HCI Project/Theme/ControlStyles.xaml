@@ -36,15 +36,20 @@
                     <Grid Background="{DynamicResource lnchLightMedGray}">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
                                        Style="{DynamicResource TextHeaderStyle}" Text="+"/>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource lnchLightGray}"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
     <Style x:Key="SubtractButton" TargetType="{x:Type Button}">
         <Setter Property="Template">
@@ -53,17 +58,69 @@
                     <Grid Background="{DynamicResource lnchLightMedGray}">
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
                                        Style="{DynamicResource TextHeaderStyle}" Text="-"/>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource lnchLightGray}"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
-
+    <!--REMOVE LINKS BUTTON for Community Tab-->
+    <Style x:Key="RemoveLinksButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                       Style="{DynamicResource TextBodyStyle}" Text="Remove All Links"/>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--UPDATE DIRECTORY BUTTON for Gallery Tab-->
+    <Style x:Key="UpdateDirectoryButton" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                       Style="{DynamicResource TextBodyStyle}" Text="Update Directory"/>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--LEFT/RIGHT BUTTONS for Gallery Tab-->
     <Style x:Key="ArrowButtonLeft" TargetType="{x:Type Button}">
         <Setter Property="Template">
@@ -97,6 +154,26 @@
                 <Setter Property="Background" Value="{DynamicResource lnchDarkMedGray}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+    
+    <!--DEFAULT RICHTEXTBOX STYLE-->
+    <Style x:Key="DefaultRichTextBox" TargetType="{x:Type RichTextBox}">
+        <Setter Property="Background" Value="{DynamicResource lnchMedGray}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource lnchMedGray}"/>
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource lnchLightLightGray}"/>
+        <Setter Property="TextBlock.FontStyle" Value="Normal"/>
+        <Setter Property="TextBlock.FontSize" Value="14.5"/>
+        <Setter Property="TextBlock.FontFamily" Value="Segoe UI"/>
+    </Style>
+
+    <Style x:Key="TextBoxBaseStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{DynamicResource lnchMedGray}"/>
+        <Setter Property="Foreground" Value="{DynamicResource lnchLightLightGray}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style x:Key="TextBlockBaseStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Background" Value="{DynamicResource lnchMedGray}"/>
+        <Setter Property="Foreground" Value="{DynamicResource lnchLightLightGray}"/>
     </Style>
 
     <!--COMBOBOX STYLE -->
