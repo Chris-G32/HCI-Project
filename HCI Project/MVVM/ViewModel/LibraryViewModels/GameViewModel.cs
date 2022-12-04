@@ -123,7 +123,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 var tmp = new List<Uri>();
                 Winforms.FolderBrowserDialog folderBrowserDialog = new Winforms.FolderBrowserDialog();
                 folderBrowserDialog.ShowDialog();
-                if (folderBrowserDialog.SelectedPath != null) { 
+                if (folderBrowserDialog.SelectedPath != "") { 
                     var files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
 
                 //Debug.WriteLine((tmp.ToArray()).ToString());
