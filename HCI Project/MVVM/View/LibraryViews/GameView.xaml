@@ -214,45 +214,53 @@
                     <Grid Grid.Column="1" Grid.Row="1" Margin="15">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="11*"/>
-                            <ColumnDefinition Width="1*" MinWidth="27"/>
+                            <ColumnDefinition Width="27"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
-                            <RowDefinition Height="1*" MinHeight="27"/>
+                            <RowDefinition Height="27"/>
                             <RowDefinition Height="15*"/>
                             <RowDefinition Height="42"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource TextHeaderStyle}"
-                                   Text="Saved Links:"/>
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}"
+                                   Text="Add Link" Grid.Row="0"/>
+                        
                         <Button x:Name="AddButton" Grid.Column="1" Grid.Row="1" Style="{DynamicResource AddButton}" Width="27" Height="27" 
                                     Command="{Binding AddLink}" CommandParameter="{Binding ElementName=EnterLink,Path= Text }"/>
 
                         <TextBox x:Name="EnterLink" Grid.Column="0" Grid.Row="1" MinHeight="27" Style="{DynamicResource TextBoxBaseStyle}"/>
-
-                        <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" 
+                        <Grid Grid.ColumnSpan="2" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" Margin="0,10,0,0">
+                            <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2"  
                                       x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,5" VerticalScrollBarVisibility="Auto">
-                            <ItemsControl ItemsSource="{Binding SelectedGame.SavedLinks}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <DataTemplate.Resources>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource LinkTextBodyStyle}"/>
-                                        </DataTemplate.Resources>
-                                        <WrapPanel>
-                                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0"
+
+                                <ItemsControl ItemsSource="{Binding SelectedGame.SavedLinks}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DataTemplate.Resources>
+                                                <Style TargetType="TextBlock" BasedOn="{StaticResource LinkTextBodyStyle}"/>
+                                            </DataTemplate.Resources>
+                                            <WrapPanel>
+                                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0"
                                                        Text="{Binding}"/>
-                                            <Button x:Name="SubtractButton" Style="{DynamicResource SubtractButton}" Width="27" Height="27"
+                                                <Button x:Name="SubtractButton" Style="{DynamicResource SubtractButton}" Width="27" Height="27" Grid.Column="2"
                                                 Command="{Binding ElementName=GameViews,Path=DataContext.RemoveLink}" CommandParameter="{Binding}"/>
-                                        </WrapPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                        <Button x:Name="RemoveLinksButton" Grid.Row="3" HorizontalAlignment="Left" Width="Auto" Margin="0,5,0,0" Style="{DynamicResource RemoveLinksButton}"
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                            <TextBlock Grid.ColumnSpan="3" Grid.Row="2" Style="{DynamicResource TextHeaderStyle}"
+                                   Text="Saved Links:"/>
+                        </Grid>
+                        
+                        <Button x:Name="RemoveLinksButton" Grid.Row="3" HorizontalAlignment="Left" 
+                                Width="Auto" Margin="0,5,0,0" Style="{DynamicResource RemoveLinksButton}"
+                                Command="{Binding ClearLinks}"
                                 />
                         <!--Add command which removes all links-->
                     </Grid>

@@ -53,5 +53,7 @@ namespace HCI_Project.MVVM.View.LibraryViews
            _numImage = 0;  //need a way to get number of files in directory
 
         }
+
+       
     }
 }
