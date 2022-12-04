@@ -47,7 +47,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0, bool hidden=false)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0, GameState state=GameState.OWNED)
         {
             Game_ID = id;
             Name = name;
@@ -58,7 +58,6 @@ namespace HCI_Project.MVVM.Model
             ShortDescription = shortDescription;
             PlaytimeHours = playtime;
             _lastplayed = lastplayed;
-            Hidden = hidden;
         }
 
         public string Game_ID { get; }
@@ -89,6 +88,8 @@ namespace HCI_Project.MVVM.Model
         public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
         public bool Hidden { get; set; }
         private Uri _galleryFolder;
+        public Uri HeroImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_hero.jpg"); } }
+        public Uri BoxImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_600x900.jpg"); } }
         public Uri GalleryFolder { get { return _galleryFolder; }set { _galleryFolder = value;OnPropertyChanged(); } }
     }
 }

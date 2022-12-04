@@ -169,7 +169,7 @@
                         </Grid.OpacityMask>
                         <Image x:Name="BannerImage"  HorizontalAlignment="Center"
                             VerticalAlignment="Top" Stretch="UniformToFill" StretchDirection="Both"
-                           Source="{Binding SelectedGame.HeaderImage, FallbackValue={StaticResource DefaultBannerImage}}">
+                           Source="{Binding SelectedGame.HeroImage, FallbackValue={StaticResource DefaultBannerImage}}">
 
                         </Image>
                     </Grid>
