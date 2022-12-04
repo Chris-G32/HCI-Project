@@ -66,6 +66,13 @@ namespace HCI_Project.MVVM.Model.Database
             // Deletes any existing object with the same id first to avoid conflicts
             _cmd.CommandText = $"DELETE FROM games WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
+            
+            Debug.WriteLine("Inserting: " + game.Name);
+            // Inserts the game itself
+            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State})";
+            _cmd.ExecuteNonQuery();
+
+
             // Deletes any tags associated with the game
             _cmd.CommandText = $"DELETE FROM game_tags WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
@@ -75,12 +82,9 @@ namespace HCI_Project.MVVM.Model.Database
             // Deletes the game from the hidden list to update it
             _cmd.CommandText = $"DELETE FROM hidden WHERE id='{game.Game_ID}'";
             _cmd.ExecuteNonQuery();
-            Debug.WriteLine("Inserting: " + game.Name);
-            // Inserts the game itself
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed})";
-            _cmd.ExecuteNonQuery();
+
             // Inserts all of the games tags
-            foreach(string tag in game.Tags)
+            foreach (string tag in game.Tags)
             {
                 _cmd.CommandText = $"INSERT INTO game_tags VALUES ('{game.Game_ID}', '{tag}')";
                 _cmd.ExecuteNonQuery();
@@ -120,7 +124,8 @@ namespace HCI_Project.MVVM.Model.Database
                 string shortDescription = rdr.GetString(7);
                 int playtime = rdr.GetInt32(8);
                 int lastPlayed = rdr.GetInt32(9);
-                res = new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed);
+                GameState gameState = (GameState)rdr.GetInt32(10); 
+                res = new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed, gameState);
             }
             rdr.Close();
 
@@ -205,7 +210,8 @@ namespace HCI_Project.MVVM.Model.Database
                 string shortDescription = rdr.GetString(7);
                 int playtime = rdr.GetInt32(8);
                 int lastPlayed = rdr.GetInt32(9);
-                tempGames.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed));
+                GameState gameState = (GameState)rdr.GetInt32(10);
+                tempGames.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed, gameState));
             }
             rdr.Close();
 
