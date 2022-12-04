@@ -28,10 +28,10 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
         <Button x:Name="ArrowButtonLeft" Height="65" HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,70,0"
                             Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
-            <TextBlock Style="{StaticResource TextBlockBaseStyle}" Grid.Row="1">
+            <TextBlock Style="{StaticResource TextBlockBaseStyle}" Grid.Row="1" Background="Transparent">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} of {1}">
-                        <Binding Path="SelectedImageIndex" ElementName="Gallery" />
+                        <Binding Path="ImageNumber" ElementName="Gallery" />
                         <Binding Path="ImageUris.Count" ElementName="Gallery"/>
                     </MultiBinding>
                 </TextBlock.Text>
