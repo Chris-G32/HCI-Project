@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,8 +27,6 @@ namespace HCI_Project.MVVM.View
         {
             InitializeComponent();
         }
-
-
 
         //SEARCH BAR: Selected Entry (use command to display respective page, etc.)
         public RelayCommand SelectedEntryCommand 
@@ -101,15 +100,15 @@ namespace HCI_Project.MVVM.View
         /// <summary>
         /// Results to display in dropdown box
         /// </summary>
-        public ObservableCollection<Game> SearchResults
+        public ICollectionView SearchResults
         {
-            get { return (ObservableCollection<Game>)GetValue(SearchResultsProperty); }
+            get { return (ICollectionView)GetValue(SearchResultsProperty); }
             set { SetValue(SearchResultsProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SearchResultsProperty =
-            DependencyProperty.Register("SearchResults", typeof(ObservableCollection<Game>), typeof(NavBarView));
+            DependencyProperty.Register("SearchResults", typeof(ICollectionView), typeof(NavBarView));
 
         ///<summary>
         ///
@@ -143,6 +142,21 @@ namespace HCI_Project.MVVM.View
             if (!combo.IsDropDownOpen){
                 combo.IsDropDownOpen = true;
             }
+        }
+        //Helper to stop it from executing again on index change back
+        private bool _firstExec=true;
+        private void SearchBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_firstExec)
+            {   _firstExec = false;
+                SelectedEntryCommand?.Execute(SearchBox.SelectedValue as Game);
+                SearchBox.SelectedIndex = -1;
+                
+            }
+            else { 
+                _firstExec = true; 
+            }
+            Keyboard.ClearFocus();
         }
     }
 }

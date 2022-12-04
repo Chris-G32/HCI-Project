@@ -28,7 +28,7 @@
         <view:NavBarView ToggleSettingsCommand="{Binding ToggleSettings}" 
                          HomeButtonCommand="{Binding LibraryVM.SetHomeView}" 
                          SearchQuery="{Binding SearchFor,Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}" 
-                         SearchResults="{Binding SearchList}"
+                         SearchResults="{Binding SearchedForView}"
                          SelectedEntryCommand="{Binding SetGameView}"
                          />
 

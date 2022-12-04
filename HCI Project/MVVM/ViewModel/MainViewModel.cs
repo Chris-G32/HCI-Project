@@ -14,25 +14,30 @@ using System.Windows.Controls;
 using System.IO;
 using HCI_Project.MVVM.ViewModel.LibraryViewModels;
 using HCI_Project.MVVM.Model;
+using System.Windows.Data;
+using System.ComponentModel;
+using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace HCI_Project.MVVM.ViewModel
 {
-    public class MainViewModel:ObservableObject
+    public class MainViewModel : ObservableObject
     {
         //public static SomeSortOfHandler(s)
         //Search Bar Stuff
         private ObservableCollection<Game> _searchList;
-        public ObservableCollection<Game> SearchList { get { return _searchList; } set {_searchList = value; OnPropertyChanged(); } }
+        public ObservableCollection<Game> SearchList { get { return _searchList; } set { _searchList = value; OnPropertyChanged(); } }
+        public ListCollectionView SearchedForView { get; }
+        public ICollectionView AllGames {get;}
 
         public static GameManager GameHandler;
 
-        private string _searchFor;
+        private string _searchFor="";
         public string SearchFor { get { return _searchFor; } 
             set { 
                 //Set Value
-                _searchFor = value;
-                //Returns all games meeting query
-                SearchList = GameHandler.SearchByName(_searchFor);
+                _searchFor =(value==null)? "":value;
+                SearchedForView.Refresh();
                 OnPropertyChanged();
             } 
         }
@@ -61,13 +66,38 @@ namespace HCI_Project.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        //Search predicate for sorting searchbar
+        private bool FilterByName(object filterMe)
+        {
+            //BEGIN OF LOGIC FOR NICER SEARCH
+            var game= filterMe as Game;
+            //int MAXLEN = _searchFor.Count();
+            //var nameFormatted = game.Name.Replace('-',' ');
+            //nameFormatted = game.Name.Replace(':', ' ');
+            //var substrs = nameFormatted.Split(' ');
+            
+            //foreach (var str in substrs)
+            //{
+            //    if (str == "" ||str==" ")
+            //        continue;
+            //    if (_searchFor.Contains(str.First())){
+            //        return true;
+            //    }
+            //}
+            return (game.Name.ToUpper()).Contains(_searchFor.ToUpper());
+        }
         /// <summary>
         /// Constructor which creates ViewModel that contains MainWindows bindings
         /// </summary>
         public MainViewModel()
         {
+            
             GameHandler = new GameManager();
-
+            SearchedForView = new ListCollectionView(GameHandler.Games); 
+            AllGames=CollectionViewSource.GetDefaultView(GameHandler.Games);
+            
+            SearchedForView.Filter = FilterByName; 
+            
             //Instantiate each ViewModel
             LibraryVM = new LibraryViewModel();
             SettingsVM = new SettingsViewModel();
@@ -97,10 +127,14 @@ namespace HCI_Project.MVVM.ViewModel
             });
             SetGameView = new RelayCommand(o =>
             {
-                LibraryVM.GameVM = new GameViewModel(o as Game);
+                
+                LibraryVM.GameVM.SelectedGame = o as Game;
+                //LibraryVM.GameVM.SelectedGame = o as Game;
                 LibraryVM.CurrentView = LibraryVM.GameVM;
                 CurrentView = LibraryVM;
+                
             });
+            
         }
     }
 }
