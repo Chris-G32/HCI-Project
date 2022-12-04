@@ -31,6 +31,13 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         }
 
 
+        private Uri _currentCommunityPageSite;
+
+        public Uri CurrentCommunityPageSite
+        {
+            get { return _currentCommunityPageSite; }
+            set { _currentCommunityPageSite = value; OnPropertyChanged(); }
+        }
 
 
         //Current Game Selected Needs Actual Struct
@@ -56,6 +63,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public RelayCommand PlayGame { get; set; }
         public RelayCommand ClearLinks { get; set; }
         public RelayCommand AddLink { get; set; }
+        public RelayCommand ChangeWebsite { get; set; }
         public RelayCommand RemoveLink { get; set; } 
         public RelayCommand UpdateGalleryDirectory { get; set; }
 
@@ -89,6 +97,9 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             });
             RemoveLink = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Remove(o as Uri);
+            });
+            ChangeWebsite = new RelayCommand(o => {
+                CurrentCommunityPageSite = o as Uri;
             });
             ClearLinks = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Clear();
