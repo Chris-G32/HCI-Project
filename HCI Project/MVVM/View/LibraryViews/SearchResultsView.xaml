@@ -14,8 +14,13 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" FontWeight="Heavy" 
-                   Style="{DynamicResource TextHeaderStyle}"     
-          Text="Results" />
+        <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">
+         
+                <Image Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"/>
+        </Button>
+        
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Results"
+                FontSize="30" Foreground="White"          
+         />
     </Grid>
 </UserControl>

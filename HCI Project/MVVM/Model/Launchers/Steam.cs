@@ -10,6 +10,10 @@ using System.Text.Json;
 using HCI_Project.MVVM.Model.Database;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using Gameloop.Vdf;
+using Gameloop.Vdf.Linq;
+using HCI_Project.MVVM.Model.Games;
+using System.Collections.ObjectModel;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -92,6 +96,7 @@ namespace HCI_Project.MVVM.Model
 
                 // Populates the Game object with more detailed data from the API
                 await GetGameInfo(tempGame);
+                await GetGameNews(tempGame);
                 db.InsertGame(tempGame);
             }
         }
@@ -168,6 +173,8 @@ namespace HCI_Project.MVVM.Model
 
                 game.Description = RemoveHTML(game.Description);
 
+                GetGameInstallState(game);
+
                 // Adds each genre of the game as a tag
                 try
                 {
@@ -193,6 +200,49 @@ namespace HCI_Project.MVVM.Model
             //}
         }
 
+        public async Task GetGameNews(Game game)
+        {
+            var resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid={game.Game_ID}&count=6");
+
+            // Parses the json response using JTokens due to complex response nature
+            JToken outer = JToken.Parse(resp);
+            JObject inner = outer["appnews"].Value<JObject>();
+            JArray news = inner["newsitems"].Value<JArray>();
+            ObservableCollection<GameNews> newsList = new ObservableCollection<GameNews>();
+            foreach(var k in news)
+            {
+                GameNews newsObj = new GameNews();
+                newsObj.Title = RemoveApostrophe(k["title"].Value<string>());
+
+                // Converts the Unix timestamp which steam uses into a DateTime object
+                DateTimeOffset dto = DateTimeOffset.FromUnixTimeSeconds(k["date"].Value<int>());
+                // Manual conversion from UTC -> EST
+                newsObj.Date = dto.DateTime.AddHours(-5);
+
+                string content = RemoveHTML(k["contents"].Value<string>());
+                content = RemoveApostrophe(content);
+                newsObj.Contents = content;
+
+                newsList.Add(newsObj);
+            }
+            game.News = newsList;
+        }
+
+        private void GetGameInstallState(Game game)
+        {
+            //C:\Program Files (x86)\Steam\steamapps\libraryfolders.vdf
+            VToken library = VdfConvert.Deserialize(File.ReadAllText("C:\\Program Files (x86)\\Steam\\steamapps\\libraryfolders.vdf"));
+            Debug.WriteLine("Reading File");
+            for (int i = 0; i < 3; i++)
+            {
+                Debug.WriteLine("Checking Folder");
+                foreach(var app in library[$"{i}"]["apps"])
+                {
+                    Debug.WriteLine(app);
+                }
+            }
+        }
+
         /// <summary>
         /// Removes apostrophes from the strings to fit better in the database
         /// </summary>
@@ -209,6 +259,11 @@ namespace HCI_Project.MVVM.Model
             return res;
         }
 
+        /// <summary>
+        /// Removes all html tags
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         private string RemoveHTML(string s)
         {
             string res = s;

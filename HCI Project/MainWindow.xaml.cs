@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HCI_Project.MVVM.Model;
+using HCI_Project.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +23,16 @@ namespace HCI_Project
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closing(object sender, EventArgs e)
+        {
+            //MainViewModel.GameHandler.SaveAllGamesOnClose();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //MainViewModel.GameHandler.SaveAllGamesOnClose();
         }
     }
 }

@@ -31,6 +31,20 @@ namespace HCI_Project.MVVM.Model
             UpdateAll();
         }
 
+        public void SaveAllGamesOnClose()
+        {
+            foreach(Game game in _games)
+            {
+                Debug.WriteLine("Saving Game");
+                _db.UpdateGame(game);
+            }
+        }
+
+        public void SaveGame(Game game)
+        {
+            _db.UpdateGame(game);
+        }
+
         /// <summary>
         /// Launches any game using the proper launcher
         /// </summary>
@@ -58,6 +72,10 @@ namespace HCI_Project.MVVM.Model
         {
             _games = new ObservableCollection<Game>();
             _db.ReadAllGames(Games);
+            foreach(Game game in _games)
+            {
+                _steamLauncher.GetGameNews(game);
+            }
             SortGamesListByName();
         }
 
