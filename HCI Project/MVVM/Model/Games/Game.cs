@@ -24,7 +24,15 @@ namespace HCI_Project.MVVM.Model
             Name = name;
             Launcher_ID = launcher;
         }
-
+        /// <summary>
+        /// Used For Binding Stuff Dont feel like fixing it yet
+        /// </summary>
+        public Game(string id, string name)
+        {
+            Game_ID = id;
+            Name = name;
+            
+        }
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
