@@ -69,8 +69,15 @@ namespace HCI_Project.MVVM.Model.Database
             
             Debug.WriteLine("Inserting: " + game.Name);
             // Inserts the game itself
-            _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state) VALUES ('{game.Game_ID}', '{game.Name}', {(int) game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State})";
-            _cmd.ExecuteNonQuery();
+            if(game.GalleryFolder!= null)
+            {
+                _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state, screenshots_folder) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State}, '{game.GalleryFolder.OriginalString}')";
+                _cmd.ExecuteNonQuery();
+            }else
+            {
+                _cmd.CommandText = $"INSERT INTO games (id, name, launcher_id, description, header_image_link, icon_image_link, short_desc, playtime, last_played, install_state) VALUES ('{game.Game_ID}', '{game.Name}', {(int)game.Launcher_ID}, '{game.Description + " "}', '{game.HeaderImage.ToString()}', '{game.IconImage.ToString()}', '{game.ShortDescription}', {game.PlaytimeHours}, {game._lastplayed}, {(int)game.State})";
+                _cmd.ExecuteNonQuery();
+            }
 
 
             // Deletes any tags associated with the game
@@ -106,35 +113,36 @@ namespace HCI_Project.MVVM.Model.Database
         /// Looks for a game in the database with a given ID and returns the populated Game object
         /// </summary>
         /// <returns> The populated Game object corresponding to the id OR null if not found </returns>
-        public Game ReadGame(string id)
-        {
-            _cmd.CommandText = $"SELECT * FROM games WHERE id='{id}'";
-            SQLiteDataReader rdr = _cmd.ExecuteReader();
+        //public Game ReadGame(string id)
+        //{
+        //    _cmd.CommandText = $"SELECT * FROM games WHERE id='{id}'";
+        //    SQLiteDataReader rdr = _cmd.ExecuteReader();
 
-            Game res = null;
+        //    Game res = null;
 
-            if(rdr.Read())
-            {
-                string gameID = rdr.GetString(0);
-                string gameName = rdr.GetString(1);
-                int launcherID = rdr.GetInt32(2);
-                string description = rdr.GetString(3);
-                string headerImage = rdr.GetString(4);
-                string iconImage = rdr.GetString(5);
-                string shortDescription = rdr.GetString(7);
-                int playtime = rdr.GetInt32(8);
-                int lastPlayed = rdr.GetInt32(9);
-                GameState gameState = (GameState)rdr.GetInt32(10); 
-                res = new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed, gameState);
-            }
-            rdr.Close();
+        //    if(rdr.Read())
+        //    {
+        //        string gameID = rdr.GetString(0);
+        //        string gameName = rdr.GetString(1);
+        //        int launcherID = rdr.GetInt32(2);
+        //        string description = rdr.GetString(3);
+        //        string headerImage = rdr.GetString(4);
+        //        string iconImage = rdr.GetString(5);
+        //        string galleryFolder = rdr.GetString(6);
+        //        string shortDescription = rdr.GetString(7);
+        //        int playtime = rdr.GetInt32(8);
+        //        int lastPlayed = rdr.GetInt32(9);
+        //        GameState gameState = (GameState)rdr.GetInt32(10); 
+        //        res = new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed, gameState, new Uri(galleryFolder));
+        //    }
+        //    rdr.Close();
 
-            GetGameTags(res);
-            GetGameLinks(res);
+        //    GetGameTags(res);
+        //    GetGameLinks(res);
 
-            return res;
+        //    return res;
 
-        }
+        //}
 
         /// <summary>
         /// Reads a game's related discord server from the database and stores it in the game
@@ -207,11 +215,20 @@ namespace HCI_Project.MVVM.Model.Database
                 string description = rdr.GetString(3);
                 string headerImage = rdr.GetString(4);
                 string iconImage = rdr.GetString(5);
+                string galleryFolder;
+                try
+                {
+                    galleryFolder = rdr.GetString(6);
+                }
+                catch
+                {
+                    galleryFolder = null;
+                }
                 string shortDescription = rdr.GetString(7);
                 int playtime = rdr.GetInt32(8);
                 int lastPlayed = rdr.GetInt32(9);
                 GameState gameState = (GameState)rdr.GetInt32(10);
-                tempGames.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed, gameState));
+                tempGames.Add(new Game(gameID, gameName, (LauncherID)launcherID, description, new Uri(headerImage), new Uri(iconImage), shortDescription, playtime, lastPlayed, gameState, galleryFolder));
             }
             rdr.Close();
 

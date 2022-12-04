@@ -14,26 +14,6 @@ namespace HCI_Project.MVVM.Model
     }
     public class Game:ObservableObject
     {
-        public Game(string game_ID, string name, LauncherID launcher_ID, List<string> tags, string[] images, string description, GameState state)
-        {
-            Game_ID = game_ID;
-            Name = name;
-            Launcher_ID = launcher_ID;
-            Tags = tags;
-            Images = images;
-            Description = description;
-            State = state;
-        }
-
-        /// <summary>
-        /// For testing Purposes
-        /// </summary>
-        public Game(string name,string definition)
-        {
-            Name=name;
-            Description = definition;
-        }
-
         /// <summary>
         /// For use in the FindGames function of each launcher to populate with minimum information
         /// </summary>
@@ -47,7 +27,7 @@ namespace HCI_Project.MVVM.Model
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
-        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0, GameState state=GameState.OWNED)
+        public Game(string id, string name, LauncherID launcher, string desc, Uri headerImage = null, Uri iconImage = null, string shortDescription = null, int playtime = 0, int lastplayed=0, GameState state=GameState.OWNED, string galleryFolder=null)
         {
             Game_ID = id;
             Name = name;
@@ -58,6 +38,8 @@ namespace HCI_Project.MVVM.Model
             ShortDescription = shortDescription;
             PlaytimeHours = playtime;
             _lastplayed = lastplayed;
+            if(galleryFolder != null)
+                GalleryFolder = new Uri(galleryFolder);
         }
 
         public string Game_ID { get; }
@@ -65,7 +47,6 @@ namespace HCI_Project.MVVM.Model
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
         public List<string> Tags { get; set; } = new List<string>();
-        public string[] Images { get; set; }
         public string Description { get; set; }
         public string ShortDescription { get; set; }
 
