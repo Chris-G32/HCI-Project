@@ -30,11 +30,18 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             set { _galleryFolder = value; OnPropertyChanged();}
         }
 
-        
+
 
 
         //Current Game Selected Needs Actual Struct
-        public Game SelectedGame { get; private set; }
+        private Game _selectedGame;
+
+        public Game SelectedGame
+        {
+            get { return _selectedGame; }
+            set { _selectedGame = value; OnPropertyChanged(); }
+        }
+
         //Will need updated to first on game switch or instead just create whole new game vm, may be easier and more logical
         private int _tabIndex;
         
@@ -57,22 +64,22 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         /// Instantiates the GameView and its associated data
         /// </summary>
         /// Also where all relay commands are constructed
-        public GameViewModel()
-        {
-            PlayGame = new RelayCommand(o =>
-            {
-                //Some Logic TO Run the Game
-                //SomeInterface.Run(Game)
-                Debug.WriteLine("Running Game (Not Actually)");
-            });
-        }
+        //public GameViewModel()
+        //{
+        //    PlayGame = new RelayCommand(o =>
+        //    {
+        //        //Some Logic TO Run the Game
+        //        //SomeInterface.Run(Game)
+        //        Debug.WriteLine("Running Game (Not Actually)");
+        //    });
+        //}
         /// <summary>
         /// Instantiates the GameView and its associated data
         /// </summary>
-        public GameViewModel(Game game) : this()
+        public GameViewModel(Game game=null)
         {
-            
-            SelectedGame = game;
+
+            SelectedGame = (game == null)?new Game("INIT","INIT"):game;
             PlayGame = new RelayCommand(o =>
             {
                 //Some Logic TO Run the Game
@@ -116,7 +123,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 var tmp = new List<Uri>();
                 Winforms.FolderBrowserDialog folderBrowserDialog = new Winforms.FolderBrowserDialog();
                 folderBrowserDialog.ShowDialog();
-                if (folderBrowserDialog.SelectedPath != null) { 
+                if (folderBrowserDialog.SelectedPath != "") { 
                     var files = Directory.GetFiles(folderBrowserDialog.SelectedPath);
 
                 //Debug.WriteLine((tmp.ToArray()).ToString());
