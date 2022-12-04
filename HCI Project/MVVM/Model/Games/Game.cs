@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Core;
+using HCI_Project.MVVM.Model.Games;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -72,5 +73,18 @@ namespace HCI_Project.MVVM.Model
         public Uri HeroImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_hero.jpg"); } }
         public Uri BoxImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_600x900.jpg"); } }
         public Uri GalleryFolder { get { return _galleryFolder; }set { _galleryFolder = value;OnPropertyChanged(); } }
+
+        private GameNews[] _news;
+        public GameNews[] News
+        {
+            get
+            {
+                return _news;
+            }
+            set
+            {
+                _news = value; OnPropertyChanged();
+            }
+        }
     }
 }
