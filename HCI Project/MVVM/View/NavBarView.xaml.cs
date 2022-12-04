@@ -156,6 +156,7 @@ namespace HCI_Project.MVVM.View
             else { 
                 _firstExec = true; 
             }
+            Keyboard.ClearFocus();
         }
     }
 }
