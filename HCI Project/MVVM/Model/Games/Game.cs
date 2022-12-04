@@ -88,6 +88,8 @@ namespace HCI_Project.MVVM.Model
         public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
         public bool Hidden { get; set; }
         private Uri _galleryFolder;
+        public Uri HeroImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_hero.jpg"); } }
+        public Uri BoxImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_600x900.jpg"); } }
         public Uri GalleryFolder { get { return _galleryFolder; }set { _galleryFolder = value;OnPropertyChanged(); } }
     }
 }
