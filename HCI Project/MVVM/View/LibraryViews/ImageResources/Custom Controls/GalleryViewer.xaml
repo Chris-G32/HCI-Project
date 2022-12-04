@@ -24,10 +24,21 @@
         <Viewbox Grid.Row="0" HorizontalAlignment="Stretch">
             <Image x:Name="ImageWindow" Stretch="Uniform" HorizontalAlignment="Center" 
                            Source="{Binding CurrentImageSource,ElementName=Gallery,Mode=OneWay,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"/>
-        </Viewbox>        
+        </Viewbox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
         <Button x:Name="ArrowButtonLeft" Height="65" HorizontalAlignment="Center" Grid.Row="1" Margin="0,0,70,0"
                             Style="{DynamicResource ArrowButtonLeft}" Click="ArrowButtonLeft_Click"/>
-        <Button x:Name="ArrowButtonRight" Height="65" HorizontalAlignment="Center" Grid.Row="1" Margin="70,0,0,0"
+            <TextBlock Style="{StaticResource TextBlockBaseStyle}" Grid.Row="1" Background="Transparent">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} of {1}">
+                        <Binding Path="ImageNumber" ElementName="Gallery" />
+                        <Binding Path="ImageUris.Count" ElementName="Gallery"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+               
+            </TextBlock>
+            <Button x:Name="ArrowButtonRight" Height="65" HorizontalAlignment="Center"  Margin="70,0,0,0"
                             Style="{DynamicResource ArrowButtonRight}" Click="ArrowButtonRight_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

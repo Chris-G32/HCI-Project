@@ -53,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gameloop.Vdf" Version="0.6.2" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1418.22" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />

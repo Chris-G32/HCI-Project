@@ -79,20 +79,29 @@
                             <!--rocket-->
                             <Image x:Name="PlayButtonRocket" Width="50" Margin="-76,4,0,4"
                                    Source="ImageResources/ButtonElements/button_play_rocket@2x.png" RenderTransformOrigin="0.5,0.5">
-                                <!--<Image.RenderTransform>
+                                <Image.RenderTransform>
                                     <TranslateTransform x:Name="RocketTransform"/>
                                 </Image.RenderTransform>
                                 <Image.Triggers>
-                                    <EventTrigger RoutedEvent="Image.Loaded">
+                                    <EventTrigger RoutedEvent="Button.MouseEnter">
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="RocketTransform" Storyboard.TargetProperty="X" 
-                                                                 From="0" To="359" Duration="0:0:4" RepeatBehavior="Forever">
+                                                                 From="0" To="7" Duration="0:0:0.15">
                                                 </DoubleAnimation>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </EventTrigger>
-                                </Image.Triggers>-->
+                                    <EventTrigger RoutedEvent="Button.MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="RocketTransform" Storyboard.TargetProperty="X" 
+                                                                 From="7" To="0" Duration="0:0:0.15">
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Image.Triggers>
                             </Image>
                             <!--PLAY text-->
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center"
@@ -160,20 +169,21 @@
                         </Grid.OpacityMask>
                         <Image x:Name="BannerImage"  HorizontalAlignment="Center"
                             VerticalAlignment="Top" Stretch="UniformToFill" StretchDirection="Both"
-                           Source="{Binding SelectedGame.HeaderImage, FallbackValue={StaticResource DefaultBannerImage}}">
+                           Source="{Binding SelectedGame.HeroImage, FallbackValue={StaticResource DefaultBannerImage}}">
 
                         </Image>
                     </Grid>
 
                     <StackPanel Background="{DynamicResource lnchDarkGray}" Grid.Row="2">
                         <!--Launcher icon here: set based on which launncher a game uses-->
-                        <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyle}"
+                        <TextBlock x:Name="GameDescription" MaxHeight="120" Style="{DynamicResource TextBodyStyleLight}"
                             Text="{Binding SelectedGame.ShortDescription}" Margin="5,10,5,0"/>
-                        <TextBlock x:Name="LastPlayed" Style="{DynamicResource TextHeaderStyle}"
+                        <TextBlock x:Name="LastPlayed" MinHeight="27" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}"
                                    Margin="5,30,5,0">
                             Last Played:
-                            <Run Text="{Binding SelectedGame.LastPlayed, Mode=OneWay}" Foreground="{DynamicResource lnchPeach}"/>                        </TextBlock>
+                            <Run Text="{Binding SelectedGame.LastPlayed, Mode=OneWay}"/>
+                        </TextBlock>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -204,45 +214,53 @@
                     <Grid Grid.Column="1" Grid.Row="1" Margin="15">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="11*"/>
-                            <ColumnDefinition Width="1*" MinWidth="27"/>
+                            <ColumnDefinition Width="27"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="25"/>
-                            <RowDefinition Height="1*" MinHeight="27"/>
+                            <RowDefinition Height="27"/>
                             <RowDefinition Height="15*"/>
                             <RowDefinition Height="42"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource TextHeaderStyle}"
-                                   Text="Saved Links:"/>
+                        <TextBlock Style="{DynamicResource TextHeaderStyle}"
+                                   Text="Add Link" Grid.Row="0"/>
+                        
                         <Button x:Name="AddButton" Grid.Column="1" Grid.Row="1" Style="{DynamicResource AddButton}" Width="27" Height="27" 
                                     Command="{Binding AddLink}" CommandParameter="{Binding ElementName=EnterLink,Path= Text }"/>
 
                         <TextBox x:Name="EnterLink" Grid.Column="0" Grid.Row="1" MinHeight="27" Style="{DynamicResource TextBoxBaseStyle}"/>
-
-                        <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" 
+                        <Grid Grid.ColumnSpan="2" Grid.Row="2" Background="{DynamicResource lnchDarkMedGray}" Margin="0,10,0,0">
+                            <ScrollViewer Grid.ColumnSpan="3" Grid.Row="2"  
                                       x:Name="SavedLinksBox" Height="Auto" Margin="0,15,0,5" VerticalScrollBarVisibility="Auto">
-                            <ItemsControl ItemsSource="{Binding SelectedGame.SavedLinks}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <DataTemplate.Resources>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource LinkTextBodyStyle}"/>
-                                        </DataTemplate.Resources>
-                                        <WrapPanel>
-                                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0"
+
+                                <ItemsControl ItemsSource="{Binding SelectedGame.SavedLinks}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DataTemplate.Resources>
+                                                <Style TargetType="TextBlock" BasedOn="{StaticResource LinkTextBodyStyle}"/>
+                                            </DataTemplate.Resources>
+                                            <WrapPanel>
+                                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0"
                                                        Text="{Binding}"/>
-                                            <Button x:Name="SubtractButton" Style="{DynamicResource SubtractButton}" Width="27" Height="27"
+                                                <Button x:Name="SubtractButton" Style="{DynamicResource SubtractButton}" Width="27" Height="27" Grid.Column="2"
                                                 Command="{Binding ElementName=GameViews,Path=DataContext.RemoveLink}" CommandParameter="{Binding}"/>
-                                        </WrapPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
-                        <Button x:Name="RemoveLinksButton" Grid.Row="3" HorizontalAlignment="Left" Width="Auto" Margin="0,5,0,0" Style="{DynamicResource RemoveLinksButton}"
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                            <TextBlock Grid.ColumnSpan="3" Grid.Row="2" Style="{DynamicResource TextHeaderStyle}"
+                                   Text="Saved Links:"/>
+                        </Grid>
+                        
+                        <Button x:Name="RemoveLinksButton" Grid.Row="3" HorizontalAlignment="Left" 
+                                Width="Auto" Margin="0,5,0,0" Style="{DynamicResource RemoveLinksButton}"
+                                Command="{Binding ClearLinks}"
                                 />
                         <!--Add command which removes all links-->
                     </Grid>
@@ -277,7 +295,7 @@
                     <StackPanel x:Name="Achievements" Grid.Column="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Achievements"/>
-                        <ScrollViewer MaxHeight="315" Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Height="315" Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}" VerticalScrollBarVisibility="Auto">
 
                         </ScrollViewer>
                     </StackPanel>
@@ -285,21 +303,22 @@
                     <StackPanel x:Name="Stats" Grid.Column="1" Grid.Row="1">
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Stats"/>
-                        <TextBlock Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}"
-                                   Style="{DynamicResource TextBodyStyle}">
-                                Hours Played:
+                        <Grid Margin="15,5,15,5" Background="{DynamicResource lnchDarkMedGray}">
+                            <TextBlock Margin="5" Style="{DynamicResource TextBodyStyleLight}">
+                                    Hours Played:
                                 <!-- BINDING BY BAILEY -->
-                                <Run Text="{Binding SelectedGame.PlaytimeHours,Mode=OneWay}" Foreground="{DynamicResource lnchPeach}"/><LineBreak/><LineBreak/>
+                                <Run Text="{Binding SelectedGame.PlaytimeHours,Mode=OneWay}"/><LineBreak/><LineBreak/>
                                 Installed On:
-                                <Run Text="(insert date)" Foreground="{DynamicResource lnchPeach}"/><LineBreak/>
-                        </TextBlock>
+                                <Run Text="(insert date)"/><LineBreak/>
+                            </TextBlock>
+                        </Grid>
                     </StackPanel>
                     <!--Description-->
                     <StackPanel x:Name="LongDescription" Grid.Row="1" >
                         <TextBlock Style="{DynamicResource TextHeaderStyle}" Margin="15,5,0,0"
                                Text="Description"/>
-                        <ScrollViewer MaxHeight="315" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" VerticalScrollBarVisibility="Auto">
-                            <TextBlock Style="{DynamicResource TextBodyStyle}" Margin="5"
+                        <ScrollViewer Height="240" Background="{DynamicResource lnchDarkMedGray}" Margin="15,5,15,5" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Style="{DynamicResource TextBodyStyleLight}" Margin="5"
                                        Text="{Binding SelectedGame.Description, Mode=OneWay}"/>
                         </ScrollViewer>
                     </StackPanel>
@@ -317,11 +336,11 @@
                                     <RowDefinition Height="0.5*" MinHeight="27"/>
                                     <RowDefinition Height="4*" MinHeight="27"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock x:Name="Date" Grid.ColumnSpan="2" Style="{DynamicResource TextBodyStyle}" Foreground="{DynamicResource lnchLightGray}" Margin="5,5,0,0"
+                                <TextBlock x:Name="Date" Grid.ColumnSpan="2" Style="{DynamicResource TextBodyStyleLight}" Foreground="{DynamicResource lnchLightGray}" Margin="5,5,0,0"
                                                            Text="(mm/dd/yyyy)"/>
-                                <TextBlock x:Name="NewsTitle" Grid.Row="1" MaxHeight="40" Style="{DynamicResource TextBodyStyle}" Margin="5,0,5,5"
+                                <TextBlock x:Name="NewsTitle" Grid.Row="1" MaxHeight="40" Style="{DynamicResource TextBodyStyleMedium}" Margin="5,0,5,5"
                                                            Text="(insert title)"/>
-                                <TextBlock x:Name="NewsDescription" Grid.Row="2" Style="{DynamicResource TextBodyStyle}" Margin="20,0,5,5"
+                                <TextBlock x:Name="NewsDescription" Grid.Row="2" Style="{DynamicResource TextBodyStyleLight}" Margin="20,0,5,5"
                                                            Text="(insert description)"/>
                             </Grid>
                             <!--</DataTemplate>
@@ -346,9 +365,9 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
-                        <RowDefinition Height="0.12*" MinHeight="27"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="0.12*"/>
+                        
                     </Grid.RowDefinitions>
                     <TextBlock x:Name="GameTitle3" Grid.ColumnSpan="3" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5">
                         <Run Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"/>
@@ -356,13 +375,13 @@
                     </TextBlock>
                     
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Width="Auto" Margin="8">
-                        <Button x:Name="DirectoryButton" Width="Auto" MinHeight="27" Style="{DynamicResource UpdateDirectoryButton}"
+                        <Button x:Name="DirectoryButton" Width="Auto" MinHeight="27" Style="{DynamicResource SelectDirectoryButton}"
                                 Click="DirectoryButton_Click" Command="{Binding UpdateGalleryDirectory}"/>
                         <TextBlock x:Name="EnterImageDirectory" Width="712" Margin="8,0,8,0" Text="{Binding SelectedGame.GalleryFolder.OriginalString,Mode=OneWay,TargetNullValue='Select an image folder',FallbackValue='Select an image folder'}" Style="{DynamicResource TextBlockBaseStyle}"/>
                     </StackPanel>
                     
-                    <customControls:GalleryViewer Grid.ColumnSpan="3" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Stretch" ></customControls:GalleryViewer>
-                    <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding testURI}" Stretch="Fill"></Image>
+                    <customControls:GalleryViewer Grid.ColumnSpan="3" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Stretch" Padding="0,0,0,25"></customControls:GalleryViewer>
+                    
                 </Grid>
             </TabItem>
         </TabControl>

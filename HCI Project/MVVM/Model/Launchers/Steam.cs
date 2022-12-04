@@ -10,6 +10,8 @@ using System.Text.Json;
 using HCI_Project.MVVM.Model.Database;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using Gameloop.Vdf;
+using Gameloop.Vdf.Linq;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -168,6 +170,8 @@ namespace HCI_Project.MVVM.Model
 
                 game.Description = RemoveHTML(game.Description);
 
+                GetGameInstallState(game);
+
                 // Adds each genre of the game as a tag
                 try
                 {
@@ -191,6 +195,21 @@ namespace HCI_Project.MVVM.Model
             //    Debug.WriteLine("**************************************************************************");
             //    Debug.WriteLine(k);
             //}
+        }
+
+        private void GetGameInstallState(Game game)
+        {
+            //C:\Program Files (x86)\Steam\steamapps\libraryfolders.vdf
+            VToken library = VdfConvert.Deserialize(File.ReadAllText("C:\\Program Files (x86)\\Steam\\steamapps\\libraryfolders.vdf"));
+            Debug.WriteLine("Reading File");
+            for (int i = 0; i < 3; i++)
+            {
+                Debug.WriteLine("Checking Folder");
+                foreach(var app in library[$"{i}"]["apps"])
+                {
+                    Debug.WriteLine(app);
+                }
+            }
         }
 
         /// <summary>
