@@ -83,6 +83,7 @@ namespace HCI_Project.MVVM.Model.Settings
             ShowHidden = showHidden;
             LaunchOnStartup = launchOnStartup;
             DefaultTab = defaultTab;
+            //Show install directory
         }
 
         

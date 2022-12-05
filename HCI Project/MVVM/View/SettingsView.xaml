@@ -12,6 +12,8 @@
     </d:UserControl.DataContext>
     <Grid Background="{DynamicResource lnchDarkGray}">
         <StackPanel>
+            
+            
             <TextBlock Style="{DynamicResource TextHeaderStyle}"
                        FontSize="20" Margin="5,0,0,10" Text="Settings"/>
             <WrapPanel Margin="20,10,0,10">
@@ -23,8 +25,14 @@
                 <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
             </WrapPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button />
-        </StackPanel>
+
+        <!--ShowHidden checkbox
+            LaunchOnStartup checkbox
+            DefaultTab = input-->
+
+        <!--Save Settings button
+        Restore previous button
+        Restore from default button-->
+        
     </Grid>
 </UserControl>
