@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -46,6 +47,18 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         // Using a DependencyProperty as the backing store for SearchText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SearchTextProperty =
             DependencyProperty.Register("SearchText", typeof(string), typeof(SearchBar), new PropertyMetadata("Search"));
+
+
+
+        public RelayCommand EntryClicked
+        {
+            get { return (RelayCommand)GetValue(EntryClickedProperty); }
+            set { SetValue(EntryClickedProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EntryClickedProperty =
+            DependencyProperty.Register("EntryClicked", typeof(RelayCommand), typeof(SearchBar));
 
 
 

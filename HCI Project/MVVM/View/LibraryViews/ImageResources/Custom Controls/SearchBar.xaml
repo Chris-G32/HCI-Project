@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="SearchBox" Style="{StaticResource TextBoxBaseStyle}" Background="{DynamicResource lnchDarkGray}" Height="50" Grid.Row="0" Text="{Binding SearchText,Mode=TwoWay,ElementName=SearchCtrl}"/>
+        <TextBox x:Name="SearchBox" Style="{StaticResource TextBoxBaseStyle}" Background="{DynamicResource lnchDarkGray}" Height="50" Grid.Row="0" Text="{Binding SearchText,Mode=TwoWay,ElementName=SearchCtrl,UpdateSourceTrigger=PropertyChanged}"/>
         <Popup  Name="Popup" Placement="Bottom" PlacementTarget="{Binding ElementName=SearchBox}"
                         IsOpen="{Binding IsKeyboardFocused,ElementName=SearchBox,Mode=OneWay}"
                         AllowsTransparency="False" Focusable="True"
@@ -53,7 +53,7 @@
                                             </Setter>
                                         </Style>
                                     </Grid.Resources>
-                                    <Button Style="{StaticResource ImgTextBut}"/>
+                                    <Button Style="{StaticResource ImgTextBut}" Command="{Binding ElementName=SearchCtrl, Path=DataContext.OpenGamePage}" CommandParameter="{Binding}"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

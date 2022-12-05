@@ -186,7 +186,7 @@
         <customControls:SearchBar x:Name="SearchBox" Width="600" Height="50" HorizontalAlignment="Center" Grid.Column="1" 
                                   SearchResults="{Binding SearchResults,ElementName=NavBar,Mode=OneWay}" 
                                   SearchText="{Binding SearchQuery,ElementName=NavBar,Mode=TwoWay}"
-                                  
+                                  EntryClicked="{Binding SelectedEntryCommand,ElementName=NavBar,Mode=OneWay}"
                                   />
         <!--<Grid Grid.Column="1" HorizontalAlignment="Center" Width="400" Background="Gray" x:Name="SearchCtrl">
             <Grid.RowDefinitions>
