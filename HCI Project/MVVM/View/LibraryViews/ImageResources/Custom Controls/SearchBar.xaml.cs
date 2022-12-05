@@ -50,10 +50,6 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
             DependencyProperty.Register("SearchText", typeof(string), typeof(SearchBar), new PropertyMetadata("Search"));
 
 
-        public bool IsOverPopup()
-        {
-            return Popup.IsMouseDirectlyOver;
-        }
         public RelayCommand EntryClicked
         {
             get { return (RelayCommand)GetValue(EntryClickedProperty); }
