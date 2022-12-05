@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MVVM\View\ImageResources\ButtonElements\button_home_alt%402x.png" />
     <None Remove="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play_rocket%402x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_big_arrow_left%402x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_loading_small%404x.png" />
@@ -18,6 +19,9 @@
 
   <ItemGroup>
     <Content Include="MVVM\View\ImageResources\ButtonElements\button_home%402x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVVM\View\ImageResources\ButtonElements\button_home_alt@2x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play%402x.png">

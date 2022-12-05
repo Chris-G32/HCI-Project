@@ -17,9 +17,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Rectangle x:Name="SelectRect" Width="55" Height="5" Margin="0,56,0,0" 
+                            <Rectangle x:Name="SelectRect" Width="52" Height="5" Margin="0,48,0,0" 
                                        Fill="Transparent"/>
-                            <Image Source="ImageResources/ButtonElements/button_home@2x.png"/>
+                            <Image Source="ImageResources/ButtonElements/button_home_alt@2x.png" Height="50"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
