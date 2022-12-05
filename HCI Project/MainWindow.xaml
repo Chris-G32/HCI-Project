@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:HCI_Project"
       xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel" xmlns:view="clr-namespace:HCI_Project.MVVM.View"
         mc:Ignorable="d"
-      Title="MainView" WindowStyle="SingleBorderWindow" 
+      Title="LaunchPad" WindowStyle="SingleBorderWindow" 
       MinWidth="800" MinHeight="450"
       d:DesignHeight="900" d:DesignWidth="1600"
       Background="{DynamicResource lnchBlack}"

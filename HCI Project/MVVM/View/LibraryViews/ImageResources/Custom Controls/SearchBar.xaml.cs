@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,7 +50,6 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
             DependencyProperty.Register("SearchText", typeof(string), typeof(SearchBar), new PropertyMetadata("Search"));
 
 
-
         public RelayCommand EntryClicked
         {
             get { return (RelayCommand)GetValue(EntryClickedProperty); }
@@ -60,7 +60,10 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         public static readonly DependencyProperty EntryClickedProperty =
             DependencyProperty.Register("EntryClicked", typeof(RelayCommand), typeof(SearchBar));
 
-
-
+        private void ButtonTST_Click(object sender, RoutedEventArgs e)
+        {
+            Keyboard.ClearFocus();
+        }
+        
     }
 }
