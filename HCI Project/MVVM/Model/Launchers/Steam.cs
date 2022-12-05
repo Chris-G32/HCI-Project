@@ -237,7 +237,7 @@ namespace HCI_Project.MVVM.Model
             // Parses the json response
             JToken outer = JToken.Parse(resp);
             JObject inner = outer["playerstats"].Value<JObject>();
-            JArray achievements = outer["achievements"].Value<JArray>();
+            JArray achievements = inner["achievements"].Value<JArray>();
 
             ObservableCollection<GameAchievement> res = new ObservableCollection<GameAchievement>();
 
@@ -253,12 +253,12 @@ namespace HCI_Project.MVVM.Model
                     achLocals.Add(ach);
                 }
             }
-
+            //Why are we requerying here
             resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={game.Game_ID}&key={_key}&steamid={_steamid}");
-
+            Debug.WriteLine(resp);//Consider http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=YOURKEY&appid=APPID&l=english&format=json
             // Parses the json response
             outer = JToken.Parse(resp);
-            inner = outer["game"].Value<JObject>();
+            inner = outer["game"].Value<JObject>();//Error thrown here
             var inner2 = inner["availableGameStats"].Value<JObject>();
             achievements = outer["achievements"].Value<JArray>();
 
