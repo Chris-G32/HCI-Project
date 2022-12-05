@@ -386,7 +386,7 @@
                                                 <TextBlock x:Name="NewsTitle" Grid.Row="1" MaxHeight="40" Style="{DynamicResource TextBodyStyleMedium}" Margin="5,0,5,5"
                                                                                Text="{Binding Title}"/>
                                                 <TextBlock x:Name="NewsDescription" Grid.Row="2" Style="{DynamicResource TextBodyStyleLight}" Margin="20,0,5,5"
-                                                                               Text="{Binding Content}"/>
+                                                                               Text="{Binding Contents}"/>
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
