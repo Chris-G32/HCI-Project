@@ -57,11 +57,64 @@
             <ColumnDefinition Width="1*" MinWidth="150" />
             <ColumnDefinition Width="7*" MinWidth="500"/>
         </Grid.ColumnDefinitions>
-        
-        
-        
-        
-        <ScrollViewer Style="{DynamicResource ScrollViewerStyle}">
+
+
+
+        <ScrollViewer Grid.Column="0" Style="{DynamicResource ScrollViewerStyle}" VerticalScrollBarVisibility="Auto" Background="{StaticResource lnchDarkMedGray}">
+            <ItemsControl ItemsSource="{Binding OwnedGames}" HorizontalAlignment="Stretch" Background="{StaticResource lnchDarkMedGray}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel HorizontalAlignment="Stretch"  />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  >
+                            <Button HorizontalContentAlignment="Left" Background="{StaticResource lnchDarkMedGray}"  BorderBrush="Transparent"  HorizontalAlignment="Stretch"  Command="{Binding ElementName=Library, Path=DataContext.OpenGamePage}" CommandParameter="{Binding}" >
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                
+                                            </Trigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Grid x:Name="ButtonStyGrid" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition x:Name="ImgCol"  Width="35"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image x:Name="GameImage" Grid.Column="0" Stretch="Uniform" Height="35" Source="{Binding IconImage,TargetNullValue={StaticResource DefaultGameIcon}, FallbackValue={StaticResource DefaultGameIcon}}"/>
+                                                        <TextBlock x:Name="TitleTxt"  Margin="5,0,0,0" FontSize="14"  Text="{Binding Name}" Grid.Column="1" Style="{StaticResource LibraryTextStyle}"/>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="ButtonStyGrid" Property="Background" Value="{StaticResource lnchLightMedGray}" />
+                                                            <Setter TargetName="ImgCol"  Property="Width" Value="45"/>
+                                                            <Setter TargetName="GameImage"  Property="Height" Value="45"/>
+                                                            <Setter TargetName="TitleTxt"  Property="FontSize" Value="16"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        
+                                    </Style>
+                                </Button.Style>
+                                
+                            </Button>
+                            
+                            <!--<Button x:Name="LibraryEntry" Content="{Binding Name}"
+                                Command="{Binding ElementName=Library, Path=DataContext.OpenGamePage}" CommandParameter="{Binding}" 
+                                HorizontalAlignment="Stretch"/>-->
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <!--<ScrollViewer Style="{DynamicResource ScrollViewerStyle}">
             
             <ItemsControl MinWidth="100" Grid.Column="0" Background="{DynamicResource lnchDarkMedGray}" ItemsSource="{Binding OwnedGames}">
                 <ItemsControl.ItemTemplate>
@@ -76,8 +129,8 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </ScrollViewer>
-        <!--<ContentControl Content="{Binding CurrentView}" Grid.Column="1" MinWidth="500"/>-->
+        </ScrollViewer>-->
+        <ContentControl Content="{Binding CurrentView}" Grid.Column="1" MinWidth="500"/>
         <GridSplitter Grid.Column="0" Width="3" Background="{DynamicResource lnchBronze}"/>
     </Grid>
 </UserControl>

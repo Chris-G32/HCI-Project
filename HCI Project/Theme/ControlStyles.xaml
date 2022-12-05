@@ -284,7 +284,7 @@
                                     <RowDefinition MaxHeight="1" />
                                 </Grid.RowDefinitions>
                                 <Border Grid.RowSpan="3" CornerRadius="2"
-                                Background="{DynamicResource lnchDarkMedGray}" />
+                                Background="Transparent" />
                                 <Track x:Name="PART_Track" Grid.Row="1" 
                                IsDirectionReversed="True">
                                     <Track.DecreaseRepeatButton>

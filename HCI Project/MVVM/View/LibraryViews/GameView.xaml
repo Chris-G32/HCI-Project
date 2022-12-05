@@ -312,7 +312,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{DynamicResource TextHeaderStyle}" Grid.Row="0"
                                Text="Description"/>
-                                <ScrollViewer Grid.Row="1" Margin="0,5,0,0" Style="{DynamicResource ScrollViewerStyle}"
+                                <ScrollViewer Grid.Row="1" Margin="0,5,0,0" Background="{StaticResource lnchDarkMedGray}" Style="{DynamicResource ScrollViewerStyle}"
                                       VerticalScrollBarVisibility="Auto">
                                     <TextBlock Style="{DynamicResource TextBodyStyleLight}" Margin="5"
                                        Text="{Binding SelectedGame.Description, Mode=OneWay}"/>
