@@ -24,7 +24,7 @@
                           SnapsToDevicePixels="True"                
                           MinWidth="100" Background="{DynamicResource lnchDarkGray}"
                           MaxHeight="550">
-                <ScrollViewer HorizontalAlignment="Stretch"  Margin="4,6,4,6" SnapsToDevicePixels="True">
+                <ScrollViewer HorizontalAlignment="Stretch"  Margin="4,6,4,6" SnapsToDevicePixels="True" Style="{DynamicResource ScrollViewerStyle}">
                     <ItemsControl ItemsSource="{Binding SearchResults,ElementName=SearchCtrl}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>

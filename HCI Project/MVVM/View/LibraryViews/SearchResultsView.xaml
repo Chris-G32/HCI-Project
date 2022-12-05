@@ -18,32 +18,29 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Results}" HorizontalAlignment="Center">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"  Style="{DynamicResource ScrollViewerStyle}" >
+            <ItemsControl ItemsSource="{Binding Results}" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Orientation="Horizontal" Background= "{DynamicResource lnchDarkGray}"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                       
-                            <Grid Margin="20" Width="200">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+
+                        <Grid Margin="20" Width="200" Background= "{DynamicResource lnchDarkGray}">
+                                
                             <Button Background="Transparent" Foreground="Transparent" 
                                     Command="{Binding ElementName=ResView,Path=DataContext.Parent.OpenGamePage}" CommandParameter="{Binding}"
                                     HorizontalAlignment="Stretch">
                                 <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
                                     <Image x:Name="GameImg" Grid.Row="0" Stretch="UniformToFill" Source="{Binding BoxImage,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"  
                                    VerticalAlignment="Bottom"  HorizontalAlignment="Center"/>
-                                    
-                                </Grid>
-                                
-                            </Button>
-                            <Grid Grid.Row="1">
+                                    <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="50"/>
@@ -53,6 +50,10 @@
                                     <!--<TextBlock x:Name="Title"  Grid.Column="0" Style="{DynamicResource BigTextHeaderStyle}" Text="{Binding GameSrc.Name,ElementName=GamePrev}"/>-->
                                 <Button x:Name="PlayGame" Grid.Column="1" Style="{DynamicResource MiniPlayButton}" Content="Play" Command="{Binding ElementName=ResView,Path=DataContext.PlayGame}" CommandParameter="{Binding}"/>
                                 </Grid>
+                                </Grid>
+                                
+                            </Button>
+                            
                             </Grid>
 
                         
