@@ -35,10 +35,6 @@ namespace HCI_Project.MVVM.Model.Database
             cmd.CommandText = @"CREATE TABLE game_tags(id varchar(20), tag varchar(20))";
             cmd.ExecuteNonQuery();
 
-            // Creates table for storing user setting restore points
-            cmd.CommandText = @"CREATE TABLE settings(date_set DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY)";
-            cmd.ExecuteNonQuery();
-
             // Creates table for storing discord servers
             cmd.CommandText = @"CREATE TABLE links(id varchar(20), link TEXT)";
             cmd.ExecuteNonQuery();
