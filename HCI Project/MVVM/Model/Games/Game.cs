@@ -94,5 +94,18 @@ namespace HCI_Project.MVVM.Model
                 _news = value; OnPropertyChanged();
             }
         }
+
+        private ObservableCollection<GameAchievement> _achievements = new ObservableCollection<GameAchievement>();
+        public ObservableCollection<GameAchievement> Achievements
+        {
+            get
+            {
+                return _achievements;
+            }
+            set
+            {
+                _achievements = value; OnPropertyChanged();
+            }
+        }
     }
 }

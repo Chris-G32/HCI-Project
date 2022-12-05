@@ -14,6 +14,8 @@ using Gameloop.Vdf;
 using Gameloop.Vdf.Linq;
 using HCI_Project.MVVM.Model.Games;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+using System.Drawing.Text;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -228,6 +230,74 @@ namespace HCI_Project.MVVM.Model
             game.News = newsList;
         }
 
+        public async Task GetGameAchievments(Game game)
+        {
+            var resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={game.Game_ID}&key={_key}&steamid={_steamid}");
+
+            // Parses the json response
+            JToken outer = JToken.Parse(resp);
+            JObject inner = outer["playerstats"].Value<JObject>();
+            JArray achievements = outer["achievements"].Value<JArray>();
+
+            ObservableCollection<GameAchievement> res = new ObservableCollection<GameAchievement>();
+
+            List<GameAchievementLocal> achLocals = new List<GameAchievementLocal>();
+
+            foreach(var k in achievements)
+            {
+                if (k["achieved"].Value<bool>())
+                {
+                    GameAchievementLocal ach = new GameAchievementLocal();
+                    ach.name = k["apiname"].Value<string>();
+                    ach.unlocktime = k["unlocktime"].Value<int>();
+                    achLocals.Add(ach);
+                }
+            }
+
+            resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={game.Game_ID}&key={_key}&steamid={_steamid}");
+
+            // Parses the json response
+            outer = JToken.Parse(resp);
+            inner = outer["game"].Value<JObject>();
+            var inner2 = inner["availableGameStats"].Value<JObject>();
+            achievements = outer["achievements"].Value<JArray>();
+
+            foreach (var k in achievements)
+            {
+                foreach(var j in achLocals)
+                {
+                    if (j.name == k["name"].Value<string>())
+                    {
+                        GameAchievement ach = new GameAchievement();
+                        ach.Name = k["displayName"].Value<string>();
+                        ach.Icon = new Uri(k["icon"].Value<string>());
+                        ach.TimeAchieved = j.unlocktime;
+                        res.Add(ach);
+                    }
+                }
+            }
+
+            for (int x = 0; x < res.Count; x++)
+            {
+                int newestIndex = x;
+                for (int y = x; y < res.Count; y++)
+                {
+                    if (res[y].TimeAchieved > res[newestIndex].TimeAchieved)
+                    {
+                        newestIndex = y;
+                    }
+                }
+                GameAchievement temp = res[newestIndex];
+                res[newestIndex] = res[x];
+                res[x] = temp;
+            }
+            
+            foreach(GameAchievement ach in res)
+            {
+                game.Achievements.Add(ach);
+            }
+        }
+
         private void GetGameInstallState(Game game)
         {
             //C:\Program Files (x86)\Steam\steamapps\libraryfolders.vdf
@@ -331,6 +401,12 @@ namespace HCI_Project.MVVM.Model
                     public long rtime_last_played { get; set; }
                 }
             }
+        }
+
+        private class GameAchievementLocal
+        {
+            public int unlocktime;
+            public string name;
         }
     }
 }

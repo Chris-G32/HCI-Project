@@ -75,6 +75,7 @@ namespace HCI_Project.MVVM.Model
             foreach(Game game in _games)
             {
                 _steamLauncher.GetGameNews(game);
+                _steamLauncher.GetGameAchievments(game);
             }
             SortGamesListByName();
         }
