@@ -179,7 +179,7 @@
                         </Grid.RowDefinitions>
                         <!--Launcher icon here: set based on which launncher a game uses-->
                         <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyleLight}"
-                            Text="{Binding SelectedGame.ShortDescription}" Grid.Row="0"/>
+                            Text="{Binding SelectedGame.ShortDescription,Mode=OneWay}" Grid.Row="0"/>
                         <TextBlock x:Name="LastPlayed" MinHeight="27" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}" Grid.Row="1" HorizontalAlignment="Left"
                                    Width="350">
@@ -335,8 +335,31 @@
                                 <TextBlock Style="{DynamicResource TextHeaderStyle}" Grid.Row="0"
                                Text="Achievements"/>
                                 <ScrollViewer Grid.Row="1" Background="{DynamicResource lnchDarkMedGray}" 
-                                              VerticalScrollBarVisibility="Auto" Margin="0,5,0,0" Style="{DynamicResource ScrollViewerStyle}"> 
-
+                                              VerticalScrollBarVisibility="Auto" Margin="0,5,0,0" Style="{DynamicResource ScrollViewerStyle}">
+                                    <ItemsControl ItemsSource="{Binding SelectedGame.Achievements}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                            <Grid HorizontalAlignment="Left">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Column="0" Margin="2" MinWidth="25" MaxWidth="40"
+                                            Source="{Binding Icon, Mode=OneWay}"/>
+                                            <TextBlock Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                           Style="{DynamicResource LibraryTextStyle}" 
+                                           Text="{Binding Name}"/>
+                                            
+                                        </Grid>
+                                        </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        
+                                    </ItemsControl>
                                 </ScrollViewer>
                             </Grid>
                             <Grid Grid.Row="1">
@@ -351,8 +374,8 @@
                                     Hours Played:
                                 <!-- BINDING BY BAILEY -->
                                 <Run Text="{Binding SelectedGame.PlaytimeHours,Mode=OneWay}"/><LineBreak/><LineBreak/>
-                                Installed On:
-                                <Run Text="{Binding SelectedGame.}"/><LineBreak/>
+                                <!--Installed On:
+                                <Run Text="{Binding SelectedGame.}"/><LineBreak/>-->
                                     </TextBlock>
                                 </Grid>
                             </Grid>
