@@ -47,8 +47,6 @@
         <Grid x:Name="RecentGamesLayout">
             <TextBlock FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}" VerticalAlignment="Top" Margin="10"
                        Text="Recently Played"/>
-            <!--<customControls:GamePreview GameSrc="{Binding testbind}" Grid.Column="0" Grid.Row="1"/>-->
-
         </Grid>
     </Grid>
 </UserControl>

@@ -9,39 +9,53 @@
              d:DesignHeight="450" d:DesignWidth="800"
             x:Name="ResView"
     >
+    <UserControl.Resources>
+        <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image@2x.png" />
+    </UserControl.Resources>
 
     <Grid Background= "{DynamicResource lnchDarkGray}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Results}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
                         <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <customControls:GamePreview GameSrc="{Binding}" Padding="0,15,25,0" 
-                                                HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                                PlayCommand="{Binding ElementName=ResView, Path=DataContext.PlayGame}"
-                                                OpenGameCommand="{Binding ElementName=ResView,Path=DataContext.Parent.OpenGamePage}"
-                                                    UseBoxImage="True"
-                                                />
+                        <Viewbox Stretch="Fill">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image x:Name="GameImg" Grid.Row="0" Stretch="UniformToFill" Source="{Binding BoxImage,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"  
+                                   VerticalAlignment="Bottom"  HorizontalAlignment="Center"/>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock HorizontalAlignment="Stretch" Grid.Column="0" Text="{Binding Name}"  Style="{StaticResource TextBlockBaseStyle}" TextWrapping="WrapWithOverflow" Height="80"/>
+
+                                    <!--<TextBlock x:Name="Title"  Grid.Column="0" Style="{DynamicResource BigTextHeaderStyle}" Text="{Binding GameSrc.Name,ElementName=GamePrev}"/>-->
+                                    <Button x:Name="PlayGame" Grid.Column="1" Style="{DynamicResource MiniPlayButton}" Content="Play" Command="{Binding PlayCommand,ElementName=GamePrev}" CommandParameter="{Binding GameSrc,ElementName=GamePrev}" Height="50"/>
+                                </Grid>
+                            </Grid>
+
+                        </Viewbox>
                     </DataTemplate>
-                    
+
                 </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            </ItemsControl>
         </ScrollViewer>
-        <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">
-         
-                <Image Source ="https://i.pinimg.com/originals/11/73/e3/1173e32890c0f9fab846b7218c7f3aa9.jpg"/>
-        </Button>
-        
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Results"
-                FontSize="30" Foreground="White"          
-         />
+
+        <TextBlock FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}" VerticalAlignment="Top" Margin="10"
+                       Text="Search Results"/>
     </Grid>
 </UserControl>
