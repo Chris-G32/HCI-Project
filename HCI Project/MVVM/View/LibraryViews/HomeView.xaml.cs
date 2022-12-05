@@ -47,6 +47,7 @@ namespace HCI_Project.MVVM.View.LibraryViews
 
         }
 
+
         private void RecentlyPlayedGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             //Ratio is less than 6 width for 9 height
@@ -70,5 +71,10 @@ namespace HCI_Project.MVVM.View.LibraryViews
 
         }
 
+        private void MainGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (IsMouseCaptureWithin)
+                Keyboard.ClearFocus();
+        }
     }
 }

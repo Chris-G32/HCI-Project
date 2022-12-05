@@ -34,5 +34,7 @@ namespace HCI_Project
         {
             //MainViewModel.GameHandler.SaveAllGamesOnClose();
         }
+
+        
     }
 }

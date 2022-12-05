@@ -176,6 +176,7 @@ namespace HCI_Project.MVVM.View
             if(e.Key==Key.Enter)
             {
                 OpenSearchResults.Execute("FromNavBar");
+                Keyboard.ClearFocus();
             }
         }
 

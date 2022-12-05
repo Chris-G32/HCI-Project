@@ -26,23 +26,19 @@
                         <Grid>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                <RowDefinition Height="230"/>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-                            
-                                <Image x:Name="GameImg" Grid.Row="0" Source="{Binding GameSrc.HeaderImage,ElementName=GamePrev,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"  VerticalAlignment="Bottom"  HorizontalAlignment="Center"/>
+                                    <RowDefinition Height="230"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+
+                                <Image x:Name="GameImg" Grid.Row="0" Source="{Binding DisplayedImage,ElementName=GamePrev,FallbackValue={StaticResource DefaultImage},TargetNullValue={StaticResource DefaultImage}}"  VerticalAlignment="Bottom"  HorizontalAlignment="Center"/>
                                 <TextBlock x:Name="Title"  Grid.Row="1" Margin="0,0,50,0" Style="{DynamicResource BigTextHeaderStyle}" Text="{Binding GameSrc.Name,ElementName=GamePrev,TargetNullValue='Title',FallbackValue='Title'}"/>
-                                
+
                             </Grid>
                             <Grid Style="{StaticResource HighlightGrid}" Grid.RowSpan="2"/>
                         </Grid>
-                        
                     </ControlTemplate>
-                    
                 </Setter.Value>
-                
             </Setter>
-            
         </Style>
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">

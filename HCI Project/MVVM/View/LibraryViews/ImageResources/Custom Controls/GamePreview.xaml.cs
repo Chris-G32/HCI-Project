@@ -73,6 +73,26 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
 
 
 
+        public bool UseBoxImage
+        {
+            get { return (bool)GetValue(UseBoxImageProperty); }
+            set { SetValue(UseBoxImageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for UseBoxImage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UseBoxImageProperty =
+            DependencyProperty.Register("UseBoxImage", typeof(bool), typeof(GamePreview), new PropertyMetadata(false));
+
+        public Uri DisplayedImage
+        {
+            get { if (UseBoxImage)
+                    return GameSrc.BoxImage;
+                else
+                    return GameSrc.HeaderImage;
+            }
+            
+        }
+
 
     }
 }

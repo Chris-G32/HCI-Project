@@ -4,22 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews"
-             xmlns:View="clr-namespace:HCI_Project.MVVM.View" x:Class="HCI_Project.MVVM.View.LibraryViews.SearchResultsView"
+             xmlns:View="clr-namespace:HCI_Project.MVVM.View" xmlns:customControls="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls" x:Class="HCI_Project.MVVM.View.LibraryViews.SearchResultsView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+            x:Name="ResView"
+    >
 
     <Grid Background= "{DynamicResource lnchDarkGray}">
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Results}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="2" />
+                        <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:GamePreview GameSrc="{Binding}" Padding="0,15,25,0" 
+                                                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                PlayCommand="{Binding ElementName=ResView, Path=DataContext.PlayGame}"
+                                                OpenGameCommand="{Binding ElementName=ResView,Path=DataContext.Parent.OpenGamePage}"
+                                                    UseBoxImage="True"
+                                                />
+                    </DataTemplate>
+                    
+                </ItemsControl.ItemTemplate>
         </ItemsControl>
         </ScrollViewer>
         <Button x:Name="Home" Background= "{DynamicResource lnchDarkGray}">

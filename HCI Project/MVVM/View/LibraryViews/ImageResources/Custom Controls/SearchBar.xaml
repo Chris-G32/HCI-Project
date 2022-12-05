@@ -18,16 +18,12 @@
                         IsOpen="{Binding IsKeyboardFocused,ElementName=SearchBox,Mode=OneWay}"
                         AllowsTransparency="False" Focusable="False"
                         PopupAnimation="Slide" Width="{Binding ActualWidth,ElementName=SearchCtrl}"
-                        HorizontalAlignment="Center" Grid.Row="1"
+                        HorizontalAlignment="Center" Grid.Row="1">
                         
-                >
-                        
-            <Grid 
-                          Name="DropDown"
+            <Grid Name="DropDown"
                           SnapsToDevicePixels="True"                
                           MinWidth="100" Background="{DynamicResource lnchDarkGray}"
-                MaxHeight="550"
-                          >
+                          MaxHeight="550">
                 <ScrollViewer HorizontalAlignment="Stretch"  Margin="4,6,4,6" SnapsToDevicePixels="True">
                     <ItemsControl ItemsSource="{Binding SearchResults,ElementName=SearchCtrl}">
                         <ItemsControl.ItemsPanel>

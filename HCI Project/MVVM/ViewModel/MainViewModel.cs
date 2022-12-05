@@ -138,7 +138,7 @@ namespace HCI_Project.MVVM.ViewModel
             });
             SetSearchResultsView = new RelayCommand(o =>
             {
-                LibraryVM.CurrentView = new SearchResultsViewModel(_searchFor);
+                LibraryVM.CurrentView = new SearchResultsViewModel(_searchFor,LibraryVM);
                 CurrentView = LibraryVM;
 
             });

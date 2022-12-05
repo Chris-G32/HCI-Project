@@ -28,7 +28,7 @@ namespace HCI_Project.MVVM.View.LibraryViews
 
         private void Library_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(IsMouseDirectlyOver)
+            if(IsMouseOver)
                Keyboard.ClearFocus();
         }
 
