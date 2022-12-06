@@ -17,7 +17,21 @@ namespace HCI_Project.MVVM.Model
 
         private ObservableCollection<Game> _games = new ObservableCollection<Game>();
 
-        public ObservableCollection<Game> Games { get { return _games; } }
+        public ObservableCollection<Game> Games { get {
+
+                //NO TYRONE V COPS ALLOWED
+                foreach (var game in _games)
+                {
+                    if ((game.Name.ToUpper()).Contains(("Tyrone").ToUpper()))
+                    {
+                        _games.Remove(game);
+                        break;
+                    }
+
+                }
+
+
+                return _games; } }
 
         public GameManager()
         {
