@@ -23,4 +23,27 @@ namespace HCI_Project.MVVM.View.LibraryViews
             InitializeComponent();
         }
     }
+    /// <summary>
+    /// Converts 0 to Visible anything else to Hidden
+    /// </summary>
+    public class IsCollectionEmpty : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is int @int)
+            {
+                if (@int == 0)
+                {
+                    return System.Windows.Visibility.Visible;
+                }
+                else
+                    return System.Windows.Visibility.Hidden;
+            }
+            return System.Windows.Visibility.Hidden;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

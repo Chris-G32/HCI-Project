@@ -8,6 +8,10 @@
              d:DesignHeight="75" d:DesignWidth="800"
              x:Name="SearchCtrl"
              >
+    <UserControl.Resources>
+        <local:IsCollectionEmpty x:Key="ShownWhenEmpty"></local:IsCollectionEmpty>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -60,6 +64,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
+                <TextBlock Visibility="{Binding SearchResults.Count,ElementName=SearchCtrl, Converter={StaticResource ShownWhenEmpty},Mode=OneWay}" Text="No Results Found" VerticalAlignment="Center" HorizontalAlignment="Center"  Style="{DynamicResource TextBlockBaseStyle}" FontSize="20"></TextBlock>
             </Grid>
         </Popup>
     </Grid>
