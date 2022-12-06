@@ -129,7 +129,6 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                     }
                     addMe = new Uri(uriStr);
                     SelectedGame.SavedLinks.Add(addMe);
-                    uriStr = "";
                     MainViewModel.GameHandler.SaveGame(SelectedGame);
                 }
                 catch
