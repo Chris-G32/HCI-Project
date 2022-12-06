@@ -16,6 +16,7 @@ using HCI_Project.MVVM.Model.Games;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Drawing.Text;
+using System.Windows;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -25,7 +26,7 @@ namespace HCI_Project.MVVM.Model
         private HttpClient client;
 
         //76561197960265728 +32bit steam id, found at C:\Program Files (x86)\Steam\userdata is the 64bit id
-        private string _steamid = "76561198863942684";
+        private string _steamid = "";//"76561198863942684";
         private string _steamname = "";
         public Steam()
         {
@@ -34,8 +35,63 @@ namespace HCI_Project.MVVM.Model
             // This accepts a json file by default
             client.DefaultRequestHeaders.Add("accept", "text/json; charset=utf-8");
             _key = GetKey();
-        }
+            GetSteamId();
 
+        }
+        /// <summary>
+        /// Sets the users steam id from computer assuming steam install is default
+        /// </summary>
+        private void GetSteamId()
+        {
+            var a = Directory.GetDirectories("C:\\Program Files (x86)\\Steam\\userdata");
+            if (a.Count() == 0)
+            {
+                //Show message box to select the steam account to use
+                string messageBoxText = "We can't seem to find steam or a steam account. Using default account. Is Steam installed here?" + "C:\\Program Files (x86)\\Steam";
+                string caption = "Steam ID Get Failed.";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+            if (a.Count() > 1)
+            {
+                //Show message box to select the steam account to use
+                string messageBoxText = "We Found multiple steam accounts on your computer. Currently only one account is supported. The first account found will be used";
+                string caption = "Multiple Accounts Found.";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+            try
+            {
+                //Converts local id to steam api user id
+                const long STEAMIDADJUSTMENT= 76561197960265728;
+                var dir = a[0];
+                var localIdString=dir.Remove(0, dir.LastIndexOf("\\")+1);
+                var localId = long.Parse(localIdString);
+                _steamid = (localId + STEAMIDADJUSTMENT).ToString();
+            }
+            catch
+            {
+                string messageBoxText = "We can't seem to find steam. Is your steam installed here? "+ "C:\\Program Files (x86)\\Steam";
+                string caption = "Steam ID Get Failed.";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
+
+            //Defaults to my steam
+            if (_steamid == "")
+            {
+                _steamid = "76561198863942684";
+            }
+        }
         public override string Name
         {
             get

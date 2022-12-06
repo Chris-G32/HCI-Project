@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using HCI_Project.MVVM.Model.Settings;
+using System.Windows;
 
 namespace HCI_Project.MVVM.ViewModel
 {
@@ -94,6 +95,16 @@ namespace HCI_Project.MVVM.ViewModel
             //}
             return (game.Name.ToUpper()).Contains(_searchFor.ToUpper());
         }
+
+        public void FetchInstallStatus()
+        {
+           
+            foreach (var game in GameHandler.Games)
+            {
+
+            }
+        }
+
         /// <summary>
         /// Constructor which creates ViewModel that contains MainWindows bindings
         /// </summary>

@@ -3,6 +3,7 @@ using HCI_Project.MVVM.Model.Games;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security.Policy;
 using System.Text;
 
 namespace HCI_Project.MVVM.Model
@@ -75,7 +76,7 @@ namespace HCI_Project.MVVM.Model
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
-        public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
+        public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>() { new Uri("https://discord.com")};
         public bool Hidden { get; set; }
         private Uri _galleryFolder;
         public Uri HeroImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_hero.jpg"); } }
@@ -107,5 +108,7 @@ namespace HCI_Project.MVVM.Model
                 _achievements = value; OnPropertyChanged();
             }
         }
+
+        public bool Installed { get; set; }
     }
 }
