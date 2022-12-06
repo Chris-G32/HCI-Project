@@ -10,6 +10,7 @@
     <ApplicationIcon>ImageResources\Icons\LaunchPadLogo.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;Testing FileSYs</Configurations>
+    <AssemblyName>Launchpad</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -27,7 +27,7 @@ namespace HCI_Project.MVVM.ViewModel
             SettingsHandler = MainViewModel.SettingsHandler;
             GameTabs = new ObservableCollection<string>() { "Play", "Community","Info","Gallery","LASTTAB" };
             
-            var path = new FileInfo("./").Directory.FullName;
+            var path = System.Environment.CurrentDirectory;
             InstallDir = path;
         }
     }
