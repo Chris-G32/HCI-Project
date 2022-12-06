@@ -159,7 +159,7 @@
                     <TextBlock x:Name="GameTitle" Grid.Row="0" Style="{DynamicResource BigTextHeaderStyle}" Margin="15,5,15,5"
                                    Text="{Binding SelectedGame.Name,Mode=OneWay,FallbackValue=Title}"
                                    />
-                    <CheckBox Grid.Row="0" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Right" Background="{StaticResource lnchMedGray}" IsChecked="{Binding SelectedGame.Hidden}" Click="CheckBox_Click"/>
+                    <CheckBox Grid.Row="0" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Right" Background="{StaticResource lnchMedGray}" IsChecked="{Binding HideGame,Mode=TwoWay}" Click="CheckBox_Click"/>
                     <Grid Grid.Row="1">
                         <Grid.OpacityMask>
                             <LinearGradientBrush StartPoint="0,0.86" EndPoint="0,0.96">

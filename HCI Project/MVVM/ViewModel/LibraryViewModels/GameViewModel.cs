@@ -14,6 +14,8 @@ using Winforms=System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media.TextFormatting;
 using System.Linq;
+using Microsoft.Web.WebView2.Core;
+using System.Windows.Data;
 
 namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 {
@@ -66,6 +68,16 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public RelayCommand ChangeWebsite { get; set; }
         public RelayCommand RemoveLink { get; set; } 
         public RelayCommand UpdateGalleryDirectory { get; set; }
+
+        private bool _hideGame = false;
+        public bool HideGame { get { return _hideGame; } set { 
+                _hideGame = value;
+                SelectedGame.Hidden=_hideGame;
+                
+                MainViewModel.GameHandler.SaveGame(SelectedGame);
+                CollectionViewSource.GetDefaultView(MainViewModel.GameHandler.Games).Refresh();
+                MainViewModel.GameHandler.UpdateAll();
+            } }
 
 
         /// <summary>
