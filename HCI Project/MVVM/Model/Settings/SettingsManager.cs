@@ -19,8 +19,12 @@ namespace HCI_Project.MVVM.Model.Settings
 
         public SettingsManager()
         {
-            _current = ReadSettingsFromFiles("../../../config.json");
-            _previous = ReadSettingsFromFiles("../../../previousConfig.json");
+            try
+            {
+                _current = ReadSettingsFromFiles("./config.json");
+                _previous = ReadSettingsFromFiles("./previousConfig.json");
+            }
+            catch { }
             _default = new SettingsObject(false, false, GameTabs.PLAY);
         }
 

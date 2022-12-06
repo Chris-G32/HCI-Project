@@ -110,18 +110,24 @@ namespace HCI_Project.MVVM.ViewModel
         /// </summary>
         public MainViewModel()
         {
+
             SettingsHandler = new SettingsManager();
+
             GameHandler = new GameManager();
+
             SearchedForView = new ListCollectionView(GameHandler.Games); 
             AllGames=CollectionViewSource.GetDefaultView(GameHandler.Games);
             AllGames.Filter=HideHiddenGames;
-            SearchedForView.Filter = FilterByName; 
-            
+            SearchedForView.Filter = FilterByName;
+
             //Instantiate each ViewModel
             LibraryVM = new LibraryViewModel();
+
             SettingsVM = new SettingsViewModel();
             //Set Default View
             CurrentView = LibraryVM;
+
+            //Likely deprecated
             SearchList = new ObservableCollection<Game>();
             //var resp=database.getgames containing Mortal
 
@@ -159,7 +165,6 @@ namespace HCI_Project.MVVM.ViewModel
                 CurrentView = LibraryVM;
 
             });
-
         }
     }
 }

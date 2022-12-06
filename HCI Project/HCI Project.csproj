@@ -8,20 +8,29 @@
 	<UseWindowsForms>true</UseWindowsForms>
     <StartupObject></StartupObject>
     <ApplicationIcon>ImageResources\Icons\LaunchPadLogo.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;Testing FileSYs</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ImageResources\Icons\LaunchPadLogo.png" />
     <None Remove="LaunchPadLogo.ico" />
     <None Remove="MVVM\View\ImageResources\ButtonElements\button_home_alt%402x.png" />
     <None Remove="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play_rocket%402x.png" />
     <None Remove="MVVM\View\LibraryViews\ImageResources\DefaultImages\default_game_image_dark%402x.png" />
+    <None Remove="steam.secret" />
     <None Remove="Theme\ImageResources\ButtonElements\button_big_arrow_left%402x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_loading_small%404x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_play_small%404x.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ImageResources\Icons\LaunchPadLogo.ico" />
+    <Content Include="ImageResources\Icons\LaunchPadLogo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ImageResources\Icons\LaunchPadLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="LaunchPadLogo.ico" />
     <Content Include="MVVM\View\ImageResources\ButtonElements\button_home%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -51,6 +60,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MVVM\View\LibraryViews\ImageResources\DefaultImages\default_game_image_dark@2x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="steam.secret">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Theme\ImageResources\ButtonElements\button_big_arrow_left@2x.png">
