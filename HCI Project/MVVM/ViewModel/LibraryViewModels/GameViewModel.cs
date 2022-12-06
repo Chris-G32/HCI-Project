@@ -129,6 +129,8 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                     }
                     addMe = new Uri(uriStr);
                     SelectedGame.SavedLinks.Add(addMe);
+                    uriStr = "";
+                    MainViewModel.GameHandler.SaveGame(SelectedGame);
                 }
                 catch
                 {
@@ -141,6 +143,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                     result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
                 }
+                
                 MainViewModel.GameHandler.SaveGame(SelectedGame);
             });
             UpdateGalleryDirectory = new RelayCommand(o =>
