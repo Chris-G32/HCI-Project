@@ -122,11 +122,20 @@ namespace HCI_Project.MVVM.Model
         /// Reads from the "steam.secret" file in the same folder as this file and returns the Steam API key
         /// </summary>
         protected override string GetKey()
-        {
-            string res;
+        {string res;
+            try
+            {
+
+            
+            
             using (FileStream fileStream = File.Open("../../.././steam.secret", FileMode.Open, FileAccess.Read))
             using (StreamReader streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 256))
                 res = streamReader.ReadLine();
+            }
+            catch
+            {
+                res = "328A00E3906B517D7F065F4D40D5AD3F";
+            }
             return res;
         }
 
