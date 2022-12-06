@@ -7,9 +7,11 @@
     <UseWPF>true</UseWPF>
 	<UseWindowsForms>true</UseWindowsForms>
     <StartupObject></StartupObject>
+    <ApplicationIcon>ImageResources\Icons\LaunchPadLogo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="LaunchPadLogo.ico" />
     <None Remove="MVVM\View\ImageResources\ButtonElements\button_home_alt%402x.png" />
     <None Remove="MVVM\View\LibraryViews\ImageResources\ButtonElements\button_play_rocket%402x.png" />
     <None Remove="Theme\ImageResources\ButtonElements\button_big_arrow_left%402x.png" />
@@ -18,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ImageResources\Icons\LaunchPadLogo.ico" />
+    <Content Include="LaunchPadLogo.ico" />
     <Content Include="MVVM\View\ImageResources\ButtonElements\button_home%402x.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
