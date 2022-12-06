@@ -89,12 +89,12 @@
 
             <WrapPanel x:Name="InstallDirectory" Margin="20,10,0,10">
                 <TextBlock Style="{DynamicResource TextBodyStyleMedium}" Text="Install Directory"/>
-                <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
+                <TextBlock Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBlockBaseStyle}" Text="{Binding  InstallDir}" TextWrapping="Wrap"/>
             </WrapPanel>
 
             <WrapPanel x:Name="DefaultTab" Margin="20,10,0,10">
                 <TextBlock Style="{DynamicResource TextBodyStyleMedium}" Text="Default Tab"/>
-                <TextBox Margin="20,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
+                <ComboBox Margin="20,0,0,0" Width="300" ItemsSource="{Binding GameTabs}"/>
             </WrapPanel>
 
             <WrapPanel x:Name="ShowHidden" Margin="20,10,0,10">

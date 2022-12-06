@@ -18,6 +18,7 @@ using System.Windows.Data;
 using System.ComponentModel;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using HCI_Project.MVVM.Model.Settings;
 
 namespace HCI_Project.MVVM.ViewModel
 {
@@ -41,7 +42,7 @@ namespace HCI_Project.MVVM.ViewModel
                 OnPropertyChanged();
             } 
         }
-        
+        public static SettingsManager SettingsHandler;
         public RelayCommand SetSearchResultsView { get; set; }
         public RelayCommand SetGameView { get; set; }
         public RelayCommand ToggleSettings { get; set; }
@@ -98,7 +99,7 @@ namespace HCI_Project.MVVM.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            
+            SettingsHandler = new SettingsManager();
             GameHandler = new GameManager();
             SearchedForView = new ListCollectionView(GameHandler.Games); 
             AllGames=CollectionViewSource.GetDefaultView(GameHandler.Games);
