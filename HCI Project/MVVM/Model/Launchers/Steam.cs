@@ -43,7 +43,17 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         private void GetSteamId()
         {
-            var a = Directory.GetDirectories("C:\\Program Files (x86)\\Steam\\userdata");
+            string[] a = new string[0];
+            try
+            {
+               var tmp = Directory.GetDirectories("C:\\Program Files (x86)\\Steam\\userdata");
+                a = tmp;
+            }
+            catch
+            {
+                
+            }
+            
             if (a.Count() == 0)
             {
                 //Show message box to select the steam account to use
