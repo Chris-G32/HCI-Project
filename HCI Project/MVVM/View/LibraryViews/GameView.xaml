@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-             xmlns:local="clr-namespace:HCI_Project.MVVM.View"
+             xmlns:local="clr-namespace:HCI_Project.MVVM.View.LibraryViews"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels" xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
              xmlns:customControls="clr-namespace:HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls"
              mc:Ignorable="d"
@@ -14,6 +14,7 @@
              >
 
     <UserControl.Resources>
+        <local:HideWhenStringNull x:Key="ShowWhenEmptyDir"></local:HideWhenStringNull>
         <!--TAB STYLE-->
         <Style TargetType="TabItem">
             <Setter Property="Template">
@@ -453,7 +454,8 @@
                     </StackPanel>
                     
                     <customControls:GalleryViewer Grid.ColumnSpan="3" Grid.Row="2" ImageFolder="{Binding SelectedGame.GalleryFolder}" HorizontalAlignment="Stretch" Padding="0,0,0,25"></customControls:GalleryViewer>
-                    
+                    <TextBlock Grid.Row="2" Grid.Column="1" Visibility="{Binding SelectedGame.GalleryFolder,Converter={StaticResource ShowWhenEmptyDir},Mode=OneWay}" Text="No Results Found" VerticalAlignment="Center" HorizontalAlignment="Center"  Style="{DynamicResource TextBlockBaseStyle}" FontSize="26"></TextBlock>
+
                 </Grid>
             </TabItem>
         </TabControl>

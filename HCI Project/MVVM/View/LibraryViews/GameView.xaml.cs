@@ -49,4 +49,27 @@ namespace HCI_Project.MVVM.View.LibraryViews
             }
         }
     }
+    /// <summary>
+    /// Converts "" to Visible anything else to Hidden
+    /// </summary>
+    public class HideWhenStringNull : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is string @string)
+            {
+                if (@string == "")
+                {
+                    return System.Windows.Visibility.Visible;
+                }
+                else
+                    return System.Windows.Visibility.Hidden;
+            }
+            return System.Windows.Visibility.Hidden;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
