@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -31,6 +32,11 @@ namespace HCI_Project.MVVM.View.LibraryViews
             var butt = sender as Button;
             var link = butt.Content as Uri;
             WebWindow.Source = link;
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

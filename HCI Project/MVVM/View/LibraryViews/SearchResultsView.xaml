@@ -55,8 +55,14 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-
-        <TextBlock FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}" VerticalAlignment="Top" Margin="10"
+        <TextBlock Grid.Row="1" Visibility="Hidden" Text="No Results Found" VerticalAlignment="Center" HorizontalAlignment="Center"  Style="{DynamicResource TextBlockBaseStyle}" FontSize="26"></TextBlock>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Grid.Row="0">
+            <TextBlock FontWeight="Heavy" Style="{DynamicResource BigTextHeaderStyle}" VerticalAlignment="Bottom" Margin="10"
                        Text="Search Results"/>
+
+            <TextBlock VerticalAlignment="Center" Text="{Binding Results.Count }" Style="{DynamicResource TextBlockBaseStyle}" Background="Transparent" Foreground="{DynamicResource lnchLightGray}"/>
+            <TextBlock VerticalAlignment="Center" Text=" for " Background="Transparent" Foreground="{DynamicResource lnchLightGray}" />
+            <TextBlock VerticalAlignment="Center" Text="{Binding Query}"  Background="Transparent" Foreground="{DynamicResource lnchLightGray}" />
+        </StackPanel>
     </Grid>
 </UserControl>
