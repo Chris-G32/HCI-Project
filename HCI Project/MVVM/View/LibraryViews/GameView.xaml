@@ -180,7 +180,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <!--Launcher icon here: set based on which launncher a game uses-->
-                        <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyleLight}"
+                        <TextBlock x:Name="GameDescription" Style="{DynamicResource TextBodyStyleLargeLight}"
                             Text="{Binding SelectedGame.ShortDescription,Mode=OneWay}" Grid.Row="0"/>
                         <TextBlock x:Name="LastPlayed" MinHeight="27" Style="{DynamicResource TextHeaderStyle}"
                                    Background="{DynamicResource lnchDarkMedGray}" Grid.Row="1" HorizontalAlignment="Left"
