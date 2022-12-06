@@ -50,6 +50,7 @@ namespace HCI_Project.MVVM.Model
             _lastplayed = lastplayed;
             if(galleryFolder != null)
                 GalleryFolder = new Uri(galleryFolder);
+            GalleryFolder = new Uri("");
         }
 
         public string Game_ID { get; } = "";
