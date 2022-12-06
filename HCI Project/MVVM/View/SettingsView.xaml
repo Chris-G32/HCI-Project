@@ -7,32 +7,118 @@
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="775" d:DesignWidth="1600">
+    <UserControl.Resources>
+        <Style x:Key="SaveSettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{DynamicResource lnchLightMedGray}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                       Style="{DynamicResource TextBodyStyleMedium}" Text="Save Settings"/>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RestorePrevSettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{DynamicResource lnchLightMedGray}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                       Style="{DynamicResource TextBodyStyleMedium}" Text="Restore Previous Settings"/>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RestoreDefSettingsButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{DynamicResource lnchLightMedGray}">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
+                                       Style="{DynamicResource TextBodyStyleMedium}" Text="Restore Default Settings"/>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    
     <d:UserControl.DataContext>
         <viewModel:SettingsViewModel/>
     </d:UserControl.DataContext>
     <Grid Background="{DynamicResource lnchDarkGray}">
         <StackPanel>
-            
-            
+
+
             <TextBlock Style="{DynamicResource TextHeaderStyle}"
                        FontSize="20" Margin="5,0,0,10" Text="Settings"/>
-            <WrapPanel Margin="20,10,0,10">
-                <TextBlock Foreground="White"  Text="Install Directory"/>
+
+            <WrapPanel x:Name="InstallDirectory" Margin="20,10,0,10">
+                <TextBlock Style="{DynamicResource TextBodyStyleMedium}" Text="Install Directory"/>
                 <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
             </WrapPanel>
-            <WrapPanel Margin="20,0,0,10">
-                <TextBlock Foreground="White" Text="Another Setting"/>
-                <TextBox Margin="15,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
+
+            <WrapPanel x:Name="DefaultTab" Margin="20,10,0,10">
+                <TextBlock Style="{DynamicResource TextBodyStyleMedium}" Text="Default Tab"/>
+                <TextBox Margin="20,0,0,0" Width="300" Style="{DynamicResource TextBoxBaseStyle}"/>
             </WrapPanel>
+
+            <WrapPanel x:Name="ShowHidden" Margin="20,10,0,10">
+                <TextBlock Style="{DynamicResource TextBodyStyleMedium}" Text="Show Hidden Games"/>
+                <CheckBox x:Name="ShowHiddenCheckBox" Margin="15,0,0,0" VerticalAlignment="Center" 
+                          Background="{DynamicResource lnchMedGray}" Checked="ShowHiddenCheckBox_Checked"/>
+            </WrapPanel>
+
+            <WrapPanel x:Name="LaunchOnStartup" Margin="20,10,0,10">
+                <TextBlock Style="{DynamicResource TextBodyStyleMedium}" Text="Launch On Startup"/>
+                <CheckBox x:Name="LaunchOnStartupCheckBox" Margin="15,0,0,0" VerticalAlignment="Center" 
+                          Background="{DynamicResource lnchMedGray}" Checked="LaunchOnStartupCheckBox_Checked"/>
+            </WrapPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
+                <Button Style="{DynamicResource SaveSettingsButtonStyle}" Width="175" Margin="0,0,15,0"
+                        />
+                <!--Need a command here-->
+                <Button Style="{DynamicResource RestorePrevSettingsButtonStyle}" Width="175" Margin="0,0,15,0"
+                        Click="RestorePrevSettingsButton_Click"/>
+                <Button Style="{DynamicResource RestoreDefSettingsButtonStyle}" Width="175" Margin="0,0,15,0"
+                        Click="RestoreDefaultSettingsButton_Click"/>
+            </StackPanel>
+
         </StackPanel>
-
-        <!--ShowHidden checkbox
-            LaunchOnStartup checkbox
-            DefaultTab = input-->
-
-        <!--Save Settings button
-        Restore previous button
-        Restore from default button-->
-        
     </Grid>
 </UserControl>

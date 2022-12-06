@@ -10,7 +10,7 @@
              KeyDown="Gallery_KeyDown"
              >
     <UserControl.Resources>
-        <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image@2x.png"></BitmapImage>
+        <BitmapImage x:Key="DefaultImage" UriSource="../DefaultImages/default_game_image_dark@2x.png"></BitmapImage>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Stretch" >
         <Grid.RowDefinitions>

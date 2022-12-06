@@ -23,5 +23,40 @@ namespace HCI_Project.MVVM.View
             
             InitializeComponent();
         }
+
+        private void RestoreDefaultSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Revert to default settings?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                //do yes stuff
+            }
+
+        }
+
+        private void RestorePrevSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Restore previously saved settings?", "Question", MessageBoxButton.YesNo) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                //do yes stuff
+            }
+        }
+
+        private void ShowHiddenCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LaunchOnStartupCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
