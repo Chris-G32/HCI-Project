@@ -12,6 +12,7 @@ namespace HCI_Project.MVVM.Model
     public class GameManager
     {
         private static Steam _steamLauncher;
+        //Support updating steamId Jankily
 
         private static DatabaseManager _db;
 

@@ -19,7 +19,7 @@ namespace HCI_Project.MVVM.Model.Database
         public DatabaseManager()
         {
             // Specifies file directory
-            string cs = @"URI=file:../../../data.db";
+            string cs = @"URI=file:./data.db";
 
             // connect to database
             _con = new SQLiteConnection(cs);

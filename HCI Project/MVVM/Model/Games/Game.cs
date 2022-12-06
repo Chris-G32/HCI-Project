@@ -3,6 +3,7 @@ using HCI_Project.MVVM.Model.Games;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security.Policy;
 using System.Text;
 
 namespace HCI_Project.MVVM.Model
@@ -49,15 +50,16 @@ namespace HCI_Project.MVVM.Model
             _lastplayed = lastplayed;
             if(galleryFolder != null)
                 GalleryFolder = new Uri(galleryFolder);
+            GalleryFolder = new Uri("C:\\");
         }
 
-        public string Game_ID { get; }
-        public string Name { get; }
+        public string Game_ID { get; } = "";
+        public string Name { get; } = "";
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
         public List<string> Tags { get; set; } = new List<string>();
-        public string Description { get; set; }
-        public string ShortDescription { get; set; }
+        public string Description { get; set; } = "";
+        public string ShortDescription { get; set; } = "";
 
         public int _lastplayed;
         public DateTime LastPlayed { 
@@ -75,7 +77,7 @@ namespace HCI_Project.MVVM.Model
         // Contains a value from the GameState Enum in this file
         public GameState State { get; set; }
         // Link to discord channel
-        public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>();
+        public ObservableCollection<Uri> SavedLinks { get; set; } = new ObservableCollection<Uri>() { new Uri("https://discord.com")};
         public bool Hidden { get; set; }
         private Uri _galleryFolder;
         public Uri HeroImage { get { return new Uri($"https://steamcdn-a.akamaihd.net/steam/apps/{Game_ID}/library_hero.jpg"); } }
@@ -107,5 +109,7 @@ namespace HCI_Project.MVVM.Model
                 _achievements = value; OnPropertyChanged();
             }
         }
+
+       
     }
 }

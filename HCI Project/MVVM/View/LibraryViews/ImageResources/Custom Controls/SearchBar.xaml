@@ -29,7 +29,7 @@
                           MinWidth="100" Background="{DynamicResource lnchDarkGray}"
                           MaxHeight="550">
                 
-                <ScrollViewer HorizontalAlignment="Stretch"  Margin="4,6,4,6" SnapsToDevicePixels="True" Style="{DynamicResource ScrollViewerStyle}">
+                <ScrollViewer HorizontalAlignment="Stretch"  Margin="4,6,4,6" SnapsToDevicePixels="True" Style="{DynamicResource ScrollViewerStyle}" Background="{DynamicResource lnchDarkMedGray}">
                     <ItemsControl ItemsSource="{Binding SearchResults,ElementName=SearchCtrl}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -37,14 +37,15 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                            <!--<DataTemplate>
                                 <Grid>
                                     <Grid.Resources>
-                                        <Style TargetType="Button" x:Key="ImgTextBut">
+                                        <Style TargetType="{x:Type Button}" x:Key="ImgTextBut">
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate>
-                                                        <Grid Background="{DynamicResource lnchDarkGray}">
+                                                        
+                                                        <Grid x:Name="ButtonLay" Background="{TemplateBinding Background}">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="45"/>
                                                                 <ColumnDefinition Width="1*"/>
@@ -52,14 +53,63 @@
                                                             <Image Grid.Column="0" Source="{Binding IconImage}"></Image>
                                                             <TextBlock Grid.Column="1" Style="{StaticResource TextBlockBaseStyle}" Background="{DynamicResource lnchDarkGray}" Text="{Binding Name}"/>
                                                         </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="ButtonLay" Property="Background" Value="{StaticResource lnchLightMedGray}" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
                                                     </ControlTemplate>
+                                                    
                                                 </Setter.Value>
                                             </Setter>
                                         </Style>
                                     </Grid.Resources>
-                                    <Button Focusable="False" Style="{StaticResource ImgTextBut}" Command="{Binding EntryClicked,ElementName=SearchCtrl}" CommandParameter="{Binding}" Click="ButtonTST_Click"/>
-                                    <!--<Button Focusable="False" Content="{Binding Name}" Command="{Binding EntryClicked, ElementName=SearchCtrl}" CommandParameter="{Binding}" />-->
+                                    
+                                    <Button Focusable="False"   Style="{StaticResource ImgTextBut}" Command="{Binding EntryClicked,ElementName=SearchCtrl}" CommandParameter="{Binding}" Click="ButtonTST_Click"/>
+                                    --><!--<Button Focusable="False" Content="{Binding Name}" Command="{Binding EntryClicked, ElementName=SearchCtrl}" CommandParameter="{Binding}" />--><!--
+                                    
                                 </Grid>
+                            </DataTemplate>-->
+                            <DataTemplate>
+                                <Grid  Focusable="False" >
+                                    <Button Focusable="False" HorizontalContentAlignment="Left" Background="{StaticResource lnchDarkMedGray}"  BorderBrush="Transparent"  HorizontalAlignment="Stretch" Click="ButtonTST_Click" Command="{Binding EntryClicked,ElementName=SearchCtrl}" CommandParameter="{Binding}" >
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+
+                                                </Trigger>
+                                            </Style.Triggers>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <Grid x:Name="ButtonStyGrid" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition x:Name="ImgCol"  Width="35"/>
+                                                                <ColumnDefinition Width="1*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Image x:Name="GameImage" Grid.Column="0" Stretch="Uniform" Height="45" Source="{Binding IconImage}"/>
+                                                            <TextBlock x:Name="TitleTxt"  Margin="5,0,0,0" FontSize="16"  Text="{Binding Name}" Grid.Column="1" Style="{StaticResource LibraryTextStyle}"/>
+                                                        </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="ButtonStyGrid" Property="Background" Value="{StaticResource lnchLightMedGray}" />
+  
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+
+                                        </Style>
+                                    </Button.Style>
+
+                                </Button>
+
+                                <!--<Button x:Name="LibraryEntry" Content="{Binding Name}"
+                                Command="{Binding ElementName=Library, Path=DataContext.OpenGamePage}" CommandParameter="{Binding}" 
+                                HorizontalAlignment="Stretch"/>-->
+                            </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

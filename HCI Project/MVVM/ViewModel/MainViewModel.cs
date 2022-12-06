@@ -19,6 +19,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using HCI_Project.MVVM.Model.Settings;
+using System.Windows;
 
 namespace HCI_Project.MVVM.ViewModel
 {
@@ -94,23 +95,39 @@ namespace HCI_Project.MVVM.ViewModel
             //}
             return (game.Name.ToUpper()).Contains(_searchFor.ToUpper());
         }
+
+        public void FetchInstallStatus()
+        {
+           
+            foreach (var game in GameHandler.Games)
+            {
+
+            }
+        }
+
         /// <summary>
         /// Constructor which creates ViewModel that contains MainWindows bindings
         /// </summary>
         public MainViewModel()
         {
+
             SettingsHandler = new SettingsManager();
+
             GameHandler = new GameManager();
+
             SearchedForView = new ListCollectionView(GameHandler.Games); 
             AllGames=CollectionViewSource.GetDefaultView(GameHandler.Games);
             AllGames.Filter=HideHiddenGames;
-            SearchedForView.Filter = FilterByName; 
-            
+            SearchedForView.Filter = FilterByName;
+
             //Instantiate each ViewModel
             LibraryVM = new LibraryViewModel();
+
             SettingsVM = new SettingsViewModel();
             //Set Default View
             CurrentView = LibraryVM;
+
+            //Likely deprecated
             SearchList = new ObservableCollection<Game>();
             //var resp=database.getgames containing Mortal
 
@@ -148,7 +165,6 @@ namespace HCI_Project.MVVM.ViewModel
                 CurrentView = LibraryVM;
 
             });
-
         }
     }
 }

@@ -12,7 +12,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <Grid Background="{DynamicResource lnchMedGray}">
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
                                        Style="{DynamicResource TextBodyStyleMedium}" Text="Save Settings"/>
                             <VisualStateManager.VisualStateGroups>
@@ -20,7 +20,7 @@
                                     <VisualState x:Name="Normal"/>
                                     <VisualState x:Name="MouseOver">
                                         <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#918997" Duration="0:0:0.10" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -34,7 +34,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <Grid Background="{DynamicResource lnchMedGray}">
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
                                        Style="{DynamicResource TextBodyStyleMedium}" Text="Restore Previous Settings"/>
                             <VisualStateManager.VisualStateGroups>
@@ -42,7 +42,7 @@
                                     <VisualState x:Name="Normal"/>
                                     <VisualState x:Name="MouseOver">
                                         <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#918997" Duration="0:0:0.10" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -56,7 +56,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid Background="{DynamicResource lnchLightMedGray}">
+                        <Grid Background="{DynamicResource lnchMedGray}">
                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"
                                        Style="{DynamicResource TextBodyStyleMedium}" Text="Restore Default Settings"/>
                             <VisualStateManager.VisualStateGroups>
@@ -64,7 +64,7 @@
                                     <VisualState x:Name="Normal"/>
                                     <VisualState x:Name="MouseOver">
                                         <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#BEB8C8" Duration="0:0:0.10" />
+                                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" To="#918997" Duration="0:0:0.10" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
