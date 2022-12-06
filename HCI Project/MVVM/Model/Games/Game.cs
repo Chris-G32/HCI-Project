@@ -52,13 +52,13 @@ namespace HCI_Project.MVVM.Model
                 GalleryFolder = new Uri(galleryFolder);
         }
 
-        public string Game_ID { get; }
-        public string Name { get; }
+        public string Game_ID { get; } = "";
+        public string Name { get; } = "";
         // Contains a value from the LauncherID enum from Launcher.cs
         public LauncherID Launcher_ID { get; set; }
         public List<string> Tags { get; set; } = new List<string>();
-        public string Description { get; set; }
-        public string ShortDescription { get; set; }
+        public string Description { get; set; } = "";
+        public string ShortDescription { get; set; } = "";
 
         public int _lastplayed;
         public DateTime LastPlayed { 
@@ -109,6 +109,6 @@ namespace HCI_Project.MVVM.Model
             }
         }
 
-        public bool Installed { get; set; }
+       
     }
 }
