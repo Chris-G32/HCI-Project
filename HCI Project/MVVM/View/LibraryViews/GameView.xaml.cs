@@ -38,5 +38,15 @@ namespace HCI_Project.MVVM.View.LibraryViews
         {
             
         }
+
+        private void LinkSelector_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddButton.Command.Execute(EnterLink.Text);
+                EnterLink.Text = "";
+                Keyboard.ClearFocus();
+            }
+        }
     }
 }

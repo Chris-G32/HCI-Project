@@ -215,7 +215,7 @@
                                   Source="https://discord.com"/>
                     <!--Change so source = selected link -->
                     <!--Links-->
-                    <Grid Grid.Column="1" Grid.Row="1" Margin="15">
+                    <Grid Grid.Column="1" Grid.Row="1" Margin="15" KeyDown="LinkSelector_KeyDown">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="11*"/>
                             <ColumnDefinition Width="27"/>
