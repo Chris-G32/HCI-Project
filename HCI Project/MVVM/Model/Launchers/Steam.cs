@@ -233,7 +233,6 @@ namespace HCI_Project.MVVM.Model
         public async Task GetGameAchievments(Game game)
         {
             var resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={game.Game_ID}&key={_key}&steamid={_steamid}");
-
             // Parses the json response
             JToken outer = JToken.Parse(resp);
             JObject inner = outer["playerstats"].Value<JObject>();
@@ -254,13 +253,12 @@ namespace HCI_Project.MVVM.Model
                 }
             }
             //Why are we requerying here
-            resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={game.Game_ID}&key={_key}&steamid={_steamid}");
-            Debug.WriteLine(resp);//Consider http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=YOURKEY&appid=APPID&l=english&format=json
+            resp = await client.GetStringAsync($"http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key={_key}&appid={game.Game_ID}&l=english&format=json");
             // Parses the json response
             outer = JToken.Parse(resp);
             inner = outer["game"].Value<JObject>();//Error thrown here
             var inner2 = inner["availableGameStats"].Value<JObject>();
-            achievements = outer["achievements"].Value<JArray>();
+            achievements = inner2["achievements"].Value<JArray>();
 
             foreach (var k in achievements)
             {
