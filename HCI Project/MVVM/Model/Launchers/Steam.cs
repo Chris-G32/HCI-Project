@@ -101,6 +101,7 @@ namespace HCI_Project.MVVM.Model
             {
                 _steamid = "76561198863942684";
             }
+            _steamid = "76561198863942684";
         }
         public override string Name
         {
@@ -329,13 +330,13 @@ namespace HCI_Project.MVVM.Model
                 }
             }
             //Why are we requerying here
-            resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={game.Game_ID}&key={_key}&steamid={_steamid}");
-            Debug.WriteLine(resp);//Consider http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key=YOURKEY&appid=APPID&l=english&format=json
+            resp = await client.GetStringAsync($"http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?key={_key}&appid={game.Game_ID}&l=english&format=json");
+            Debug.WriteLine(resp);
             // Parses the json response
             outer = JToken.Parse(resp);
             inner = outer["game"].Value<JObject>();//Error thrown here
             var inner2 = inner["availableGameStats"].Value<JObject>();
-            achievements = outer["achievements"].Value<JArray>();
+            achievements = inner2["achievements"].Value<JArray>();
 
             foreach (var k in achievements)
             {
@@ -418,9 +419,12 @@ namespace HCI_Project.MVVM.Model
                 int leftIndex = res.IndexOf("<");
                 int rightIndex = res.IndexOf(">");
                 int length = (rightIndex - leftIndex) + 1;
-
-                res = res.Remove(leftIndex, length);
-                res.Insert(leftIndex, " ");
+                try
+                {
+                    res = res.Remove(leftIndex, length);
+                    res.Insert(leftIndex, " ");
+                }
+                catch { }
             }
 
             return res;
