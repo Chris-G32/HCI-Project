@@ -27,7 +27,7 @@ namespace HCI_Project
 
         private void Window_Closing(object sender, EventArgs e)
         {
-            MainViewModel.GameHandler.SaveAllGamesOnClose();
+            //MainViewModel.GameHandler.SaveAllGamesOnClose();
         }
 
         private void Window_Closed(object sender, EventArgs e)
