@@ -43,65 +43,80 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         private void GetSteamId()
         {
-            string[] a = new string[0];
-            try
-            {
-               var tmp = Directory.GetDirectories("C:\\Program Files (x86)\\Steam\\userdata");
-                a = tmp;
-            }
-            catch
-            {
-                
-            }
-            
-            if (a.Count() == 0)
-            {
-                //Show message box to select the steam account to use
-                string messageBoxText = "We can't seem to find steam or a steam account. Using default account. Is Steam installed here?" + "C:\\Program Files (x86)\\Steam";
-                string caption = "Steam ID Get Failed.";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBoxResult result;
+            string messageBoxText1 = "Enter yes to use the default steam account, no to try to find your account";
+            string caption1 = "Choose SteamID";
+            MessageBoxButton button1 = MessageBoxButton.YesNo;
+            MessageBoxImage icon1 = MessageBoxImage.Question;
+            MessageBoxResult mesRes;
 
-                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
-            }
-            if (a.Count() > 1)
-            {
-                //Show message box to select the steam account to use
-                string messageBoxText = "We Found multiple steam accounts on your computer. Currently only one account is supported. The first account found will be used";
-                string caption = "Multiple Accounts Found.";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBoxResult result;
-
-                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
-            }
-            try
-            {
-                //Converts local id to steam api user id
-                const long STEAMIDADJUSTMENT= 76561197960265728;
-                var dir = a[0];
-                var localIdString=dir.Remove(0, dir.LastIndexOf("\\")+1);
-                var localId = long.Parse(localIdString);
-                _steamid = (localId + STEAMIDADJUSTMENT).ToString();
-            }
-            catch
-            {
-                string messageBoxText = "We can't seem to find steam. Is your steam installed here? "+ "C:\\Program Files (x86)\\Steam";
-                string caption = "Steam ID Get Failed.";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBoxResult result;
-
-                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
-            }
-
-            //Defaults to my steam
-            if (_steamid == "")
+            mesRes = MessageBox.Show(messageBoxText1, caption1, button1, icon1, MessageBoxResult.Yes);
+            if (mesRes== MessageBoxResult.Yes)
             {
                 _steamid = "76561198863942684";
             }
-            _steamid = "76561198863942684";
+            else
+            {
+                string[] a = new string[0];
+                try
+                {
+                    var tmp = Directory.GetDirectories("C:\\Program Files (x86)\\Steam\\userdata");
+                    a = tmp;
+                }
+                catch
+                {
+
+                }
+
+                if (a.Count() == 0)
+                {
+                    //Show message box to select the steam account to use
+                    string messageBoxText = "We can't seem to find steam or a steam account. Using default account. Is Steam installed here?" + "C:\\Program Files (x86)\\Steam";
+                    string caption = "Steam ID Get Failed.";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Warning;
+                    MessageBoxResult result;
+
+                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                }
+                if (a.Count() > 1)
+                {
+                    //Show message box to select the steam account to use
+                    string messageBoxText = "We Found multiple steam accounts on your computer. Currently only one account is supported. The first account found will be used";
+                    string caption = "Multiple Accounts Found.";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Warning;
+                    MessageBoxResult result;
+
+                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                }
+                try
+                {
+                    //Converts local id to steam api user id
+                    const long STEAMIDADJUSTMENT = 76561197960265728;
+                    var dir = a[0];
+                    var localIdString = dir.Remove(0, dir.LastIndexOf("\\") + 1);
+                    var localId = long.Parse(localIdString);
+                    _steamid = (localId + STEAMIDADJUSTMENT).ToString();
+                }
+                catch
+                {
+                    string messageBoxText = "We can't seem to find steam. Is your steam installed here? " + "C:\\Program Files (x86)\\Steam";
+                    string caption = "Steam ID Get Failed.";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Warning;
+                    MessageBoxResult result;
+
+                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                }
+
+                //Defaults to my steam
+                if (_steamid == "")
+                {
+                    _steamid = "76561198863942684";
+                }
+            }
+           
+            
         }
         public override string Name
         {
