@@ -30,7 +30,8 @@ namespace HCI_Project.MVVM.ViewModel
         private ObservableCollection<Game> _searchList;
         public ObservableCollection<Game> SearchList { get { return _searchList; } set { _searchList = value; OnPropertyChanged(); } }
         public ListCollectionView SearchedForView { get; }
-        public ICollectionView AllGames {get;}
+        private ICollectionView _allGames;
+        public ICollectionView AllGames { get { return _allGames; } private set { _allGames = value; _allGames.Refresh(); SearchedForView.Refresh(); OnPropertyChanged(); } }
 
         public static GameManager GameHandler;
 
