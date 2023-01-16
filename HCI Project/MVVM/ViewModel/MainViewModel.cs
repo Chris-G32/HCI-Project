@@ -33,8 +33,6 @@ namespace HCI_Project.MVVM.ViewModel
         private ICollectionView _allGames;
         public ICollectionView AllGames { get { return _allGames; } private set { _allGames = value; _allGames.Refresh(); SearchedForView.Refresh(); OnPropertyChanged(); } }
 
-        public static GameManager GameHandler;
-
         private string _searchFor="";
         public string SearchFor { get { return _searchFor; } 
             set { 
@@ -44,7 +42,7 @@ namespace HCI_Project.MVVM.ViewModel
                 OnPropertyChanged();
             } 
         }
-        public static SettingsManager SettingsHandler;
+        
         public RelayCommand SetSearchResultsView { get; set; }
         public RelayCommand SetGameView { get; set; }
         public RelayCommand ToggleSettings { get; set; }
@@ -100,7 +98,7 @@ namespace HCI_Project.MVVM.ViewModel
         public void FetchInstallStatus()
         {
            
-            foreach (var game in GameHandler.Games)
+            foreach (var game in App.GameHandler.Games)
             {
 
             }
@@ -112,12 +110,8 @@ namespace HCI_Project.MVVM.ViewModel
         public MainViewModel()
         {
 
-            SettingsHandler = new SettingsManager();
-
-            GameHandler = new GameManager();
-
-            SearchedForView = new ListCollectionView(GameHandler.Games); 
-            AllGames=CollectionViewSource.GetDefaultView(GameHandler.Games);
+            SearchedForView = new ListCollectionView(App.GameHandler.Games); 
+            AllGames=CollectionViewSource.GetDefaultView(App.GameHandler.Games);
             AllGames.Filter=HideHiddenGames;
             SearchedForView.Filter = FilterByName;
 
