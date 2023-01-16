@@ -82,6 +82,8 @@ namespace HCI_Project.MVVM.Model.Settings
         public bool LaunchOnStartup { get; set; }
         public GameTabs DefaultTab { get; set; }
         public string InstallDir { get; set; }
+        
+        public string SelectedSteamAccount { get; set; }
         public SettingsObject(bool showHidden, bool launchOnStartup, GameTabs defaultTab)
         {
             ShowHidden = showHidden;
