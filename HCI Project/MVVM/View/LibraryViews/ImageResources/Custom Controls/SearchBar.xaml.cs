@@ -64,7 +64,11 @@ namespace HCI_Project.MVVM.View.LibraryViews.ImageResources.Custom_Controls
         {
             Keyboard.ClearFocus();
         }
-        
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+        }
     }
     /// <summary>
     /// Converts 0 to Visible anything else to Hidden
