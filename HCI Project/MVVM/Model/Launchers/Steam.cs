@@ -17,6 +17,8 @@ using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Drawing.Text;
 using System.Windows;
+using HCI_Project.MVVM.View;
+using System.Collections.Immutable;
 
 namespace HCI_Project.MVVM.Model
 {
@@ -43,31 +45,31 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         private void GetSteamId()
         {
-            string messageBoxText1 = "Enter yes to use the default steam account, no to try to find your account";
-            string caption1 = "Choose SteamID";
-            MessageBoxButton button1 = MessageBoxButton.YesNo;
-            MessageBoxImage icon1 = MessageBoxImage.Question;
-            MessageBoxResult mesRes;
-
-            mesRes = MessageBox.Show(messageBoxText1, caption1, button1, icon1, MessageBoxResult.Yes);
-            if (mesRes== MessageBoxResult.Yes)
+            //string messageBoxText1 = "Enter yes to use the default steam account, no to try to find your account";
+            //string caption1 = "Choose SteamID";
+            //MessageBoxButton button1 = MessageBoxButton.YesNo;
+            //MessageBoxImage icon1 = MessageBoxImage.Question;
+            //MessageBoxResult mesRes;
+            //
+            //mesRes = MessageBox.Show(messageBoxText1, caption1, button1, icon1, MessageBoxResult.Yes);
+            //if (mesRes== MessageBoxResult.Yes)
+            //{
+            //    _steamid = "76561198863942684";
+            //}
+            
             {
-                _steamid = "76561198863942684";
-            }
-            else
-            {
-                string[] a = new string[0];
+                string[] directories = new string[0];
                 try
                 {
                     var tmp = Directory.GetDirectories("C:\\Program Files (x86)\\Steam\\userdata");
-                    a = tmp;
+                    directories = tmp;
                 }
                 catch
                 {
 
                 }
 
-                if (a.Count() == 0)
+                if (directories.Count() == 0)
                 {
                     //Show message box to select the steam account to use
                     string messageBoxText = "We can't seem to find steam or a steam account. Using default account. Is Steam installed here?" + "C:\\Program Files (x86)\\Steam";
@@ -78,25 +80,44 @@ namespace HCI_Project.MVVM.Model
 
                     result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
                 }
-                if (a.Count() > 1)
+                if (directories.Count() > 1)
                 {
-                    //Show message box to select the steam account to use
-                    string messageBoxText = "We Found multiple steam accounts on your computer. Currently only one account is supported. The first account found will be used";
-                    string caption = "Multiple Accounts Found.";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Warning;
-                    MessageBoxResult result;
+                    var AccountNames=new List<string>();
+                    var loginUserInfo = VdfConvert.Deserialize(File.ReadAllText("C:\\Program Files (x86)\\Steam\\config\\loginusers.vdf"));
+                    //Debug.WriteLine(loginUserInfo.Value);
+                    var steamAcct=loginUserInfo.Value;
+                    var childs = steamAcct.Children();
+                    foreach(VProperty child in childs) {
+                        AccountNames.Add(child.Value["AccountName"].ToString()); 
+                    }
+                    var AccountsInfo = childs.ToImmutableArray();
 
-                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+                    //Open Dialog to Choose Steam Account
+                    var AccountSelector = new AccountSelectorPopup(AccountNames);
+                    AccountSelector.ShowDialog();
+
+                    //If no selection or cancelled
+                    if (AccountSelector.ResultIndex == -1) {
+                        //Default to first account
+                        AccountSelector.ResultIndex = 0;
+                        //NOTE:
+                        //In future do not default and just exclude steam
+                    }
+
+                    
+                    _steamid = ((VProperty)(AccountsInfo[AccountSelector.ResultIndex])).Key;
+
+                    //Show message box to select the steam account to use
+                    Debug.WriteLine(childs.ToImmutableArray()[0]);
                 }
                 try
                 {
                     //Converts local id to steam api user id
                     const long STEAMIDADJUSTMENT = 76561197960265728;
-                    var dir = a[0];
+                    var dir = directories[0];
                     var localIdString = dir.Remove(0, dir.LastIndexOf("\\") + 1);
                     var localId = long.Parse(localIdString);
-                    _steamid = (localId + STEAMIDADJUSTMENT).ToString();
+                    //_steamid = (localId + STEAMIDADJUSTMENT).ToString();
                 }
                 catch
                 {
@@ -105,7 +126,7 @@ namespace HCI_Project.MVVM.Model
                     MessageBoxButton button = MessageBoxButton.OK;
                     MessageBoxImage icon = MessageBoxImage.Warning;
                     MessageBoxResult result;
-
+                
                     result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
                 }
 
@@ -150,7 +171,7 @@ namespace HCI_Project.MVVM.Model
             }
             catch
             {
-                res = "328A00E3906B517D7F065F4D40D5AD3F";
+                res = "1A804F209FECF029137ECE30370167E4";
             }
             return res;
         }

@@ -6,7 +6,9 @@
              xmlns:libraryViews="clr-namespace:HCI_Project.MVVM.View.LibraryViews"
              xmlns:viewModel="clr-namespace:HCI_Project.MVVM.ViewModel"
              xmlns:libraryViewModels="clr-namespace:HCI_Project.MVVM.ViewModel.LibraryViewModels"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             Startup="App_Startup"
+             >
     <Application.Resources>
         <ResourceDictionary>
             <!--LibraryViewModels-->

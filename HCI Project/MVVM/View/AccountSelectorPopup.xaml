@@ -1,0 +1,26 @@
+﻿<Window x:Class="HCI_Project.MVVM.View.AccountSelectorPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Project.MVVM.View"
+        mc:Ignorable="d"
+        Title="AccountSelectorPopup" Height="260" Width="500"
+        x:Name="AccountPopup"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="18" TextWrapping="WrapWithOverflow">
+            There were multiple accounts detected. Please choose the account to use.
+        </TextBlock>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Grid.Row="1">
+            <ComboBox Width="150" Height="50" SelectedIndex="{Binding ResultIndex,Mode=OneWayToSource,ElementName=AccountPopup}" SelectedValue="{Binding Result,Mode=OneWayToSource,ElementName=AccountPopup}" ItemsSource="{Binding AccountOptions, Mode=OneTime, ElementName=AccountPopup}"/>
+            <Button Click="Done_Click"  Background="LightGreen" Margin="75,0,0,0" Width="75" Content="Done!" Height="50"/>
+            <Button Click="Cancel_Click" Background="Red" Margin="10,0,0,0" Width="75"  Content="Cancel" Height="50"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
