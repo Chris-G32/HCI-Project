@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="SearchBox" Style="{StaticResource TextBoxBaseStyle}" Background="{DynamicResource lnchDarkGray}" Height="50" Grid.Row="0" Text="{Binding SearchText,Mode=TwoWay,ElementName=SearchCtrl,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="SearchBox" Style="{StaticResource TextBoxBaseStyle}" Background="{DynamicResource lnchDarkGray}" Height="50" Grid.Row="0" Text="{Binding SearchText,Mode=TwoWay,ElementName=SearchCtrl,UpdateSourceTrigger=PropertyChanged}" LostFocus="SearchBox_LostFocus"/>
         <Popup  Name="Popup" Placement="Bottom" PlacementTarget="{Binding ElementName=SearchBox}"
                         IsOpen="{Binding IsKeyboardFocused,ElementName=SearchBox,Mode=OneWay}"
                         AllowsTransparency="False" Focusable="False"
