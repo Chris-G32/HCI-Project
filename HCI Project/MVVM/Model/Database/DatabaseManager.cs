@@ -29,7 +29,8 @@ namespace HCI_Project.MVVM.Model.Database
         }
 
         /// <summary>
-        /// Checks if any tables exist in the database
+        /// TRYING TO FIGURE OUT WHAT THIS WAS INTENDED FOR-CHRIS
+        /// Checks if any tables exist in the database and then
         /// </summary>
         /// <returns> True if any tables exist, otherwise false </returns>
         public void CheckDatabase()

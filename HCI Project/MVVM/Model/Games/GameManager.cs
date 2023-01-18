@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,17 +12,32 @@ namespace HCI_Project.MVVM.Model
 {
     public class GameManager
     {
+        /// <summary>
+        /// Provides methods for interacting with the steam api to source game information and user info.
+        /// </summary>
         private static Steam _steamLauncher;
         //Support updating steamId Jankily
 
+        /// <summary>
+        /// Provides methods for updating the database to the manager
+        /// </summary>
         private static DatabaseManager _db;
 
+        /// <summary>
+        /// All of the games from all launchers. Not sorted in any particular order.
+        /// </summary>
         private ObservableCollection<Game> _games = new ObservableCollection<Game>();
 
+        /// <summary>
+        /// All of the games from all launchers. Not sorted in any particular order.
+        /// </summary>
         public ObservableCollection<Game> Games { 
             get { return _games; }
         }
 
+        /// <summary>
+        /// Creates a new game manager. This is capable of managing the database and relaying data to where it needs to go.
+        /// </summary>
         public GameManager()
         {
             _steamLauncher = new Steam();
@@ -43,6 +59,9 @@ namespace HCI_Project.MVVM.Model
             }
         }
 
+        /// <summary>
+        /// Saves a game to the database
+        /// </summary>
         public void SaveGame(Game game)
         {
             _db.UpdateGame(game);
@@ -53,11 +72,21 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         public void LaunchGame(Game game)
         {
-            if (game.Launcher_ID == LauncherID.Steam)
-                _steamLauncher.LaunchGame(game);
-            else
-                Debug.WriteLine("Game Launcher not yet implemented...");
-                
+            switch (game.Launcher_ID)
+            {
+                case LauncherID.Steam:
+                {
+                    _steamLauncher.LaunchGame(game);
+                    break;
+                }
+                case LauncherID.Epic:
+                     goto default; 
+                default:
+                {
+                    Debug.WriteLine("Game Launcher not yet implemented...");
+                    break;
+                }
+            }
         }
 
         /// <summary>

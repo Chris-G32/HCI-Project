@@ -1,4 +1,5 @@
-﻿using HCI_Project.Core;
+﻿//DONE WITH RESTRUCTURE AND COMMENT
+using HCI_Project.Core;
 using HCI_Project.MVVM.Model.Games;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,19 @@ using System.Text;
 
 namespace HCI_Project.MVVM.Model
 {
+    /// <summary>
+    /// Stores whether a given game is only owned, owned and installed, or not owned
+    /// </summary>
     public enum GameState
     {
         OWNED,
         INSTALLED,
         NOT_OWNED
     }
+
+    /// <summary>
+    /// Stores information about a game separate from the details of each launcher
+    /// </summary>
     public class Game:ObservableObject
     {
         /// <summary>
@@ -25,6 +33,7 @@ namespace HCI_Project.MVVM.Model
             Name = name;
             Launcher_ID = launcher;
         }
+
         /// <summary>
         /// Used For Binding Stuff Dont feel like fixing it yet
         /// </summary>
@@ -32,8 +41,8 @@ namespace HCI_Project.MVVM.Model
         {
             Game_ID = id;
             Name = name;
-            
         }
+
         /// <summary>
         /// Testing constructur for temporary use in the database
         /// </summary>
@@ -85,6 +94,9 @@ namespace HCI_Project.MVVM.Model
         public Uri GalleryFolder { get { return _galleryFolder; }set { _galleryFolder = value;OnPropertyChanged(); } }
 
         private ObservableCollection<GameNews> _news = new ObservableCollection<GameNews>();
+        /// <summary>
+        /// A list of pertinent game news. Origin varies across launchers
+        /// </summary>
         public ObservableCollection<GameNews> News
         {
             get
@@ -98,6 +110,9 @@ namespace HCI_Project.MVVM.Model
         }
 
         private ObservableCollection<GameAchievement> _achievements = new ObservableCollection<GameAchievement>();
+        /// <summary>
+        /// A list of all player achievements
+        /// </summary>
         public ObservableCollection<GameAchievement> Achievements
         {
             get

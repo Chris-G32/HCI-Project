@@ -32,7 +32,18 @@ namespace HCI_Project
 
         private void App_Startup(object sender, StartupEventArgs e)
         {
+            //Check if it is the first startup by seeing if the settings and the db files exist
+            //NEEDS DONE
+            //if(somecondition)
+            //{
+            //First_Startup();
+            //return;
+            //}
+
+            //Initialize games first, settings has some reliance on this stuff
             GameHandler=new GameManager();
+            SettingsHandler=new SettingsManager();
+
             Debug.WriteLine("On Startup");
         }
     }
