@@ -28,8 +28,12 @@ namespace HCI_Project.MVVM.Model
         private HttpClient client;
 
         //76561197960265728 +32bit steam id, found at C:\Program Files (x86)\Steam\userdata is the 64bit id
-        private string _steamid = "";//"76561198863942684";
+        private string _steamid = "";  // Chris G's steam id "76561198863942684";
         private string _steamname = "";
+        
+        /// <summary>
+        /// Should only be called once in program. Creates a new instance of the steam launcher interface for app.
+        /// </summary>
         public Steam()
         {
             //_browser=new System.Windows.Controls.WebBrowser();
@@ -41,7 +45,7 @@ namespace HCI_Project.MVVM.Model
 
         }
         /// <summary>
-        /// Sets the users steam id from computer assuming steam install is default
+        /// Gets the users steam id from computer assuming steam install is default install
         /// </summary>
         private void GetSteamId()
         {
@@ -156,7 +160,7 @@ namespace HCI_Project.MVVM.Model
         }
 
         /// <summary>
-        /// Reads from the "steam.secret" file in the same folder as this file and returns the Steam API key
+        /// Reads from the "steam.secret" file in the install directory and returns the Steam API key
         /// </summary>
         protected override string GetKey()
         {string res;
@@ -176,6 +180,11 @@ namespace HCI_Project.MVVM.Model
             return res;
         }
 
+        /// <summary>
+        /// Launches a steam game. Launching handled by steam launcher
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns></returns>
         public override bool LaunchGame(Game game)
         {
             _browser = new System.Windows.Controls.WebBrowser();
@@ -314,6 +323,11 @@ namespace HCI_Project.MVVM.Model
             //}
         }
 
+
+        /// <summary>
+        /// Gets the news for a Steam game asynchronously.
+        /// </summary>
+        /// <param name="game"></param>
         public async Task GetGameNews(Game game)
         {
             var resp = await client.GetStringAsync($"https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid={game.Game_ID}&count=6");

@@ -1,4 +1,5 @@
-﻿using HCI_Project.MVVM.Model.Database;
+﻿//DONE WITH RESTRUCTURE AND COMMENT
+using HCI_Project.MVVM.Model.Database;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,6 +51,9 @@ namespace HCI_Project.MVVM.Model
             UpdateAll();
         }
 
+        /// <summary>
+        /// Updates all games to database upon closing the app
+        /// </summary>
         public void SaveAllGamesOnClose()
         {
             foreach(Game game in _games)
@@ -134,6 +138,10 @@ namespace HCI_Project.MVVM.Model
             return res;
         }
 
+        /// <summary>
+        /// Gets the most recently played games regardless of launcher
+        /// </summary>
+        /// <returns>A list of the most recently played games in order of most recent to least recent</returns>
         public ObservableCollection<Game> GetRecentlyPlayed()
         {
             ObservableCollection<Game> recentGames = new ObservableCollection<Game>();
