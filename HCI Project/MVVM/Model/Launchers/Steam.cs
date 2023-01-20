@@ -170,7 +170,7 @@ namespace HCI_Project.MVVM.Model
 
             
             
-            using (FileStream fileStream = File.Open("../../.././steam.secret", FileMode.Open, FileAccess.Read))
+            using (FileStream fileStream = File.Open("./steam.secret", FileMode.Open, FileAccess.Read))
             using (StreamReader streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 256))
                 res = streamReader.ReadLine();
             }
