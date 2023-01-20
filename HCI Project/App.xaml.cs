@@ -40,10 +40,20 @@ namespace HCI_Project
             //return;
             //}
 
+            //Creates the MainWindow. Doing this here in code allows for dialog boxes
+            //to be thrown by things while loading mainWindow
+            //and not cause bindings to start
+            var mainWindow= new MainWindow();
+
             //Initialize games first, settings has some reliance on this stuff
             GameHandler=new GameManager();
-            //SettingsHandler=new SettingsManager();
+            //^^^^ Cannot spawn a window from this because
 
+            SettingsHandler=new SettingsManager();
+
+            //Display Mainwindow and instantiate bindings
+            mainWindow.InitializeComponent();
+            mainWindow.Show();
             Debug.WriteLine("On Startup");
         }
     }

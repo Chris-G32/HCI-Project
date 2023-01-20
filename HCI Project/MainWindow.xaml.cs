@@ -22,7 +22,7 @@ namespace HCI_Project
     {
         public MainWindow()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         private void Window_Closing(object sender, EventArgs e)
