@@ -159,7 +159,8 @@ namespace HCI_Project.MVVM.Model
         /// Reads from the "steam.secret" file in the same folder as this file and returns the Steam API key
         /// </summary>
         protected override string GetKey()
-        {string res;
+        {
+            string res;
             try
             {
 
