@@ -28,14 +28,14 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
         public SearchResultsViewModel(string query,LibraryViewModel parent) {
             Keyboard.ClearFocus();
             Query= query;
-            Results = new ListCollectionView(MainViewModel.GameHandler.Games)
+            Results = new ListCollectionView(App.GameHandler.Games)
             {
                 Filter = FilterByName
             };
             Results.Refresh();
             PlayGame = new RelayCommand(o =>
             {
-                MainViewModel.GameHandler.LaunchGame(o as Game);
+                App.GameHandler.LaunchGame(o as Game);
             });
             Parent = parent;
         } 

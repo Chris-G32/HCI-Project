@@ -42,7 +42,7 @@ namespace HCI_Project
 
             //Initialize games first, settings has some reliance on this stuff
             GameHandler=new GameManager();
-            SettingsHandler=new SettingsManager();
+            //SettingsHandler=new SettingsManager();
 
             Debug.WriteLine("On Startup");
         }

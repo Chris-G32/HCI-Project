@@ -1,4 +1,5 @@
-﻿using System;
+﻿//DONE WITH RESTRUCTURE AND COMMENT
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -22,6 +23,10 @@ using System.Collections.Immutable;
 
 namespace HCI_Project.MVVM.Model
 {
+
+    /// <summary>
+    /// Allows interaction with the Steam API and for sourcing information for and launching steam games
+    /// </summary>
     public class Steam:Launcher
     {
         // Client used for API Requests
