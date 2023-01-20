@@ -1,5 +1,4 @@
-﻿//DONE WITH RESTRUCTURE AND COMMENT
-using HCI_Project.MVVM.Model.Database;
+﻿using HCI_Project.MVVM.Model.Database;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,26 +7,16 @@ using System.Windows.Controls;
 
 namespace HCI_Project.MVVM.Model
 {
-    /// <summary>
-    /// Enum type for distinguishing between the launchers
-    /// </summary>
     public enum LauncherID
     {
         Steam,
         Epic
     }
-    /// <summary>
-    /// Provides base requirements expected of all inheriting launcher classes
-    /// </summary>
     public abstract class Launcher
     {
         public abstract string Name { get; }
         public abstract LauncherID ID { get; }
 
-        /// <summary>
-        /// Launches a game that is owned on a given launcher
-        /// </summary>
-        /// <returns>True if successfully launched, false otherwise</returns>
         public abstract bool LaunchGame(Game game);
 
         /// <summary>
@@ -48,11 +37,8 @@ namespace HCI_Project.MVVM.Model
         /// </summary>
         /// <returns>The API Key for the launcher</returns>
         protected abstract string GetKey();
-        
-        // The API key, may not always be necessary
+        // The API key
         protected string _key;
-
-        //Allows for games to be launched properly using the commands in browser eg: steam://launch
         protected WebBrowser _browser;
     }
 }
