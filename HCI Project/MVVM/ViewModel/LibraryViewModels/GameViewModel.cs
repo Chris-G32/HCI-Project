@@ -74,9 +74,9 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                 _hideGame = value;
                 SelectedGame.Hidden=_hideGame;
                 
-                MainViewModel.GameHandler.SaveGame(SelectedGame);
-                CollectionViewSource.GetDefaultView(MainViewModel.GameHandler.Games).Refresh();
-                MainViewModel.GameHandler.UpdateAll();
+                App.GameHandler.SaveGame(SelectedGame);
+                CollectionViewSource.GetDefaultView(App.GameHandler.Games).Refresh();
+                App.GameHandler.UpdateAll();
             } }
 
 
@@ -104,19 +104,19 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
             {
                 //Some Logic TO Run the Game
                 //SomeInterface.Run(Game)
-                MainViewModel.GameHandler.LaunchGame(game);
+                App.GameHandler.LaunchGame(game);
                 Debug.WriteLine("Running Game, Actually");
             });
             RemoveLink = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Remove(o as Uri);
-                MainViewModel.GameHandler.SaveGame(SelectedGame);
+                App.GameHandler.SaveGame(SelectedGame);
             });
             ChangeWebsite = new RelayCommand(o => {
                 CurrentCommunityPageSite = o as Uri;
             });
             ClearLinks = new RelayCommand(o => {
                 SelectedGame.SavedLinks.Clear();
-                MainViewModel.GameHandler.SaveGame(SelectedGame);
+                App.GameHandler.SaveGame(SelectedGame);
             });
             AddLink = new RelayCommand(o => {
                 Uri addMe;
@@ -141,7 +141,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
                     result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
                 }
-                MainViewModel.GameHandler.SaveGame(SelectedGame);
+                App.GameHandler.SaveGame(SelectedGame);
             });
             UpdateGalleryDirectory = new RelayCommand(o =>
             {
@@ -154,7 +154,7 @@ namespace HCI_Project.MVVM.ViewModel.LibraryViewModels
 
                 //Debug.WriteLine((tmp.ToArray()).ToString());
                 SelectedGame.GalleryFolder = new Uri(folderBrowserDialog.SelectedPath);
-                MainViewModel.GameHandler.SaveGame(SelectedGame);
+                App.GameHandler.SaveGame(SelectedGame);
                 }
             });
             
